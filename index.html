@@ -1,66 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>NoBroker Loans</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NoBroker Loans DSA Catalog</title>
+
   <style>
-    body { font-family: Arial; padding: 20px; }
-    input { padding: 10px; width: 300px; }
-    .card { border: 1px solid #ccc; margin: 10px 0; padding: 10px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: #d80000;
+    }
+
+    .card p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
   </style>
 </head>
 
 <body>
 
-<h1>NoBroker Loans</h1>
-
-<input id="search" placeholder="Search bank...">
-
-<div id="catalog"></div>
-
-<script>
-
-let DATA = [];
-
-/* ===== FETCH DATA ===== */
-async function loadData() {
-
-  const API = "PASTE_YOUR_API_URL_HERE";
-
-  const res = await fetch(API);
-  const data = await res.json();
-
-  DATA = data;
-
-  render(DATA);
-}
-
-loadData();
-
-/* ===== RENDER ===== */
-function render(data) {
-  document.getElementById("catalog").innerHTML = data.map(d => `
-    <div class="card">
-      <h3>${d.name}</h3>
-      <p>${d.code}</p>
-      <p>${d.city}</p>
+  <div class="container">
+    
+    <div class="hero">
+      <h1>NoBroker Loans</h1>
+      <input 
+        type="text" 
+        id="searchInput" 
+        class="search-box" 
+        placeholder="Search by name, code, city..."
+        onkeyup="filterData()"
+      />
     </div>
-  `).join("");
-}
 
-/* ===== SEARCH ===== */
-document.getElementById("search").addEventListener("input", (e) => {
+    <div id="cardContainer" class="cards"></div>
 
-  const q = e.target.value.toLowerCase();
+  </div>
 
-  const filtered = DATA.filter(d =>
-    (d.name || "").toLowerCase().includes(q) ||
-    (d.code || "").toLowerCase().includes(q)
-  );
+  <script>
+    // 🔹 Sample Data (Hardcoded)
+    const bankData = [
+      {
+        name: "HDFC Bank",
+        code: "HDFC001",
+        city: "Mumbai"
+      },
+      {
+        name: "ICICI Bank",
+        code: "ICICI002",
+        city: "Bangalore"
+      },
+      {
+        name: "SBI",
+        code: "SBI003",
+        city: "Delhi"
+      }
+    ];
 
-  render(filtered);
-});
+    // 🔹 Render Cards
+    function renderCards(data) {
+      const container = document.getElementById("cardContainer");
+      container.innerHTML = "";
 
-</script>
+      data.forEach(bank => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+          <h3>${bank.name}</h3>
+          <p><strong>Code:</strong> ${bank.code}</p>
+          <p><strong>City:</strong> ${bank.city}</p>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // 🔹 Search Filter
+    function filterData() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+
+      const filtered = bankData.filter(bank =>
+        bank.name.toLowerCase().includes(query) ||
+        bank.code.toLowerCase().includes(query) ||
+        bank.city.toLowerCase().includes(query)
+      );
+
+      renderCards(filtered);
+    }
+
+    // 🔹 Initial Render
+    renderCards(bankData);
+
+  </script>
 
 </body>
 </html>
