@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NoBroker Loans</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input { padding: 10px; width: 300px; }
+    .card { border: 1px solid #ccc; margin: 10px 0; padding: 10px; }
+  </style>
+</head>
+
+<body>
+
+<h1>NoBroker Loans</h1>
+
+<input id="search" placeholder="Search bank...">
+
+<div id="catalog"></div>
+
+<script>
+
+let DATA = [
+  { name: "Bank of Baroda", code: "CDSA01031", city: "PAN India" },
+  { name: "Canara Bank", code: "CDSA00035", city: "Tier-1" }
+];
+
+function render(data) {
+  document.getElementById("catalog").innerHTML = data.map(d => `
+    <div class="card">
+      <h3>${d.name}</h3>
+      <p>${d.code}</p>
+      <p>${d.city}</p>
+    </div>
+  `).join("");
+}
+
+render(DATA);
+
+document.getElementById("search").addEventListener("input", (e) => {
+  const q = e.target.value.toLowerCase();
+
+  const filtered = DATA.filter(d =>
+    d.name.toLowerCase().includes(q) ||
+    d.code.toLowerCase().includes(q)
+  );
+
+  render(filtered);
+});
+
+</script>
+
+</body>
+</html>
