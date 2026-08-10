@@ -19,11 +19,24 @@
 
 <script>
 
-let DATA = [
-  { name: "Bank of Baroda", code: "CDSA01031", city: "PAN India" },
-  { name: "Canara Bank", code: "CDSA00035", city: "Tier-1" }
-];
+let DATA = [];
 
+/* ===== FETCH DATA ===== */
+async function loadData() {
+
+  const API = "PASTE_YOUR_API_URL_HERE";
+
+  const res = await fetch(API);
+  const data = await res.json();
+
+  DATA = data;
+
+  render(DATA);
+}
+
+loadData();
+
+/* ===== RENDER ===== */
 function render(data) {
   document.getElementById("catalog").innerHTML = data.map(d => `
     <div class="card">
@@ -34,14 +47,14 @@ function render(data) {
   `).join("");
 }
 
-render(DATA);
-
+/* ===== SEARCH ===== */
 document.getElementById("search").addEventListener("input", (e) => {
+
   const q = e.target.value.toLowerCase();
 
   const filtered = DATA.filter(d =>
-    d.name.toLowerCase().includes(q) ||
-    d.code.toLowerCase().includes(q)
+    (d.name || "").toLowerCase().includes(q) ||
+    (d.code || "").toLowerCase().includes(q)
   );
 
   render(filtered);
