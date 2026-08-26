@@ -580,13 +580,13 @@
     </div>
   </div>
 
-  <div class="result-row">
-    <div class="institution-panels" id="institution-panels" aria-label="Institution category">
-      <button type="button" class="institution-panel-btn active" data-panel="all">All <span class="panel-count" id="panel-count-all">0</span></button>
-      <button type="button" class="institution-panel-btn" data-panel="general">General <span class="panel-count" id="panel-count-general">0</span></button>
-      <button type="button" class="institution-panel-btn" data-panel="coop">Co-Op Institutions <span class="panel-count" id="panel-count-coop">0</span></button>
-    </div>
+  <div class="catalog-toolbar">
+    <p class="result-count" id="result-count"></p>
     <div class="result-actions">
+      <label class="sort-control" id="sort-control" for="sort-select">
+        <span>Sort by</span>
+        <select id="sort-select" aria-label="Sort institutions"></select>
+      </label>
       <div class="layout-toggle" aria-label="Catalog layout">
         <button type="button" class="layout-btn active" id="grid-view-btn" title="Grid view" aria-label="Grid view">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg>
@@ -601,19 +601,59 @@
       </button>
     </div>
   </div>
-  <p class="result-count panel-result-count" id="result-count"></p>
-  <div class="selection-toolbar" id="selection-toolbar">
-    <button type="button" class="selection-btn" id="select-visible-btn">Select all visible</button>
-    <button type="button" class="selection-btn" id="clear-selection-btn">Clear selection</button>
-    <span class="selection-count" id="selection-count"><strong>0</strong> selected for print</span>
-  </div>
-  <p class="print-hint">Tick one or more bank cards, then select <strong>Print</strong>. Catalog hides percentages; authenticated access prints the percentage view assigned to that login.</p>
-  <iframe id="print-frame" title="Print output" aria-hidden="true"></iframe>
-  <p class="print-hint" style="display:none;">Select one or more banks, sign in if required, then click <strong>Print</strong>. The printout will include only the selected bank(s) and only the percentage field allowed for the signed-in account.</p>
-  <p class="print-toast" id="print-ready-toast"></p>
 
-  <div class="grid" id="grid"></div>
-  <div class="empty" id="empty" style="display:none;"></div>
+  <div class="catalog-content">
+    <aside class="filter-sidebar" aria-label="Catalog filters">
+      <div class="filter-heading-row">
+        <h2>Filters</h2>
+        <button type="button" class="clear-filters-btn" id="clear-filters-btn">Clear all</button>
+      </div>
+
+      <section class="filter-group" aria-labelledby="institution-type-filter-title">
+        <h3 id="institution-type-filter-title">Institution Type</h3>
+        <label class="filter-option">
+          <input type="checkbox" data-filter-group="mode" data-filter-value="general">
+          <span>General Institutions</span>
+          <span class="filter-count" id="filter-count-general">0</span>
+        </label>
+        <label class="filter-option">
+          <input type="checkbox" data-filter-group="mode" data-filter-value="coop">
+          <span>Co-Op Institutions</span>
+          <span class="filter-count" id="filter-count-coop">0</span>
+        </label>
+      </section>
+
+      <section class="filter-group" aria-labelledby="payment-type-filter-title">
+        <h3 id="payment-type-filter-title">Payout Processing</h3>
+        <label class="filter-option">
+          <input type="checkbox" data-filter-group="payment" data-filter-value="spot">
+          <span>Spot</span>
+          <span class="filter-count" id="filter-count-spot">0</span>
+        </label>
+        <label class="filter-option">
+          <input type="checkbox" data-filter-group="payment" data-filter-value="mis">
+          <span>MIS Based</span>
+          <span class="filter-count" id="filter-count-mis">0</span>
+        </label>
+      </section>
+
+      <p class="filter-help">Selections within a section are combined; selections across sections narrow the results.</p>
+    </aside>
+
+    <main class="catalog-results">
+      <div class="selection-toolbar" id="selection-toolbar">
+        <button type="button" class="selection-btn" id="select-visible-btn">Select all visible</button>
+        <button type="button" class="selection-btn" id="clear-selection-btn">Clear selection</button>
+        <span class="selection-count" id="selection-count"><strong>0</strong> selected for print</span>
+      </div>
+      <p class="print-hint">Tick one or more bank cards, then select <strong>Print</strong>. Catalog hides percentages; authenticated access prints the percentage view assigned to that login.</p>
+      <iframe id="print-frame" title="Print output" aria-hidden="true"></iframe>
+      <p class="print-toast" id="print-ready-toast"></p>
+
+      <div class="grid" id="grid"></div>
+      <div class="empty" id="empty" style="display:none;"></div>
+    </main>
+  </div>
 </div>
 
 <!-- Detail modal — opened by clicking a tile -->
@@ -663,6 +703,59 @@
   .record-value.pct{font-family:'Montserrat',sans-serif;font-weight:700;color:#5a4a12;background:var(--gold-soft);padding:7px 9px;border-radius:6px}
   .access-user{font-family:'Inter',sans-serif;font-size:11px;color:var(--ink-dim);text-align:center;margin:-26px 0 24px}
   @media(max-width:640px){.record-kv{grid-template-columns:1fr}.record-field.wide{grid-column:auto}}
+
+  /* ---- Amazon-style filter rail + result toolbar ---- */
+  .catalog-toolbar{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    margin:18px 0 0;padding:10px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+  }
+  .catalog-toolbar .result-count{text-align:left;min-width:150px;}
+  .result-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;}
+  .sort-control{
+    display:inline-flex;align-items:center;gap:7px;font-family:'Inter',sans-serif;font-size:11px;
+    font-weight:700;color:var(--ink-dim);white-space:nowrap;
+  }
+  .sort-control select{
+    appearance:auto;background:var(--panel);color:var(--ink);border:1px solid var(--line);
+    border-radius:7px;padding:7px 28px 7px 9px;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;
+    outline:none;cursor:pointer;
+  }
+  .sort-control select:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,162,39,.12);}
+  .catalog-content{
+    display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;align-items:start;margin-top:18px;
+  }
+  .filter-sidebar{
+    position:sticky;top:18px;align-self:start;padding:4px 18px 12px 0;border-right:1px solid var(--line);
+    font-family:'Inter',sans-serif;
+  }
+  .filter-heading-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
+  .filter-heading-row h2{font-family:'Montserrat',sans-serif;font-size:14px;margin:0;color:var(--ink);}
+  .clear-filters-btn{border:0;background:transparent;color:var(--red);font:600 10.5px 'Inter',sans-serif;cursor:pointer;padding:4px 0;}
+  .clear-filters-btn:hover{text-decoration:underline;}
+  .filter-group{padding:14px 0;border-top:1px solid var(--line-soft);}
+  .filter-group:first-of-type{border-top:0;}
+  .filter-group h3{font-family:'Inter',sans-serif;font-size:11.5px;font-weight:800;margin:0 0 9px;color:var(--ink);}
+  .filter-option{display:grid;grid-template-columns:16px minmax(0,1fr) auto;align-items:center;gap:7px;padding:5px 0;cursor:pointer;color:var(--ink);font-size:11.5px;line-height:1.3;}
+  .filter-option:hover span:nth-child(2){color:var(--red);}
+  .filter-option input{width:14px;height:14px;margin:0;accent-color:var(--red);cursor:pointer;}
+  .filter-count{font-size:9.5px;color:var(--ink-dim);font-variant-numeric:tabular-nums;}
+  .filter-help{font-size:9.5px;line-height:1.45;color:var(--ink-dim);margin:6px 0 0;}
+  .catalog-results{min-width:0;}
+  .catalog-results .selection-toolbar{justify-content:flex-start;margin-top:0;}
+  .catalog-results .print-hint{text-align:left;margin-left:1px;}
+  .catalog-results .grid{margin-top:18px;}
+  .empty{margin-top:18px;}
+
+  @media(max-width:760px){
+    .catalog-toolbar{align-items:flex-start;flex-direction:column;}
+    .catalog-toolbar .result-count{text-align:left;}
+    .result-actions{justify-content:flex-start;width:100%;}
+    .catalog-content{grid-template-columns:1fr;gap:10px;}
+    .filter-sidebar{position:static;border-right:0;border-bottom:1px solid var(--line);padding:0 0 10px;}
+    .filter-group{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:14px;}
+    .filter-group h3{grid-column:1/-1;}
+    .filter-help{display:none;}
+  }
 </style>
 
 <script>
@@ -675,7 +768,8 @@
   let currentView = 'catalog';
   let authenticatedUser = null;
   let selectedChips = [];
-  let activeInstitutionPanel = 'all';
+  const activeFilters = { mode:new Set(), payment:new Set() };
+  let sortMode = localStorage.getItem('nobrokerLoansCatalogSort') || 'name-asc';
   let catalogLayout = localStorage.getItem('nobrokerLoansCatalogLayout') === 'list' ? 'list' : 'grid';
   const printSelection = new Set();
 
@@ -822,15 +916,30 @@
     if(m === 'general') return 'general';
     return m;
   }
-  function recordsForInstitutionPanel(d, panel=activeInstitutionPanel){
-    if(panel === 'all') return d.records || [];
-    return (d.records || []).filter(r => normalizedMode(r.mode) === panel);
+  function normalizedPaymentType(value){
+    const v = String(value || '').trim().toLowerCase().replace(/[^a-z]/g,'');
+    if(v === 'spot') return 'spot';
+    if(v === 'mis') return 'mis';
+    return v;
   }
-  function institutionMatchesPanel(d, panel=activeInstitutionPanel){
-    return recordsForInstitutionPanel(d, panel).length > 0;
+  function cloneFilters(filters=activeFilters){
+    return {mode:new Set(filters.mode), payment:new Set(filters.payment)};
   }
-  function bankSearchText(d, panel=activeInstitutionPanel){
-    const records = recordsForInstitutionPanel(d, panel);
+  function recordMatchesFilters(rec, filters=activeFilters){
+    const mode = normalizedMode(rec.mode);
+    const payment = normalizedPaymentType(rec.paymentType);
+    const modeMatch = filters.mode.size === 0 || filters.mode.has(mode);
+    const paymentMatch = filters.payment.size === 0 || filters.payment.has(payment);
+    return modeMatch && paymentMatch;
+  }
+  function recordsForActiveFilters(d, filters=activeFilters){
+    return (d.records || []).filter(rec => recordMatchesFilters(rec, filters));
+  }
+  function institutionMatchesFilters(d, filters=activeFilters){
+    return recordsForActiveFilters(d, filters).length > 0;
+  }
+  function bankSearchText(d, filters=activeFilters){
+    const records = recordsForActiveFilters(d, filters);
     return [
       d.name,
       ...unique(records.map(r=>r.bankType)),
@@ -842,38 +951,106 @@
       ])
     ].filter(Boolean).join(' ').toLowerCase();
   }
-
-  function getFiltered(panel=activeInstitutionPanel){
+  function getFiltered(filters=activeFilters){
     const q = comboInput.value.trim().toLowerCase();
     return CATALOG_DATA.filter(d => {
-      if(!institutionMatchesPanel(d,panel)) return false;
+      if(!institutionMatchesFilters(d,filters)) return false;
       const chipMatch = selectedChips.length === 0 || selectedChips.includes(d.name);
-      const qMatch = !q || bankSearchText(d,panel).includes(q);
+      const qMatch = !q || bankSearchText(d,filters).includes(q);
       return chipMatch && qMatch;
     });
   }
-  function renderInstitutionPanels(){
-    const counts = {
-      all:getFiltered('all').length,
-      general:getFiltered('general').length,
-      coop:getFiltered('coop').length
+  function countFacet(group,value){
+    const filters = cloneFilters();
+    filters[group] = new Set([value]);
+    return getFiltered(filters).length;
+  }
+  function renderFilters(){
+    document.querySelectorAll('.filter-option input[data-filter-group]').forEach(input=>{
+      const group=input.dataset.filterGroup;
+      const value=input.dataset.filterValue;
+      input.checked=activeFilters[group].has(value);
+    });
+    const counts={
+      general:countFacet('mode','general'),
+      coop:countFacet('mode','coop'),
+      spot:countFacet('payment','spot'),
+      mis:countFacet('payment','mis')
     };
     Object.entries(counts).forEach(([key,value])=>{
-      const el=document.getElementById('panel-count-'+key);
+      const el=document.getElementById('filter-count-'+key);
       if(el) el.textContent=value;
     });
-    document.querySelectorAll('.institution-panel-btn').forEach(btn=>{
-      btn.classList.toggle('active',btn.dataset.panel===activeInstitutionPanel);
-    });
   }
-  function panelDisplayLabel(panel=activeInstitutionPanel){
-    if(panel==='general') return 'General institutions';
-    if(panel==='coop') return 'Co-Op institutions';
-    return 'institutions';
-  }
-  function setInstitutionPanel(panel){
-    activeInstitutionPanel = ['all','general','coop'].includes(panel) ? panel : 'all';
+  function toggleFilter(group,value,checked){
+    if(!activeFilters[group]) return;
+    if(checked) activeFilters[group].add(value); else activeFilters[group].delete(value);
     renderPanel();
+    renderGrid();
+  }
+  function clearFilters(){
+    activeFilters.mode.clear();
+    activeFilters.payment.clear();
+    renderPanel();
+    renderGrid();
+  }
+  function filterSummaryLabel(){
+    const parts=[];
+    if(activeFilters.mode.size){
+      const labels=[...activeFilters.mode].map(v=>v==='general'?'General':v==='coop'?'Co-Op':v);
+      parts.push(labels.join(' + '));
+    }
+    if(activeFilters.payment.size){
+      const labels=[...activeFilters.payment].map(v=>v==='spot'?'Spot':v==='mis'?'MIS Based':v);
+      parts.push(labels.join(' + '));
+    }
+    return parts.length ? parts.join(' · ') : 'All Institutions';
+  }
+  function extractPercentNumbers(text){
+    return [...String(text || '').matchAll(/(\d+(?:\.\d+)?)%/g)].map(m=>parseFloat(m[1])).filter(Number.isFinite);
+  }
+  function institutionPayoutSortValue(d){
+    if(!canShowPayouts()) return null;
+    const nums=recordsForActiveFilters(d).flatMap(rec=>extractPercentNumbers(payoutForRecord(rec)));
+    return nums.length ? Math.max(...nums) : null;
+  }
+  function sortInstitutions(list){
+    const out=[...list];
+    if(sortMode==='name-desc') return out.sort((a,b)=>b.name.localeCompare(a.name,'en',{sensitivity:'base'}));
+    if(sortMode==='payout-high' || sortMode==='payout-low'){
+      const dir=sortMode==='payout-high' ? -1 : 1;
+      return out.sort((a,b)=>{
+        const av=institutionPayoutSortValue(a), bv=institutionPayoutSortValue(b);
+        if(av===null && bv===null) return a.name.localeCompare(b.name,'en',{sensitivity:'base'});
+        if(av===null) return 1;
+        if(bv===null) return -1;
+        if(av!==bv) return (av-bv)*dir;
+        return a.name.localeCompare(b.name,'en',{sensitivity:'base'});
+      });
+    }
+    return out.sort((a,b)=>a.name.localeCompare(b.name,'en',{sensitivity:'base'}));
+  }
+  function renderSortControl(){
+    const select=document.getElementById('sort-select');
+    if(!select) return;
+    const payoutLabel=percentageFieldLabel();
+    const options=[
+      ['name-asc','Name: A to Z'],
+      ['name-desc','Name: Z to A']
+    ];
+    if(canShowPayouts()){
+      options.push(['payout-high',`${payoutLabel}: High to Low`],['payout-low',`${payoutLabel}: Low to High`]);
+    }else if(sortMode.startsWith('payout')){
+      sortMode='name-asc';
+    }
+    select.innerHTML=options.map(([value,label])=>`<option value="${value}"${sortMode===value?' selected':''}>${esc(label)}</option>`).join('');
+  }
+  function setSortMode(value){
+    const allowed=canShowPayouts()
+      ? ['name-asc','name-desc','payout-high','payout-low']
+      : ['name-asc','name-desc'];
+    sortMode=allowed.includes(value) ? value : 'name-asc';
+    try{localStorage.setItem('nobrokerLoansCatalogSort',sortMode);}catch(e){}
     renderGrid();
   }
   function setCatalogLayout(layout){
@@ -905,7 +1082,7 @@
   function renderPanel(){
     const q = comboInput.value.trim().toLowerCase();
     const options = CATALOG_DATA
-      .filter(d=>institutionMatchesPanel(d,activeInstitutionPanel))
+      .filter(d=>institutionMatchesFilters(d))
       .map(d=>d.name)
       .filter(name => !selectedChips.includes(name))
       .filter(name => !q || name.toLowerCase().includes(q));
@@ -923,18 +1100,18 @@
     combobox.classList.toggle('has-content', selectedChips.length > 0 || comboInput.value.trim().length > 0);
   }
 
-  function recordCodes(d, panel=activeInstitutionPanel){
-    return unique(recordsForInstitutionPanel(d,panel).map(r => r.code));
+  function recordCodes(d){
+    return unique(recordsForActiveFilters(d).map(r => r.code));
   }
   function tileHTML(d){
-    const records = recordsForInstitutionPanel(d);
+    const records = recordsForActiveFilters(d);
     const codes = unique(records.map(r=>r.code));
     const modes = unique(records.map(r=>r.mode));
     const products = unique(records.map(r=>r.productType));
     const checked = printSelection.has(d.name);
     const bankType = unique(records.map(r=>r.bankType)).join(' / ') || '—';
     const hoverCodes = codes.length ? codes.slice(0,3).join(' · ') + (codes.length>3 ? ` · +${codes.length-3}` : '') : 'No code listed';
-    const hoverCategory = modes.join(' / ') || (activeInstitutionPanel==='coop' ? 'CO-Op' : activeInstitutionPanel==='general' ? 'General' : '—');
+    const hoverCategory = modes.join(' / ') || '—';
     return `<div class="tile ${checked ? 'selected-for-print' : ''}" data-name="${esc(d.name)}" tabindex="0" role="button" aria-label="Open ${esc(d.name)} details">
       <label class="tile-select" title="Select this bank for printing" onclick="event.stopPropagation()">
         <input type="checkbox" class="print-select-box" ${checked ? 'checked' : ''} aria-label="Select ${esc(d.name)} for printing"> Print
@@ -988,7 +1165,7 @@
     </div>`;
   }
   function detailHTML(d){
-    const records = recordsForInstitutionPanel(d);
+    const records = recordsForActiveFilters(d);
     const bankTypes = unique(records.map(r=>r.bankType)).join(' / ') || '—';
     const modes = unique(records.map(r=>r.mode));
     return `<div class="detail-head">
@@ -1026,7 +1203,7 @@
     renderGrid();
   }
   function getPrintList(){
-    if(printSelection.size) return CATALOG_DATA.filter(d=>printSelection.has(d.name) && institutionMatchesPanel(d));
+    if(printSelection.size) return CATALOG_DATA.filter(d=>printSelection.has(d.name) && institutionMatchesFilters(d));
     return getFiltered();
   }
 
@@ -1034,10 +1211,11 @@
     const grid=document.getElementById('grid');
     const empty=document.getElementById('empty');
     const count=document.getElementById('result-count');
-    const filtered=getFiltered();
+    renderSortControl();
+    const filtered=sortInstitutions(getFiltered());
 
     grid.classList.toggle('list-view',catalogLayout==='list');
-    renderInstitutionPanels();
+    renderFilters();
     const gridBtn=document.getElementById('grid-view-btn');
     const listBtn=document.getElementById('list-view-btn');
     if(gridBtn) gridBtn.classList.toggle('active',catalogLayout==='grid');
@@ -1046,12 +1224,12 @@
     if(!filtered.length){
       grid.innerHTML='';
       empty.style.display='block';
-      empty.textContent='No institutions match your search in this panel.';
+      empty.textContent='No institutions match the current search and filters.';
       count.textContent='';
     }else{
       empty.style.display='none';
       grid.innerHTML=filtered.map(tileHTML).join('');
-      count.innerHTML=`<strong>${filtered.length}</strong> ${panelDisplayLabel()}${comboInput.value.trim() || selectedChips.length ? ' match the current search/selection' : ''}`;
+      count.innerHTML=`Showing <strong>${filtered.length}</strong> institution${filtered.length===1?'':'s'} · ${esc(filterSummaryLabel())}${comboInput.value.trim() || selectedChips.length ? ' · search applied' : ''}`;
       grid.querySelectorAll('.tile').forEach(tile=>{
         tile.addEventListener('click',()=>openDetail(tile.dataset.name));
         tile.addEventListener('keydown',e=>{
@@ -1096,12 +1274,12 @@
   function buildPrintBody(list){
     const printedOn = new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
     const viewLabel=currentView==='catalog'?'Catalog':protectedViewLabel(currentView)+' Access';
-    const panelLabel=activeInstitutionPanel==='coop'?'Co-Op Institutions':activeInstitutionPanel==='general'?'General Institutions':'All Institutions';
+    const panelLabel=filterSummaryLabel();
     const userLabel=authenticatedUser ? ` · ${esc(authenticatedUser.label)}` : '';
     return `<img class="wm" src="${LOGO_DATA_URI}" alt="">
       <div class="footer"><span>NoBroker Loans — Banking Catalog</span><span>${esc(printedOn)}</span></div>
       <header><img src="${LOGO_DATA_URI}" alt=""><div><h1>NoBroker Loans</h1><p>${esc(viewLabel)} · ${esc(panelLabel)}${userLabel} · ${list.length} institution${list.length===1?'':'s'} · ${esc(printedOn)}</p></div></header>
-      ${list.map(d=>`<section class="bank"><h2>${esc(d.name)}</h2>${recordsForInstitutionPanel(d).map(printRecord).join('')}</section>`).join('')}`;
+      ${list.map(d=>`<section class="bank"><h2>${esc(d.name)}</h2>${recordsForActiveFilters(d).map(printRecord).join('')}</section>`).join('')}`;
   }
   function buildPrintDocument(list){
     return `<!doctype html><html><head><meta charset="utf-8"><title>NoBroker Loans — Selected Bank Details</title>
@@ -1163,9 +1341,11 @@
   document.getElementById('download-pdf-btn').addEventListener('click',printSelectedBanks);
   document.getElementById('select-visible-btn').addEventListener('click',selectVisibleBanks);
   document.getElementById('clear-selection-btn').addEventListener('click',clearPrintSelection);
-  document.querySelectorAll('.institution-panel-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>setInstitutionPanel(btn.dataset.panel));
+  document.querySelectorAll('.filter-option input[data-filter-group]').forEach(input=>{
+    input.addEventListener('change',()=>toggleFilter(input.dataset.filterGroup,input.dataset.filterValue,input.checked));
   });
+  document.getElementById('clear-filters-btn').addEventListener('click',clearFilters);
+  document.getElementById('sort-select').addEventListener('change',e=>setSortMode(e.target.value));
   document.getElementById('grid-view-btn').addEventListener('click',()=>setCatalogLayout('grid'));
   document.getElementById('list-view-btn').addEventListener('click',()=>setCatalogLayout('list'));
 
