@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#faf8f3;
+    --bg:#ffffff;
     --panel:#ffffff;
     --gold:#c9a227;
     --gold-soft:#f4e9c8;
@@ -481,7 +481,7 @@
       display:block !important;
       position:relative;
       font-family:'Inter', sans-serif;
-      color:#111;
+      color:#d80000;
     }
 
     .print-empty{ font-size:13px; color:#555; }
@@ -508,11 +508,11 @@
       position:relative; z-index:1;
       display:flex; align-items:center; gap:12px;
       padding-bottom:8px; margin-bottom:10px;
-      border-bottom:2px solid #111;
+      border-bottom:2px solid #d80000;
     }
     .print-logo{ width:30px; height:30px; }
     .print-brand{
-      font-family:'Playfair Display', serif; font-weight:600; font-size:15px; color:#111;
+      font-family:'Playfair Display', serif; font-weight:600; font-size:15px; color:#d80000;
     }
     .print-meta{ font-size:10px; color:#555; margin-top:2px; }
 
@@ -525,7 +525,7 @@
     }
     .print-table thead{ display:table-header-group; }
     .print-table th{
-      text-align:left; background:#111; color:#fff;
+      text-align:left; background:#d80000; color:#fff;
       font-size:8px; font-weight:700; letter-spacing:0.03em; text-transform:uppercase;
       padding:5px 6px;
       -webkit-print-color-adjust:exact; print-color-adjust:exact;
@@ -1341,15 +1341,15 @@
     return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(catalogMonth)} Catalog — NoBroker Loans</title>
     <style>
       @page{size:A4 landscape;margin:12mm 11mm 16mm}*{box-sizing:border-box}
-      body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#111;font-size:9px}
+      body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:9px}
 
       /* Page 0: exactly one cover page is injected once per print command. */
       .print-cover{position:relative;z-index:20;background:#fff;height:176mm;break-after:page;page-break-after:always;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
       .cover-inner{width:78%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
       .cover-logo{width:76px;height:76px;object-fit:contain;margin:0 0 18px}
       .cover-eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:10px;font-weight:700;color:#777;margin-bottom:9px}
-      .cover-title{font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.08;margin:0;font-weight:600;color:#111}
-      .cover-rule{width:56px;height:3px;background:#c31d1d;margin:22px 0 20px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .cover-title{font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.08;margin:0;font-weight:600;color:#d80000}
+      .cover-rule{width:56px;height:3px;background:#d80000;margin:22px 0 20px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
       .cover-user{font-size:12px;line-height:1.5}
       .cover-name{font-size:18px;font-weight:700;margin-bottom:3px}
       .cover-designation{font-size:12px;font-weight:600;color:#555;margin-bottom:2px}
@@ -1358,9 +1358,9 @@
       .catalog-print-pages{position:relative;z-index:1}
       .wm{position:fixed;top:50%;left:50%;width:42%;transform:translate(-50%,-50%) rotate(-24deg);opacity:.045;z-index:0}
       .footer{position:fixed;left:0;right:0;bottom:0;border-top:1px solid #ccc;padding-top:5px;display:flex;justify-content:space-between;color:#777;font-size:8px}
-      header{position:relative;z-index:1;display:flex;align-items:center;gap:10px;border-bottom:2px solid #111;padding-bottom:7px;margin-bottom:9px}
+      header{position:relative;z-index:1;display:flex;align-items:center;gap:10px;border-bottom:2px solid #d80000;padding-bottom:7px;margin-bottom:9px}
       header img{width:28px;height:28px}header h1{margin:0;font-size:15px}header p{margin:2px 0 0;color:#555}
-      .bank{position:relative;z-index:1;break-inside:auto;margin:0 0 12px}.bank h2{font-size:12px;margin:0 0 6px;padding:5px 7px;background:#111;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .bank{position:relative;z-index:1;break-inside:auto;margin:0 0 12px}.bank h2{font-size:12px;margin:0 0 6px;padding:5px 7px;background:#d80000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
       .pr{border:1px solid #bbb;border-radius:4px;margin:0 0 6px;padding:6px;break-inside:avoid}.prh{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #ddd;padding-bottom:4px;margin-bottom:5px}.prh strong{font-size:10px}.prh span{color:#666}
       .pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 9px}.pf{min-width:0}.pf b{display:block;text-transform:uppercase;letter-spacing:.03em;font-size:7px;color:#666;margin-bottom:1px}.pf span{white-space:pre-line;overflow-wrap:anywhere;line-height:1.35}
     </style></head><body>${buildPrintBody(list)}</body></html>`;
