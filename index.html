@@ -582,7 +582,7 @@
      maximum width is 5x the prior 96px shell mark, while remaining viewport-aware. */
   .corner-brand-link{
     position:fixed;top:10px;left:clamp(18px,1.6vw,34px);z-index:112;
-    display:block;width:480px;max-width:40vw;line-height:0;text-decoration:none;
+    display:block;width:192px;max-width:16vw;line-height:0;text-decoration:none;
     border-radius:12px;padding:4px 6px;transition:transform .15s ease,filter .15s ease;
   }
   .corner-brand-link:hover{transform:translateY(-1px);filter:drop-shadow(0 8px 16px rgba(216,0,0,.16));}
@@ -591,11 +591,11 @@
     object-fit:contain!important;filter:none!important;
   }
   @media (min-width:761px){
-    .view-switcher{padding-left:clamp(250px,25vw,490px);padding-right:110px;}
+    .view-switcher{padding-left:clamp(100px,10vw,196px);padding-right:110px;}
   }
   @media (max-width:760px){
-    .corner-brand-link{top:7px;left:8px;width:155px;padding:2px 3px;}
-    .view-switcher{padding-left:150px!important;}
+    .corner-brand-link{top:7px;left:8px;width:62px;padding:2px 3px;}
+    .view-switcher{padding-left:60px!important;}
   }
 
   .catalog-history-panel{display:none;flex:1 1 auto;min-height:0;overflow:auto;padding:10px 4px calc(var(--app-bottom-nav-h) + 24px);}
