@@ -783,6 +783,10 @@
 
       <div class="bank-scroll" id="bank-scroll" tabindex="0" aria-label="Bank catalog results">
         <div class="grid" id="grid"></div>
+        <div class="bank-load-buffer" id="bank-load-buffer" aria-live="polite" aria-hidden="true">
+          <span class="bank-load-spinner" aria-hidden="true"></span>
+          <span>Loading more institutions…</span>
+        </div>
         <div class="empty" id="empty" style="display:none;"></div>
       </div>
     </main>
@@ -1017,6 +1021,18 @@
   .bank-scroll:focus{outline:none;}
   .bank-scroll .grid{margin-top:14px;}
   .bank-scroll .empty{margin-top:14px;}
+  .bank-load-buffer{
+    display:none;align-items:center;justify-content:center;gap:9px;
+    min-height:44px;margin:10px 0 4px;padding:8px 12px;
+    font:700 10.5px 'Inter',sans-serif;color:var(--ink-dim);
+  }
+  .bank-load-buffer.show{display:flex;}
+  .bank-load-spinner{
+    width:18px;height:18px;border-radius:50%;
+    border:2px solid rgba(216,0,0,.18);border-top-color:#d80000;
+    animation:bank-load-spin .7s linear infinite;
+  }
+  @keyframes bank-load-spin{to{transform:rotate(360deg);}}
 
   /* Floating primary print action */
   #download-pdf-btn.print-btn{
@@ -1899,7 +1915,10 @@
     if(el) el.innerHTML = `<strong>${printSelection.size}</strong> selected for print`;
   }
   function selectVisibleBanks(){
-    getFiltered().forEach(d=>printSelection.add(d.name));
+    const visibleNow = progressiveFilteredCache.length
+      ? progressiveFilteredCache.slice(0, progressiveVisibleCount)
+      : sortInstitutions(getFiltered()).slice(0, progressiveBatchSize());
+    visibleNow.forEach(d=>printSelection.add(d.name));
     renderGrid();
   }
   function clearPrintSelection(){
@@ -1911,10 +1930,82 @@
     return getFiltered();
   }
 
+  // Progressive bank-card rendering:
+  // - Desktop grid: 3 visual rows per batch.
+  // - Desktop list: 3 list rows per batch.
+  // - Mobile: 5 institutions per batch.
+  // The next batch is rendered only when the user reaches the end of the
+  // bank-results scroller, keeping the initial DOM substantially smaller.
+  let progressiveRenderSignature = '';
+  let progressiveVisibleCount = 0;
+  let progressiveFilteredCache = [];
+  let progressiveLoading = false;
+  let progressiveLoadTimer = null;
+
+  function progressiveBatchSize(){
+    if(window.matchMedia('(max-width:760px)').matches) return 5;
+    if(catalogLayout === 'list') return 3;
+
+    const grid = document.getElementById('grid');
+    if(!grid) return 18;
+
+    // Ask the browser how many responsive grid tracks currently exist.
+    // This makes "3 rows" adapt automatically to the actual desktop width.
+    const template = getComputedStyle(grid).gridTemplateColumns;
+    let columns = 0;
+    if(template && template !== 'none') columns = template.trim().split(/\s+/).filter(Boolean).length;
+
+    // Fallback for browsers that do not resolve auto-fill tracks on an empty grid.
+    if(!columns){
+      const styles = getComputedStyle(grid);
+      const gap = parseFloat(styles.columnGap || styles.gap) || 9;
+      const minCardWidth = 185;
+      columns = Math.max(1, Math.floor((grid.clientWidth + gap) / (minCardWidth + gap)));
+    }
+    return Math.max(1, columns) * 3;
+  }
+
+  function progressiveStateSignature(filtered, grid){
+    const userId = selectedUser && selectedUser.id ? selectedUser.id : '';
+    const modes = [...activeFilters.mode].sort().join(',');
+    const payments = [...activeFilters.payment].sort().join(',');
+    return [
+      catalogLayout,currentView,userId,sortMode,modes,payments,
+      comboInput.value.trim().toLowerCase(),selectedChips.join('|'),
+      Math.round((grid && grid.clientWidth) || 0),
+      filtered.map(d=>d.name).join('|')
+    ].join('::');
+  }
+
+  function setBankLoadBuffer(show){
+    const loader = document.getElementById('bank-load-buffer');
+    if(!loader) return;
+    loader.classList.toggle('show', !!show);
+    loader.setAttribute('aria-hidden', show ? 'false' : 'true');
+  }
+
+  function bindRenderedTiles(grid){
+    grid.querySelectorAll('.tile').forEach(tile=>{
+      tile.addEventListener('click',()=>openDetail(tile.dataset.name));
+      tile.addEventListener('keydown',e=>{
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openDetail(tile.dataset.name); }
+      });
+      const box=tile.querySelector('.print-select-box');
+      if(!box) return;
+      box.addEventListener('change',e=>{
+        e.stopPropagation();
+        if(box.checked) printSelection.add(tile.dataset.name); else printSelection.delete(tile.dataset.name);
+        tile.classList.toggle('selected-for-print',box.checked);
+        updateSelectionCount();
+      });
+    });
+  }
+
   function renderGrid(){
     const grid=document.getElementById('grid');
     const empty=document.getElementById('empty');
     const count=document.getElementById('result-count');
+    const bankScroll=document.getElementById('bank-scroll');
     renderSortControl();
     const filtered=sortInstitutions(getFiltered());
 
@@ -1925,30 +2016,65 @@
     if(gridBtn) gridBtn.classList.toggle('active',catalogLayout==='grid');
     if(listBtn) listBtn.classList.toggle('active',catalogLayout==='list');
 
+    const signature = progressiveStateSignature(filtered, grid);
+    if(signature !== progressiveRenderSignature){
+      progressiveRenderSignature = signature;
+      progressiveFilteredCache = filtered;
+      progressiveVisibleCount = Math.min(progressiveBatchSize(), filtered.length);
+      progressiveLoading = false;
+      clearTimeout(progressiveLoadTimer);
+      setBankLoadBuffer(false);
+      if(bankScroll) bankScroll.scrollTop = 0;
+    }else{
+      progressiveFilteredCache = filtered;
+      progressiveVisibleCount = Math.min(
+        Math.max(progressiveVisibleCount, Math.min(progressiveBatchSize(), filtered.length)),
+        filtered.length
+      );
+    }
+
     if(!filtered.length){
       grid.innerHTML='';
       empty.style.display='block';
       empty.textContent='No institutions match the current search and filters.';
       count.textContent='';
+      setBankLoadBuffer(false);
     }else{
       empty.style.display='none';
-      grid.innerHTML=filtered.map(tileHTML).join('');
-      count.innerHTML=`Showing <strong>${filtered.length}</strong> institution${filtered.length===1?'':'s'} · ${esc(filterSummaryLabel())}${comboInput.value.trim() || selectedChips.length ? ' · search applied' : ''}`;
-      grid.querySelectorAll('.tile').forEach(tile=>{
-        tile.addEventListener('click',()=>openDetail(tile.dataset.name));
-        tile.addEventListener('keydown',e=>{
-          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openDetail(tile.dataset.name); }
-        });
-        const box=tile.querySelector('.print-select-box');
-        box.addEventListener('change',e=>{
-          e.stopPropagation();
-          if(box.checked) printSelection.add(tile.dataset.name); else printSelection.delete(tile.dataset.name);
-          tile.classList.toggle('selected-for-print',box.checked);
-          updateSelectionCount();
-        });
-      });
+      const visible = filtered.slice(0, progressiveVisibleCount);
+      grid.innerHTML=visible.map(tileHTML).join('');
+      const loadedLabel = progressiveVisibleCount < filtered.length
+        ? `Showing <strong>${visible.length}</strong> of ${filtered.length}`
+        : `Showing <strong>${filtered.length}</strong>`;
+      count.innerHTML=`${loadedLabel} institution${filtered.length===1?'':'s'} · ${esc(filterSummaryLabel())}${comboInput.value.trim() || selectedChips.length ? ' · search applied' : ''}`;
+      bindRenderedTiles(grid);
     }
     updateSelectionCount();
+  }
+
+  function loadNextProgressiveBatch(){
+    if(progressiveLoading) return;
+    if(!progressiveFilteredCache.length || progressiveVisibleCount >= progressiveFilteredCache.length) return;
+
+    progressiveLoading = true;
+    setBankLoadBuffer(true);
+    clearTimeout(progressiveLoadTimer);
+
+    // A very short buffer keeps the interaction visually clear while yielding
+    // one frame to the browser before the next cards are inserted.
+    progressiveLoadTimer = setTimeout(()=>{
+      progressiveVisibleCount = Math.min(
+        progressiveFilteredCache.length,
+        progressiveVisibleCount + progressiveBatchSize()
+      );
+      progressiveLoading = false;
+      setBankLoadBuffer(false);
+      renderGrid();
+    }, 140);
+  }
+
+  function progressiveScrollerAtEnd(scroller){
+    return scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 70;
   }
 
   function printField(label,value){
@@ -2113,6 +2239,28 @@
   document.getElementById('sort-select').addEventListener('change',e=>setSortMode(e.target.value));
   document.getElementById('grid-view-btn').addEventListener('click',()=>setCatalogLayout('grid'));
   document.getElementById('list-view-btn').addEventListener('click',()=>setCatalogLayout('list'));
+
+  // Load the next card batch only after the user reaches the bottom of the
+  // bank-results scroller. Wheel support also covers a desktop viewport where
+  // the first 3 rows happen to fit without creating a visible scrollbar.
+  const progressiveBankScroll = document.getElementById('bank-scroll');
+  if(progressiveBankScroll){
+    progressiveBankScroll.addEventListener('scroll',()=>{
+      if(progressiveScrollerAtEnd(progressiveBankScroll)) loadNextProgressiveBatch();
+    },{passive:true});
+    progressiveBankScroll.addEventListener('wheel',e=>{
+      if(e.deltaY > 0 && progressiveScrollerAtEnd(progressiveBankScroll)) loadNextProgressiveBatch();
+    },{passive:true});
+  }
+
+  let progressiveResizeTimer = null;
+  window.addEventListener('resize',()=>{
+    clearTimeout(progressiveResizeTimer);
+    progressiveResizeTimer = setTimeout(()=>{
+      progressiveRenderSignature = '';
+      renderGrid();
+    },120);
+  },{passive:true});
 
   // Initial state
   document.getElementById('ticker').style.display='none';
