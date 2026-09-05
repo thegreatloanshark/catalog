@@ -844,42 +844,72 @@ ${list.map(d=>`<section class="bank"><h2>${esc(d.name)}</h2>${recordsForActiveFi
 }
 function buildPrintDocument(list){
 const catalogMonth = new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'});
-return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(catalogMonth)} Catalog — NoBroker Loans</title>
+return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(catalogMonth)} Catalog — NoBroker Loans</title>
 <style>
-@page{size:A4 landscape;margin:10mm 11mm 38mm}*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:9px}
-/* Page 0: exactly one cover page is injected once per print command. */
-.print-cover{position:relative;z-index:20;background:#fff;height:158mm;break-after:page;page-break-after:always;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+@page{size:297mm 210mm;margin:10mm 11mm 36mm}
+html,body{margin:0;padding:0;background:#fff}
+*{box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+body{font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:9px;line-height:1.3;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Page 0: exactly one cover page per print command. Physical units reduce
+   Chrome/Safari differences and the small safety gap prevents accidental
+   spillover to an extra blank page. */
+.print-cover{position:relative;z-index:20;width:100%;height:156mm;background:#fff;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
 .cover-inner{width:78%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.cover-logo{width:228px;height:228px;object-fit:contain;margin:0 0 18px}
-.cover-eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:10px;font-weight:700;color:#777;margin-bottom:9px}
+.cover-logo{display:block;width:60mm;height:60mm;object-fit:contain;margin:0 0 5mm}
+.cover-eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:10px;font-weight:700;color:#777;margin-bottom:2.5mm}
 .cover-title{font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.08;margin:0;font-weight:600;color:#d80000}
-.cover-rule{width:56px;height:3px;background:#d80000;margin:22px 0 20px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.cover-rule{width:15mm;height:.8mm;background:#d80000;margin:6mm 0 5mm}
 .cover-user{font-size:12px;line-height:1.5}
-.cover-name{font-size:18px;font-weight:700;margin-bottom:3px}
-.cover-designation{font-size:12px;font-weight:600;color:#555;margin-bottom:2px}
+.cover-name{font-size:18px;font-weight:700;margin-bottom:1mm}
+.cover-designation{font-size:12px;font-weight:600;color:#555;margin-bottom:.5mm}
 .cover-city{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#777}
-.catalog-print-pages{position:relative;z-index:1}
+.catalog-print-pages{position:relative;z-index:1;width:100%}
 .wm{position:fixed;top:50%;left:50%;width:42%;transform:translate(-50%,-50%) rotate(-24deg);opacity:.045;z-index:0}
-.print-page-footer{position:fixed;z-index:50;left:0;right:0;bottom:-34mm;height:30mm;border-top:1px solid #d80000;padding:3mm 0 0;display:grid;grid-template-columns:20mm 1fr 22mm;gap:3mm;align-items:start;background:#fff;color:#d80000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.print-footer-qr img{display:block;width:18mm;height:18mm;object-fit:contain}.print-footer-notes{margin:0;padding:0 0 0 4mm;font-size:7px;line-height:1.35;color:#d80000}.print-footer-notes li{margin:0 0 1.2mm}.print-footer-notes a{color:#d80000;font-weight:700;text-decoration:none}.print-footer-date{text-align:right;font-size:7px;font-weight:700;white-space:nowrap;padding-top:.5mm}
-header{position:relative;z-index:1;display:flex;align-items:center;gap:10px;border-bottom:2px solid #d80000;padding-bottom:7px;margin-bottom:9px}
-header img{width:28px;height:28px}header h1{margin:0;font-size:15px}header p{margin:2px 0 0;color:#555}
-.bank{position:relative;z-index:1;break-inside:auto;margin:0 0 12px}.bank h2{font-size:12px;margin:0 0 6px;padding:5px 7px;background:#d80000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.pr{border:1px solid #bbb;border-radius:4px;margin:0 0 6px;padding:6px;break-inside:avoid}.prh{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #ddd;padding-bottom:4px;margin-bottom:5px}.prh strong{font-size:10px}.prh span{color:#666}
-.pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 9px}.pf{min-width:0}.pf b{display:block;text-transform:uppercase;letter-spacing:.03em;font-size:7px;color:#666;margin-bottom:1px}.pf span{white-space:pre-line;overflow-wrap:anywhere;line-height:1.35}
+/* Fixed footer repeats in both Chromium and WebKit. Flex is intentionally used
+   instead of CSS Grid because Safari's paged-media grid fragmentation differs. */
+.print-page-footer{position:fixed;z-index:50;left:0;right:0;bottom:-32mm;height:28mm;border-top:.3mm solid #d80000;padding:2.5mm 0 0;display:flex;align-items:flex-start;gap:3mm;background:#fff;color:#d80000}
+.print-footer-qr{flex:0 0 18mm}.print-footer-qr img{display:block;width:17mm;height:17mm;object-fit:contain}
+.print-footer-notes{flex:1 1 auto;min-width:0;margin:0;padding:0 0 0 4mm;font-size:7px;line-height:1.32;color:#d80000}
+.print-footer-notes li{margin:0 0 1mm}.print-footer-notes a{color:#d80000;font-weight:700;text-decoration:none}
+.print-footer-date{flex:0 0 22mm;text-align:right;font-size:7px;font-weight:700;white-space:nowrap;padding-top:.5mm}
+header{position:relative;z-index:1;display:flex;align-items:center;gap:3mm;border-bottom:.6mm solid #d80000;padding-bottom:2mm;margin-bottom:2.5mm;break-inside:avoid;page-break-inside:avoid}
+header img{display:block;width:8mm;height:8mm;object-fit:contain}header h1{margin:0;font-size:15px}header p{margin:.5mm 0 0;color:#555}
+.bank{position:relative;z-index:1;break-inside:auto;page-break-inside:auto;margin:0 0 3mm}
+.bank h2{font-size:12px;margin:0 0 1.5mm;padding:1.4mm 2mm;background:#d80000;color:#fff;break-after:avoid;page-break-after:avoid}
+.pr{border:.25mm solid #bbb;border-radius:1mm;margin:0 0 1.5mm;padding:1.6mm;break-inside:avoid;page-break-inside:avoid}
+.prh{display:flex;justify-content:space-between;gap:2mm;border-bottom:.25mm solid #ddd;padding-bottom:1mm;margin-bottom:1.3mm}
+.prh strong{font-size:10px}.prh span{color:#666}
+/* Flex-wrap gives Chrome and Safari the same four-column print geometry. */
+.pgrid{display:flex;flex-wrap:wrap;margin:-.8mm -1.2mm}
+.pf{flex:0 0 25%;width:25%;min-width:0;padding:.8mm 1.2mm}
+.pf b{display:block;text-transform:uppercase;letter-spacing:.03em;font-size:7px;color:#666;margin-bottom:.3mm}
+.pf span{display:block;white-space:pre-line;overflow-wrap:anywhere;word-break:break-word;line-height:1.35}
 </style></head><body>${buildPrintBody(list)}</body></html>`;
 }
-function printSelectedBanks(){
+async function waitForPrintFrameReady(frame){
+const doc=frame.contentWindow.document;
+const images=Array.from(doc.images||[]);
+await Promise.all(images.map(img=>{
+if(img.complete && img.naturalWidth) return Promise.resolve();
+if(typeof img.decode==='function') return img.decode().catch(()=>{});
+return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});});
+}));
+if(doc.fonts && doc.fonts.ready){ try{ await doc.fonts.ready; }catch(_){} }
+await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+}
+async function printSelectedBanks(){
 const list=getPrintList();
 if(!list.length){ alert('Select at least one bank, or adjust the current search first.'); return; }
 const frame=document.getElementById('print-frame');
 if(!frame){ window.print(); return; }
 try{
 const doc=frame.contentWindow.document;
-doc.open(); doc.write(buildPrintDocument(list)); doc.close();
+doc.open();doc.write(buildPrintDocument(list));doc.close();
+await waitForPrintFrameReady(frame);
 frame.contentWindow.focus();
-setTimeout(()=>frame.contentWindow.print(),50);
+// A short post-layout delay gives Safari time to finish pagination while
+// keeping Chromium responsive.
+setTimeout(()=>frame.contentWindow.print(),180);
 }catch(err){
 console.error('Print failed',err);
 alert('Your browser blocked the print dialog. Press Ctrl+P / Cmd+P as a fallback.');
