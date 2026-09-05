@@ -878,7 +878,7 @@ return `<footer class="print-page-footer">
 <div class="print-footer-date">${esc(printedOn)}</div>
 </footer>`;
 }
-function buildPrintCover(){
+function buildPrintCoverContent(){
 const now = new Date();
 const catalogMonth = now.toLocaleDateString('en-IN',{month:'long',year:'numeric'});
 const master = isMasterView(currentView);
@@ -887,8 +887,7 @@ const name = master ? 'NoBroker Loans Team' : (hasSelectedUser ? (selectedUser.l
 const designation = master ? '' : (hasSelectedUser ? (selectedUser.title || '') : '');
 const city = master ? 'PAN-INDIA MASTER CATALOG' : (hasSelectedUser ? (selectedUser.region || '') : 'PAN-INDIA CATALOG');
 const coverTitle = master ? `${catalogMonth} Master Catalog — ${masterTier(currentView)}` : `${catalogMonth} Catalog`;
-return `<section class="print-cover" aria-label="Catalog cover page">
-<div class="cover-inner">
+return `<div class="cover-body"><div class="cover-inner">
 <img class="cover-logo" src="${LOGO_DATA_URI}" alt="NoBroker Loans">
 <div class="cover-eyebrow">NoBroker Loans</div>
 <h1 class="cover-title">${esc(coverTitle)}</h1>
@@ -898,21 +897,26 @@ return `<section class="print-cover" aria-label="Catalog cover page">
 ${designation ? `<div class="cover-designation">${esc(designation)}</div>` : ''}
 <div class="cover-city">${esc(city)}</div>
 </div>
-</div>
-</section>`;
+</div></div>`;
 }
-function buildPrintBody(list){
+function buildPrintHeaderHTML(list){
 const printedOn = new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
 const master = isMasterView(currentView);
 const viewLabel = master ? masterCatalogViewLabel(currentView) : (currentView==='catalog'?'Catalog':protectedViewLabel(currentView)+' View');
 const panelLabel=filterSummaryLabel();
 const userLabel=(!master && selectedUser) ? ` · ${esc(selectedUser.label)}` : '';
-return `${buildPrintFooter(printedOn)}${buildPrintCover()}
-<main class="catalog-print-pages">
-<img class="wm" src="${LOGO_DATA_URI}" alt="">
-<header><img src="${LOGO_DATA_URI}" alt=""><div><h1>NoBroker Loans</h1><p>${esc(viewLabel)} · ${esc(panelLabel)}${userLabel} · ${list.length} institution${list.length===1?'':'s'} · ${esc(printedOn)}</p></div></header>
-${list.map(d=>`<section class="bank"><h2>${esc(d.name)}</h2>${recordsForActiveFilters(d).map(printRecord).join('')}</section>`).join('')}
-</main>`;
+return `<header class="print-page-header"><img src="${LOGO_DATA_URI}" alt=""><div><h1>NoBroker Loans</h1><p>${esc(viewLabel)} · ${esc(panelLabel)}${userLabel} · ${list.length} institution${list.length===1?'':'s'} · ${esc(printedOn)}</p></div></header>`;
+}
+function buildPrintSource(list){
+return `<div id="print-source" aria-hidden="true">${list.map((d,bankIndex)=>{
+const records=recordsForActiveFilters(d);
+if(!records.length) return '';
+return `<section class="bank bank-source" data-bank-index="${bankIndex}"><h2>${esc(d.name)}</h2>${records.map(printRecord).join('')}</section>`;
+}).join('')}</div>`;
+}
+function buildPrintBody(list){
+const printedOn = new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+return `<div id="print-pages"><section class="print-sheet cover-sheet">${buildPrintCoverContent()}${buildPrintFooter(printedOn)}</section></div>${buildPrintSource(list)}`;
 }
 const ADMIN_FIELDS = [
 ['institution','Institution'],['mode','General / Co-Op'],['productType','Product'],['variant','Variant'],['code','Code'],['basis','Payout Basis'],['payoutRaw','Payout % / Source'],['highestPayoutPct','Max Slab %'],['additionalPayoutPct','Additional Payout %'],['slab','Slab'],['topSlabLoanVal','Top Slab Loan Value'],['payoutCapping','Payout Capping'],['conditions','Conditions'],['timeline','Timeline'],['cities','City / Applicability'],['paymentType','Payment Type'],['bankType','Bank Type'],['institutionType','Institution Type'],['documentCategory','Document Category'],['misDates','MIS Dates'],['invoicingProcess','Invoicing Process'],['loginProcess','Login Process']
@@ -1024,50 +1028,53 @@ if(!confirm('Reset all browser-saved Internal catalog edits and audit history? T
 localStorage.removeItem(INTERNAL_DATA_STORAGE_KEY); localStorage.removeItem(INTERNAL_AUDIT_STORAGE_KEY); location.reload();
 }
 
-function buildPrintDocument(list){
+function getPrintLayout(){
+const mobile = window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
+return mobile
+? {mobile:true,orientation:'portrait',pageWidth:'210mm',pageHeight:'297mm',pageRule:'A4 portrait'}
+: {mobile:false,orientation:'landscape',pageWidth:'297mm',pageHeight:'210mm',pageRule:'A4 landscape'};
+}
+function buildPrintDocument(list,layout){
 const catalogMonth = new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'});
 const documentTitle = isMasterView(currentView) ? `${catalogMonth} Master Catalog — ${masterTier(currentView)} — NoBroker Loans` : `${catalogMonth} Catalog — NoBroker Loans`;
+const fieldBasis = layout.mobile ? '50%' : '25%';
+const bodyFont = layout.mobile ? '8.4px' : '8.8px';
+const footerFont = layout.mobile ? '6.5px' : '6.8px';
+const coverLogo = layout.mobile ? '54mm' : '60mm';
 return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(documentTitle)}</title>
 <style>
-@page{size:297mm 210mm;margin:10mm 11mm 36mm}
-html,body{margin:0;padding:0;background:#fff}
+@page{size:${layout.pageRule};margin:0}
+html,body{margin:0!important;padding:0!important;background:#fff!important;width:auto!important;min-height:0!important}
 *{box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-body{font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:9px;line-height:1.3;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-/* Page 0: exactly one cover page per print command. Physical units reduce
-   Chrome/Safari differences and the small safety gap prevents accidental
-   spillover to an extra blank page. */
-.print-cover{position:relative;z-index:20;width:100%;height:156mm;background:#fff;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.cover-inner{width:78%;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.cover-logo{display:block;width:60mm;height:60mm;object-fit:contain;margin:0 0 5mm}
+body{font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:${bodyFont};line-height:1.3;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+#print-pages{margin:0;padding:0}
+.print-sheet{position:relative;width:${layout.pageWidth};height:${layout.pageHeight};margin:0!important;padding:${layout.mobile?'9mm 9mm 7mm':'8mm 10mm 6mm'};background:#fff;display:flex;flex-direction:column;overflow:hidden;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}
+.print-sheet.last-print-page{break-after:auto!important;page-break-after:auto!important}
+.cover-sheet{z-index:2}
+.cover-body{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.cover-inner{width:${layout.mobile?'86%':'78%'};margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cover-logo{display:block;width:${coverLogo};height:${coverLogo};object-fit:contain;margin:0 0 5mm}
 .cover-eyebrow{text-transform:uppercase;letter-spacing:.2em;font-size:10px;font-weight:700;color:#777;margin-bottom:2.5mm}
-.cover-title{font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.08;margin:0;font-weight:600;color:#d80000}
+.cover-title{font-family:Georgia,'Times New Roman',serif;font-size:${layout.mobile?'28px':'34px'};line-height:1.08;margin:0;font-weight:600;color:#d80000}
 .cover-rule{width:15mm;height:.8mm;background:#d80000;margin:6mm 0 5mm}
-.cover-user{font-size:12px;line-height:1.5}
-.cover-name{font-size:18px;font-weight:700;margin-bottom:1mm}
-.cover-designation{font-size:12px;font-weight:600;color:#555;margin-bottom:.5mm}
-.cover-city{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#777}
-.catalog-print-pages{position:relative;z-index:1;width:100%}
-.wm{position:fixed;top:50%;left:50%;width:42%;transform:translate(-50%,-50%) rotate(-24deg);opacity:.045;z-index:0}
-/* Fixed footer repeats in both Chromium and WebKit. Flex is intentionally used
-   instead of CSS Grid because Safari's paged-media grid fragmentation differs. */
-.print-page-footer{position:fixed;z-index:50;left:0;right:0;bottom:-32mm;height:28mm;border-top:.3mm solid #d80000;padding:2.5mm 0 0;display:flex;align-items:flex-start;gap:3mm;background:#fff;color:#d80000}
-.print-footer-qr{flex:0 0 18mm}.print-footer-qr img{display:block;width:17mm;height:17mm;object-fit:contain}
-.print-footer-notes{flex:1 1 auto;min-width:0;margin:0;padding:0 0 0 4mm;font-size:7px;line-height:1.32;color:#d80000}
-.print-footer-notes li{margin:0 0 1mm}.print-footer-notes a{color:#d80000;font-weight:700;text-decoration:none}
-.print-footer-date{flex:0 0 22mm;text-align:right;font-size:7px;font-weight:700;white-space:nowrap;padding-top:.5mm}
-header{position:relative;z-index:1;display:flex;align-items:center;gap:3mm;border-bottom:.6mm solid #d80000;padding-bottom:2mm;margin-bottom:2.5mm;break-inside:avoid;page-break-inside:avoid}
-header img{display:block;width:8mm;height:8mm;object-fit:contain}header h1{margin:0;font-size:15px}header p{margin:.5mm 0 0;color:#555}
-.bank{position:relative;z-index:1;break-inside:auto;page-break-inside:auto;margin:0 0 3mm}
-.bank h2{font-size:12px;margin:0 0 1.5mm;padding:1.4mm 2mm;background:#d80000;color:#fff;break-after:avoid;page-break-after:avoid}
-.pr{border:.25mm solid #bbb;border-radius:1mm;margin:0 0 1.5mm;padding:1.6mm;break-inside:avoid;page-break-inside:avoid}
-.prh{display:flex;justify-content:space-between;gap:2mm;border-bottom:.25mm solid #ddd;padding-bottom:1mm;margin-bottom:1.3mm}
-.prh strong{font-size:10px}.prh span{color:#666}
-/* Flex-wrap gives Chrome and Safari the same four-column print geometry. */
-.pgrid{display:flex;flex-wrap:wrap;margin:-.8mm -1.2mm}
-.pf{flex:0 0 25%;width:25%;min-width:0;padding:.8mm 1.2mm}
-.pf b{display:block;text-transform:uppercase;letter-spacing:.03em;font-size:7px;color:#666;margin-bottom:.3mm}
-.pf span{display:block;white-space:pre-line;overflow-wrap:anywhere;word-break:break-word;line-height:1.35}
-</style></head><body>${buildPrintBody(list)}</body></html>`;
+.cover-user{font-size:12px;line-height:1.5}.cover-name{font-size:18px;font-weight:700;margin-bottom:1mm}.cover-designation{font-size:12px;font-weight:600;color:#555;margin-bottom:.5mm}.cover-city{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#777}
+.content-sheet{z-index:1}
+.print-page-header{position:relative;z-index:2;flex:0 0 auto;display:flex;align-items:center;gap:3mm;border-bottom:.6mm solid #d80000;padding-bottom:2mm;margin-bottom:2.5mm}
+.print-page-header img{display:block;width:8mm;height:8mm;object-fit:contain}.print-page-header h1{margin:0;font-size:15px}.print-page-header p{margin:.5mm 0 0;color:#555;font-size:${layout.mobile?'7.3px':'8px'}}
+.page-content{position:relative;z-index:2;flex:1 1 auto;min-height:0;overflow:hidden;padding:0;margin:0}
+.wm{position:absolute;top:50%;left:50%;width:${layout.mobile?'58%':'42%'};transform:translate(-50%,-50%) rotate(-24deg);opacity:.045;z-index:0;pointer-events:none}
+.print-page-footer{position:relative;z-index:3;flex:0 0 auto;width:100%;border-top:.3mm solid #d80000;padding:2.2mm 0 0;margin-top:2.2mm;display:flex;align-items:flex-start;gap:${layout.mobile?'2.3mm':'3mm'};background:#fff;color:#d80000;min-height:${layout.mobile?'31mm':'24mm'}}
+.print-footer-qr{flex:0 0 ${layout.mobile?'16mm':'18mm'}}.print-footer-qr img{display:block;width:${layout.mobile?'15mm':'17mm'};height:${layout.mobile?'15mm':'17mm'};object-fit:contain}
+.print-footer-notes{flex:1 1 auto;min-width:0;margin:0;padding:0 0 0 ${layout.mobile?'3mm':'4mm'};font-size:${footerFont};line-height:1.28;color:#d80000}.print-footer-notes li{margin:0 0 .8mm}.print-footer-notes a{color:#d80000;font-weight:700;text-decoration:none}
+.print-footer-date{flex:0 0 ${layout.mobile?'18mm':'22mm'};text-align:right;font-size:${footerFont};font-weight:700;white-space:nowrap;padding-top:.5mm}
+.bank{position:relative;z-index:2;margin:0 0 2.5mm}.bank h2{font-size:${layout.mobile?'11px':'12px'};margin:0 0 1.4mm;padding:1.3mm 2mm;background:#d80000;color:#fff}
+.pr{border:.25mm solid #bbb;border-radius:1mm;margin:0 0 1.4mm;padding:${layout.mobile?'1.45mm':'1.6mm'};break-inside:avoid;page-break-inside:avoid;background:#fff}
+.prh{display:flex;justify-content:space-between;gap:2mm;border-bottom:.25mm solid #ddd;padding-bottom:1mm;margin-bottom:1.2mm}.prh strong{font-size:${layout.mobile?'9px':'10px'}}.prh span{color:#666}
+.pgrid{display:flex;flex-wrap:wrap;margin:-.7mm -1mm}.pf{flex:0 0 ${fieldBasis};width:${fieldBasis};min-width:0;padding:.7mm 1mm}.pf b{display:block;text-transform:uppercase;letter-spacing:.03em;font-size:${layout.mobile?'6.6px':'7px'};color:#666;margin-bottom:.3mm}.pf span{display:block;white-space:pre-line;overflow-wrap:anywhere;word-break:break-word;line-height:1.32}
+.compact-record{font-size:7.2px!important;padding:1.1mm!important}.compact-record .pf{padding:.5mm .8mm!important}.compact-record .pf b{font-size:6px!important}.ultra-compact-record{font-size:6.4px!important}.ultra-compact-record .pgrid{margin:-.4mm -.6mm!important}.ultra-compact-record .pf{padding:.4mm .6mm!important}
+#print-source{display:none!important}
+@media print{html,body{margin:0!important;padding:0!important}.print-sheet{margin:0!important}}
+</style></head><body class="print-${layout.orientation}">${buildPrintBody(list)}</body></html>`;
 }
 async function waitForPrintFrameReady(frame){
 const doc=frame.contentWindow.document;
@@ -1080,22 +1087,181 @@ return new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});im
 if(doc.fonts && doc.fonts.ready){ try{ await doc.fonts.ready; }catch(_){} }
 await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
 }
+function printPageOverflows(content){ return content.scrollHeight > content.clientHeight + 1; }
+function createPrintContentPage(doc,list,printedOn){
+const pages=doc.getElementById('print-pages');
+const sheet=doc.createElement('section');
+sheet.className='print-sheet content-sheet';
+sheet.innerHTML=`<img class="wm" src="${LOGO_DATA_URI}" alt="">${buildPrintHeaderHTML(list)}<main class="page-content"></main>${buildPrintFooter(printedOn)}`;
+pages.appendChild(sheet);
+return sheet.querySelector('.page-content');
+}
+function appendRecordWithFit(content,bankSection,recordClone){
+bankSection.appendChild(recordClone);
+if(!printPageOverflows(content)) return true;
+recordClone.classList.add('compact-record');
+if(!printPageOverflows(content)) return true;
+recordClone.classList.add('ultra-compact-record');
+return !printPageOverflows(content);
+}
+function paginatePrintDocument(frame,list){
+const doc=frame.contentWindow.document;
+const pages=doc.getElementById('print-pages');
+const source=doc.getElementById('print-source');
+if(!pages||!source) return;
+pages.querySelectorAll('.content-sheet').forEach(n=>n.remove());
+const printedOn=new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+let content=createPrintContentPage(doc,list,printedOn);
+const groups=Array.from(source.querySelectorAll('.bank-source'));
+for(const sourceGroup of groups){
+let whole=sourceGroup.cloneNode(true);
+content.appendChild(whole);
+if(!printPageOverflows(content)) continue;
+whole.remove();
+if(content.children.length){
+content=createPrintContentPage(doc,list,printedOn);
+whole=sourceGroup.cloneNode(true);
+content.appendChild(whole);
+if(!printPageOverflows(content)) continue;
+whole.remove();
+}
+const title=sourceGroup.querySelector('h2');
+const records=Array.from(sourceGroup.querySelectorAll(':scope > .pr'));
+let bankSection=doc.createElement('section');
+bankSection.className='bank';
+bankSection.appendChild(title.cloneNode(true));
+content.appendChild(bankSection);
+for(const sourceRecord of records){
+let rec=sourceRecord.cloneNode(true);
+if(appendRecordWithFit(content,bankSection,rec)) continue;
+rec.remove();
+content=createPrintContentPage(doc,list,printedOn);
+bankSection=doc.createElement('section');
+bankSection.className='bank';
+bankSection.appendChild(title.cloneNode(true));
+content.appendChild(bankSection);
+rec=sourceRecord.cloneNode(true);
+appendRecordWithFit(content,bankSection,rec);
+}
+}
+source.remove();
+const sheets=Array.from(pages.querySelectorAll('.print-sheet'));
+sheets.forEach(s=>s.classList.remove('last-print-page'));
+if(sheets.length) sheets[sheets.length-1].classList.add('last-print-page');
+}
 async function printSelectedBanks(){
 const list=getPrintList();
 if(!list.length){ alert('Select at least one bank, or adjust the current search first.'); return; }
 const frame=document.getElementById('print-frame');
 if(!frame){ window.print(); return; }
+const layout=getPrintLayout();
 try{
 const doc=frame.contentWindow.document;
-doc.open();doc.write(buildPrintDocument(list));doc.close();
+doc.open();doc.write(buildPrintDocument(list,layout));doc.close();
+await waitForPrintFrameReady(frame);
+paginatePrintDocument(frame,list);
 await waitForPrintFrameReady(frame);
 frame.contentWindow.focus();
-// A short post-layout delay gives Safari time to finish pagination while
-// keeping Chromium responsive.
-setTimeout(()=>frame.contentWindow.print(),180);
+setTimeout(()=>frame.contentWindow.print(),220);
 }catch(err){
 console.error('Print failed',err);
 alert('Your browser blocked the print dialog. Press Ctrl+P / Cmd+P as a fallback.');
+}
+}
+
+function safePdfFilePart(value){
+return String(value || '')
+.trim()
+.replace(/[\\/:*?"<>|]+/g,'-')
+.replace(/\s+/g,'_')
+.replace(/_+/g,'_')
+.replace(/^[-_.]+|[-_.]+$/g,'') || 'catalog';
+}
+function directPdfFileName(){
+const now=new Date();
+const mon=now.toLocaleDateString('en-US',{month:'short'}).toLowerCase();
+const yy=String(now.getFullYear()).slice(-2);
+const master=isMasterView(currentView);
+const user=master ? 'NoBroker Loans Team' : (selectedUser?.label || 'NoBroker Loans Team');
+const city=master ? 'PAN-INDIA' : (selectedUser?.region || 'PAN-INDIA');
+// A slash is not legal in filenames, so the requested mmm/yy segment is normalized to mmm-yy.
+return `${safePdfFilePart(user)}_${safePdfFilePart(city)}_${mon}-${yy}_catalog.pdf`;
+}
+function loadPdfLibraryScript(src,test){
+return new Promise((resolve,reject)=>{
+if(test()) return resolve();
+const existing=document.querySelector(`script[data-pdf-lib="${src}"]`);
+if(existing){
+existing.addEventListener('load',()=>test()?resolve():reject(new Error('PDF library did not initialize')),{once:true});
+existing.addEventListener('error',()=>reject(new Error('Could not load PDF library')),{once:true});
+return;
+}
+const tag=document.createElement('script');
+tag.src=src;tag.async=true;tag.dataset.pdfLib=src;
+tag.onload=()=>test()?resolve():reject(new Error('PDF library did not initialize'));
+tag.onerror=()=>reject(new Error('Could not load PDF library'));
+document.head.appendChild(tag);
+});
+}
+async function ensureDirectPdfLibraries(){
+await Promise.all([
+loadPdfLibraryScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',()=>typeof window.html2canvas==='function'),
+loadPdfLibraryScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',()=>!!(window.jspdf&&window.jspdf.jsPDF))
+]);
+}
+async function preparePrintFrameForExport(list,layout){
+const frame=document.getElementById('print-frame');
+if(!frame) throw new Error('Print frame is unavailable');
+const doc=frame.contentWindow.document;
+doc.open();doc.write(buildPrintDocument(list,layout));doc.close();
+await waitForPrintFrameReady(frame);
+paginatePrintDocument(frame,list);
+await waitForPrintFrameReady(frame);
+return frame;
+}
+async function downloadSelectedBanksPdf(){
+const list=getPrintList();
+if(!list.length){ alert('Select at least one bank, or adjust the current search first.'); return; }
+const btn=document.getElementById('direct-download-btn');
+const original=btn?btn.innerHTML:'';
+if(btn){btn.disabled=true;btn.innerHTML='<span>Preparing PDF…</span>';}
+try{
+await ensureDirectPdfLibraries();
+const layout=getPrintLayout();
+const frame=await preparePrintFrameForExport(list,layout);
+const doc=frame.contentWindow.document;
+const sheets=Array.from(doc.querySelectorAll('#print-pages > .print-sheet'));
+if(!sheets.length) throw new Error('No PDF pages were generated');
+const {jsPDF}=window.jspdf;
+const orientation=layout.mobile?'portrait':'landscape';
+const pageW=layout.mobile?210:297;
+const pageH=layout.mobile?297:210;
+const pdf=new jsPDF({orientation,unit:'mm',format:'a4',compress:true,putOnlyUsedFonts:true});
+for(let i=0;i<sheets.length;i++){
+const sheet=sheets[i];
+const canvas=await window.html2canvas(sheet,{
+backgroundColor:'#ffffff',
+scale:layout.mobile?1.55:1.7,
+useCORS:true,
+allowTaint:true,
+logging:false,
+scrollX:0,
+scrollY:0,
+windowWidth:Math.max(sheet.scrollWidth,sheet.clientWidth),
+windowHeight:Math.max(sheet.scrollHeight,sheet.clientHeight)
+});
+if(i>0) pdf.addPage('a4',orientation);
+const image=canvas.toDataURL('image/jpeg',0.93);
+pdf.addImage(image,'JPEG',0,0,pageW,pageH,undefined,'FAST');
+// Yield between pages so large selections do not freeze the browser UI.
+await new Promise(resolve=>setTimeout(resolve,0));
+}
+pdf.save(directPdfFileName());
+}catch(err){
+console.error('Direct PDF download failed',err);
+alert('The PDF could not be generated directly. Please check your internet connection once (the PDF renderer loads on demand), then try again. Print remains available as a fallback.');
+}finally{
+if(btn){btn.disabled=false;btn.innerHTML=original;}
 }
 }
 // Events
@@ -1140,6 +1306,7 @@ selectedChips=[];comboInput.value='';renderChips();renderPanel();renderGrid();up
 document.getElementById('detail-close').addEventListener('click',closeDetail);
 detailOverlay.addEventListener('click',e=>{if(e.target===detailOverlay) closeDetail();});
 document.getElementById('download-pdf-btn').addEventListener('click',printSelectedBanks);
+document.getElementById('direct-download-btn').addEventListener('click',downloadSelectedBanksPdf);
 document.getElementById('select-visible-btn').addEventListener('click',selectVisibleBanks);
 document.getElementById('clear-selection-btn').addEventListener('click',clearPrintSelection);
 document.querySelectorAll('.filter-option input[data-filter-group]').forEach(input=>{

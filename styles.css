@@ -187,3 +187,50 @@ body.data-admin-open .hero,body.data-admin-open .controls,body.data-admin-open .
  .data-admin-head{flex-direction:column;gap:5px}.data-admin-head h2{font-size:15px}.data-admin-head p{font-size:9px}.data-admin-head .history-back-btn{align-self:flex-start;padding:6px 8px}
  #data-admin-search{min-width:100%;flex-basis:100%}.admin-action{padding:7px 8px;font-size:9px}.data-admin-table-wrap{min-height:260px}.data-admin-audit{min-height:135px}
 }
+
+/* Direct PDF download CTA — shares the same selected-bank payload as Print. */
+#direct-download-btn.download-btn{
+  position:fixed;
+  right:calc(clamp(22px,1.8vw,38px) + 184px);
+  bottom:calc(var(--app-bottom-nav-h,64px) + 14px);
+  z-index:90;
+  min-width:168px;
+  min-height:52px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:14px 20px;
+  border-radius:999px;
+  background:#fff;
+  border:2px solid #d80000;
+  color:#d80000;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.01em;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(216,0,0,.14);
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease,color .15s ease;
+}
+#direct-download-btn.download-btn:hover{
+  background:#d80000;
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(216,0,0,.26);
+}
+#direct-download-btn.download-btn:disabled{opacity:.5;cursor:wait;transform:none}
+#direct-download-btn.download-btn svg{width:18px;height:18px;flex:0 0 auto}
+@media(max-width:760px){
+  #direct-download-btn.download-btn{
+    right:10px;
+    bottom:calc(var(--app-bottom-nav-h) + 56px + env(safe-area-inset-bottom,0px));
+    min-width:116px;
+    min-height:42px;
+    padding:9px 13px;
+    font-size:11px;
+    box-shadow:0 8px 20px rgba(216,0,0,.16);
+  }
+  #direct-download-btn.download-btn svg{width:15px;height:15px}
+}
+@media print{#direct-download-btn{display:none!important}}
