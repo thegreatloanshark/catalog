@@ -266,3 +266,22 @@ body.sequence-open{overflow:hidden}
 
 /* Legacy renderer guard: the download-only build must never show a PDF staging iframe in the UI. */
 #print-frame, iframe#print-frame{display:none!important;position:fixed!important;left:-100000px!important;top:-100000px!important;width:1px!important;height:1px!important;min-width:0!important;min-height:0!important;border:0!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;z-index:-1!important;}
+
+
+/* PDF export staging frame: retained for PDF generation but permanently removed from page flow. */
+#pdf-render-frame {
+  position: fixed !important;
+  left: -100000px !important;
+  top: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  overflow: hidden !important;
+}
