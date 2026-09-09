@@ -490,7 +490,8 @@ d.name,
 ...unique(records.map(r=>r.productType)),
 ...records.flatMap(r => [
 r.mode,r.code,r.basis,r.productType,r.variant,r.cities,r.bankType,
-r.paymentType,r.documentCategory,r.misDates,r.invoicingProcess,
+r.paymentType,
+...(currentView === 'internal' ? [r.documentCategory,r.misDates,r.invoicingProcess] : []),
 r.slab,r.topSlabLoanVal,r.highestPayoutPct,r.additionalPayoutPct,
 r.payoutCapping,r.institutionType
 ])
@@ -700,9 +701,9 @@ ${field('Applicable Cities',rec.cities)}
 ${field('Payout Timeline',rec.timeline)}
 ${field('Conditions',rec.conditions,true)}
 ${field('Login Mandate / Process',rec.loginProcess,true)}
-${field('Document Category',rec.documentCategory)}
-${field('Payout MIS Dates',rec.misDates)}
-${field('Invoicing Process',rec.invoicingProcess)}
+${currentView === 'internal' ? field('Document Category',rec.documentCategory) : ''}
+${currentView === 'internal' ? field('Payout MIS Dates',rec.misDates) : ''}
+${currentView === 'internal' ? field('Invoicing Process',rec.invoicingProcess) : ''}
 ${currentView === 'internal' && isGeneralRecord(rec) ? field('Slab',rec.slab,true) : ''}
 ${currentView === 'internal' && isGeneralRecord(rec) ? field('Top Slab Loan Val. (in Cr.)',rec.topSlabLoanVal) : ''}
 ${currentView === 'internal' && isGeneralRecord(rec) && meaningful(rec.additionalPayoutPct) ? field('Additional Payout % for Takeover & High CIBIL Score',rec.additionalPayoutPct,true) : ''}
@@ -904,9 +905,9 @@ ${printField('Applicable Cities',rec.cities)}
 ${printField('Timeline',rec.timeline)}
 ${printField('Conditions',rec.conditions)}
 ${printField('Login Mandate / Process',rec.loginProcess)}
-${printField('Document Category',rec.documentCategory)}
-${printField('Payout MIS Dates',rec.misDates)}
-${printField('Invoicing Process',rec.invoicingProcess)}
+${currentView === 'internal' ? printField('Document Category',rec.documentCategory) : ''}
+${currentView === 'internal' ? printField('Payout MIS Dates',rec.misDates) : ''}
+${currentView === 'internal' ? printField('Invoicing Process',rec.invoicingProcess) : ''}
 ${currentView === 'internal' && isGeneralRecord(rec) ? printField('Slab',rec.slab) : ''}
 ${currentView === 'internal' && isGeneralRecord(rec) ? printField('Top Slab Loan Val. (in Cr.)',rec.topSlabLoanVal) : ''}
 ${currentView === 'internal' && isGeneralRecord(rec) && meaningful(rec.additionalPayoutPct) ? printField('Additional Payout % for Takeover & High CIBIL Score',rec.additionalPayoutPct) : ''}
