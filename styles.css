@@ -404,3 +404,62 @@ body.sequence-open{overflow:hidden}
 @media print{
   #payout-calculator-overlay{display:none!important}
 }
+
+
+/* Basety one-shot payout preference */
+.payout-calculator-global-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+  background:#fff;
+}
+.payout-calculator-global-label{
+  display:block;
+  margin-bottom:12px;
+  font:800 12px 'Inter',sans-serif;
+  color:var(--ink);
+}
+.payout-calculator-global-control{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  padding:16px;
+  border-radius:12px;
+  background:#f8f8f8;
+}
+.payout-calculator-global-prefix,
+.payout-calculator-global-suffix{
+  font:700 11px 'Inter',sans-serif;
+  color:var(--ink-dim);
+}
+.payout-calculator-global-input-wrap{
+  width:112px;
+  flex:0 0 112px;
+}
+.payout-calculator-global-input-wrap input{
+  font-size:18px;
+  padding:10px 8px;
+}
+.payout-calculator-global-help,
+.payout-calculator-note{
+  margin:12px 0 0;
+  font:500 10.5px/1.45 'Inter',sans-serif;
+  color:var(--ink-dim);
+}
+.payout-calculator-global-error{
+  margin-top:8px;
+  min-height:16px;
+  text-align:center;
+}
+.payout-calculator-note{
+  padding-top:10px;
+  border-top:1px solid var(--line);
+}
+@media(max-width:760px){
+  .payout-calculator-global-card{padding:14px}
+  .payout-calculator-global-control{padding:14px 10px}
+  .payout-calculator-global-prefix,
+  .payout-calculator-global-suffix{font-size:10px}
+}
