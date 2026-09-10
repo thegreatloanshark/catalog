@@ -176,6 +176,7 @@ return transformPercentText(rec.payoutRaw || '', currentView);
 }
 const payoutCalculatorValues = new Map();
 let payoutCalculatorRecords = [];
+let payoutCalculatorFactor = 90;
 
 function isPayoutCalculatorUser(){
 return !!(authenticatedUser?.payoutCalculator || selectedUser?.payoutCalculator);
@@ -200,7 +201,7 @@ return Math.max(...values);
 function calculatorMaximumPayout(rec){
 const internalMax = calculatorInternalMax(rec);
 if(internalMax === null) return null;
-// Keep sufficient precision so the permitted payout never rounds above 90%.
+// Basety may never output more than 90% of the hidden Internal Max Slab.
 return Math.floor(((internalMax * 0.90) + Number.EPSILON) * 10000) / 10000;
 }
 function calculatorFormatPct(value){
@@ -220,6 +221,14 @@ if(internalMax === null || !Number.isFinite(factor)) return null;
 const calculated = internalMax * (factor / 100);
 return Math.floor((calculated + Number.EPSILON) * 10000) / 10000;
 }
+function applyGlobalPayoutFactor(factor){
+payoutCalculatorFactor = factor;
+payoutCalculatorValues.clear();
+payoutCalculatorRecords.forEach(config=>{
+const payout = calculatorCalculatedPayout(config.rec,factor);
+if(Number.isFinite(payout)) payoutCalculatorValues.set(config.key,{factor,payout});
+});
+}
 function outputPayoutForRecord(institutionName,rec){
 if(!isPayoutCalculatorUser()) return payoutForRecord(rec);
 const key = payoutCalculatorRecordKey(institutionName,rec);
@@ -230,109 +239,80 @@ return payoutForRecord(rec);
 function renderPayoutCalculator(list){
 payoutCalculatorRecords = [];
 payoutCalculatorValues.clear();
-const rows=[];
+let retainedCount = 0;
 list.forEach(inst=>{
 recordsForActiveFilters(inst).forEach(rec=>{
 const internalMax = calculatorInternalMax(rec);
 const maximum = calculatorMaximumPayout(rec);
-const title = rec.variant ? `${rec.productType} · ${rec.variant}` : (rec.productType || 'Product');
 if(internalMax === null || maximum === null){
-rows.push(`
-<div class="payout-calculator-row disabled">
-<div class="payout-calculator-product">
-<strong>${esc(inst.name)}</strong>
-<span>${esc(title)}</span>
-</div>
-<div class="payout-calculator-unavailable">Existing payout retained</div>
-</div>`);
+retainedCount += 1;
 return;
 }
-const index = payoutCalculatorRecords.length;
 const key = payoutCalculatorRecordKey(inst.name,rec);
-const defaultFactor = 90;
-const defaultPayout = calculatorCalculatedPayout(rec,defaultFactor);
 payoutCalculatorRecords.push({institutionName:inst.name,rec,key,internalMax,maximum});
-payoutCalculatorValues.set(key,{factor:defaultFactor,payout:defaultPayout});
-rows.push(`
-<div class="payout-calculator-row" data-calculator-row="${index}">
-<div class="payout-calculator-product">
-<strong>${esc(inst.name)}</strong>
-<span>${esc(title)}</span>
-</div>
-<div class="payout-calculator-controls">
-<label>
-<span class="payout-calculator-input-label">Set payout at</span>
-<span class="payout-calculator-input-wrap">
-<input type="number" min="0" max="90" step="1" value="90" data-calculator-index="${index}" aria-label="Payout factor percentage for ${esc(inst.name)} ${esc(title)}">
-<span>%</span>
-</span>
-<span class="payout-calculator-input-label">of approved max</span>
-</label>
-<div class="payout-calculator-result" data-calculator-result="${index}">${calculatorFormatPct(defaultPayout)}</div>
-</div>
-<div class="payout-calculator-error" data-calculator-error="${index}"></div>
-</div>`);
 });
 });
-payoutCalculatorRows.innerHTML = rows.join('') || '<p class="sequence-sub">No editable payout rows are available for the current selection.</p>';
-payoutCalculatorRows.querySelectorAll('input[data-calculator-index]').forEach(input=>{
-input.addEventListener('input',()=>{
-const index = Number(input.dataset.calculatorIndex);
-const config = payoutCalculatorRecords[index];
-if(!config) return;
-const error = payoutCalculatorRows.querySelector(`[data-calculator-error="${index}"]`);
-const result = payoutCalculatorRows.querySelector(`[data-calculator-result="${index}"]`);
+
+const defaultFactor = Number.isFinite(payoutCalculatorFactor) && payoutCalculatorFactor >= 0 && payoutCalculatorFactor <= 90
+? payoutCalculatorFactor
+: 90;
+applyGlobalPayoutFactor(defaultFactor);
+
+const adjustableCount = payoutCalculatorRecords.length;
+const retainedNote = retainedCount
+? `<p class="payout-calculator-note">${retainedCount} payout line${retainedCount===1?'':'s'} without a calculable Internal Max Slab will retain the existing payout.</p>`
+: '';
+
+payoutCalculatorRows.innerHTML = `
+<div class="payout-calculator-global-card">
+  <label class="payout-calculator-global-label" for="payout-calculator-global-input">Payout preference for all selected banks</label>
+  <div class="payout-calculator-global-control">
+    <span class="payout-calculator-global-prefix">Set every payout at</span>
+    <span class="payout-calculator-input-wrap payout-calculator-global-input-wrap">
+      <input id="payout-calculator-global-input" type="number" min="0" max="90" step="1" value="${defaultFactor}" inputmode="decimal" aria-label="Percentage of approved internal maximum to apply to all selected banks">
+      <span>%</span>
+    </span>
+    <span class="payout-calculator-global-suffix">of its approved max</span>
+  </div>
+  <p class="payout-calculator-global-help">One entry will automatically recalculate all ${adjustableCount} eligible payout line${adjustableCount===1?'':'s'} across the selected institutions. The Internal Max Slab stays hidden.</p>
+  <div class="payout-calculator-error payout-calculator-global-error" id="payout-calculator-global-error"></div>
+  ${retainedNote}
+</div>`;
+
+const input = document.getElementById('payout-calculator-global-input');
+const error = document.getElementById('payout-calculator-global-error');
+input?.addEventListener('input',()=>{
 const factor = calculatorFactor(input.value);
 if(factor === null || factor < 0){
 if(error) error.textContent='Enter a valid percentage.';
-if(result) result.textContent='—';
 return;
 }
 if(factor > 90){
-if(error) error.textContent=`Maximum slab is ${calculatorFormatPct(config.maximum)}`;
-if(result) result.textContent=calculatorFormatPct(config.maximum);
+if(error) error.textContent='Maximum preference is 90% of Internal Max Slab.';
 return;
 }
 if(error) error.textContent='';
-const payout = calculatorCalculatedPayout(config.rec,factor);
-if(result) result.textContent=calculatorFormatPct(payout);
-payoutCalculatorValues.set(config.key,{factor,payout});
-});
+applyGlobalPayoutFactor(factor);
 });
 }
 function validatePayoutCalculator(){
-let valid=true;
-payoutCalculatorOverlay.querySelectorAll('input[data-calculator-index]').forEach(input=>{
-const index = Number(input.dataset.calculatorIndex);
-const config = payoutCalculatorRecords[index];
-if(!config) return;
-const error = payoutCalculatorOverlay.querySelector(`[data-calculator-error="${index}"]`);
-const result = payoutCalculatorOverlay.querySelector(`[data-calculator-result="${index}"]`);
+const input = document.getElementById('payout-calculator-global-input');
+const error = document.getElementById('payout-calculator-global-error');
+if(!input){
+if(error) error.textContent='No payout preference is available.';
+return false;
+}
 const factor = calculatorFactor(input.value);
 if(factor === null || factor < 0){
 if(error) error.textContent='Enter a valid percentage.';
-if(result) result.textContent='—';
-valid=false;
-return;
+return false;
 }
 if(factor > 90){
-if(error) error.textContent=`Maximum slab is ${calculatorFormatPct(config.maximum)}`;
-if(result) result.textContent=calculatorFormatPct(config.maximum);
-valid=false;
-return;
+if(error) error.textContent='Maximum preference is 90% of Internal Max Slab.';
+return false;
 }
-const payout = calculatorCalculatedPayout(config.rec,factor);
-if(payout === null || payout > config.maximum + 0.0000001){
-if(error) error.textContent=`Maximum slab is ${calculatorFormatPct(config.maximum)}`;
-if(result) result.textContent=calculatorFormatPct(config.maximum);
-valid=false;
-return;
-}
-if(error) error.textContent='';
-if(result) result.textContent=calculatorFormatPct(payout);
-payoutCalculatorValues.set(config.key,{factor,payout});
-});
-return valid;
+applyGlobalPayoutFactor(factor);
+return true;
 }
 function openPayoutCalculator(){
 const list=getPrintList();
