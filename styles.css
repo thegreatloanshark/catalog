@@ -285,3 +285,122 @@ body.sequence-open{overflow:hidden}
   z-index: -1 !important;
   overflow: hidden !important;
 }
+
+
+/* Basety payout calculator */
+.payout-calculator-modal{
+  width:min(780px,96vw);
+  max-height:min(820px,90vh);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.payout-calculator-rows{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  overflow:auto;
+  max-height:55vh;
+  padding:2px 4px 4px 0;
+  margin-bottom:2px;
+}
+.payout-calculator-row{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(245px,300px);
+  gap:5px 14px;
+  align-items:center;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff;
+}
+.payout-calculator-product{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.payout-calculator-product strong{
+  font:800 11px 'Inter',sans-serif;
+  color:var(--ink);
+}
+.payout-calculator-product span{
+  font:500 10px 'Inter',sans-serif;
+  color:var(--ink-dim);
+  overflow-wrap:anywhere;
+}
+.payout-calculator-controls{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  align-items:end;
+}
+.payout-calculator-controls>label{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.payout-calculator-input-label{
+  font:600 8.5px 'Inter',sans-serif;
+  color:var(--ink-dim);
+}
+.payout-calculator-input-wrap{
+  display:flex;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+}
+.payout-calculator-input-wrap:focus-within{
+  border-color:#d80000;
+  box-shadow:0 0 0 2px rgba(216,0,0,.08);
+}
+.payout-calculator-input-wrap input{
+  width:100%;
+  min-width:0;
+  padding:8px 8px;
+  border:0;
+  outline:0;
+  background:transparent;
+  font:800 12px 'Inter',sans-serif;
+  text-align:right;
+}
+.payout-calculator-input-wrap>span{
+  padding-right:9px;
+  font:800 11px 'Inter',sans-serif;
+  color:#d80000;
+}
+.payout-calculator-result{
+  min-width:74px;
+  padding:8px 9px;
+  border-radius:8px;
+  background:#f7f5ef;
+  text-align:center;
+  font:800 11px 'Inter',sans-serif;
+  color:#d80000;
+  font-variant-numeric:tabular-nums;
+}
+.payout-calculator-error{
+  grid-column:2;
+  min-height:14px;
+  font:700 9.5px 'Inter',sans-serif;
+  color:#d80000;
+}
+.payout-calculator-row.disabled{opacity:.58}
+.payout-calculator-unavailable{
+  font:600 10px 'Inter',sans-serif;
+  color:var(--ink-dim);
+  text-align:right;
+}
+@media(max-width:760px){
+  .payout-calculator-modal{padding:18px 14px}
+  .payout-calculator-rows{max-height:58vh}
+  .payout-calculator-row{grid-template-columns:1fr}
+  .payout-calculator-controls{grid-template-columns:minmax(0,1fr) auto}
+  .payout-calculator-error{grid-column:1}
+  .payout-calculator-unavailable{text-align:left}
+}
+@media print{
+  #payout-calculator-overlay{display:none!important}
+}
