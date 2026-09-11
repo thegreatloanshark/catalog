@@ -23,7 +23,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "100 % IN 6 months and 50% in 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 100 % IN 6 months and 50% in 12 months"
       },
       {
         "mode": "General",
@@ -46,7 +50,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "100 % IN 6 months and 50% in 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 100 % IN 6 months and 50% in 12 months"
       }
     ],
     "bankTypes": [
@@ -84,7 +92,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -107,7 +119,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -145,7 +161,11 @@
         "highestPayoutPct": "1.2%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": "BT Payout Clawback: Yes"
       },
       {
         "mode": "CO-Op",
@@ -168,7 +188,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -191,7 +215,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -214,7 +242,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -237,7 +269,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -260,7 +296,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -283,7 +323,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -306,7 +350,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -329,7 +377,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -352,7 +404,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -375,7 +431,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -398,7 +458,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -421,7 +485,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -444,7 +512,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -467,7 +539,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -507,7 +583,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "10 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100 %",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100 %"
       },
       {
         "mode": "General",
@@ -530,7 +610,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "10 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100 %",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100 %"
       },
       {
         "mode": "General",
@@ -553,7 +637,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "10 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100 %",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100 %"
       },
       {
         "mode": "General",
@@ -576,7 +664,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "10 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100 %",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100 %"
       }
     ],
     "bankTypes": [
@@ -614,7 +706,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -637,7 +733,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -675,7 +775,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -712,7 +816,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -749,7 +857,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -772,7 +884,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -795,7 +911,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -833,7 +953,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Not Mentioned, TO be takes as 12 months as per RBI",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Not Mentioned, TO be takes as 12 months as per RBI"
       },
       {
         "mode": "General",
@@ -856,7 +980,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Not Mentioned, TO be takes as 12 months as per RBI",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Not Mentioned, TO be takes as 12 months as per RBI"
       },
       {
         "mode": "General",
@@ -879,7 +1007,11 @@
         "highestPayoutPct": "1.1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Not Mentioned, TO be takes as 12 months as per RBI",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Not Mentioned, TO be takes as 12 months as per RBI"
       },
       {
         "mode": "General",
@@ -902,7 +1034,11 @@
         "highestPayoutPct": "1.45%",
         "additionalPayoutPct": "-",
         "payoutCapping": "10 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Not Mentioned, TO be takes as 12 months as per RBI",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Not Mentioned, TO be takes as 12 months as per RBI"
       },
       {
         "mode": "General",
@@ -925,7 +1061,11 @@
         "highestPayoutPct": "1.00%",
         "additionalPayoutPct": "-",
         "payoutCapping": "The payout for ODLAP linked to reimbursement of 100% of PF collected OR 1% of Sanctioned whichever is lower.",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Not Mentioned, TO be takes as 12 months as per RBI",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Not Mentioned, TO be takes as 12 months as per RBI"
       },
       {
         "mode": "CO-Op",
@@ -948,7 +1088,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -971,7 +1115,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -1013,7 +1161,11 @@
         "highestPayoutPct": "1.1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "6 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1036,7 +1188,11 @@
         "highestPayoutPct": "DSA Payout = PF collected",
         "additionalPayoutPct": "-",
         "payoutCapping": "6 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1059,7 +1215,11 @@
         "highestPayoutPct": "1.4%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1082,7 +1242,11 @@
         "highestPayoutPct": "DSA Payout = 75% of the PF collected",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1105,7 +1269,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1128,7 +1296,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -1169,7 +1341,11 @@
         "highestPayoutPct": "2.75%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1192,7 +1368,11 @@
         "highestPayoutPct": "2.75%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1215,7 +1395,11 @@
         "highestPayoutPct": "2.75%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1238,7 +1422,11 @@
         "highestPayoutPct": "2.75%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1261,7 +1449,11 @@
         "highestPayoutPct": "2.75%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1284,7 +1476,11 @@
         "highestPayoutPct": "1.75%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -1307,7 +1503,11 @@
         "highestPayoutPct": "1.45%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1330,7 +1530,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1353,7 +1557,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1376,7 +1584,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1399,7 +1611,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1422,7 +1638,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1445,7 +1665,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1468,7 +1692,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1491,7 +1719,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1514,7 +1746,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1537,7 +1773,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1560,7 +1800,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1583,7 +1827,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1606,7 +1854,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -1646,7 +1898,11 @@
         "highestPayoutPct": "0.75%",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 month 50 %, 100 % in 6 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 month 50 %, 100 % in 6 months"
       },
       {
         "mode": "General",
@@ -1669,7 +1925,11 @@
         "highestPayoutPct": "1.00%",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 month 50 %, 100 % in 6 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 month 50 %, 100 % in 6 months"
       },
       {
         "mode": "General",
@@ -1692,7 +1952,11 @@
         "highestPayoutPct": "1.00%",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 month 50 %, 100 % in 6 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 month 50 %, 100 % in 6 months"
       },
       {
         "mode": "General",
@@ -1715,7 +1979,11 @@
         "highestPayoutPct": "0.95%",
         "additionalPayoutPct": "-",
         "payoutCapping": "More than 5Cr Case payout capped at 0.70%.\nPer case capping 6 Lakhs.\nBT Case Capping - 0.70%",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 month 50 %, 100 % in 6 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 month 50 %, 100 % in 6 months"
       },
       {
         "mode": "General",
@@ -1738,7 +2006,11 @@
         "highestPayoutPct": "0.95%",
         "additionalPayoutPct": "-",
         "payoutCapping": "More than 5Cr Case payout capped at 0.70%.\nPer case capping 6 Lakhs.\nBT Case Capping - 0.70%",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 month 50 %, 100 % in 6 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 month 50 %, 100 % in 6 months"
       },
       {
         "mode": "CO-Op",
@@ -1761,7 +2033,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -1799,7 +2075,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "In Process",
+        "clawbackPeriod": "Agreement Confirmation: In Process"
       },
       {
         "mode": "CO-Op",
@@ -1822,7 +2102,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -1845,7 +2129,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -1884,7 +2172,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.10%",
         "payoutCapping": "10 Lakhs per case",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100% - Need to cross cehck this is wrong as pe rattachecd annexure",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100% - Need to cross cehck this is wrong as pe rattachecd annexure"
       },
       {
         "mode": "General",
@@ -1907,7 +2199,11 @@
         "highestPayoutPct": "1.1%",
         "additionalPayoutPct": "0.10%",
         "payoutCapping": "10 Lakhs per case",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100% - Need to cross cehck this is wrong as pe rattachecd annexure",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100% - Need to cross cehck this is wrong as pe rattachecd annexure"
       }
     ],
     "bankTypes": [
@@ -1945,7 +2241,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.10%",
         "payoutCapping": "12 Lakhs per case / Min. ticket Size 10 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "100% in 1 yerr",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 100% in 1 yerr"
       },
       {
         "mode": "General",
@@ -1968,7 +2268,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.10%",
         "payoutCapping": "12 Lakhs per case / Min. ticket Size 10 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "100% in 1 yerr",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 100% in 1 yerr"
       }
     ],
     "bankTypes": [
@@ -2006,7 +2310,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "8 Lakhs per case and 10 Lakhs per month per Zone",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "2 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Within 1 Year- 100% of commission to pe paid back,  50% Commission to be paid back if it happens within 2 tears",
+        "clawbackPeriod": "BT Timeline: 2 year | BT Payout Clawback: Yes | Agreement Confirmation: Within 1 Year- 100% of commission to pe paid back,  50% Commission to be paid back if it happens within 2 tears"
       }
     ],
     "bankTypes": [
@@ -2043,7 +2351,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.10%",
         "payoutCapping": "11 Lakhs / (No Payout Till 2.99Cr Or < 50L Cases ) Extra .10% On 1Cr Above Loan Amount \"",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "2 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Within 1 Year- 100% of commission to pe paid back,  50% Commission to be paid back if it happens within 2 tears",
+        "clawbackPeriod": "BT Timeline: 2 year | BT Payout Clawback: Yes | Agreement Confirmation: Within 1 Year- 100% of commission to pe paid back,  50% Commission to be paid back if it happens within 2 tears"
       }
     ],
     "bankTypes": [
@@ -2080,7 +2392,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2117,7 +2433,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "In Process",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: In Process"
       }
     ],
     "bankTypes": [],
@@ -2150,7 +2470,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2187,7 +2511,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2210,7 +2538,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2248,7 +2580,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.10%",
         "payoutCapping": "15 Lakhs / 0.10 % Extra on takeovers & loan above 5 Cr and 0.05% Extra on Central & state govt employees",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "2 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": "BT Timeline: 2 year | BT Payout Clawback: Yes"
       },
       {
         "mode": "General",
@@ -2271,7 +2607,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.10%",
         "payoutCapping": "15 Lakhs / 0.10 % Extra on takeovers & loan above 5 Cr and 0.05% Extra on Central & state govt employees",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "2 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": "BT Timeline: 2 year | BT Payout Clawback: Yes"
       }
     ],
     "bankTypes": [
@@ -2309,7 +2649,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -2332,7 +2676,11 @@
         "highestPayoutPct": "1.60%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -2355,7 +2703,11 @@
         "highestPayoutPct": "1.40%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "CO-Op",
@@ -2378,7 +2730,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2401,7 +2757,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2424,7 +2784,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2447,7 +2811,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2470,7 +2838,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2511,7 +2883,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2534,7 +2910,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2571,7 +2951,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2594,7 +2978,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2631,7 +3019,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2654,7 +3046,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2677,7 +3073,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2715,7 +3115,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2752,7 +3156,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -2775,7 +3183,11 @@
         "highestPayoutPct": "0.7%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -2798,7 +3210,11 @@
         "highestPayoutPct": "1.2%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -2821,7 +3237,11 @@
         "highestPayoutPct": "0.7%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -2859,7 +3279,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -2882,7 +3306,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2920,7 +3348,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -2957,7 +3389,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "0.3% Quarterly",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -2994,7 +3430,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3017,7 +3457,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3055,7 +3499,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3078,7 +3526,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3115,7 +3567,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3152,7 +3608,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "5 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -3175,7 +3635,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -3213,7 +3677,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3250,7 +3718,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3287,7 +3759,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3324,7 +3800,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3361,7 +3841,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3398,7 +3882,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3435,7 +3923,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Max Ticket Size of 5 Cr",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -3458,7 +3950,11 @@
         "highestPayoutPct": "1.25%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Max Ticket Size of 5 Cr",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -3496,7 +3992,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3519,7 +4019,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3542,7 +4046,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3565,7 +4073,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3588,7 +4100,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3625,7 +4141,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Relevant ROI booster and PF sharing applicable for up to 2% applicable.( Subvention)",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -3662,7 +4182,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -3685,7 +4209,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -3708,7 +4236,11 @@
         "highestPayoutPct": "0.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3745,7 +4277,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3768,7 +4304,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -3805,7 +4345,11 @@
         "highestPayoutPct": "Payout = Collected PF",
         "additionalPayoutPct": "-",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "100% in 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 100% in 12 months"
       },
       {
         "mode": "General",
@@ -3828,7 +4372,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "20 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "100% in 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 100% in 12 months"
       },
       {
         "mode": "General",
@@ -3851,7 +4399,11 @@
         "highestPayoutPct": "1.45%",
         "additionalPayoutPct": "-",
         "payoutCapping": "LAP/LARR/LCP: For a single case > Rs. 20 Crs – Payout to be as per\napplicable slab till 20 Crs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "To be confirmed",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: To be confirmed"
       },
       {
         "mode": "CO-Op",
@@ -3874,7 +4426,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3897,7 +4453,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3920,7 +4480,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3943,7 +4507,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3966,7 +4534,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -3989,7 +4561,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4012,7 +4588,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4035,7 +4615,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4058,7 +4642,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4081,7 +4669,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -4124,7 +4716,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4147,7 +4743,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -4185,7 +4785,11 @@
         "highestPayoutPct": "0.8%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -4208,7 +4812,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -4231,7 +4839,11 @@
         "highestPayoutPct": "0.6%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -4269,7 +4881,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% if any loan is closed or BT in 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% if any loan is closed or BT in 12 months"
       },
       {
         "mode": "General",
@@ -4292,7 +4908,11 @@
         "highestPayoutPct": "0.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% if any loan is closed or BT in 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% if any loan is closed or BT in 12 months"
       },
       {
         "mode": "General",
@@ -4315,7 +4935,11 @@
         "highestPayoutPct": "1.3%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% if any loan is closed or BT in 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% if any loan is closed or BT in 12 months"
       },
       {
         "mode": "CO-Op",
@@ -4338,7 +4962,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4361,7 +4989,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -4402,7 +5034,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "1 Year - 100% Payout recovery less PF collected on the case.",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 1 Year - 100% Payout recovery less PF collected on the case."
       },
       {
         "mode": "General",
@@ -4425,7 +5061,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "1 Year - 100% Payout recovery less PF collected on the case.",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 1 Year - 100% Payout recovery less PF collected on the case."
       },
       {
         "mode": "General",
@@ -4448,7 +5088,11 @@
         "highestPayoutPct": "-",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "1 Year - 100% Payout recovery less PF collected on the case.",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 1 Year - 100% Payout recovery less PF collected on the case."
       },
       {
         "mode": "General",
@@ -4471,7 +5115,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "10 Lakhs per Case Standard. Per case capping can be upto 25 Lakhs based on cases to case approval from ZH",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "1 Year - 100% Payout recovery less PF collected on the case.",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 1 Year - 100% Payout recovery less PF collected on the case."
       },
       {
         "mode": "CO-Op",
@@ -4494,7 +5142,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4517,7 +5169,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4540,7 +5196,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4563,7 +5223,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4586,7 +5250,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -4628,7 +5296,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months"
       },
       {
         "mode": "General",
@@ -4651,7 +5323,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months"
       },
       {
         "mode": "General",
@@ -4674,7 +5350,11 @@
         "highestPayoutPct": "1.4%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months"
       },
       {
         "mode": "General",
@@ -4697,7 +5377,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months"
       }
     ],
     "bankTypes": [
@@ -4735,7 +5419,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Capping - 7.5 Lakhs for HL and LAP Case (Super Prime and Prime Case, CIBIL above 771) Other Case - 5 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -4758,7 +5446,11 @@
         "highestPayoutPct": "1.2%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Capping - 7.5 Lakhs for HL and LAP Case (Super Prime and Prime Case, CIBIL above 771) Other Case - 5 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -4796,7 +5488,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -4819,7 +5515,11 @@
         "highestPayoutPct": "1.2%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -4842,7 +5542,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "₹7.2 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -4865,7 +5569,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "₹7.2 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4888,7 +5596,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4911,7 +5623,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4934,7 +5650,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -4957,7 +5677,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -4999,7 +5723,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -5022,7 +5750,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -5060,7 +5792,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5097,7 +5833,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.1",
         "payoutCapping": "10 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -5134,7 +5874,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5171,7 +5915,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "8 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "CO-Op",
@@ -5194,7 +5942,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5217,7 +5969,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5240,7 +5996,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5281,7 +6041,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5318,7 +6082,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5341,7 +6109,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5379,7 +6151,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "25 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -5402,7 +6178,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -5440,7 +6220,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5477,7 +6261,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [],
@@ -5510,7 +6298,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "15 Lakh",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -5533,7 +6325,11 @@
         "highestPayoutPct": "Secured OD or CC Payout is 75% of the PF collected",
         "additionalPayoutPct": "-",
         "payoutCapping": "15 Lakh / Secured OD or CC Payout is 75% of the PF collected, Individual cases and cases where there is Nil Pre Closure Charges maximum pay-out will be P.F Plus 0.50%.",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5556,7 +6352,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5597,7 +6397,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5634,7 +6438,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5671,7 +6479,11 @@
         "highestPayoutPct": "OD Cases Payout = PF",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% Payout Clawback if BT within 15 Months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% Payout Clawback if BT within 15 Months"
       },
       {
         "mode": "General",
@@ -5694,7 +6506,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "15 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% Payout Clawback if BT within 15 Months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% Payout Clawback if BT within 15 Months"
       },
       {
         "mode": "General",
@@ -5717,7 +6533,11 @@
         "highestPayoutPct": "1.45%",
         "additionalPayoutPct": "-",
         "payoutCapping": "15 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% Payout Clawback if BT within 15 Months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% Payout Clawback if BT within 15 Months"
       },
       {
         "mode": "General",
@@ -5740,7 +6560,11 @@
         "highestPayoutPct": "1.45%",
         "additionalPayoutPct": "-",
         "payoutCapping": "15 Lakhs",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% Payout Clawback if BT within 15 Months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% Payout Clawback if BT within 15 Months"
       },
       {
         "mode": "General",
@@ -5763,7 +6587,11 @@
         "highestPayoutPct": "Overdraft Cases (OD LAP)  - Payout = PF collected",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "50% Payout Clawback if BT within 15 Months",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 50% Payout Clawback if BT within 15 Months"
       },
       {
         "mode": "CO-Op",
@@ -5786,7 +6614,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5809,7 +6641,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5832,7 +6668,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5855,7 +6695,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5878,7 +6722,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5920,7 +6768,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -5957,7 +6809,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -5980,7 +6836,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6003,7 +6863,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6026,7 +6890,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6049,7 +6917,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6072,7 +6944,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6095,7 +6971,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6118,7 +6998,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6141,7 +7025,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6164,7 +7052,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6187,7 +7079,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6210,7 +7106,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6233,7 +7133,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6256,7 +7160,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6279,7 +7187,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6317,7 +7229,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -6340,7 +7256,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -6378,7 +7298,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6415,7 +7339,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -6452,7 +7380,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6487,7 +7419,11 @@
         "highestPayoutPct": "1.00%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -6510,7 +7446,11 @@
         "highestPayoutPct": "0.95%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -6547,7 +7487,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6584,7 +7528,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -6621,7 +7569,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -6658,7 +7610,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -6695,7 +7651,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -6718,7 +7678,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6757,7 +7721,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6794,7 +7762,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6831,7 +7803,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -6868,7 +7844,11 @@
         "highestPayoutPct": "1.05%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Loan Amount Capping of Rs. 5 Cr",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -6891,7 +7871,11 @@
         "highestPayoutPct": "1.05%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Loan Amount Capping of Rs. 5 Cr",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -6914,7 +7898,11 @@
         "highestPayoutPct": "-",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -6937,7 +7925,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Loan Amount Capping - 10 Cr, any case above 10 Cr needs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -6960,7 +7952,11 @@
         "highestPayoutPct": "1.60%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "CO-Op",
@@ -6983,7 +7979,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7006,7 +8006,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7049,7 +8053,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -7072,7 +8080,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "CO-Op",
@@ -7095,7 +8107,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7134,7 +8150,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7157,7 +8177,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7180,7 +8204,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7203,7 +8231,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7226,7 +8258,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7264,7 +8300,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7287,7 +8327,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7324,7 +8368,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "0.1",
         "payoutCapping": "10 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -7361,7 +8409,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7398,7 +8450,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7421,7 +8477,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7444,7 +8504,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7467,7 +8531,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7490,7 +8558,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7528,7 +8600,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Payout on Construction Finance (CF) cases shall be linked to Processing Fee (PF) collection and shall be limited to 50% of the PF collected, subject to a minimum PF retention of 1% by Sammaan Capital",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -7551,7 +8627,11 @@
         "highestPayoutPct": "1.35%",
         "additionalPayoutPct": "-",
         "payoutCapping": "Payout on Construction Finance (CF) cases shall be linked to Processing Fee (PF) collection and shall be limited to 50% of the PF collected, subject to a minimum PF retention of 1% by Sammaan Capital",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -7589,7 +8669,11 @@
         "highestPayoutPct": "0.8%",
         "additionalPayoutPct": "0.10% additional on 15 Cr Quarterly Business",
         "payoutCapping": "6 Lakhs // Payout on construction finance (CF) cases is linked to PF collection. It would be 50% of PF, subject to a minimum 1% PF retention with Sammaan Capital.",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -7626,7 +8710,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7649,7 +8737,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7672,7 +8764,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7695,7 +8791,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7733,7 +8833,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7756,7 +8860,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7794,7 +8902,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7817,7 +8929,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7855,7 +8971,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7878,7 +8998,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -7916,7 +9040,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -7939,7 +9067,11 @@
         "highestPayoutPct": "1.15%",
         "additionalPayoutPct": "-",
         "payoutCapping": "No Capping",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -7962,7 +9094,11 @@
         "highestPayoutPct": "1.35%",
         "additionalPayoutPct": "-",
         "payoutCapping": "No Capping",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -7985,7 +9121,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8008,7 +9148,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8031,7 +9175,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8054,7 +9202,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8077,7 +9229,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8100,7 +9256,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -8142,7 +9302,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8165,7 +9329,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8188,7 +9356,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8211,7 +9383,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -8250,7 +9426,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -8285,7 +9465,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -8308,7 +9492,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8331,7 +9519,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -8370,7 +9562,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8393,7 +9589,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8416,7 +9616,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -8454,7 +9658,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8477,7 +9685,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -8515,7 +9727,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -8538,7 +9754,11 @@
         "highestPayoutPct": "1.45%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "CO-Op",
@@ -8561,7 +9781,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8584,7 +9808,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8607,7 +9835,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8630,7 +9862,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8653,7 +9889,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8676,7 +9916,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8699,7 +9943,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8722,7 +9970,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8745,7 +9997,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8768,7 +10024,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -8791,7 +10051,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -8831,7 +10095,11 @@
         "highestPayoutPct": "0.7%",
         "additionalPayoutPct": "-",
         "payoutCapping": "5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -8854,7 +10122,11 @@
         "highestPayoutPct": "0.7%",
         "additionalPayoutPct": "-",
         "payoutCapping": "5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -8877,7 +10149,11 @@
         "highestPayoutPct": "0.7%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -8900,7 +10176,11 @@
         "highestPayoutPct": "0.7%",
         "additionalPayoutPct": "-",
         "payoutCapping": "7.5 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -8938,7 +10218,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "15 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -8961,7 +10245,11 @@
         "highestPayoutPct": "1.2%",
         "additionalPayoutPct": "-",
         "payoutCapping": "15 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -8984,7 +10272,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "20 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -9007,7 +10299,11 @@
         "highestPayoutPct": "1.5%",
         "additionalPayoutPct": "-",
         "payoutCapping": "20 Lakhs",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -9045,7 +10341,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -9068,7 +10368,11 @@
         "highestPayoutPct": "0.4%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -9105,7 +10409,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -9142,7 +10450,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -9179,7 +10491,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [],
@@ -9212,7 +10528,11 @@
         "highestPayoutPct": "0.6%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -9235,7 +10555,11 @@
         "highestPayoutPct": "1.65%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -9273,7 +10597,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -9296,7 +10624,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "-",
         "payoutCapping": "12 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       },
       {
         "mode": "General",
@@ -9319,7 +10651,11 @@
         "highestPayoutPct": "0.9%",
         "additionalPayoutPct": "-",
         "payoutCapping": "12 Lakhs",
-        "institutionType": "PSU"
+        "institutionType": "PSU",
+        "balanceTransferClauseTimeline": "1 year",
+        "btPayoutClawbackClause": "Yes",
+        "clawbackClauseConfirmation": "12 months 100%",
+        "clawbackPeriod": "BT Timeline: 1 year | BT Payout Clawback: Yes | Agreement Confirmation: 12 months 100%"
       }
     ],
     "bankTypes": [
@@ -9356,7 +10692,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9379,7 +10719,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -9417,7 +10761,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9440,7 +10788,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -9478,7 +10830,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "General",
@@ -9501,7 +10857,11 @@
         "highestPayoutPct": "1%",
         "additionalPayoutPct": "-",
         "payoutCapping": "-",
-        "institutionType": "NBFC"
+        "institutionType": "NBFC",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
@@ -9539,7 +10899,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9562,7 +10926,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9585,7 +10953,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9608,7 +10980,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9631,7 +11007,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9654,7 +11034,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       },
       {
         "mode": "CO-Op",
@@ -9677,7 +11061,11 @@
         "highestPayoutPct": "",
         "additionalPayoutPct": "",
         "payoutCapping": "",
-        "institutionType": "PVT"
+        "institutionType": "PVT",
+        "balanceTransferClauseTimeline": "",
+        "btPayoutClawbackClause": "",
+        "clawbackClauseConfirmation": "",
+        "clawbackPeriod": ""
       }
     ],
     "bankTypes": [
