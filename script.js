@@ -1251,6 +1251,7 @@ ${canShowPayouts() ? printField(percentageFieldLabel(),payout) : ''}
 ${printField('Payment Type',rec.paymentType)}
 ${printField('Applicable Cities',rec.cities)}
 ${printField('Timeline',rec.timeline)}
+${authenticatedUser ? printField('Clawback Period',rec.clawbackPeriod) : ''}
 ${printField('Conditions',rec.conditions)}
 ${printField('Login Mandate / Process',rec.loginProcess)}
 ${currentView === 'internal' ? printField('Document Category',rec.documentCategory) : ''}
@@ -1795,6 +1796,7 @@ rec.productType || '',
 rec.variant || '',
 excelDisplayPayout(inst.name,rec),
 rec.timeline || '',
+rec.clawbackPeriod || '',
 rec.cities || ''
 ]));
 });
@@ -1874,7 +1876,7 @@ await ensureExcelLibrary();
 const stamp=downloadMonthStamp();
 const catalogRows=excelCatalogRows(list);
 const conditionRows=excelConditionRows(list);
-const catalogHeaders=['Institution Name','Mode','Code','Gross/Net','Product Type','Sub-Product / Variant','Product & Payout','Payout Timeline','Applicable Cities'];
+const catalogHeaders=['Institution Name','Mode','Code','Gross/Net','Product Type','Sub-Product / Variant','Product & Payout','Payout Timeline','Clawback Period','Applicable Cities'];
 const conditionHeaders=['Institution Name','Mode','Code','Product Type','Sub-Product / Variant','Payout Conditions'];
 const wb=new ExcelJS.Workbook();
 wb.creator='NoBroker Loans';wb.company='NoBroker Loans';wb.created=new Date();
@@ -1888,7 +1890,7 @@ styleExcelHeaderRow(wsCatalog.getRow(headerRow));
 catalogRows.forEach(values=>wsCatalog.addRow(values));
 styleExcelBodyRows(wsCatalog,headerRow+1,headerRow+catalogRows.length,catalogHeaders.length);
 wsCatalog.autoFilter={from:{row:headerRow,column:1},to:{row:headerRow,column:catalogHeaders.length}};
-[28,14,22,12,15,42,42,38,28].forEach((w,i)=>wsCatalog.getColumn(i+1).width=w);
+[28,14,22,12,15,42,42,38,22,28].forEach((w,i)=>wsCatalog.getColumn(i+1).width=w);
 wsCatalog.pageSetup={orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:0,paperSize:9,printTitlesRow:'1:7'};
 
 const wsConditions=wb.addWorksheet('Payout Conditions',{views:[{state:'frozen',ySplit:7}]});
