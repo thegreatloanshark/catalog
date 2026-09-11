@@ -644,18 +644,22 @@ return `${user.label} · ${user.title || role} · ${user.region || ''} — ${rol
 }
 function populateInternalUserViews(){
 const groups = [['t1','Tier 1 Views'],['t2','Tier 2 Views'],['internal','Internal Views']];
+const pavanBase=AUTH_USERS.find(u=>isPavanUser(u));
+const pavanVijaywada=pavanBase ? {...makePavanLocationUser(pavanBase,'vijaywada'),internalViewKey:'pavan-vijaywada'} : null;
 let html = '';
 groups.forEach(([view,label]) => {
-const users = AUTH_USERS.filter(u => u.view === view).slice().sort((a,b) =>
-String(a.label || '').localeCompare(String(b.label || ''),'en',{sensitivity:'base'})
-);
+let users = AUTH_USERS.filter(u => u.view === view).slice();
+if(view==='t2' && pavanVijaywada) users.push(pavanVijaywada);
+users.sort((a,b) => String(a.label || '').localeCompare(String(b.label || ''),'en',{sensitivity:'base'}) || String(a.region || '').localeCompare(String(b.region || '')));
 if(!users.length) return;
-html += `<optgroup label="${esc(label)}">` + users.map(u =>
-`<option value="${esc(String(u.id))}">${esc(userOptionLabel(u))}</option>`
-).join('') + '</optgroup>';
+html += `<optgroup label="${esc(label)}">` + users.map(u => {
+const value=u.internalViewKey || String(u.id);
+return `<option value="${esc(value)}">${esc(userOptionLabel(u))}</option>`;
+}).join('') + '</optgroup>';
 });
 internalUserViewSelect.innerHTML = html;
-if(authenticatedUser) internalUserViewSelect.value = String(authenticatedUser.id);
+const activeValue=selectedUser?.internalViewKey || (selectedUser ? String(selectedUser.id) : String(authenticatedUser?.id || ''));
+if(activeValue) internalUserViewSelect.value = activeValue;
 }
 function openAllUserViews(){
 if(!isInternalAuthenticated()) return;
@@ -663,7 +667,7 @@ catalogHistoryOpen = false; document.body.classList.remove('catalog-history-open
 masterCatalogTools.classList.remove('open');
 populateInternalUserViews();
 internalUserTools.classList.add('open');
-if(selectedUser) internalUserViewSelect.value = String(selectedUser.id);
+if(selectedUser) internalUserViewSelect.value = selectedUser.internalViewKey || String(selectedUser.id);
 tabUserViews.classList.add('active');
 tabLogin.classList.remove('active');
 }
@@ -671,7 +675,13 @@ function selectInternalUserView(userId){
 if(!isInternalAuthenticated()) return;
 catalogHistoryOpen = false; document.body.classList.remove('catalog-history-open','data-admin-open');
 masterCatalogTools.classList.remove('open');
-const user = AUTH_USERS.find(u => String(u.id) === String(userId));
+let user;
+if(String(userId)==='pavan-vijaywada'){
+const base=AUTH_USERS.find(u=>isPavanUser(u));
+user=base ? {...makePavanLocationUser(base,'vijaywada'),internalViewKey:'pavan-vijaywada'} : null;
+}else{
+user=AUTH_USERS.find(u => String(u.id) === String(userId));
+}
 if(!user) return;
 selectedUser = user;
 currentView = user.view;
@@ -1255,8 +1265,10 @@ ${currentView === 'internal' && isGeneralRecord(rec) ? printField('Institution T
 </div>`;
 }
 function buildPrintFooter(printedOn){
+const identity=outputIdentityDetails();
+const identityHtml=identity ? `<div class="print-footer-identity"><strong>${esc(identity.name)}</strong><span>${esc(identity.designation)}</span>${identity.contact?`<span>${esc(identity.contact)}</span>`:''}</div>` : '';
 return `<footer class="print-page-footer">
-<div class="print-footer-qr"><img src="${QR_DATA_URI}" alt="NoBroker Loans QR"></div>
+<div class="print-footer-person"><div class="print-footer-qr"><img src="${QR_DATA_URI}" alt="NoBroker Loans QR"></div>${identityHtml}</div>
 <ul class="print-footer-notes">
 <li><strong>Mandate:</strong> Please keep <a href="mailto:nbloans.bankconfirmation@nobroker.in">nbloans.bankconfirmation@nobroker.in</a> in CC on all banker confirmation emails to ensure NoBroker Loans is notified immediately upon approval.</li>
 <li>Send all login confirmations to <a href="mailto:nbloansadmin@nobroker.in">nbloansadmin@nobroker.in</a> with banker name, email ID, customer name, loan amount, and loan type. <strong>100% Subvention &amp; PF deductions value is applicable on DSA Payout.</strong></li>
@@ -1265,11 +1277,41 @@ return `<footer class="print-page-footer">
 </footer>`;
 }
 function downloadIdentityUser(){
-// Normal authenticated downloads use the credential profile.
-// Internal preview mode intentionally keeps the selected user's profile on the output.
+// Downloads use the active credential/location profile rather than the base login profile.
+// This is especially important for Pavan's Bengaluru/Vijaywada switch and Internal user previews.
 if(isMasterView(currentView)) return null;
+if(isPavanUser(authenticatedUser) && selectedUser?.pavanLocation) return selectedUser;
 if(isInternalAuthenticated() && selectedUser && selectedUser !== authenticatedUser) return selectedUser;
 return authenticatedUser || selectedUser || null;
+}
+function formatCredentialPhone(value){
+const digits=String(value == null ? '' : value).replace(/\D/g,'');
+if(digits.length===10) return `+91 ${digits.slice(0,5)} ${digits.slice(5)}`;
+if(digits.length===12 && digits.startsWith('91')) return `+91 ${digits.slice(2,7)} ${digits.slice(7)}`;
+return String(value || '').trim();
+}
+function outputContactNumber(profile){
+if(!profile) return '';
+if(profile.credentialNumber) return formatCredentialPhone(profile.credentialNumber);
+const idDigits=String(profile.id || '').replace(/\D/g,'');
+if(idDigits.length===10) return formatCredentialPhone(idDigits);
+// CRM credentials are role IDs rather than phone numbers; use the published CRM & Key Accounts contact.
+if(/^CRM/i.test(String(profile.id || ''))) return '+91 95355 01173';
+return '';
+}
+function outputIdentityDetails(){
+const profile=downloadIdentityUser();
+if(!profile || isMasterView(currentView) || currentView==='internal' || profile.view==='internal') return null;
+return {
+name: profile.label || profile.aliases?.[0] || 'NoBroker Loans User',
+designation: profile.title || protectedViewLabel(profile.view),
+contact: outputContactNumber(profile)
+};
+}
+function outputIdentityPlainText(){
+const d=outputIdentityDetails();
+if(!d) return '';
+return [d.name,d.designation,d.contact ? `Contact: ${d.contact}` : ''].filter(Boolean).join(' · ');
 }
 function buildPrintCoverContent(){
 const now = new Date();
@@ -1295,7 +1337,8 @@ ${designation ? `<div class="cover-designation">${esc(designation)}</div>` : ''}
 function buildPrintHeaderHTML(list){
 const printedOn = new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
 const master = isMasterView(currentView);
-const viewLabel = master ? masterCatalogViewLabel(currentView) : (currentView==='catalog'?'Catalog':(isPavanUser(authenticatedUser) && selectedUser?.region ? selectedUser.region+' View' : protectedViewLabel(currentView)+' View'));
+const activeLocationView = selectedUser?.pavanLocation && selectedUser?.region ? `${selectedUser.region} View` : '';
+const viewLabel = master ? masterCatalogViewLabel(currentView) : (currentView==='catalog'?'Catalog':(activeLocationView || protectedViewLabel(currentView)+' View'));
 const panelLabel=filterSummaryLabel();
 const userLabel=(!master && selectedUser) ? ` · ${esc(selectedUser.label)}` : '';
 return `<header class="print-page-header"><img src="${LOGO_DATA_URI}" alt=""><div><h1>NoBroker Loans</h1><p>${esc(viewLabel)} · ${esc(panelLabel)}${userLabel} · ${list.length} institution${list.length===1?'':'s'} · ${esc(printedOn)}</p></div></header>`;
@@ -1480,8 +1523,8 @@ body{font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:${bodyFont};
 .page-content{position:relative;z-index:2;flex:1 1 auto;min-height:0;overflow:hidden;padding:0;margin:0}
 .wm{position:absolute;top:50%;left:50%;width:${layout.mobile?'58%':'42%'};transform:translate(-50%,-50%) rotate(-24deg);opacity:.045;z-index:0;pointer-events:none}
 .print-page-footer{position:relative;z-index:3;flex:0 0 auto;width:100%;border-top:.3mm solid #d80000;padding:2.2mm 0 0;margin-top:2.2mm;display:flex;align-items:flex-start;gap:${layout.mobile?'2.3mm':'3mm'};background:#fff;color:#d80000;min-height:${layout.mobile?'31mm':'24mm'}}
-.print-footer-qr{flex:0 0 ${layout.mobile?'16mm':'18mm'}}.print-footer-qr img{display:block;width:${layout.mobile?'15mm':'17mm'};height:${layout.mobile?'15mm':'17mm'};object-fit:contain}
-.print-footer-notes{flex:1 1 auto;min-width:0;margin:0;padding:0 0 0 ${layout.mobile?'3mm':'4mm'};font-size:${footerFont};line-height:1.28;color:#d80000}.print-footer-notes li{margin:0 0 .8mm}.print-footer-notes a{color:#d80000;font-weight:700;text-decoration:none}
+.print-footer-person{flex:0 0 ${layout.mobile?'46mm':'58mm'};display:flex;align-items:flex-start;gap:${layout.mobile?'2mm':'2.5mm'};min-width:0}.print-footer-qr{flex:0 0 ${layout.mobile?'16mm':'18mm'}}.print-footer-qr img{display:block;width:${layout.mobile?'15mm':'17mm'};height:${layout.mobile?'15mm':'17mm'};object-fit:contain}.print-footer-identity{min-width:0;padding-top:.4mm;font-size:${layout.mobile?'6.6px':'7.1px'};line-height:1.28;color:#333}.print-footer-identity strong,.print-footer-identity span{display:block;overflow-wrap:anywhere}.print-footer-identity strong{color:#d80000;font-size:${layout.mobile?'7px':'7.6px'};margin-bottom:.25mm}.print-footer-identity span{margin-bottom:.15mm}
+.print-footer-notes{flex:1 1 auto;min-width:0;margin:0;padding:0 0 0 ${layout.mobile?'1.8mm':'2.5mm'};font-size:${footerFont};line-height:1.28;color:#d80000}.print-footer-notes li{margin:0 0 .8mm}.print-footer-notes a{color:#d80000;font-weight:700;text-decoration:none}
 .print-footer-date{flex:0 0 ${layout.mobile?'18mm':'22mm'};text-align:right;font-size:${footerFont};font-weight:700;white-space:nowrap;padding-top:.5mm}
 .bank{position:relative;z-index:2;margin:0 0 2.5mm}.bank h2{font-size:${layout.mobile?'11px':'12px'};margin:0 0 1.4mm;padding:1.3mm 2mm;background:#d80000;color:#fff}
 .pr{border:.25mm solid #bbb;border-radius:1mm;margin:0 0 1.4mm;padding:${layout.mobile?'1.45mm':'1.6mm'};break-inside:avoid;page-break-inside:avoid;background:#fff}
@@ -1797,16 +1840,22 @@ if(qrBase64){
 const imageId=workbook.addImage({base64:qrBase64,extension:'png'});
 ws.addImage(imageId,{tl:{col:0,row:0},ext:{width:88,height:88}});
 }
-ws.mergeCells('C1:I2');
+ws.mergeCells('C1:I1');
 const titleCell=ws.getCell('C1');
 titleCell.value=title;
 titleCell.font={bold:true,size:18,color:{argb:'FFD80000'}};
 titleCell.alignment={vertical:'middle',horizontal:'left'};
-ws.mergeCells('C3:I4');
-const subCell=ws.getCell('C3');
+ws.mergeCells('C2:I2');
+const subCell=ws.getCell('C2');
 subCell.value=subtitle;
-subCell.font={bold:true,size:11,color:{argb:'FF555555'}};
-subCell.alignment={vertical:'top',horizontal:'left',wrapText:true};
+subCell.font={bold:true,size:10.5,color:{argb:'FF555555'}};
+subCell.alignment={vertical:'middle',horizontal:'left',wrapText:true};
+const identity=outputIdentityDetails();
+ws.mergeCells('C3:I4');
+const identityCell=ws.getCell('C3');
+identityCell.value=identity ? `${identity.name} · ${identity.designation}${identity.contact?` · ${identity.contact}`:''}` : 'NoBroker Loans';
+identityCell.font={bold:true,size:10.5,color:{argb:identity?'FF222222':'FFD80000'}};
+identityCell.alignment={vertical:'middle',horizontal:'left',wrapText:true};
 for(let r=1;r<=5;r++) ws.getRow(r).height=18;
 ws.getRow(5).height=8;
 }
@@ -1840,14 +1889,18 @@ catalogRows.forEach(values=>wsCatalog.addRow(values));
 styleExcelBodyRows(wsCatalog,headerRow+1,headerRow+catalogRows.length,catalogHeaders.length);
 wsCatalog.autoFilter={from:{row:headerRow,column:1},to:{row:headerRow,column:catalogHeaders.length}};
 [28,14,22,12,15,42,42,38,28].forEach((w,i)=>wsCatalog.getColumn(i+1).width=w);
+wsCatalog.pageSetup={orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:0,paperSize:9,printTitlesRow:'1:7'};
 
-const wsConditions=wb.addWorksheet('Payout Conditions',{views:[{state:'frozen',ySplit:1}]});
-wsConditions.getRow(1).values=conditionHeaders;
-styleExcelHeaderRow(wsConditions.getRow(1));
+const wsConditions=wb.addWorksheet('Payout Conditions',{views:[{state:'frozen',ySplit:7}]});
+addExcelQrBanner(wb,wsConditions,'Payout Conditions',`NoBroker Loans · ${city} · ${list.length} selected institution${list.length===1?'':'s'}`);
+const conditionHeaderRow=7;
+wsConditions.getRow(conditionHeaderRow).values=conditionHeaders;
+styleExcelHeaderRow(wsConditions.getRow(conditionHeaderRow));
 conditionRows.forEach(values=>wsConditions.addRow(values));
-styleExcelBodyRows(wsConditions,2,1+conditionRows.length,conditionHeaders.length);
-wsConditions.autoFilter={from:{row:1,column:1},to:{row:1,column:conditionHeaders.length}};
+styleExcelBodyRows(wsConditions,conditionHeaderRow+1,conditionHeaderRow+conditionRows.length,conditionHeaders.length);
+wsConditions.autoFilter={from:{row:conditionHeaderRow,column:1},to:{row:conditionHeaderRow,column:conditionHeaders.length}};
 [28,14,22,15,42,70].forEach((w,i)=>wsConditions.getColumn(i+1).width=w);
+wsConditions.pageSetup={orientation:'landscape',fitToPage:true,fitToWidth:1,fitToHeight:0,paperSize:9,printTitlesRow:'1:7'};
 
 const buffer=await wb.xlsx.writeBuffer();
 triggerExcelBufferDownload(buffer,directExcelFileName());
