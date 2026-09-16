@@ -48,7 +48,11 @@ const heroHeading = document.getElementById('hero-heading');
 const authOverlay = document.getElementById('auth-overlay');
 const authIdInput = document.getElementById('auth-id');
 const authKeyInput = document.getElementById('auth-key');
+const authPasswordToggle = document.getElementById('auth-password-toggle');
 const authError = document.getElementById('auth-error');
+const screenGuardOverlay = document.getElementById('screen-guard-overlay');
+const screenGuardClose = document.getElementById('screen-guard-close');
+const screenGuardDownload = document.getElementById('screen-guard-download');
 const sequenceOverlay = document.getElementById('sequence-overlay');
 const sequenceList = document.getElementById('sequence-list');
 const sequenceContinue = document.getElementById('sequence-continue');
@@ -591,10 +595,18 @@ masterCatalogTools.classList.remove('open');
 applyAuthUI();
 renderGrid();
 }
+function setPasswordVisibility(show){
+if(!authKeyInput || !authPasswordToggle) return;
+authKeyInput.type = show ? 'text' : 'password';
+authPasswordToggle.textContent = show ? 'Hide Password' : 'Show Password';
+authPasswordToggle.setAttribute('aria-pressed', show ? 'true' : 'false');
+authPasswordToggle.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+}
 function openAuthModal(){
 authError.classList.remove('show');
 authIdInput.value = '';
 authKeyInput.value = '';
+setPasswordVisibility(false);
 authOverlay.classList.add('open');
 setTimeout(() => authIdInput.focus(), 0);
 }
@@ -1950,6 +1962,48 @@ document.getElementById('sequence-cancel').addEventListener('click',closeOutputS
 sequenceOverlay.addEventListener('click',e=>{if(e.target===sequenceOverlay)closeOutputSequenceModal();});
 sequenceOverlay.querySelectorAll('input[name="sequence-mode"]').forEach(r=>r.addEventListener('change',()=>{outputSequenceMode=r.value;renderOutputSequenceList();}));
 sequenceContinue.addEventListener('click',confirmOutputSequence);
+
+function openScreenGuard(){
+if(!screenGuardOverlay) return;
+screenGuardOverlay.classList.add('open');
+screenGuardOverlay.setAttribute('aria-hidden','false');
+}
+function closeScreenGuard(){
+if(!screenGuardOverlay) return;
+screenGuardOverlay.classList.remove('open');
+screenGuardOverlay.setAttribute('aria-hidden','true');
+}
+function isLikelyScreenshotShortcut(event){
+const key=String(event.key||'').toLowerCase();
+const code=String(event.code||'').toLowerCase();
+const printScreen=key==='printscreen' || code==='printscreen' || event.keyCode===44;
+const macCapture=event.metaKey && event.shiftKey && ['3','4','5','6'].includes(key);
+const windowsSnip=event.metaKey && event.shiftKey && key==='s';
+return printScreen || macCapture || windowsSnip;
+}
+function interceptScreenshotShortcut(event){
+if(!isLikelyScreenshotShortcut(event)) return;
+event.preventDefault();
+event.stopImmediatePropagation();
+openScreenGuard();
+return false;
+}
+// Best-effort browser-level screenshot deterrence. OS/hardware capture cannot be fully disabled by a web page.
+document.addEventListener('keydown',interceptScreenshotShortcut,{capture:true});
+document.addEventListener('keyup',event=>{
+if(String(event.key||'').toLowerCase()==='printscreen'){
+event.preventDefault();
+openScreenGuard();
+}
+},{capture:true});
+screenGuardClose?.addEventListener('click',closeScreenGuard);
+screenGuardOverlay?.addEventListener('click',event=>{if(event.target===screenGuardOverlay) closeScreenGuard();});
+screenGuardDownload?.addEventListener('click',()=>{closeScreenGuard();downloadSelectedBanks();});
+authPasswordToggle?.addEventListener('click',()=>{
+setPasswordVisibility(authKeyInput?.type==='password');
+authKeyInput?.focus();
+});
+
 tabCatalog.addEventListener('click',()=>setView('catalog'));
 tabLogin.addEventListener('click',()=>{
 if(authenticatedUser){
@@ -1997,6 +2051,10 @@ detailOverlay.addEventListener('click',e=>{if(e.target===detailOverlay) closeDet
 function closeAllPopupsOnEscape(event){
 if(event.key !== 'Escape') return;
 let handled=false;
+if(screenGuardOverlay?.classList.contains('open')){
+closeScreenGuard();
+handled=true;
+}
 
 if(tutorialOverlay?.classList.contains('open')){
 finishTutorial();
