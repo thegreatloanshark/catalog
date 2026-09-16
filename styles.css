@@ -500,17 +500,31 @@ body.sequence-open{overflow:hidden}
 .auth-password-field #auth-key{width:100%;padding-right:116px}
 .auth-password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--red,#d80000);cursor:pointer;padding:6px 7px;border-radius:7px;font:800 9.5px 'Inter',sans-serif;white-space:nowrap}
 .auth-password-toggle:hover,.auth-password-toggle:focus-visible{background:#fff3f3;outline:none}
-.screen-guard-overlay{display:none;position:fixed;inset:0;z-index:99999;align-items:center;justify-content:center;padding:20px;background:#fff}
+.screen-guard-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2147483647;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:#fff;
+  cursor:default;
+  user-select:none;
+  -webkit-user-select:none;
+}
 .screen-guard-overlay.open{display:flex}
-.screen-guard-modal{width:min(520px,94vw);padding:28px 28px 24px;text-align:center;background:#fff;border:1px solid rgba(216,0,0,.2);border-radius:20px;box-shadow:0 24px 80px rgba(20,18,12,.18)}
-.screen-guard-icon{width:58px;height:58px;margin:0 auto 12px;display:grid;place-items:center;border-radius:50%;background:#fff2f2;color:#d80000;font:900 27px/1 'Inter',sans-serif}
-.screen-guard-kicker{margin:0 0 5px;color:#d80000;font:800 10px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.12em}
-.screen-guard-modal h2{margin:0 0 8px;color:#171411;font:800 25px/1.12 'Montserrat',sans-serif}
-.screen-guard-copy{margin:0;color:#5f5b54;font:600 13px/1.5 'Inter',sans-serif}
-.screen-guard-actions{margin-top:20px;display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
-.screen-guard-actions button{min-height:40px;border-radius:999px;padding:9px 16px;cursor:pointer;font:800 11px 'Inter',sans-serif}
-.screen-guard-secondary{border:1px solid #d8d3cc;background:#fff;color:#27221e}
-.screen-guard-primary{border:1px solid #d80000;background:#d80000;color:#fff}
-.screen-guard-primary:hover{background:#b90000}
-@media(max-width:520px){.auth-password-field #auth-key{padding-right:106px}.auth-password-toggle{font-size:9px;right:5px}.screen-guard-modal{padding:24px 18px 20px}.screen-guard-actions{flex-direction:column}.screen-guard-actions button{width:100%}}
+.screen-guard-message{
+  margin:0;
+  max-width:760px;
+  text-align:center;
+  color:#111;
+  font:700 clamp(20px,3vw,34px)/1.25 'Inter',sans-serif;
+  letter-spacing:.01em;
+}
+@media(max-width:520px){
+  .auth-password-field #auth-key{padding-right:106px}
+  .auth-password-toggle{font-size:9px;right:5px}
+  .screen-guard-message{font-size:22px}
+}
 @media print{.screen-guard-overlay{display:none!important}}
