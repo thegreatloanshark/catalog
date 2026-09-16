@@ -51,8 +51,6 @@ const authKeyInput = document.getElementById('auth-key');
 const authPasswordToggle = document.getElementById('auth-password-toggle');
 const authError = document.getElementById('auth-error');
 const screenGuardOverlay = document.getElementById('screen-guard-overlay');
-const screenGuardClose = document.getElementById('screen-guard-close');
-const screenGuardDownload = document.getElementById('screen-guard-download');
 const sequenceOverlay = document.getElementById('sequence-overlay');
 const sequenceList = document.getElementById('sequence-list');
 const sequenceContinue = document.getElementById('sequence-continue');
@@ -1996,9 +1994,20 @@ event.preventDefault();
 openScreenGuard();
 }
 },{capture:true});
-screenGuardClose?.addEventListener('click',closeScreenGuard);
 screenGuardOverlay?.addEventListener('click',event=>{if(event.target===screenGuardOverlay) closeScreenGuard();});
-screenGuardDownload?.addEventListener('click',()=>{closeScreenGuard();downloadSelectedBanks();});
+
+// Screenshot protection is necessarily best-effort in a browser. When a capture
+// shortcut is detectable, blank the entire page immediately and leave only the
+// privacy notice visible. The overlay can be dismissed by click or Escape.
+let screenshotModifierWindow=false;
+document.addEventListener('keydown',event=>{
+  const key=String(event.key||'').toLowerCase();
+  if((event.metaKey||event.ctrlKey||event.altKey) && (event.shiftKey || key==='printscreen')) screenshotModifierWindow=true;
+},{capture:true});
+document.addEventListener('keyup',()=>{screenshotModifierWindow=false;},{capture:true});
+window.addEventListener('blur',()=>{
+  if(screenshotModifierWindow) openScreenGuard();
+});
 authPasswordToggle?.addEventListener('click',()=>{
 setPasswordVisibility(authKeyInput?.type==='password');
 authKeyInput?.focus();
