@@ -15,6 +15,7 @@ const PAVAN_LOCATION_STORAGE_KEY = 'nobrokerLoansCatalogPavanLocationV1';
 const OUTPUT_SEQUENCE_STORAGE_KEY = 'nobrokerLoansCatalogOutputSequenceV1';
 const INTERNAL_DATA_STORAGE_KEY = 'nobrokerLoansCatalogInternalDataV1';
 const INTERNAL_AUDIT_STORAGE_KEY = 'nobrokerLoansCatalogInternalAuditV1';
+const PRINT_DESIGN_STORAGE_KEY = 'nobrokerLoansCatalogPrintDesignV1';
 const CATALOG_AUDIT_SEED = [{"changedAt":"2026-09-11T06:40:00Z","user":"Sep 2026 Reconciliation","institution":"AXIS BANK (DSA)","product":"HL","field":"General HL code / payout","oldValue":"CON6073BAN · HL 0.50% and other obsolete Axis HL/LAP rows","newValue":"DSA6668BANMORT · HL 0.90%; obsolete General rows removed"},{"changedAt":"2026-09-11T06:39:59Z","user":"Sep 2026 Reconciliation","institution":"AXIS BANK (DSA)","product":"LAP","field":"General LAP payout","oldValue":"Outdated / mismatched Axis LAP payouts","newValue":"DSA6668BANMORT · LAP 1.30% across current General LAP rows"},{"changedAt":"2026-09-11T06:39:58Z","user":"Sep 2026 Reconciliation","institution":"ICICI DSA","product":"HL","field":"Payout %","oldValue":"HL 0.90%","newValue":"HL 0.80%"},{"changedAt":"2026-09-11T06:39:57Z","user":"Sep 2026 Reconciliation","institution":"ICICI DSA","product":"LAP","field":"Payout %","oldValue":"Legacy / inconsistent LAP payout rows","newValue":"<₹5 Cr: 1.20% / >₹5 Cr: 1.35% across relevant current General LAP rows"},{"changedAt":"2026-09-11T06:39:56Z","user":"Sep 2026 Reconciliation","institution":"HDFC DSA","product":"LAP","field":"Code / payout","oldValue":"292595 · ICICI-derived LAP row","newValue":"Removed; current HDFC LAP remains 461564 · 1.30%"},{"changedAt":"2026-09-11T06:39:55Z","user":"Sep 2026 Reconciliation","institution":"GODREJ HFL","product":"HL","field":"Payout % / Gross-Net","oldValue":"HL 0.50% mismatch","newValue":"HL 0.45% · Gross retained"},{"changedAt":"2026-09-11T06:39:54Z","user":"Sep 2026 Reconciliation","institution":"HSBC","product":"HL","field":"Payout %","oldValue":"HL 0.50% mismatch","newValue":"HL 0.45%"},{"changedAt":"2026-09-11T06:39:53Z","user":"Sep 2026 Reconciliation","institution":"Motilal Oswal Finance","product":"HL","field":"Payout %","oldValue":"HL 1.00%","newValue":"HL 90% of NB Payout"},{"changedAt":"2026-09-11T06:39:52Z","user":"Sep 2026 Reconciliation","institution":"TATA CAPITAL FINANCE","product":"LAP","field":"Payout %","oldValue":"LAP 1.45%","newValue":"Developed Market 1.35%"},{"changedAt":"2026-09-11T06:39:51Z","user":"Sep 2026 Reconciliation","institution":"FEDERAL BANK","product":"HL / LAP","field":"Code / product mapping","oldValue":"Obsolete HL row on code 6937","newValue":"HL 7020 · 0.90%; code 6937 retained only for LAP"},{"changedAt":"2026-09-11T06:39:50Z","user":"Sep 2026 Reconciliation","institution":"BAJAJ FINSERV","product":"HL","field":"Product record","oldValue":"Stale General HL record","newValue":"Removed"},{"changedAt":"2026-09-11T06:39:49Z","user":"Sep 2026 Reconciliation","institution":"BAJAJ HOUSING FINANCE","product":"LAP","field":"Product record","oldValue":"Stale General LAP record","newValue":"Removed"},{"changedAt":"2026-09-11T06:39:48Z","user":"Sep 2026 Reconciliation","institution":"HSBC","product":"LAP","field":"Product record","oldValue":"Stale General LAP record","newValue":"Removed; current CO-Op LAP retained"},{"changedAt":"2026-09-11T06:39:47Z","user":"Sep 2026 Reconciliation","institution":"LIC HFL","product":"LAP","field":"Product record","oldValue":"Stale General LAP record","newValue":"Removed"},{"changedAt":"2026-09-11T06:39:46Z","user":"Sep 2026 Reconciliation","institution":"Motilal Oswal / Motilal Oswald Home Finance","product":"LAP","field":"Product record","oldValue":"Stale General LAP record","newValue":"Removed"},{"changedAt":"2026-09-11T06:39:45Z","user":"Sep 2026 Reconciliation","institution":"SAMMAN FINSERVE","product":"HL","field":"Product record","oldValue":"Stale General HL record","newValue":"Removed"},{"changedAt":"2026-09-11T06:39:44Z","user":"Sep 2026 Reconciliation","institution":"Mahindra Rural Housing Finance","product":"HL","field":"Code / product record","oldValue":"Connector - C5115 HL rows","newValue":"Removed; current D7344 HL rows retained"},{"changedAt":"2026-09-11T06:39:43Z","user":"Sep 2026 Reconciliation","institution":"NAVI","product":"HL / LAP","field":"Catalog record","oldValue":"Obsolete NAVI code/product rows","newValue":"Removed from current catalog"},{"changedAt":"2026-09-11T06:39:42Z","user":"Sep 2026 Reconciliation","institution":"SUNDARAM HOME FINANCE","product":"HL / LAP","field":"Code / product record","oldValue":"Old BHBGLRNB57 rows","newValue":"Removed; current 701943 General rows retained"},{"changedAt":"2026-09-11T06:39:41Z","user":"Sep 2026 Reconciliation","institution":"KINARA CAPITAL","product":"LAP","field":"Code / product record","oldValue":"Obsolete Nobroker code row","newValue":"Removed; current No Code Required row retained"},{"changedAt":"2026-09-11T06:39:40Z","user":"Sep 2026 Reconciliation","institution":"Current General HL/LAP records","product":"HL / LAP","field":"Payout metadata","oldValue":"Previous timeline / conditions / basis / cities / payment-type values","newValue":"Refreshed from the reconciled current HL/LAP MIS rows wherever matched"}];
 let currentView = 'catalog';
 let authenticatedUser = null;
@@ -59,6 +60,16 @@ const payoutCalculatorOverlay = document.getElementById('payout-calculator-overl
 const payoutCalculatorRows = document.getElementById('payout-calculator-rows');
 const payoutCalculatorContinue = document.getElementById('payout-calculator-continue');
 const payoutCalculatorSkip = document.getElementById('payout-calculator-skip');
+const downloadStudioOverlay = document.getElementById('download-studio-overlay');
+const downloadStudioSequenceList = document.getElementById('download-studio-sequence-list');
+const downloadStudioCalculator = document.getElementById('download-studio-calculator');
+const downloadCalculatorEnabled = document.getElementById('download-calculator-enabled');
+const downloadStudioPrintSection = document.getElementById('download-studio-print-section');
+const downloadPreviewFrame = document.getElementById('download-preview-frame');
+const downloadExcelPreview = document.getElementById('download-excel-preview');
+const downloadPreviewMeta = document.getElementById('download-preview-meta');
+const downloadStudioSummary = document.getElementById('download-studio-summary');
+const downloadStudioDownload = document.getElementById('download-studio-download');
 const milesOverlay = document.getElementById('miles-overlay');
 const tutorialOverlay = document.getElementById('tutorial-overlay');
 const tutorialSpotlight = document.getElementById('tutorial-spotlight');
@@ -265,7 +276,7 @@ const custom = payoutCalculatorValues.get(key);
 if(custom && Number.isFinite(custom.payout)) return calculatorFormatPct(custom.payout);
 return payoutForRecord(rec);
 }
-function renderPayoutCalculator(list){
+function renderPayoutCalculator(list,target=payoutCalculatorRows){
 payoutCalculatorRecords = [];
 payoutCalculatorValues.clear();
 let retainedCount = 0;
@@ -292,7 +303,7 @@ const retainedNote = retainedCount
 ? `<p class="payout-calculator-note">${retainedCount} payout line${retainedCount===1?'':'s'} without a calculable Internal Max Slab will retain the existing payout.</p>`
 : '';
 
-payoutCalculatorRows.innerHTML = `
+target.innerHTML = `
 <div class="payout-calculator-global-card">
   <label class="payout-calculator-global-label" for="payout-calculator-global-input">Payout preference for all selected banks</label>
   <div class="payout-calculator-global-control">
@@ -322,6 +333,10 @@ return;
 }
 if(error) error.textContent='';
 applyGlobalPayoutFactor(factor);
+if(downloadStudioOverlay?.classList.contains('open') && downloadCalculatorEnabled?.checked){
+  payoutCalculatorApplied=true;
+  scheduleDownloadStudioPreview();
+}
 });
 }
 function validatePayoutCalculator(){
@@ -478,6 +493,7 @@ if(!tutorialOverlay || tutorialOverlay.classList.contains('open')) return;
 // Close transient UI first so the tour is never stacked over another modal.
 closeAuthModal?.();
 closeOutputSequenceModal?.();
+if(downloadStudioOverlay?.classList.contains('open')) closeDownloadStudio(true);
 if(payoutCalculatorOverlay?.classList.contains('open')) closePayoutCalculator(true);
 if(detailOverlay?.classList.contains('open')) closeDetail();
 if(milesOverlay?.classList.contains('open')) closeMilesPopup();
@@ -1505,27 +1521,137 @@ if(!confirm('Reset all browser-saved Internal catalog edits and local audit hist
 localStorage.removeItem(INTERNAL_DATA_STORAGE_KEY); localStorage.removeItem(INTERNAL_AUDIT_STORAGE_KEY); location.reload();
 }
 
+
+const PRINT_DESIGN_PRESETS = {
+  compact:{preset:'compact',marginMm:5,fontPx:7.6,lineHeight:1.12,fieldGapMm:0.6,blockGapMm:0.8,headerHeightMm:10,footerHeightMm:18,qrGapMm:1.5,cardPaddingMm:1.0,sectionGapMm:1.4,orientation:'landscape'},
+  standard:{preset:'standard',marginMm:8,fontPx:8.8,lineHeight:1.30,fieldGapMm:1.4,blockGapMm:1.4,headerHeightMm:12,footerHeightMm:24,qrGapMm:3.0,cardPaddingMm:1.6,sectionGapMm:2.5,orientation:'landscape'},
+  spacious:{preset:'spacious',marginMm:10,fontPx:9.6,lineHeight:1.45,fieldGapMm:2.0,blockGapMm:2.2,headerHeightMm:14,footerHeightMm:28,qrGapMm:4.0,cardPaddingMm:2.0,sectionGapMm:3.5,orientation:'landscape'}
+};
+function clampNumber(value,min,max,fallback){const n=Number(value);return Number.isFinite(n)?Math.min(max,Math.max(min,n)):fallback;}
+function loadPrintDesignSettings(){
+  const fallback={...PRINT_DESIGN_PRESETS.compact,orientation:(window.matchMedia&&window.matchMedia('(max-width: 760px)').matches)?'portrait':'landscape'};
+  try{
+    const saved=JSON.parse(localStorage.getItem(PRINT_DESIGN_STORAGE_KEY)||'null');
+    if(!saved||typeof saved!=='object') return fallback;
+    return normalizePrintDesignSettings({...fallback,...saved});
+  }catch(e){return fallback;}
+}
+function normalizePrintDesignSettings(s){
+  return {
+    preset:String(s.preset||'custom'),
+    marginMm:clampNumber(s.marginMm,3,18,5),fontPx:clampNumber(s.fontPx,6,12,7.6),lineHeight:clampNumber(s.lineHeight,1,1.8,1.12),
+    fieldGapMm:clampNumber(s.fieldGapMm,0,4,.6),blockGapMm:clampNumber(s.blockGapMm,0,7,.8),headerHeightMm:clampNumber(s.headerHeightMm,7,25,10),
+    footerHeightMm:clampNumber(s.footerHeightMm,14,42,18),qrGapMm:clampNumber(s.qrGapMm,0,8,1.5),cardPaddingMm:clampNumber(s.cardPaddingMm,.5,5,1),
+    sectionGapMm:clampNumber(s.sectionGapMm,0,8,1.4),orientation:s.orientation==='portrait'?'portrait':'landscape'
+  };
+}
+let printDesignSettings=loadPrintDesignSettings();
+function savePrintDesignSettings(){try{localStorage.setItem(PRINT_DESIGN_STORAGE_KEY,JSON.stringify(printDesignSettings));}catch(e){}}
+function studioPrintInputs(){return {
+  margin:document.getElementById('print-setting-margin'),font:document.getElementById('print-setting-font'),lineHeight:document.getElementById('print-setting-lineheight'),fieldGap:document.getElementById('print-setting-fieldgap'),
+  blockGap:document.getElementById('print-setting-blockgap'),header:document.getElementById('print-setting-header'),footer:document.getElementById('print-setting-footer'),qrGap:document.getElementById('print-setting-qrgap'),
+  cardPadding:document.getElementById('print-setting-cardpadding'),sectionGap:document.getElementById('print-setting-sectiongap')
+};}
+function syncPrintSettingsControls(){
+  const i=studioPrintInputs(),s=printDesignSettings;
+  if(i.margin)i.margin.value=s.marginMm;if(i.font)i.font.value=s.fontPx;if(i.lineHeight)i.lineHeight.value=s.lineHeight;if(i.fieldGap)i.fieldGap.value=s.fieldGapMm;
+  if(i.blockGap)i.blockGap.value=s.blockGapMm;if(i.header)i.header.value=s.headerHeightMm;if(i.footer)i.footer.value=s.footerHeightMm;if(i.qrGap)i.qrGap.value=s.qrGapMm;
+  if(i.cardPadding)i.cardPadding.value=s.cardPaddingMm;if(i.sectionGap)i.sectionGap.value=s.sectionGapMm;
+  document.querySelectorAll('input[name="studio-print-orientation"]').forEach(r=>r.checked=r.value===s.orientation);
+  document.querySelectorAll('[data-print-preset]').forEach(b=>b.classList.toggle('active',b.dataset.printPreset===s.preset));
+}
+function readPrintSettingsControls(){
+  const i=studioPrintInputs(),current=printDesignSettings;
+  printDesignSettings=normalizePrintDesignSettings({preset:'custom',marginMm:i.margin?.value,fontPx:i.font?.value,lineHeight:i.lineHeight?.value,fieldGapMm:i.fieldGap?.value,blockGapMm:i.blockGap?.value,headerHeightMm:i.header?.value,footerHeightMm:i.footer?.value,qrGapMm:i.qrGap?.value,cardPaddingMm:i.cardPadding?.value,sectionGapMm:i.sectionGap?.value,orientation:document.querySelector('input[name="studio-print-orientation"]:checked')?.value||current.orientation});
+  savePrintDesignSettings();syncPrintSettingsControls();
+}
+function applyPrintPreset(name){if(!PRINT_DESIGN_PRESETS[name])return;const orientation=printDesignSettings.orientation;printDesignSettings={...PRINT_DESIGN_PRESETS[name],orientation};savePrintDesignSettings();syncPrintSettingsControls();scheduleDownloadStudioPreview();}
+function selectedStudioFormat(){return document.querySelector('input[name="studio-download-format"]:checked')?.value||'pdf';}
+function renderStudioSequenceList(){
+  if(!downloadStudioSequenceList)return;
+  const list=getPrintList(),counts=sequenceCounts(list),categoryMode=outputSequenceMode==='category';
+  downloadStudioSequenceList.innerHTML=outputSequenceOrder.map((key,index)=>{const def=OUTPUT_SEQUENCE_DEFS.find(x=>x.key===key),count=counts[key]||0;return `<div class="sequence-row ${!categoryMode?'disabled':''}" draggable="${categoryMode}" data-sequence-key="${esc(key)}"><span class="sequence-drag" title="Drag to reorder">⋮⋮</span><span class="sequence-label">${esc(def.label)}</span><span class="sequence-count">${count} institution${count===1?'':'s'}</span><span class="sequence-move"><button type="button" data-studio-seq-move="up" ${!categoryMode||index===0?'disabled':''}>↑</button><button type="button" data-studio-seq-move="down" ${!categoryMode||index===outputSequenceOrder.length-1?'disabled':''}>↓</button></span></div>`;}).join('');
+  downloadStudioSequenceList.querySelectorAll('[data-studio-seq-move]').forEach(btn=>btn.addEventListener('click',()=>{const row=btn.closest('.sequence-row'),key=row.dataset.sequenceKey,i=outputSequenceOrder.indexOf(key),dir=btn.dataset.studioSeqMove==='up'?-1:1,j=i+dir;if(j<0||j>=outputSequenceOrder.length)return;[outputSequenceOrder[i],outputSequenceOrder[j]]=[outputSequenceOrder[j],outputSequenceOrder[i]];renderStudioSequenceList();scheduleDownloadStudioPreview();}));
+  let dragged=null;downloadStudioSequenceList.querySelectorAll('.sequence-row').forEach(row=>{row.addEventListener('dragstart',e=>{if(outputSequenceMode!=='category'){e.preventDefault();return;}dragged=row.dataset.sequenceKey;e.dataTransfer.effectAllowed='move';});row.addEventListener('dragover',e=>{if(dragged)e.preventDefault();});row.addEventListener('drop',e=>{e.preventDefault();const target=row.dataset.sequenceKey;if(!dragged||dragged===target)return;const from=outputSequenceOrder.indexOf(dragged),to=outputSequenceOrder.indexOf(target);outputSequenceOrder.splice(from,1);outputSequenceOrder.splice(to,0,dragged);dragged=null;renderStudioSequenceList();scheduleDownloadStudioPreview();});row.addEventListener('dragend',()=>dragged=null);});
+}
+let downloadPreviewTimer=null;
+function scheduleDownloadStudioPreview(){clearTimeout(downloadPreviewTimer);downloadPreviewTimer=setTimeout(renderDownloadStudioPreview,250);}
+function studioOrderedList(){return orderedOutputInstitutions(getPrintList());}
+function updateStudioCalculatorState(){
+  const eligible=!!authenticatedUser&&canShowPayouts();
+  if(downloadCalculatorEnabled){downloadCalculatorEnabled.disabled=!eligible;if(!eligible)downloadCalculatorEnabled.checked=false;}
+  const section=document.getElementById('download-studio-calculator-section');section?.classList.toggle('studio-disabled',!eligible);
+  if(eligible){renderPayoutCalculator(getPrintList(),downloadStudioCalculator);payoutCalculatorApplied=!!downloadCalculatorEnabled?.checked;if(payoutCalculatorApplied)validatePayoutCalculator();}
+  else{payoutCalculatorApplied=false;payoutCalculatorValues.clear();if(downloadStudioCalculator)downloadStudioCalculator.innerHTML='<p class="studio-inline-note">Calculator is available after login in payout-enabled views.</p>';}
+}
+function renderExcelStudioPreview(list){
+  if(!downloadExcelPreview)return;const rows=[];list.slice(0,8).forEach(inst=>recordsForActiveFilters(inst).slice(0,3).forEach(rec=>rows.push(`<tr><td>${esc(inst.name)}</td><td>${esc(rec.productType||'')}</td><td>${esc(rec.variant||'')}</td><td>${esc(excelDisplayPayout(inst.name,rec)||'')}</td><td>${esc(rec.timeline||'')}</td></tr>`)));
+  downloadExcelPreview.innerHTML=`<div class="excel-preview-card"><div class="excel-preview-title">${esc(downloadMonthStamp().sheet)} Payout Catalog</div><table><thead><tr><th>Institution</th><th>Product</th><th>Variant</th><th>Product &amp; Payout</th><th>Timeline</th></tr></thead><tbody>${rows.join('')||'<tr><td colspan="5">No rows selected.</td></tr>'}</tbody></table><p>Showing a preview of the first rows. The downloaded workbook includes all selected records and payout conditions.</p></div>`;
+  if(downloadPreviewMeta)downloadPreviewMeta.textContent=`Excel preview · ${list.length} selected institution${list.length===1?'':'s'}`;
+}
+async function renderPdfStudioPreview(list){
+  if(!downloadPreviewFrame)return;
+  try{
+    const previewList=list;
+    const layout=getPrintLayout();const doc=downloadPreviewFrame.contentWindow.document;doc.open();doc.write(buildPrintDocument(previewList,layout));doc.close();
+    await waitForPrintFrameReady(downloadPreviewFrame);paginatePrintDocument(downloadPreviewFrame,previewList);await waitForPrintFrameReady(downloadPreviewFrame);
+    const style=doc.createElement('style');style.textContent='html{background:#ececec!important}body{background:#ececec!important;padding:10px!important;zoom:.56}.print-sheet{box-shadow:0 3px 14px rgba(0,0,0,.18);margin:0 auto 12mm!important}.cover-sheet{display:none!important}';doc.head.appendChild(style);
+    const contentPages=doc.querySelectorAll('#print-pages > .content-sheet').length;const totalPages=contentPages+1;
+    if(downloadPreviewMeta)downloadPreviewMeta.textContent=`Live PDF preview · ${totalPages} total page${totalPages===1?'':'s'} including cover · ${previewList.length} institution${previewList.length===1?'':'s'}`;
+  }catch(err){if(downloadPreviewMeta)downloadPreviewMeta.textContent='Preview unavailable — download can still be generated.';console.warn('Preview failed',err);}
+}
+async function renderDownloadStudioPreview(){
+  if(!downloadStudioOverlay?.classList.contains('open'))return;
+  if(downloadCalculatorEnabled?.checked&&authenticatedUser&&canShowPayouts()){payoutCalculatorApplied=true;if(!validatePayoutCalculator())return;}else{payoutCalculatorApplied=false;}
+  const list=studioOrderedList(),format=selectedStudioFormat();
+  if(downloadStudioSummary)downloadStudioSummary.textContent=`${list.length} selected institution${list.length===1?'':'s'} · ${format==='pdf'?'PDF':'Excel'} · ${payoutCalculatorApplied?`${payoutCalculatorFactor}% payout preference`:'existing payout values'}`;
+  if(downloadStudioDownload)downloadStudioDownload.textContent=format==='pdf'?'Download PDF':'Download Excel';
+  downloadStudioPrintSection?.classList.toggle('studio-disabled',format!=='pdf');
+  if(downloadPreviewFrame)downloadPreviewFrame.hidden=format!=='pdf';if(downloadExcelPreview)downloadExcelPreview.hidden=format==='pdf';
+  if(format==='pdf')await renderPdfStudioPreview(list);else renderExcelStudioPreview(list);
+}
+function openDownloadStudio(){
+  const list=getPrintList();if(!list.length){alert('Select at least one bank, or adjust the current search first.');return;}
+  payoutCalculatorApplied=false;payoutCalculatorValues.clear();
+  outputSequenceMode=outputSequenceMode||'category';document.querySelectorAll('input[name="studio-sequence-mode"]').forEach(r=>r.checked=r.value===outputSequenceMode);
+  syncPrintSettingsControls();renderStudioSequenceList();updateStudioCalculatorState();
+  if(downloadCalculatorEnabled)downloadCalculatorEnabled.checked=false;
+  downloadStudioOverlay.classList.add('open');downloadStudioOverlay.setAttribute('aria-hidden','false');document.body.classList.add('sequence-open');
+  renderDownloadStudioPreview();
+}
+function closeDownloadStudio(resetCalculator=true){
+  if(!downloadStudioOverlay)return;downloadStudioOverlay.classList.remove('open');downloadStudioOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('sequence-open');
+  if(resetCalculator){payoutCalculatorApplied=false;payoutCalculatorValues.clear();}
+}
+async function confirmDownloadStudio(){
+  const list=studioOrderedList();if(!list.length)return;
+  if(downloadCalculatorEnabled?.checked&&authenticatedUser&&canShowPayouts()){if(!validatePayoutCalculator())return;payoutCalculatorApplied=true;}else{payoutCalculatorApplied=false;payoutCalculatorValues.clear();}
+  try{localStorage.setItem(OUTPUT_SEQUENCE_STORAGE_KEY,JSON.stringify(outputSequenceOrder));}catch(e){}
+  savePrintDesignSettings();const format=selectedStudioFormat();closeDownloadStudio(false);
+  if(format==='xlsx')await executeDownloadSelectedBanksExcel(list);else await executeDownloadSelectedBanksPdf(list);
+}
+
 function getPrintLayout(){
-const mobile = window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
-return mobile
-? {mobile:true,orientation:'portrait',pageWidth:'210mm',pageHeight:'297mm',pageRule:'A4 portrait'}
-: {mobile:false,orientation:'landscape',pageWidth:'297mm',pageHeight:'210mm',pageRule:'A4 landscape'};
+const orientation=printDesignSettings.orientation==='portrait'?'portrait':'landscape';
+const portrait=orientation==='portrait';
+return {mobile:portrait,orientation,pageWidth:portrait?'210mm':'297mm',pageHeight:portrait?'297mm':'210mm',pageRule:`A4 ${orientation}`};
 }
 function buildPrintDocument(list,layout){
 const catalogMonth = new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'});
 const documentTitle = isMasterView(currentView) ? `${catalogMonth} Master Catalog — ${masterTier(currentView)} — NoBroker Loans` : `${catalogMonth} Catalog — NoBroker Loans`;
 const fieldBasis = layout.mobile ? '50%' : '25%';
-const bodyFont = layout.mobile ? '8.4px' : '8.8px';
-const footerFont = layout.mobile ? '6.5px' : '6.8px';
+const ps=printDesignSettings;
+const bodyFont = `${ps.fontPx}px`;
+const footerFont = `${Math.max(5.8,ps.fontPx-2)}px`;
 const coverLogo = layout.mobile ? '54mm' : '60mm';
 return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(documentTitle)}</title>
 <style>
 @page{size:${layout.pageRule};margin:0}
 html,body{margin:0!important;padding:0!important;background:#fff!important;width:auto!important;min-height:0!important}
 *{box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
-body{font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:${bodyFont};line-height:1.3;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:${bodyFont};line-height:${ps.lineHeight};-webkit-text-size-adjust:100%;text-size-adjust:100%}
 #print-pages{margin:0;padding:0}
-.print-sheet{position:relative;width:${layout.pageWidth};height:${layout.pageHeight};margin:0!important;padding:${layout.mobile?'9mm 9mm 7mm':'8mm 10mm 6mm'};background:#fff;display:flex;flex-direction:column;overflow:hidden;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}
+.print-sheet{position:relative;width:${layout.pageWidth};height:${layout.pageHeight};margin:0!important;padding:${ps.marginMm}mm;background:#fff;display:flex;flex-direction:column;overflow:hidden;break-after:page;page-break-after:always;break-inside:avoid;page-break-inside:avoid}
 .print-sheet.last-print-page{break-after:auto!important;page-break-after:auto!important}
 .cover-sheet{z-index:2}
 .cover-body{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
@@ -1536,18 +1662,18 @@ body{font-family:Arial,Helvetica,sans-serif;color:#d80000;font-size:${bodyFont};
 .cover-rule{width:15mm;height:.8mm;background:#d80000;margin:6mm 0 5mm}
 .cover-user{font-size:12px;line-height:1.5}.cover-name{font-size:18px;font-weight:700;margin-bottom:1mm}.cover-designation{font-size:12px;font-weight:600;color:#555;margin-bottom:.5mm}.cover-city{font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#777}
 .content-sheet{z-index:1}
-.print-page-header{position:relative;z-index:2;flex:0 0 auto;display:flex;align-items:center;gap:3mm;border-bottom:.6mm solid #d80000;padding-bottom:2mm;margin-bottom:2.5mm}
+.print-page-header{position:relative;z-index:2;flex:0 0 auto;display:flex;align-items:center;gap:3mm;border-bottom:.6mm solid #d80000;padding-bottom:1.4mm;margin-bottom:1.6mm;min-height:${ps.headerHeightMm}mm}
 .print-page-header img{display:block;width:8mm;height:8mm;object-fit:contain}.print-page-header h1{margin:0;font-size:15px}.print-page-header p{margin:.5mm 0 0;color:#555;font-size:${layout.mobile?'7.3px':'8px'}}
 .page-content{position:relative;z-index:2;flex:1 1 auto;min-height:0;overflow:hidden;padding:0;margin:0}
 .wm{position:absolute;top:50%;left:50%;width:${layout.mobile?'58%':'42%'};transform:translate(-50%,-50%) rotate(-24deg);opacity:.045;z-index:0;pointer-events:none}
-.print-page-footer{position:relative;z-index:3;flex:0 0 auto;width:100%;border-top:.3mm solid #d80000;padding:2.2mm 0 0;margin-top:2.2mm;display:flex;align-items:flex-start;gap:${layout.mobile?'2.3mm':'3mm'};background:#fff;color:#d80000;min-height:${layout.mobile?'31mm':'24mm'}}
-.print-footer-person{flex:0 0 ${layout.mobile?'46mm':'58mm'};display:flex;align-items:flex-start;gap:${layout.mobile?'2mm':'2.5mm'};min-width:0}.print-footer-qr{flex:0 0 ${layout.mobile?'16mm':'18mm'}}.print-footer-qr img{display:block;width:${layout.mobile?'15mm':'17mm'};height:${layout.mobile?'15mm':'17mm'};object-fit:contain}.print-footer-identity{min-width:0;padding-top:.4mm;font-size:${layout.mobile?'6.6px':'7.1px'};line-height:1.28;color:#333}.print-footer-identity strong,.print-footer-identity span{display:block;overflow-wrap:anywhere}.print-footer-identity strong{color:#d80000;font-size:${layout.mobile?'7px':'7.6px'};margin-bottom:.25mm}.print-footer-identity span{margin-bottom:.15mm}
+.print-page-footer{position:relative;z-index:3;flex:0 0 auto;width:100%;border-top:.3mm solid #d80000;padding:2.2mm 0 0;margin-top:2.2mm;display:flex;align-items:flex-start;gap:${ps.qrGapMm}mm;background:#fff;color:#d80000;min-height:${ps.footerHeightMm}mm}
+.print-footer-person{flex:0 0 ${layout.mobile?'46mm':'58mm'};display:flex;align-items:flex-start;gap:${ps.qrGapMm}mm;min-width:0}.print-footer-qr{flex:0 0 ${layout.mobile?'16mm':'18mm'}}.print-footer-qr img{display:block;width:${layout.mobile?'15mm':'17mm'};height:${layout.mobile?'15mm':'17mm'};object-fit:contain}.print-footer-identity{min-width:0;padding-top:.4mm;font-size:${layout.mobile?'6.6px':'7.1px'};line-height:1.28;color:#333}.print-footer-identity strong,.print-footer-identity span{display:block;overflow-wrap:anywhere}.print-footer-identity strong{color:#d80000;font-size:${layout.mobile?'7px':'7.6px'};margin-bottom:.25mm}.print-footer-identity span{margin-bottom:.15mm}
 .print-footer-notes{flex:1 1 auto;min-width:0;margin:0;padding:0 0 0 ${layout.mobile?'1.8mm':'2.5mm'};font-size:${footerFont};line-height:1.28;color:#d80000}.print-footer-notes li{margin:0 0 .8mm}.print-footer-notes a{color:#d80000;font-weight:700;text-decoration:none}
 .print-footer-date{flex:0 0 ${layout.mobile?'18mm':'22mm'};text-align:right;font-size:${footerFont};font-weight:700;white-space:nowrap;padding-top:.5mm}
-.bank{position:relative;z-index:2;margin:0 0 2.5mm}.bank h2{font-size:${layout.mobile?'11px':'12px'};margin:0 0 1.4mm;padding:1.3mm 2mm;background:#d80000;color:#fff}
-.pr{border:.25mm solid #bbb;border-radius:1mm;margin:0 0 1.4mm;padding:${layout.mobile?'1.45mm':'1.6mm'};break-inside:avoid;page-break-inside:avoid;background:#fff}
+.bank{position:relative;z-index:2;margin:0 0 ${ps.sectionGapMm}mm}.bank h2{font-size:${layout.mobile?'11px':'12px'};margin:0 0 1.4mm;padding:1.3mm 2mm;background:#d80000;color:#fff}
+.pr{border:.25mm solid #bbb;border-radius:1mm;margin:0 0 ${ps.blockGapMm}mm;padding:${ps.cardPaddingMm}mm;break-inside:avoid;page-break-inside:avoid;background:#fff}
 .prh{display:flex;justify-content:space-between;gap:2mm;border-bottom:.25mm solid #ddd;padding-bottom:1mm;margin-bottom:1.2mm}.prh strong{font-size:${layout.mobile?'9px':'10px'}}.prh span{color:#666}
-.pgrid{display:flex;flex-wrap:wrap;margin:-.7mm -1mm}.pf{flex:0 0 ${fieldBasis};width:${fieldBasis};min-width:0;padding:.7mm 1mm}.pf b{display:block;text-transform:uppercase;letter-spacing:.03em;font-size:${layout.mobile?'6.6px':'7px'};color:#666;margin-bottom:.3mm}.pf span{display:block;white-space:pre-line;overflow-wrap:anywhere;word-break:break-word;line-height:1.32}
+.pgrid{display:flex;flex-wrap:wrap;margin:${-0.5}mm -1mm}.pf{flex:0 0 ${fieldBasis};width:${fieldBasis};min-width:0;padding:${ps.fieldGapMm/2}mm 1mm}.pf b{display:block;text-transform:uppercase;letter-spacing:.03em;font-size:${layout.mobile?'6.6px':'7px'};color:#666;margin-bottom:.3mm}.pf span{display:block;white-space:pre-line;overflow-wrap:anywhere;word-break:break-word;line-height:${ps.lineHeight}}
 .compact-record{font-size:7.2px!important;padding:1.1mm!important}.compact-record .pf{padding:.5mm .8mm!important}.compact-record .pf b{font-size:6px!important}.ultra-compact-record{font-size:6.4px!important}.ultra-compact-record .pgrid{margin:-.4mm -.6mm!important}.ultra-compact-record .pf{padding:.4mm .6mm!important}
 #print-source{display:none!important}
 @media print{html,body{margin:0!important;padding:0!important}.print-sheet{margin:0!important}}
@@ -1926,15 +2052,8 @@ alert('The Excel catalog could not be generated. Please check your internet conn
 }
 
 function downloadSelectedBanks(){
-// Public Catalog keeps payouts hidden. Every authenticated payout-enabled view
-// receives the calculator as an optional, skippable step before PDF/Excel.
-if(authenticatedUser && canShowPayouts()){
-openPayoutCalculator();
-return;
-}
-payoutCalculatorApplied=false;
-payoutCalculatorValues.clear();
-openOutputSequenceModal();
+// Unified workflow: calculator + sequencing + print design + preview in one screen.
+openDownloadStudio();
 }
 // Events
 pavanBengaluruBtn?.addEventListener('click',()=>setPavanLocationView('bengaluru'));
@@ -1949,6 +2068,18 @@ payoutCalculatorApplied=true;
 closePayoutCalculator(false);
 openOutputSequenceModal();
 });
+document.getElementById('download-studio-close')?.addEventListener('click',()=>closeDownloadStudio(true));
+document.getElementById('download-studio-cancel')?.addEventListener('click',()=>closeDownloadStudio(true));
+downloadStudioOverlay?.addEventListener('click',e=>{if(e.target===downloadStudioOverlay)closeDownloadStudio(true);});
+downloadStudioDownload?.addEventListener('click',confirmDownloadStudio);
+document.getElementById('download-preview-refresh')?.addEventListener('click',renderDownloadStudioPreview);
+document.querySelectorAll('input[name="studio-download-format"]').forEach(r=>r.addEventListener('change',scheduleDownloadStudioPreview));
+document.querySelectorAll('input[name="studio-sequence-mode"]').forEach(r=>r.addEventListener('change',()=>{outputSequenceMode=r.value;renderStudioSequenceList();scheduleDownloadStudioPreview();}));
+downloadCalculatorEnabled?.addEventListener('change',()=>{payoutCalculatorApplied=downloadCalculatorEnabled.checked;if(payoutCalculatorApplied)validatePayoutCalculator();else payoutCalculatorValues.clear();scheduleDownloadStudioPreview();});
+document.querySelectorAll('[data-print-preset]').forEach(btn=>btn.addEventListener('click',()=>applyPrintPreset(btn.dataset.printPreset)));
+Object.values(studioPrintInputs()).forEach(input=>input?.addEventListener('input',()=>{readPrintSettingsControls();scheduleDownloadStudioPreview();}));
+document.querySelectorAll('input[name="studio-print-orientation"]').forEach(r=>r.addEventListener('change',()=>{readPrintSettingsControls();scheduleDownloadStudioPreview();}));
+document.getElementById('print-settings-reset')?.addEventListener('click',()=>applyPrintPreset('compact'));
 document.getElementById('miles-close')?.addEventListener('click',closeMilesPopup);
 document.getElementById('miles-continue')?.addEventListener('click',closeMilesPopup);
 milesOverlay?.addEventListener('click',e=>{if(e.target===milesOverlay)closeMilesPopup();});
@@ -2073,6 +2204,10 @@ handled=true;
 }
 if(milesOverlay?.classList.contains('open')){
 closeMilesPopup();
+handled=true;
+}
+if(downloadStudioOverlay?.classList.contains('open')){
+closeDownloadStudio(true);
 handled=true;
 }
 if(sequenceOverlay?.classList.contains('open')){
