@@ -1,8 +1,0 @@
-{
-  "functions": {
-    "api/*.js": { "includeFiles": "api/_data/**" }
-  },
-  "headers": [
-    { "source": "/api/(.*)", "headers": [{"key":"Cache-Control","value":"no-store"}] }
-  ]
-}
