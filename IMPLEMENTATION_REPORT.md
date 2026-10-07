@@ -1,0 +1,22 @@
+# Implementation Report — 07 Oct 2026
+
+- Rebuilt lender/product data exclusively from Sheet1 of `Catalogue Feed - BA Team Sheet.xlsx`.
+- Published 151 complete product records across 67 institutions.
+- Suppressed 6 incomplete source rows.
+- Removed Mode / General / Co-Op dependencies and all previous datasets.
+- Excluded Sheet1 columns P:S and ignored column M.
+- Added 5 normalized Product filter groups while preserving source Product Type/Variant.
+- Added live Applicable Cities filtering.
+- Classified Spot only when explicitly stated; all remaining records resolve to MIS.
+- Added server-side T1/T2 payout transformation and Shiv-only raw access.
+- Retained only Team Internal and Shiv authentication.
+- Added Team/Shiv T1, T2 and city views; raw view is Shiv-only and view-only.
+- Added bank-wise list default with Grid toggle.
+- Shared payout conditions are promoted to bank level; unique conditions remain product-specific.
+- Kept FinWizz outside the normal catalog in a dedicated 3rd Party panel.
+- Added unified Download Studio: calculator, sequencer, city filter, PDF/Excel, print design, preview and verification consent.
+- Removed separate Master Catalog view; every generated file is named Master Catalog.
+- Added Shiv-only Rich PDF design: background, fixed Page 2, table output and lazy bank-logo hooks.
+- Added public-IP/date/time stamping on downloads.
+- Added Show Password, Esc-to-close and best-effort screenshot white-out guard.
+- Added language correction and suppressed-record reports.
