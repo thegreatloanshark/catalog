@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2026-10-sheet1-hlc-payout-v2",
+  "schemaVersion": "2026-10-sheet1-hlc-payout-v3-upcoming-codes",
   "source": {
     "file": "Catalogue Feed - BA Team Sheet(1).xlsx",
     "sheet": "Sheet1",
@@ -31,7 +31,8 @@
       "S",
       "U"
     ],
-    "payoutRule": "Column T (HLC Payout %) is authoritative for Tier 1 at the 90% basis. Tier 2 is derived from actuals at 85%, equivalent to Tier1 × 85/90."
+    "payoutRule": "Column T (HLC Payout %) is authoritative for Tier 1 at the 90% basis. Tier 2 is derived from actuals at 85%, equivalent to Tier1 × 85/90.",
+    "controlRule": "Rows where Column V (For Shivankur Reference) contains \"Do not include in catalog\" are exposed only as sanitized institution-level \"Upcoming Codes\" placeholders; no source-row details are shown or printed."
   },
   "records": [
     {
@@ -2370,6 +2371,48 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+    },
+    {
+      "id": "6fe856bd80a7f8cb",
+      "sourceRow": 9,
+      "institutionName": "Axis Bank Connector",
+      "code": "",
+      "grossNet": "",
+      "productType": "",
+      "productGroup": "",
+      "variant": "",
+      "payoutTimeline": "",
+      "applicableCities": "",
+      "conditions": "",
+      "loginProcess": "",
+      "paymentType": "",
+      "topSlabLoanVal": "",
+      "payoutT1": "",
+      "payoutCapping": "",
+      "clawback": "",
+      "upcoming": true,
+      "status": "Upcoming Codes"
+    },
+    {
+      "id": "8f87faf85b2104e0",
+      "sourceRow": 11,
+      "institutionName": "Axis Bank Connector (ASHA and Sugam LAP)",
+      "code": "",
+      "grossNet": "",
+      "productType": "",
+      "productGroup": "",
+      "variant": "",
+      "payoutTimeline": "",
+      "applicableCities": "",
+      "conditions": "",
+      "loginProcess": "",
+      "paymentType": "",
+      "topSlabLoanVal": "",
+      "payoutT1": "",
+      "payoutCapping": "",
+      "clawback": "",
+      "upcoming": true,
+      "status": "Upcoming Codes"
     }
   ]
 }
