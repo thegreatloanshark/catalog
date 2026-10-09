@@ -128,3 +128,6 @@
   .catalog-scroll-zone{display:block!important;min-height:0!important;max-height:none!important;overflow:visible!important;padding:0!important}
   .catalog{overflow:visible!important}
 }
+
+/* Group products beneath their shared institution code */
+.code-group-list{display:flex;flex-direction:column;gap:5px;margin-bottom:6px}.code-group-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.code-group-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:8px;font-weight:800;background:#f5f2ec;border:1px solid var(--line);border-radius:6px;padding:3px 6px;color:#333}.code-group-products{font-size:8px;font-weight:700;color:#5e5952}.grid-card .code-group-list{align-items:center}.grid-card .code-group-row{justify-content:center}.code-card-products{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
