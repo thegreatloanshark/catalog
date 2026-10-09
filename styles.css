@@ -161,3 +161,5 @@
 .finwizz-picker-item small{display:block;color:var(--ink-dim);margin-top:2px}
 .finwizz-preview-tag{display:inline-flex;padding:4px 8px;border-radius:999px;background:#fff0f0;color:var(--red);font-weight:800;font-size:10px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
 @media(max-width:900px){.rich-settings-grid{grid-template-columns:1fr}.catalog-source-switcher{width:100%;order:-1}.catalog-source-switcher button{flex:1}.finwizz-product-row{grid-template-columns:auto 1fr 1fr}.finwizz-product-row .fw-variant,.finwizz-product-row .fw-payout{grid-column:2/-1}.finwizz-picker-toolbar{grid-template-columns:1fr 1fr}.finwizz-picker-toolbar input{grid-column:1/-1}}
+.finwizz-product-row.public-third-party{grid-template-columns:minmax(120px,.85fr) minmax(180px,1.5fr)}
+@media(max-width:900px){.finwizz-product-row.public-third-party{grid-template-columns:1fr}.finwizz-product-row.public-third-party .fw-variant{grid-column:auto}}
