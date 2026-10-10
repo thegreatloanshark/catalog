@@ -245,7 +245,7 @@ function openDetails(name){
 }
 function field(label,value,wide=false){if(!meaningful(value))return '';return `<div class="field ${wide?'wide':''}"><b>${esc(label)}</b><span>${esc(value)}</span></div>`;}
 function openOverlay(id){const el=$('#'+id);el.classList.add('open');el.setAttribute('aria-hidden','false')}
-function closeOverlay(id){const el=$('#'+id);el.classList.remove('open');el.setAttribute('aria-hidden','true')}
+function closeOverlay(id){if(id==='download-overlay')downloadAuthorized=false;const el=$('#'+id);el.classList.remove('open');el.setAttribute('aria-hidden','true')}
 
 async function restoreSession(){return false;}
 
@@ -265,7 +265,25 @@ function syncPrintInputs(){const p=state.print;$('#s-margin').value=p.margin;$('
 function readPrintInputs(){readRichInputs();state.print={...state.print,preset:'custom',margin:+$('#s-margin').value,font:+$('#s-font').value,line:+$('#s-line').value,fieldGap:+$('#s-field-gap').value,blockGap:+$('#s-block-gap').value,header:+$('#s-header').value,footer:+$('#s-footer').value,qrGap:+$('#s-qr-gap').value,cardPadding:+$('#s-card-padding').value,sectionGap:+$('#s-section-gap').value,orientation:'landscape'};savePrintSettings();updateDownloadButton()}
 function setPreset(name){const richText={...RICH_TEXT_DEFAULTS,...(state.print.richText||{})};state.print={...PRESETS[name],orientation:'landscape',preset:name,richText};savePrintSettings();syncPrintInputs();updateDownloadButton()}
 function resetRichTextSettings(){state.print.richText={...RICH_TEXT_DEFAULTS};savePrintSettings();syncRichInputs();updateDownloadButton()}
+let downloadAuthorized=false;
+function requestDownloadAccess(){
+ $('#download-auth-form').reset();$('#download-auth-error').textContent='';
+ openOverlay('download-auth-overlay');$('#download-auth-id').focus();
+}
+async function unlockDownload(e){
+ e.preventDefault();const button=$('#download-auth-submit');button.disabled=true;
+ try{
+  const input=$('#download-auth-id').value.trim()+':'+$('#download-auth-code').value;
+  const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(input));
+  const digest=Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');
+  if(digest!=='a171e6d2b5d512266084a4042927a5b19ef57f81441861731a071c27686c5028'){$('#download-auth-error').textContent='Incorrect ID or code.';$('#download-auth-code').value='';$('#download-auth-code').focus();return;}
+  downloadAuthorized=true;$('#download-auth-code').value='';closeOverlay('download-auth-overlay');openDownloadStudio();
+ }catch(error){$('#download-auth-error').textContent='Unable to verify credentials. Open the site over HTTPS and try again.';}
+ finally{button.disabled=false;}
+}
+
 function openDownloadStudio(){
+ if(!downloadAuthorized){requestDownloadAccess();return;}
  if(!state.selected.size){
   const rows=state.catalogSource==='main'?visibleRecords():mainRecords();
   if(!rows.length)return alert('No NoBroker institutions are available to download.');
@@ -343,7 +361,11 @@ async function generateRevampedPdf(recs,stamp){
   doc.setTextColor(0);doc.setFont('helvetica','normal');doc.setFontSize(7.5);
   let fy=183;COMPACT_FOOTER.forEach(t=>{const lines=doc.splitTextToSize(t,249);doc.text(lines,margin,fy,{lineHeightFactor:1.15});fy+=lines.length*3.1+1.5;});
   doc.addImage(qr,'PNG',263,178,26,26,undefined,'FAST');
-  doc.setFontSize(5);const audit=auditText(stamp);doc.text(`Page ${page} | ${audit.date} ${audit.time} | IP: ${audit.ip}`,margin,207);
+  doc.setFont('helvetica','normal');doc.setFontSize(6);
+  const pageLabel=`Page ${page}`;doc.text(pageLabel,margin,207);
+  const ctaX=margin+doc.getTextWidth(pageLabel)+4,cta='Visit the catalog: nbloans-catalog.vercel.app';
+  doc.setTextColor(216,0,0);doc.textWithLink(cta,ctaX,207,{url:'https://nbloans-catalog.vercel.app'});
+  doc.setTextColor(0);doc.setFontSize(5);const audit=auditText(stamp);doc.text(`${audit.date} ${audit.time} | IP: ${audit.ip}`,259,207,{align:'right'});
  }
  for(const [key,title] of COMPACT_GROUPS){
  groupRows=all.filter(r=>compactGroupKey(r)===key);if(!groupRows.length)continue;groupTitle=title;newPage();
@@ -393,6 +415,7 @@ async function generateRevampedPdf(recs,stamp){
 }
 
 async function finalDownload(){
+ if(!downloadAuthorized){closeOverlay('download-overlay');requestDownloadAccess();return;}
  if(!$('#network-consent').checked){alert('Please confirm the download audit checkbox before downloading.');return;}
  const recs=selectedRecordsForDownload();if(!recs.length){alert('Select at least one bank before downloading.');return;}
  const btn=$('#final-download');btn.disabled=true;btn.textContent='Preparing…';
@@ -411,7 +434,8 @@ async function switchCatalogView(view){
 }
 
 function installEvents(){
-  $('#download-fab').onclick=openDownloadStudio;
+  $('#download-fab').onclick=requestDownloadAccess;
+  $('#download-auth-form').onsubmit=unlockDownload;
   $('#code-catalog-tab').onclick=()=>switchCatalogView('public');$('#payout-catalog-tab').onclick=()=>switchCatalogView('t1');$$('input[name="print-mode"]').forEach(el=>el.onchange=()=>updateDownloadButton());
   $('#search-input').oninput=e=>{state.search=e.target.value;renderAll()};
   $('#search-clear').onclick=()=>{$('#search-input').value='';state.search='';renderAll()};
