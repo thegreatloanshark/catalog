@@ -49,12 +49,13 @@
 
 </main>
 <footer class="site-footer"><span>NoBroker Loans Catalog</span><span>Sheet1-controlled lender/product feed</span></footer>
+<button class="download-fab hidden" id="download-fab" type="button">⇩ Download</button>
 <!-- Bank detail -->
 <div aria-hidden="true" class="overlay" id="detail-overlay"><section class="modal detail-modal"><button class="modal-close" data-close="detail-overlay">×</button><div id="detail-content"></div></section></div>
 <!-- Download Studio -->
-<div aria-hidden="true" class="overlay studio-overlay" id="download-overlay"><section class="modal download-studio"><button class="modal-close" data-close="download-overlay">×</button>
-<header class="studio-head"><div><p class="eyebrow">Download Studio</p><h2>Preview, calculate &amp; download</h2><p class="muted">Compact payout conditions in a seven-column table.</p></div></header>
-<div class="studio-layout">
+<div aria-hidden="true" class="overlay studio-overlay" id="download-overlay"><section class="modal download-studio" style="width:min(680px,94vw)"><button class="modal-close" data-close="download-overlay">×</button>
+<header class="studio-head"><div><p class="eyebrow">Download Studio</p><h2>Download catalog</h2><p class="muted">Compact payout conditions in a seven-column table.</p></div></header>
+<div class="studio-layout" style="display:block">
 <div class="studio-controls">
 <section class="studio-card"><h3><span>1</span> Format</h3><div class="segmented"><label><input checked="" name="download-format" type="radio" value="pdf"/>PDF</label><label><input name="download-format" type="radio" value="xlsx"/>Excel</label></div></section>
 <section class="studio-card" id="calc-card"><h3><span>2</span> Payout calculator</h3><p class="muted">Optional. The current tier cap cannot be exceeded.</p><div class="factor-row"><input id="factor-input" min="0" step="1" type="number"/><b>%</b><span id="factor-cap"></span></div></section>
@@ -66,7 +67,7 @@
 <section class="studio-card hidden" id="shiv-cover-card"><h3><span>8</span> PDF identity · this download only</h3><label>Name<input id="cover-name" placeholder="Name on PDF"/></label><label>Designation<input id="cover-designation" placeholder="Designation on PDF"/></label><label>Contact Number<input id="cover-contact" placeholder="Contact number on PDF"/></label></section>
 <section class="studio-card consent-card"><label><input id="network-consent" type="checkbox"/> I understand that this download will stamp the public network IP, date and time into the output for verification.</label></section>
 </div>
-<aside class="preview-pane"><div class="preview-head"><div><b>Preview</b><span id="preview-meta"></span></div><button id="refresh-preview">↻</button></div><p class="muted" style="margin:8px 14px;font-size:11px">Preview is indicative only. Final PDF pagination, wrapping, logos may differ from the on-screen preview.</p><div class="preview-shell" id="preview-shell"></div><div class="preview-footer"><span id="download-summary"></span><div><button class="secondary-btn" data-close="download-overlay">Cancel</button><button class="primary-btn" disabled="" id="final-download">Download</button></div></div></aside>
+<div class="download-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0"><span id="download-summary" aria-live="polite"></span><div style="display:flex;gap:10px"><button class="secondary-btn" data-close="download-overlay">Cancel</button><button class="primary-btn" disabled="" id="final-download">Download</button></div></div>
 </div>
 </section></div>
 <script src="./script.js" defer></script>
