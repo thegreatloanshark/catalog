@@ -189,7 +189,7 @@ function viewLabel(){if(state.catalogSource==='finwizz')return state.view==='pub
 
 
 function bankCard(bank){
-  const upcoming=bank.records.some(isUpcoming),selectable=canDownload(),isPublic=!state.user||state.view==='public';
+  const upcoming=bank.records.some(isUpcoming),selectable=canDownload(),isPublic=state.view==='public';
   if(upcoming){
     return `<article class="bank-card ${state.display==='list'?'list-card':'grid-card'}" data-bank="${esc(bank.name)}">${bankLogoMarkup(bank.name)}<div><div class="bank-name">${esc(bank.name)}</div><div class="bank-sub">${upcomingLabel()}</div></div><div class="bank-middle"><div class="product-chip-row"><span class="chip payout">${upcomingLabel()}</span></div></div><div class="bank-shared-snippet">${upcomingLabel()}</div><div class="card-actions">${selectable?`<label class="select-bank"><input type="checkbox" data-select-bank="${esc(bank.name)}" ${state.selected.has(bank.name)?'checked':''}> Select</label>`:''}</div></article>`;
   }
@@ -214,7 +214,7 @@ function renderAll(){renderCatalog();renderSelection();renderInternalSwitcher();
 function openFinwizzDetails(name){
   const recs=finWizzRecords().filter(r=>r.institutionName===name),isPublic=state.view==='public';
   if(isPublic){
-    $('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta"><span class="finwizz-badge">3rd Party</span>${unique(recs.map(r=>r.paymentType)).map(x=>`<span class="chip ${String(x).toUpperCase()==='SPOT'?'spot':''}">${esc(x)}</span>`).join('')}</div></div></div><div class="shared-login"><b>Public catalog</b><p>Codes and product information are public. Sign in only to view payout %.</p></div><div class="detail-products">${recs.map(r=>`<section class="finwizz-detail-record"><h3>${esc(r.productType||'Product')} · ${esc(r.variant||'Standard')}</h3><div class="field-grid">${field('Mode',r.mode)}${field('Code',r.code)}${field('Gross / Net',r.grossNet)}${field('Product Type',r.productType)}${field('Sub-Product / Variant',r.variant,true)}${field('Payout Timeline',r.payoutTimeline,true)}${field('Applicable Cities',r.applicableCities,true)}${field('Payout Conditions / Additional Conditions',r.conditions,true)}${field('Payment Type',r.paymentType)}</div></section>`).join('')}</div>`;
+    $('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta"><span class="finwizz-badge">3rd Party</span>${unique(recs.map(r=>r.paymentType)).map(x=>`<span class="chip ${String(x).toUpperCase()==='SPOT'?'spot':''}">${esc(x)}</span>`).join('')}</div></div></div><div class="shared-login"><b>Public catalog</b><p>Codes and product information are public. Switch to the Payouts view to see payout %.</p></div><div class="detail-products">${recs.map(r=>`<section class="finwizz-detail-record"><h3>${esc(r.productType||'Product')} · ${esc(r.variant||'Standard')}</h3><div class="field-grid">${field('Mode',r.mode)}${field('Code',r.code)}${field('Gross / Net',r.grossNet)}${field('Product Type',r.productType)}${field('Sub-Product / Variant',r.variant,true)}${field('Payout Timeline',r.payoutTimeline,true)}${field('Applicable Cities',r.applicableCities,true)}${field('Payout Conditions / Additional Conditions',r.conditions,true)}${field('Payment Type',r.paymentType)}</div></section>`).join('')}</div>`;
     openOverlay('detail-overlay');return;
   }
   $('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta"><span class="finwizz-badge">3rd Party</span>${unique(recs.map(r=>r.paymentType)).map(x=>`<span class="chip ${String(x).toUpperCase()==='SPOT'?'spot':''}">${esc(x)}</span>`).join('')}</div></div></div><div class="detail-products">${recs.map(r=>`<section class="finwizz-detail-record"><h3>${esc(r.productType||'Product')} · ${esc(r.variant||'Standard')}</h3><div class="field-grid">${field('Mode',r.mode)}${field('Code',r.code)}${field('Gross / Net',r.grossNet)}${field('Product Type',r.productType)}${field('Sub-Product / Variant',r.variant,true)}${field('Product & Payout',r.productPayout,true)}${field('Payout Timeline',r.payoutTimeline,true)}${field('Applicable Cities',r.applicableCities,true)}${field('Payout Conditions / Additional Conditions',r.conditions,true)}${field('Payment Type',r.paymentType)}</div></section>`).join('')}</div>`;openOverlay('detail-overlay');
@@ -225,7 +225,7 @@ function openDetails(name){
   if(recs.some(isUpcoming)){$('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta"><span class="chip payout">${upcomingLabel()}</span></div></div></div><div class="shared-conditions"><b>${upcomingLabel()}</b><p>Details will be published when the code becomes active.</p></div>`;openOverlay('detail-overlay');return;}
   if(isPublic){
     const info=conditionInfo(recs),login=loginInfo(recs),groups=codeGroups(recs);
-    $('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta">${unique(recs.map(r=>r.paymentType)).map(x=>`<span class="chip ${x==='Spot'?'spot':''}">${esc(x)}</span>`).join('')}${unique(recs.map(r=>r.applicableCities)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div></div></div><div class="shared-login"><b>Public catalog</b><p>Lender codes and all non-payout information are public. Sign in only to view HLC Payout %.</p></div>${info.shared.length?`<div class="shared-conditions"><b>Bank-level payout conditions</b>${info.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}${login.shared.length?`<div class="shared-login"><b>Bank-level mandatory file login process</b>${login.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}<div class="detail-products">${groups.map(g=>{const productSpecificConditions=g.records.map(r=>info.per.has(r.id)?`${recordCaption(r)}: ${info.per.get(r.id)}`:'').filter(Boolean).join('\n');const productSpecificLogin=g.records.map(r=>login.per.has(r.id)?`${recordCaption(r)}: ${login.per.get(r.id)}`:'').filter(Boolean).join('\n');return `<section class="product-card code-card"><h3>Code · ${esc(g.code)}</h3><div class="code-card-products">${unique(g.records.map(compactProductName)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div><div class="field-grid">${field('Products',g.records.map(recordCaption).join('\n'),true)}${field('Gross / Net',groupedValue(g.records,'grossNet',{includeProduct:false}))}${field('Top Slab Loan Value',groupedValue(g.records,'topSlabLoanVal'),true)}${field('Payout Timeline',groupedValue(g.records,'payoutTimeline'),true)}${field('Applicable Cities',groupedValue(g.records,'applicableCities',{includeProduct:false}),true)}${field('Payment Type',groupedValue(g.records,'paymentType',{includeProduct:false}))}${field('Payout Capping',groupedValue(g.records,'payoutCapping'),true)}${field('Clawback',groupedValue(g.records,'clawback'),true)}${field('Product-specific payout conditions',productSpecificConditions,true)}${field('Product-specific mandatory login process',productSpecificLogin,true)}</div></section>`}).join('')}</div>`;
+    $('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta">${unique(recs.map(r=>r.paymentType)).map(x=>`<span class="chip ${x==='Spot'?'spot':''}">${esc(x)}</span>`).join('')}${unique(recs.map(r=>r.applicableCities)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div></div></div><div class="shared-login"><b>Public catalog</b><p>Lender codes and all non-payout information are public. Switch to the Payouts view to see HLC Payout %.</p></div>${info.shared.length?`<div class="shared-conditions"><b>Bank-level payout conditions</b>${info.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}${login.shared.length?`<div class="shared-login"><b>Bank-level mandatory file login process</b>${login.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}<div class="detail-products">${groups.map(g=>{const productSpecificConditions=g.records.map(r=>info.per.has(r.id)?`${recordCaption(r)}: ${info.per.get(r.id)}`:'').filter(Boolean).join('\n');const productSpecificLogin=g.records.map(r=>login.per.has(r.id)?`${recordCaption(r)}: ${login.per.get(r.id)}`:'').filter(Boolean).join('\n');return `<section class="product-card code-card"><h3>Code · ${esc(g.code)}</h3><div class="code-card-products">${unique(g.records.map(compactProductName)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div><div class="field-grid">${field('Products',g.records.map(recordCaption).join('\n'),true)}${field('Gross / Net',groupedValue(g.records,'grossNet',{includeProduct:false}))}${field('Top Slab Loan Value',groupedValue(g.records,'topSlabLoanVal'),true)}${field('Payout Timeline',groupedValue(g.records,'payoutTimeline'),true)}${field('Applicable Cities',groupedValue(g.records,'applicableCities',{includeProduct:false}),true)}${field('Payment Type',groupedValue(g.records,'paymentType',{includeProduct:false}))}${field('Payout Capping',groupedValue(g.records,'payoutCapping'),true)}${field('Clawback',groupedValue(g.records,'clawback'),true)}${field('Product-specific payout conditions',productSpecificConditions,true)}${field('Product-specific mandatory login process',productSpecificLogin,true)}</div></section>`}).join('')}</div>`;
     openOverlay('detail-overlay');return;
   }
   const info=conditionInfo(recs),login=loginInfo(recs),groups=codeGroups(recs);$('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta">${unique(recs.map(r=>r.paymentType)).map(x=>`<span class="chip ${x==='Spot'?'spot':''}">${esc(x)}</span>`).join('')}${unique(recs.map(r=>r.applicableCities)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div></div></div>${info.shared.length?`<div class="shared-conditions"><b>Bank-level payout conditions</b>${info.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}${login.shared.length?`<div class="shared-login"><b>Bank-level mandatory file login process</b>${login.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}<div class="detail-products">${groups.map(g=>{const productSpecificConditions=g.records.map(r=>info.per.has(r.id)?`${recordCaption(r)}: ${info.per.get(r.id)}`:'').filter(Boolean).join('\n');const productSpecificLogin=g.records.map(r=>login.per.has(r.id)?`${recordCaption(r)}: ${login.per.get(r.id)}`:'').filter(Boolean).join('\n');return `<section class="product-card code-card"><h3>Code · ${esc(g.code)}</h3><div class="code-card-products">${unique(g.records.map(compactProductName)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div><div class="field-grid">${field('Products',g.records.map(recordCaption).join('\n'),true)}${field('Gross / Net',groupedValue(g.records,'grossNet',{includeProduct:false}))}${field('HLC Payout %',groupedValue(g.records,'payoutDisplay'),true)}${field('Top Slab Loan Value',groupedValue(g.records,'topSlabLoanVal'),true)}${field('Payout Timeline',groupedValue(g.records,'payoutTimeline'),true)}${field('Applicable Cities',groupedValue(g.records,'applicableCities',{includeProduct:false}),true)}${field('Payment Type',groupedValue(g.records,'paymentType',{includeProduct:false}))}${field('Payout Capping',groupedValue(g.records,'payoutCapping'),true)}${field('Clawback',groupedValue(g.records,'clawback'),true)}${field('Product-specific payout conditions',productSpecificConditions,true)}${field('Product-specific mandatory login process',productSpecificLogin,true)}</div></section>`}).join('')}</div>`;openOverlay('detail-overlay');
@@ -234,9 +234,7 @@ function field(label,value,wide=false){if(!meaningful(value))return '';return `<
 function openOverlay(id){const el=$('#'+id);el.classList.add('open');el.setAttribute('aria-hidden','false')}
 function closeOverlay(id){const el=$('#'+id);el.classList.remove('open');el.setAttribute('aria-hidden','true')}
 
-async function login(){const id=$('#auth-id').value.trim(),password=$('#auth-password').value;$('#auth-error').textContent='';const u=STATIC_USERS[id];if(!u||password!==u.password){$('#auth-error').textContent='Invalid credentials';return;}state.user={id,role:u.role,label:u.label};sessionStorage.setItem('catalogUser',JSON.stringify(state.user));closeOverlay('auth-overlay');$('#login-btn').classList.add('hidden');$('#logout-btn').classList.remove('hidden');await loadCatalog('t1');}
 async function restoreSession(){return false;}
-async function logout(){await loadCatalog('public');}
 
 function selectedBanks(){return [...state.selected];}
 function selectedRecordsForDownload(){const banks=new Set(selectedBanks());let recs=mainRecords().filter(r=>banks.has(r.institutionName));const cf=$('#download-city-filter')?.value||'';if(cf)recs=recs.filter(r=>isUpcoming(r)||r.applicableCities===cf);return recs;}
@@ -295,7 +293,7 @@ async function renderPreview(){if(!$('#download-overlay').classList.contains('op
 function miniTable(entries,rich=false){const logoHead=rich?'<th>Logo</th>':'';return `<table class="preview-mini-table"><thead><tr>${logoHead}<th>Bank</th><th>Code</th><th>Product</th><th>Payout dates</th><th>Payout Conditions</th><th>City</th></tr></thead><tbody>${entries.flatMap(e=>{const isUp=e.records.some(isUpcoming),logoCell=rich?`<td class="preview-logo-cell">${previewLogoMarkup(e.institution)}</td>`:'';if(isUp)return [`<tr>${logoCell}<td>${esc(e.institution)}</td><td colspan="5"><b>${upcomingLabel()}</b></td></tr>`];return e.records.map((r,idx)=>`<tr>${rich?(idx===0?logoCell:'<td></td>'):''}<td>${idx===0?esc(e.institution):''}</td><td>${esc(r.code||'—')}</td><td>${esc(`${recordCaption(r)} ${r.payoutDisplay||''}`.trim())}</td><td>${esc(r.payoutTimeline||'')}</td><td>${esc(downloadPayoutConditions(r))}</td><td>${esc(r.applicableCities||'')}</td></tr>`)}).flat().join('')}</tbody></table>`;}
 
 async function refreshForFactor(){const value=Math.max(0,Math.min(currentCap(),Number($('#factor-input').value)||0));$('#factor-input').value=value;state.factor=value;await loadCatalog(state.view==='city'?'city':state.view,value);renderSequencer();schedulePreview();}
-async function getNetworkStamp(){const timestamp=new Date().toISOString();for(const url of ['https://api.ipify.org?format=json','https://api64.ipify.org?format=json']){try{const r=await fetch(url,{cache:'no-store'});if(!r.ok)continue;const j=await r.json();if(j?.ip)return {ip:j.ip,timestamp};}catch(e){}}return {ip:'Unavailable',timestamp};}
+async function getNetworkStamp(){const timestamp=new Date().toISOString();for(const url of ['https://api.ipify.org?format=json','https://api64.ipify.org?format=json']){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),3000);try{const r=await fetch(url,{cache:'no-store',signal:controller.signal});if(!r.ok)continue;const j=await r.json();if(j?.ip)return {ip:j.ip,timestamp};}catch(e){}finally{clearTimeout(timer);}}return {ip:'Unavailable',timestamp};}
 function monthStamp(){return new Intl.DateTimeFormat('en-US',{month:'short',year:'2-digit'}).format(new Date()).replace(' ','-')}
 function fileBase(){return `Master Catalog ${monthStamp()}`}
 async function lazyScript(src,globalName){if(globalName&&window[globalName])return window[globalName];return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=src;s.onload=()=>resolve(globalName?window[globalName]:true);s.onerror=reject;document.head.appendChild(s)})}
@@ -400,16 +398,34 @@ async function generateRevampedPdf(recs,stamp,finRecs=[],rich=false){
   doc.setFillColor(216,0,0);doc.rect(left,top,redW,16,'F');doc.setTextColor(255);
   doc.text(revampWrap(doc,r.institutionName,redW-5,16).slice(0,2),left+3,top+10);
   let y=top+16;
-  const maxRow=mode==='compact'?25:19;
-  for(const [label,value] of fields){
-   const font=8.7,lh=4.2,lab=revampWrap(doc,label,redW-7,font),vals=revampWrap(doc,value,valW-7,font);
-   const lines=Math.max(lab.length,vals.length);let rh=Math.max(12,lines*lh+5);
-   rh=Math.min(rh,maxRow);
-   if(y+rh>H-14){doc.addPage('a4','landscape');y=top+16;}
+  // Every product starts on a fresh page. Measure the complete left-hand table first,
+  // then fit all rows inside that page instead of allowing a row to spill onto a new page.
+  const tableBottom=mode==='detail'?H-25:H-13;
+  const availableH=Math.max(40,tableBottom-y);
+  let fieldFont=8.7,fieldLh=4.2,measured=[];
+  const measureRows=()=>fields.map(([label,value])=>{
+   const lab=revampWrap(doc,label,redW-7,fieldFont),vals=revampWrap(doc,value,valW-7,fieldFont);
+   const lines=Math.max(lab.length,vals.length);
+   return {label,value,lab,vals,naturalH:Math.max(10,lines*fieldLh+4.8)};
+  });
+  measured=measureRows();
+  // Reduce typography only when needed to keep the entire product table on one page.
+  while(measured.reduce((sum,row)=>sum+row.naturalH,0)>availableH&&fieldFont>6.2){
+   fieldFont=Math.max(6.2,fieldFont-.35);fieldLh=Math.max(3.15,fieldLh-.16);measured=measureRows();
+  }
+  const naturalTotal=measured.reduce((sum,row)=>sum+row.naturalH,0);
+  const scale=naturalTotal>availableH?availableH/naturalTotal:1;
+  measured=measured.map(row=>({...row,rh:Math.max(7.2,row.naturalH*scale)}));
+  // Correct rounding so the final row always remains within the current page.
+  const fittedTotal=measured.reduce((sum,row)=>sum+row.rh,0);
+  if(fittedTotal>availableH&&measured.length){measured[measured.length-1].rh=Math.max(6.5,measured[measured.length-1].rh-(fittedTotal-availableH));}
+  for(const row of measured){
+   const rh=row.rh;
    doc.setFillColor(216,0,0);doc.rect(left,y,redW,rh,'F');doc.setFillColor(255);doc.rect(left+redW,y,valW,rh,'F');doc.setDrawColor(222);doc.rect(left+redW,y,valW,rh);
-   doc.setFont('helvetica','normal');doc.setFontSize(font);doc.setTextColor(255);
-   lab.slice(0,Math.max(1,Math.floor((rh-4)/lh))).forEach((line,j)=>doc.text(line,left+3,y+4.5+j*lh));
-   doc.setTextColor(15);vals.slice(0,Math.max(1,Math.floor((rh-4)/lh))).forEach((line,j)=>doc.text(line,left+redW+3,y+4.5+j*lh));
+   doc.setFont('helvetica','normal');doc.setFontSize(fieldFont);doc.setTextColor(255);
+   const maxLines=Math.max(1,Math.floor((rh-3.2)/fieldLh));
+   row.lab.slice(0,maxLines).forEach((line,j)=>doc.text(line,left+3,y+4+j*fieldLh));
+   doc.setTextColor(15);row.vals.slice(0,maxLines).forEach((line,j)=>doc.text(line,left+redW+3,y+4+j*fieldLh));
    y+=rh;
   }
   // Logo / conditions panel, no spillover to next cell.
@@ -435,9 +451,8 @@ async function generateRevampedPdf(recs,stamp,finRecs=[],rich=false){
 }
 
 async function finalDownload(){
-  if(!state.user){openOverlay('auth-overlay');return;}
   const format=$('input[name="download-format"]:checked')?.value||'pdf';
-  if(format==='pdf'&&state.user?.role==='shiv'&&!state.pdfStyle){alert('Choose Simple PDF or Rich PDF first.');return;}
+  if(format==='pdf'&&!state.pdfStyle)state.pdfStyle='simple';
   if(!$('#network-consent')?.checked){alert('Please confirm the download audit checkbox before downloading.');return;}
   const recs=selectedRecordsForDownload(),finRecs=selectedFinwizzRecordsForDownload();
   if(!recs.length&&!finRecs.length){alert('Select at least one bank or 3rd Party product before downloading.');return;}
@@ -470,8 +485,6 @@ function installEvents(){
   $$('#catalog-source-switcher [data-catalog-source]').forEach(b=>b.onclick=()=>setCatalogSource(b.dataset.catalogSource));
   $('#select-visible').onclick=()=>{if(state.catalogSource==='finwizz'){visibleRecords().forEach(r=>state.selectedFinwizz.add(r.id));}else{groupBanks(visibleRecords()).forEach(b=>state.selected.add(b.name));}renderAll()};
   $('#clear-selection').onclick=()=>{if(state.catalogSource==='finwizz')state.selectedFinwizz.clear();else state.selected.clear();renderAll()};
-  $('#login-btn').onclick=()=>switchCatalogView('t1');$('#logout-btn').onclick=()=>switchCatalogView('public');$('#auth-submit').onclick=()=>{};$('#auth-password').onkeydown=e=>{if(e.key==='Enter')login()};
-  $('#show-password').onclick=()=>{const p=$('#auth-password');p.type=p.type==='password'?'text':'password';$('#show-password').textContent=p.type==='password'?'Show':'Hide'};
   $$('[data-close]').forEach(b=>b.onclick=()=>closeOverlay(b.dataset.close));$$('.overlay').forEach(o=>o.onclick=e=>{if(e.target===o)closeOverlay(o.id)});
   $('#download-fab').onclick=openDownloadStudio;
   $('#download-city-filter').onchange=()=>{renderSequencer();schedulePreview()};
