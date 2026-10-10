@@ -308,13 +308,15 @@ async function logoForInstitution(name){
 function wrap(doc,text,width,fontSize){doc.setFontSize(fontSize);return doc.splitTextToSize(String(text||''),width)}
 function auditText(stamp){const dt=new Date(stamp.timestamp||Date.now());return {ip:stamp.ip||'Unavailable',date:dt.toLocaleDateString(),time:dt.toLocaleTimeString(),tz:Intl.DateTimeFormat().resolvedOptions().timeZone||'Local'};}
 
-const COMPACT_HEADERS=['Logo','bank','code','type','payout dates','conditions','City'];
+const COMPACT_HEADERS=['Logo','bank','code','type','Payout %','payout dates','conditions','City'];
+const COMPACT_GROUPS=[['Public|Spot','PSU Banks SPOT'],['Public|MIS','PSU Banks MIS'],['Private|Spot','Private Banks SPOT'],['Private|MIS','Private Banks MIS'],['NBFC|Spot','NBFC SPOT'],['NBFC|MIS','NBFC MIS']];
+function compactGroupKey(r){return `${r.institutionClass||'NBFC'}|${isUpcoming(r)?'MIS':(/spot/i.test(r.paymentType||'')?'Spot':'MIS')}`;}
 const COMPACT_FOOTER=[
  'Mandate: Please keep nbloans.bankconfirmation@nobroker.in in CC on all banker confirmation emails to ensure NoBroker Loans is notified immediately upon approval.',
  '*Send all login confirmations to nbloansadmin@nobroker.in with banker name, email ID, customer name, loan amount, and loan type **100% Subvention & PF deductions value is applicable on DSA Payout.'
 ];
-function compactConditions(r){return String(r.sourceKind==='third' ? (r.distilledConditions||r.conditions||'') : (r.distilledConditions||'')).trim();}
-function compactCells(r){return ['',r.institutionName||'',r.code||'',r.grossNet||'',r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
+function compactConditions(r){const compact=String(r.distilledConditions??'').trim();return compact||String(r.conditions??'').trim();}
+function compactCells(r){return ['',r.institutionName||'',r.code||'',r.grossNet||'',r.payoutT1??'',r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
 function pdfHardWrap(doc,value,width,fontSize){doc.setFontSize(fontSize);const text=String(value??'').replace(/\r/g,'');const out=[];for(const para of text.split('\n')){if(!para){out.push('');continue;}const soft=doc.splitTextToSize(para,Math.max(1,width));for(const item of soft){let s=String(item??'');if(doc.getTextWidth(s)<=width+.01){out.push(s);continue;}let buf='';for(const ch of s){const test=buf+ch;if(buf&&doc.getTextWidth(test)>width){out.push(buf);buf=ch;}else buf=test;}if(buf)out.push(buf);}}return out.length?out:[''];}
 function clipTextToBox(doc,lines,x,y,w,h,opts={}){if(!lines?.length||w<=0||h<=0)return;const canClip=doc.saveGraphicsState&&doc.restoreGraphicsState&&doc.clip&&doc.discardPath;try{if(canClip){doc.saveGraphicsState();doc.rect(x,y,w,h);doc.clip();doc.discardPath();}doc.text(lines,x+(opts.padX||0),y+(opts.padY||0),{baseline:opts.baseline||'top',lineHeightFactor:opts.lineHeightFactor||1.05,align:opts.align||'left',maxWidth:Math.max(1,w-(opts.padX||0)*2)});}finally{if(canClip)doc.restoreGraphicsState();}}
 async function appendFinwizzPdfPages(doc,recs,orientation,{rich=false,bg=null}={}){if(!recs.length)return;let w,h,m=rich?8:10,y=0;const labelW=orientation==='portrait'?46:58;const font=rich?richFont('finBody',orientation):(orientation==='portrait'?6.2:6.8);const lineH=font*.3528*1.08;const titleFont=rich?richFont('finTitle',orientation):(orientation==='portrait'?16:18);const subtitleFont=rich?richFont('finSubtitle',orientation):7;const startPage=async()=>{doc.addPage('a4',orientation);w=doc.internal.pageSize.getWidth();h=doc.internal.pageSize.getHeight();if(rich&&bg){await addRichBackground(doc,bg,orientation);doc.setFillColor(255,255,255);if(doc.setGState)doc.setGState(new doc.GState({opacity:.88}));doc.roundedRect(m-2,12,w-2*m+4,h-24,5,5,'F');if(doc.setGState)doc.setGState(new doc.GState({opacity:1}));}doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(titleFont);doc.text('3rd Party Catalog',w/2,21,{align:'center',maxWidth:w-2*m-8});doc.setFont('helvetica','normal');doc.setFontSize(subtitleFont);doc.text('Independent 3rd Party product feed · values shown exactly as supplied',w/2,27,{align:'center',maxWidth:w-2*m-8});y=33;};await startPage();for(const r of recs){const fields=finwizzPdfFields(r).filter(([,v])=>meaningful(v));doc.setFontSize(font);let needed=10;const prepared=[];for(const [label,value] of fields){const valW=w-2*m-labelW-3,lab=pdfHardWrap(doc,label,labelW-2,font-.2),val=pdfHardWrap(doc,value,valW,font),lines=Math.max(lab.length,val.length),rowH=Math.max(4.5,2+lines*lineH);prepared.push({lab,val,rowH,valW});needed+=rowH;}if(y+needed>h-12)await startPage();doc.setFont('helvetica','bold');doc.setFontSize(font+1);const cardTitle=`${r.institutionName} · ${r.productType||'Product'} · ${r.code||'—'}`;const titleLines=pdfHardWrap(doc,cardTitle,w-2*m-4,font+1);const cardH=Math.max(8,3+titleLines.length*(font+1)*.3528*1.05);if(y+cardH+needed-10>h-12)await startPage();doc.setFillColor(246,242,235);doc.setDrawColor(210);doc.roundedRect(m,y,w-2*m,cardH,1.5,1.5,'FD');clipTextToBox(doc,titleLines,m+2,y+1,w-2*m-4,cardH-2,{lineHeightFactor:1.05});y+=cardH+2;for(const row of prepared){const {lab,val,rowH,valW}=row;doc.setDrawColor(230);doc.line(m,y,w-m,y);doc.setFont('helvetica','bold');doc.setFontSize(font-.2);doc.setTextColor(90);clipTextToBox(doc,lab,m+1,y+1.4,labelW-2,rowH-2,{lineHeightFactor:1.08});doc.setFont('helvetica','normal');doc.setFontSize(font);doc.setTextColor(20);clipTextToBox(doc,val,m+labelW,y+1.4,valW,rowH-2,{lineHeightFactor:1.08});y+=rowH;}y+=3;}}
@@ -325,23 +327,24 @@ async function generateRevampedPdf(recs,stamp){
  const doc=new window.jspdf.jsPDF({unit:'mm',format:'a4',orientation:'landscape',compress:true});
  const qr=await fetchDataUrl('assets/partner-qr.png');
  const all=orderedEntries(recs).flatMap(e=>e.records);
- const widths=[21,34,29,18,62,88,29],margin=8,font=7,lineH=3.1,bottom=171;
- let y=30,page=0;
+ const widths=[18,31,25,16,25,49,91,26],margin=8,font=7,lineH=3.1,bottom=171;
+ let y=38,page=0,groupTitle='',groupRows=[];
  const logoCache={};
  function newPage(){
   if(page++)doc.addPage('a4','landscape');
   doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(17);doc.text('MASTER CATALOG',148.5,13,{align:'center'});
-  doc.setFontSize(9);doc.text(monthStamp(),148.5,19,{align:'center'});
-  doc.setFillColor(0);doc.rect(margin,23,281,9,'F');doc.setTextColor(255);doc.setFontSize(8);
-  let x=margin;COMPACT_HEADERS.forEach((h,i)=>{doc.text(h,x+2,28.5);x+=widths[i]});y=32;
-  if(all.some(r=>/spot/i.test(r.paymentType||''))){doc.setFillColor(125,215,79);doc.rect(8,173,281,4,'F');doc.setTextColor(0);doc.setFontSize(7);doc.text('* AVAIL SPOT PAYMENT ON HIGHLIGHTED BANKS',148.5,176,{align:'center'});}
+  doc.setFontSize(9);doc.text(monthStamp(),281,13,{align:'right'});doc.setFontSize(12);doc.text(groupTitle,148.5,23,{align:'center'});
+  doc.setFillColor(0);doc.rect(margin,29,281,9,'F');doc.setTextColor(255);doc.setFontSize(8);
+  let x=margin;COMPACT_HEADERS.forEach((h,i)=>{doc.text(h,x+2,34.5);x+=widths[i]});y=38;
+  if(groupRows.some(r=>/spot/i.test(r.paymentType||''))){doc.setFillColor(125,215,79);doc.rect(8,173,281,4,'F');doc.setTextColor(0);doc.setFontSize(7);doc.text('* AVAIL SPOT PAYMENT ON HIGHLIGHTED BANKS',148.5,176,{align:'center'});}
   doc.setTextColor(0);doc.setFont('helvetica','normal');doc.setFontSize(7.5);
   let fy=183;COMPACT_FOOTER.forEach(t=>{const lines=doc.splitTextToSize(t,249);doc.text(lines,margin,fy,{lineHeightFactor:1.15});fy+=lines.length*3.1+1.5;});
   doc.addImage(qr,'PNG',263,178,26,26,undefined,'FAST');
   doc.setFontSize(5);const audit=auditText(stamp);doc.text(`Page ${page} | ${audit.date} ${audit.time} | IP: ${audit.ip}`,margin,207);
  }
- newPage();
- for(const r of all){
+ for(const [key,title] of COMPACT_GROUPS){
+ groupRows=all.filter(r=>compactGroupKey(r)===key);if(!groupRows.length)continue;groupTitle=title;newPage();
+ for(const r of groupRows){
   doc.setFont('helvetica','normal');doc.setFontSize(font);
   const lines=compactCells(r).map((v,i)=>pdfHardWrap(doc,v,widths[i]-4,font));
   const count=Math.max(...lines.map(a=>a.length));let offset=0;
@@ -349,16 +352,17 @@ async function generateRevampedPdf(recs,stamp){
   while(offset<count){
    if(y+14>bottom)newPage();
    const capacity=Math.max(1,Math.floor((bottom-y-4)/lineH));
-   if(offset===0 && count>capacity && count<=Math.floor((bottom-32-4)/lineH)){newPage();continue;}
+   if(offset===0 && count>capacity && count<=Math.floor((bottom-38-4)/lineH)){newPage();continue;}
    const n=Math.min(count-offset,capacity),height=Math.max(14,n*lineH+4),spot=/spot/i.test(r.paymentType||'');
    doc.setFillColor(...(spot?[125,215,79]:[255,255,255]));doc.rect(margin,y,281,height,'F');
    let x=margin;doc.setTextColor(0);doc.setDrawColor(140);doc.setLineWidth(.15);doc.setFont('helvetica','normal');doc.setFontSize(font);
    widths.forEach((w,i)=>{doc.rect(x,y,w,height);if(i>0&&lines[i].slice(offset,offset+n).length)doc.text(lines[i].slice(offset,offset+n),x+2,y+3.5,{lineHeightFactor:lineH/(font*.3528)});x+=w;});
-   const logo=logoCache[r.institutionName];if(logo&&offset===0){const props=doc.getImageProperties(logo),scale=Math.min(17/props.width,(height-4)/props.height);doc.addImage(logo,'PNG',margin+(21-props.width*scale)/2,y+(height-props.height*scale)/2,props.width*scale,props.height*scale,undefined,'FAST');}
+   const logo=logoCache[r.institutionName];if(logo&&offset===0){const props=doc.getImageProperties(logo),scale=Math.min(14/props.width,(height-4)/props.height);doc.addImage(logo,'PNG',margin+(18-props.width*scale)/2,y+(height-props.height*scale)/2,props.width*scale,props.height*scale,undefined,'FAST');}
    y+=height;offset+=n;
   }
  }
 
+ }
  return doc;
 }
 
