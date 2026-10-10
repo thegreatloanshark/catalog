@@ -222,7 +222,7 @@ function finwizzBankCard(bank){
   return `<article class="bank-card ${state.display==='list'?'list-card':'grid-card'}" data-bank="${esc(bank.name)}">${bankLogoMarkup(bank.name)}<div><div class="bank-name">${esc(bank.name)}</div><div class="bank-sub"><span class="finwizz-badge">3rd Party</span></div><div class="finwizz-card-meta">${payments.map(p=>`<span class="chip ${String(p).toUpperCase()==='SPOT'?'spot':''}">${esc(p)}</span>`).join('')}<span class="chip">${bank.records.length} product${bank.records.length===1?'':'s'}</span></div></div><div class="bank-middle"><div class="finwizz-product-list">${bank.records.map(r=>`<div class="finwizz-product-row">${selectable?`<label title="Select this 3rd Party product"><input type="checkbox" data-select-finwizz="${esc(r.id)}" ${state.selectedFinwizz.has(r.id)?'checked':''}></label>`:'<span></span>'}<span class="fw-code">${esc(r.code||'—')}</span><span><b>${esc(r.productType||'—')}</b></span><span class="fw-variant">${esc(r.variant||'Standard')}</span><span class="fw-payout">${esc(r.productPayout||'—')}</span></div>`).join('')}</div></div><div class="bank-shared-snippet">${esc(unique(bank.records.map(r=>r.conditions)).join(' · ')||'Independent 3rd Party payout terms')}</div><div class="card-actions"><button class="details-btn" data-details="${esc(bank.name)}">Payout Conditions</button></div></article>`;
 }
 function renderCatalog(){const rows=visibleRecords(),banks=groupBanks(rows),fin=state.catalogSource==='finwizz';$('#catalog').className=`catalog ${state.display}-mode`;$('#catalog').innerHTML=banks.map(fin?finwizzBankCard:bankCard).join('');$('#empty-state').classList.toggle('hidden',banks.length>0);$('#result-count').textContent=fin?`Showing ${banks.length} institutions · ${rows.length} 3rd Party product records`:`Showing ${banks.length} institutions · ${rows.length} product records`;$('#active-view-label').textContent=viewLabel();$('#catalog').querySelectorAll('[data-details]').forEach(b=>b.onclick=()=>openDetails(b.dataset.details));if(fin){$('#catalog').querySelectorAll('[data-select-finwizz]').forEach(ch=>ch.onchange=()=>{ch.checked?state.selectedFinwizz.add(ch.dataset.selectFinwizz):state.selectedFinwizz.delete(ch.dataset.selectFinwizz);renderSelection()});}else{$('#catalog').querySelectorAll('[data-select-bank]').forEach(ch=>ch.onchange=()=>{ch.checked?state.selected.add(ch.dataset.selectBank):state.selected.delete(ch.dataset.selectBank);renderSelection()});}}
-function renderSelection(){const allowed=canDownload();$('#selection-row').classList.toggle('hidden',!allowed);$('#download-fab').classList.toggle('hidden',!allowed);const n=state.catalogSource==='finwizz'?state.selectedFinwizz.size:state.selected.size;$('#selection-count').textContent=`${n} selected`;}
+function renderSelection(){const allowed=canDownload();$('#selection-row').classList.toggle('hidden',!allowed);const n=state.catalogSource==='finwizz'?state.selectedFinwizz.size:state.selected.size;$('#selection-count').textContent=`${n} selected`;}
 function renderAll(){renderCatalog();renderSelection();renderInternalSwitcher();updateSourceSwitcher();updateSourceStatus();}
 function openFinwizzDetails(name){
   const recs=finWizzRecords().filter(r=>r.institutionName===name),isPublic=state.view==='public';
@@ -295,34 +295,31 @@ function openDownloadStudio(){
 function updateDownloadButton(){
   const format=$('input[name="download-format"]:checked')?.value||'pdf';const hasRows=hasDownloadRecords();const btn=$('#final-download');
   state.pdfStyle='rich';
-  btn.disabled=!hasRows;btn.textContent=format==='xlsx'?'Download Excel':'Download Rich PDF';btn.title=!hasRows?'Select at least one product or bank':'Click to download. The audit checkbox will be requested if needed.';
+  btn.disabled=!hasRows;btn.textContent=format==='xlsx'?'Download Excel':'Download PDF';btn.title=!hasRows?'Select at least one product or bank':'Click to download. The audit checkbox will be requested if needed.';
   $('#pdf-style-card')?.classList.add('hidden');$('#print-design-card')?.classList.add('hidden');
 }
 let previewTimer;function schedulePreview(){clearTimeout(previewTimer);previewTimer=setTimeout(renderPreview,180)}
 function previewRows(recs){return orderedEntries(recs).slice(0,'landscape'==='landscape'?6:8)}
 function finwizzPreviewRows(recs){return recs.slice(0,'landscape'==='landscape'?5:7)}
 function miniFinwizzTable(rows){return `<div class="finwizz-preview-tag">3rd Party Catalog</div><table class="preview-mini-table"><thead><tr><th>Institution</th><th>Code</th><th>Product</th><th>Variant</th><th>Product & Payout</th><th>Timeline</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.institutionName)}</td><td>${esc(r.code||'—')}</td><td>${esc(r.productType||'—')}</td><td>${esc(r.variant||'—')}</td><td>${esc(r.productPayout||'—')}</td><td>${esc(r.payoutTimeline||'—')}</td></tr>`).join('')}</tbody></table>`;}
-function revampPreviewCard(r,mode){
-  const payout=r.sourceKind==='third'?r.productPayout:(r.payoutDisplay||r.payoutT1||'');
-  const cond=r.sourceKind==='third'?r.conditions:(r.distilledConditions||r.conditions||'');
-  return `<div style="border:2px solid #d80000;display:grid;grid-template-columns:66% 34%;height:180px;overflow:hidden;background:#fff"><div style="display:grid;grid-template-columns:44% 56%;font-size:8px;line-height:1.1"><div style="grid-column:1/3;background:#d80000;color:#fff;font-size:13px;font-weight:800;padding:7px">${esc(r.institutionName||'')}</div>${[['Code',r.code],['Gross/Net',r.grossNet],['Product Type',r.productType],['Sub-Product/Variant',r.variant],['Metro Cities Payout %',payout],['Payout Timeline',r.payoutTimeline],['Applicable Cities',r.applicableCities],['Payment Type (MIS/Spot)',r.paymentType],['Payout Capping',r.payoutCapping]].map(([k,v])=>`<div style="background:#d80000;color:#fff;padding:3px 5px;border-top:1px solid rgba(255,255,255,.35)">${esc(k)}</div><div style="padding:3px 5px;border-top:1px solid #ddd;overflow:hidden">${esc(v||'—')}</div>`).join('')}</div><div style="border-left:2px solid #d80000;display:flex;flex-direction:column"><div style="height:64px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px">INSTITUTION LOGO</div>${mode==='compact'?`<div style="background:#d80000;color:#fff;text-align:center;font-weight:800;font-size:8px;padding:4px">Payout Conditions</div><div style="font-size:7px;padding:5px;overflow:hidden;flex:1">${esc(cond||'—')}</div>`:`<div style="font-size:8px;padding:8px;display:flex;align-items:center;justify-content:center;text-align:center;flex:1"><i>Check annexure for complete payout conditions and login mandate/process.</i></div>`}</div></div>`;
-}
+const COMPACT_HEADERS=['Logo','bank','code','type','payout dates','conditions','City'];
+const COMPACT_FOOTER=[
+ 'Mandate: Please keep nbloans.bankconfirmation@nobroker.in in CC on all banker confirmation emails to ensure NoBroker Loans is notified immediately upon approval.',
+ '*Send all login confirmations to nbloansadmin@nobroker.in with banker name, email ID, customer name, loan amount, and loan type **100% Subvention & PF deductions value is applicable on DSA Payout.'
+];
+function compactConditions(r){return String(r.sourceKind==='third' ? (r.distilledConditions||r.conditions||'') : (r.distilledConditions||'')).trim();}
+function compactCells(r){return ['',r.institutionName||'',r.code||'',r.grossNet||'',r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
+function compactFooterHtml(){return `<footer style="display:flex;gap:12px;align-items:center;margin-top:12px;font-size:10px;text-align:left"><div>${COMPACT_FOOTER.map(t=>`<p>${esc(t)}</p>`).join('')}</div><img src="assets/partner-qr.png" alt="Partner QR" style="width:80px;height:80px;flex-shrink:0"></footer>`;}
 async function renderPreview(){
-  if(!$('#download-overlay').classList.contains('open'))return;
-  const recs=selectedRecordsForDownload(),finRecs=selectedFinwizzRecordsForDownload();const format=$('input[name="download-format"]:checked')?.value||'pdf';
-  const all=orderedEntries(recs).flatMap(e=>e.records.map(r=>({...r,sourceKind:'main'}))).concat(finRecs.map(r=>({...r,sourceKind:'third'})));
-  if(format==='xlsx'){
-    $('#preview-meta').textContent=`${recs.length} NoBroker rows · ${finRecs.length} 3rd Party rows`;
-    $('#download-summary').textContent=`${new Set(recs.map(r=>r.institutionName)).size} NoBroker institutions · ${finRecs.length} 3rd Party products`;
-    $('#preview-shell').innerHTML=`<div class="preview-page"><h4>Excel download</h4><p class="muted">Workbook sheets and column widths are generated at download time.</p></div>`;updateDownloadButton();return;
-  }
-  state.pdfStyle='rich';const mode=revampPrintMode();const cover=await fixedRichPageData('landscape',0),benefits=await fixedRichPageData('landscape',1);const sample=all.slice(0,4);
-  $('#preview-meta').textContent=`Rich PDF · Landscape A4 · ${mode==='compact'?'Compact':'Detail + Annexure'} · 4 product boxes per product page`;
-  $('#download-summary').textContent=`${new Set(recs.map(r=>r.institutionName)).size} NoBroker institutions · ${finRecs.length} 3rd Party products${recs.length?` · ${currentTier()} ${state.factor}%`:''}`;
-  const productPage=sample.length?`<div class="preview-page rich" style="padding:12px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${sample.map(r=>revampPreviewCard(r,mode)).join('')}</div></div>`:'';
-  $('#preview-shell').innerHTML=`<div><div class="preview-page rich" style="position:relative;background:url('${cover}') center/cover no-repeat;overflow:hidden"><div style="position:absolute;top:12px;right:12px;font-size:16px;font-weight:800;color:#111;background:rgba(255,255,255,.82);padding:8px 14px;border-radius:14px">${monthStamp()}</div></div><div class="preview-page rich" style="position:relative;background:url('${benefits}') center/cover no-repeat;overflow:hidden"><div style="position:absolute;left:12px;bottom:12px;font-size:11px;line-height:1.35;color:#111;background:rgba(255,255,255,.84);padding:10px 12px;border-radius:10px;max-width:40%"><strong>Download audit</strong><br>Public IP, date and time are stamped on the generated PDF.</div></div>${productPage}<div class="preview-page rich" style="display:flex;align-items:center;justify-content:center;text-align:center"><div style="width:82%;background:rgba(255,255,255,.82);padding:42px 24px;border-radius:18px"><div style="font-size:36px;font-weight:800;margin-bottom:16px">${esc($('#cover-name')?.value||'')}</div><div style="font-size:24px;margin-bottom:14px">${esc($('#cover-designation')?.value||'')}</div><div style="font-size:18px">${esc($('#cover-contact')?.value||'')}</div></div></div></div>`;
-  updateDownloadButton();
+ if(!$('#download-overlay').classList.contains('open'))return;
+ const recs=selectedRecordsForDownload(),fin=selectedFinwizzRecordsForDownload();
+ const rows=orderedEntries(recs).flatMap(e=>e.records).concat(fin.map(r=>({...r,sourceKind:'third'})));
+ $('#preview-meta').textContent='Compact payout conditions · A4 landscape';
+ $('#download-summary').textContent=`${rows.length} product rows`;
+ $('#preview-shell').innerHTML=`<div class="preview-page" style="height:auto;min-height:420px;padding:14px;background:white"><h4>MASTER CATALOG</h4><table class="preview-mini-table"><thead><tr>${COMPACT_HEADERS.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.slice(0,8).map(r=>`<tr>${compactCells(r).map((v,i)=>`<td style="white-space:pre-wrap">${i===0?previewLogoMarkup(r.institutionName):esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>${compactFooterHtml()}</div>`;
+ updateDownloadButton();
 }
+
 function miniTable(entries,rich=false){const logoHead=rich?'<th>Logo</th>':'';return `<table class="preview-mini-table"><thead><tr>${logoHead}<th>Bank</th><th>Code</th><th>Product</th><th>Payout dates</th><th>Payout Conditions</th><th>City</th></tr></thead><tbody>${entries.flatMap(e=>{const isUp=e.records.some(isUpcoming),logoCell=rich?`<td class="preview-logo-cell">${previewLogoMarkup(e.institution)}</td>`:'';if(isUp)return [`<tr>${logoCell}<td>${esc(e.institution)}</td><td colspan="5"><b>${upcomingLabel()}</b></td></tr>`];return e.records.map((r,idx)=>`<tr>${rich?(idx===0?logoCell:'<td></td>'):''}<td>${idx===0?esc(e.institution):''}</td><td>${esc(r.code||'—')}</td><td>${esc(`${recordCaption(r)} ${r.payoutDisplay||''}`.trim())}</td><td>${esc(r.payoutTimeline||'')}</td><td>${esc(downloadPayoutConditions(r))}</td><td>${esc(r.applicableCities||'')}</td></tr>`)}).flat().join('')}</tbody></table>`;}
 
 async function refreshForFactor(){const value=Math.max(0,Math.min(currentCap(),Number($('#factor-input').value)||0));$('#factor-input').value=value;state.factor=value;await loadCatalog(state.view==='city'?'city':state.view,value);renderSequencer();schedulePreview();}
@@ -361,97 +358,54 @@ function pdfHardWrap(doc,value,width,fontSize){doc.setFontSize(fontSize);const t
 function clipTextToBox(doc,lines,x,y,w,h,opts={}){if(!lines?.length||w<=0||h<=0)return;const canClip=doc.saveGraphicsState&&doc.restoreGraphicsState&&doc.clip&&doc.discardPath;try{if(canClip){doc.saveGraphicsState();doc.rect(x,y,w,h);doc.clip();doc.discardPath();}doc.text(lines,x+(opts.padX||0),y+(opts.padY||0),{baseline:opts.baseline||'top',lineHeightFactor:opts.lineHeightFactor||1.05,align:opts.align||'left',maxWidth:Math.max(1,w-(opts.padX||0)*2)});}finally{if(canClip)doc.restoreGraphicsState();}}
 async function appendFinwizzPdfPages(doc,recs,orientation,{rich=false,bg=null}={}){if(!recs.length)return;let w,h,m=rich?8:10,y=0;const labelW=orientation==='portrait'?46:58;const font=rich?richFont('finBody',orientation):(orientation==='portrait'?6.2:6.8);const lineH=font*.3528*1.08;const titleFont=rich?richFont('finTitle',orientation):(orientation==='portrait'?16:18);const subtitleFont=rich?richFont('finSubtitle',orientation):7;const startPage=async()=>{doc.addPage('a4',orientation);w=doc.internal.pageSize.getWidth();h=doc.internal.pageSize.getHeight();if(rich&&bg){await addRichBackground(doc,bg,orientation);doc.setFillColor(255,255,255);if(doc.setGState)doc.setGState(new doc.GState({opacity:.88}));doc.roundedRect(m-2,12,w-2*m+4,h-24,5,5,'F');if(doc.setGState)doc.setGState(new doc.GState({opacity:1}));}doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(titleFont);doc.text('3rd Party Catalog',w/2,21,{align:'center',maxWidth:w-2*m-8});doc.setFont('helvetica','normal');doc.setFontSize(subtitleFont);doc.text('Independent 3rd Party product feed · values shown exactly as supplied',w/2,27,{align:'center',maxWidth:w-2*m-8});y=33;};await startPage();for(const r of recs){const fields=finwizzPdfFields(r).filter(([,v])=>meaningful(v));doc.setFontSize(font);let needed=10;const prepared=[];for(const [label,value] of fields){const valW=w-2*m-labelW-3,lab=pdfHardWrap(doc,label,labelW-2,font-.2),val=pdfHardWrap(doc,value,valW,font),lines=Math.max(lab.length,val.length),rowH=Math.max(4.5,2+lines*lineH);prepared.push({lab,val,rowH,valW});needed+=rowH;}if(y+needed>h-12)await startPage();doc.setFont('helvetica','bold');doc.setFontSize(font+1);const cardTitle=`${r.institutionName} · ${r.productType||'Product'} · ${r.code||'—'}`;const titleLines=pdfHardWrap(doc,cardTitle,w-2*m-4,font+1);const cardH=Math.max(8,3+titleLines.length*(font+1)*.3528*1.05);if(y+cardH+needed-10>h-12)await startPage();doc.setFillColor(246,242,235);doc.setDrawColor(210);doc.roundedRect(m,y,w-2*m,cardH,1.5,1.5,'FD');clipTextToBox(doc,titleLines,m+2,y+1,w-2*m-4,cardH-2,{lineHeightFactor:1.05});y+=cardH+2;for(const row of prepared){const {lab,val,rowH,valW}=row;doc.setDrawColor(230);doc.line(m,y,w-m,y);doc.setFont('helvetica','bold');doc.setFontSize(font-.2);doc.setTextColor(90);clipTextToBox(doc,lab,m+1,y+1.4,labelW-2,rowH-2,{lineHeightFactor:1.08});doc.setFont('helvetica','normal');doc.setFontSize(font);doc.setTextColor(20);clipTextToBox(doc,val,m+labelW,y+1.4,valW,rowH-2,{lineHeightFactor:1.08});y+=rowH;}y+=3;}}
 
-async function generateSimplePdf(recs,stamp,finRecs=[]){await lazyScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','jspdf');const {jsPDF}=window.jspdf;const o='landscape';const doc=new jsPDF({unit:'mm',format:'a4',orientation:o,compress:true});const p=state.print;let pageW=doc.internal.pageSize.getWidth(),pageH=doc.internal.pageSize.getHeight();const isShiv=true,name=isShiv?$('#cover-name').value.trim():'',desig=isShiv?$('#cover-designation').value.trim():'',contact=isShiv?($('#cover-contact')?.value.trim()||''):'';doc.setFont('helvetica','bold');doc.setFontSize(26);doc.text('MASTER CATALOG',pageW/2,pageH*.42,{align:'center'});doc.setFontSize(13);doc.text(monthStamp(),pageW/2,pageH*.49,{align:'center'});if(isShiv&&(name||desig||contact)){doc.setFont('helvetica','normal');doc.setFontSize(10);doc.text([name,desig,contact].filter(Boolean).join(' · '),pageW/2,pageH*.56,{align:'center'});}doc.addPage('a4',o);pageW=doc.internal.pageSize.getWidth();pageH=doc.internal.pageSize.getHeight();const a=auditText(stamp);doc.setFont('helvetica','bold');doc.setFontSize(20);doc.text('Download Verification',pageW/2,35,{align:'center'});doc.setFont('helvetica','normal');doc.setFontSize(12);doc.text(`Public IP: ${a.ip}`,25,65);doc.text(`Date: ${a.date}`,25,77);doc.text(`Time: ${a.time}`,25,89);doc.text(`Timezone: ${a.tz}`,25,101+p.qrGap);doc.setFontSize(8);doc.text('This stamp is generated at download time for catalog verification.',25,118+p.qrGap);if(recs.length){doc.addPage('a4',o);pageW=doc.internal.pageSize.getWidth();pageH=doc.internal.pageSize.getHeight();addSimpleHeader(doc,pageW,p,`Master Catalog · ${currentTier()} · ${state.factor}%`);let y=p.margin+p.header+5;orderedEntries(recs).forEach(e=>{y=drawSimpleBank(doc,e,y,pageW,pageH,p)});}if(finRecs.length)await appendFinwizzPdfPages(doc,finRecs,o,{rich:false});return doc;}
-
-function shortText(s,n){s=String(s||'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s}
-function entrySummary(entry){const ci=conditionInfo(entry.records),li=loginInfo(entry.records);return {ci,li};}
-async function addRichBackground(doc,bg,orientation){const w=doc.internal.pageSize.getWidth(),h=doc.internal.pageSize.getHeight();doc.addImage(bg,'JPEG',0,0,w,h,undefined,'FAST')}
-function richMetrics(doc,orientation){const portrait=orientation==='portrait';const w=portrait?210:297,h=portrait?297:210,m=8,tableTop=portrait?30:31,bottomGap=3;const raw=portrait?[18,12,8,11,14,18,12,50,9,14,18]:[24,16,10,15,20,24,18,75,13,20,27];const scale=(w-2*m)/raw.reduce((a,b)=>a+b,0),cw=raw.map(x=>x*scale);const font=richFont('tableBody',orientation),headerFont=richFont('tableHeader',orientation),footerFont=richFont('footer',orientation);doc.setFont('helvetica','bold');doc.setFontSize(headerFont);let maxHeaderLines=1;PDF_SOURCE_HEADERS.forEach((label,i)=>{maxHeaderLines=Math.max(maxHeaderLines,pdfHardWrap(doc,label,Math.max(2,cw[i]-2),headerFont).length)});const headH=Math.max(portrait?18:16,3+maxHeaderLines*headerFont*.3528*1.03);const footerH=Math.max(portrait?15:14,6+footerFont*.3528*2.2);const available=h-tableTop-headH-footerH-bottomGap;return {w,h,m,tableTop,headH,footerH,bottomGap,cw,font,headerFont,footerFont,minRow:Math.max(portrait?8:7,3+font*.3528*1.05),available};}
-function richFlatRows(entry){if(entry.records.some(isUpcoming)){const r=entry.records[0];return [{entry,record:r,isFirst:true,cells:[entry.institution,upcomingLabel(),'','','','','','','','','']}];}return entry.records.map((r,idx)=>({entry,record:r,records:[r],isFirst:idx===0,cells:[entry.institution,r.code||'',r.grossNet||'',r.productType||'',r.variant||'',r.payoutTimeline||'',r.applicableCities||'',downloadPayoutConditions(r),r.paymentType||'',r.payoutDisplay||'',r.clawback||'']}));}
-function richPrepareRow(doc,row,orientation,metrics){doc.setFont('helvetica','normal');doc.setFontSize(metrics.font);const lineMm=metrics.font*.3528*1.03;const wrapped=row.cells.map((value,i)=>{doc.setFont('helvetica',i===0?'bold':'normal');return pdfHardWrap(doc,value,Math.max(2,metrics.cw[i]-2.2),metrics.font)});const maxLines=Math.max(1,...wrapped.map(x=>x.length));const maxLinesPerPage=Math.max(1,Math.floor((metrics.available-3)/lineMm));const chunks=[];for(let start=0;start<maxLines;start+=maxLinesPerPage){const lines=wrapped.map(x=>x.slice(start,start+maxLinesPerPage));const chunkLines=Math.max(1,...lines.map(x=>x.length));chunks.push({...row,isFirst:row.isFirst&&start===0,continued:start>0,wrapped:lines,height:Math.max(metrics.minRow,3+chunkLines*lineMm)});}return chunks;}
-function paginateRichGroup(doc,entries,orientation){const metrics=richMetrics(doc,orientation),pages=[];let page=[],used=0;const rows=entries.flatMap(richFlatRows).flatMap(row=>richPrepareRow(doc,row,orientation,metrics));for(const measured of rows){if(page.length&&used+measured.height>metrics.available+.001){pages.push(page);page=[];used=0;}page.push(measured);used+=measured.height;}if(page.length)pages.push(page);return {metrics,pages};}
-async function drawRichGroupPage(doc,pageRows,groupTitle,assets,orientation){const metrics=richMetrics(doc,orientation),{w,h,m,tableTop,headH,footerH,cw,font,headerFont,footerFont}=metrics;await addRichBackground(doc,assets.bg,orientation);doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(richFont('catalogTitle',orientation));doc.text('MASTER CATALOG',w/2,16,{align:'center',maxWidth:w-2*m});doc.setFontSize(richFont('sectionTitle',orientation));doc.text(groupTitle.replace('|',' · ').toUpperCase(),w/2,24,{align:'center',maxWidth:w-2*m});let x=m;doc.setFillColor(0);doc.rect(m,tableTop,w-2*m,headH,'F');doc.setTextColor(255);doc.setFontSize(headerFont);PDF_SOURCE_HEADERS.forEach((label,i)=>{const lines=pdfHardWrap(doc,label,Math.max(2,cw[i]-2),headerFont);clipTextToBox(doc,lines,x+1,tableTop+1.6,cw[i]-2,headH-2.4,{lineHeightFactor:1.02});x+=cw[i]});doc.setTextColor(0);let y=tableTop+headH;for(let r=0;r<pageRows.length;r++){const row=pageRows[r],rowH=row.height;doc.setFillColor(r%2===0?244:255,r%2===0?248:255,r%2===0?240:255);doc.rect(m,y,w-2*m,rowH,'F');doc.setDrawColor(105);x=m;cw.forEach(c=>{doc.rect(x,y,c,rowH);x+=c});for(let i=0;i<row.cells.length;i++){x=m+cw.slice(0,i).reduce((a,b)=>a+b,0);doc.setFont('helvetica',i===0?'bold':'normal');doc.setFontSize(font);const lines=row.wrapped?.[i]||pdfHardWrap(doc,row.cells[i],Math.max(2,cw[i]-2.2),font);let tx=x+1;if(i===0&&row.isFirst){const logo=assets.logos[row.entry.institution];if(logo){try{const side=Math.min(6,rowH-3,cw[0]*.33);doc.addImage(logo,'PNG',x+1,y+1.3,side,side,undefined,'FAST');tx=x+side+2;}catch(_){}}}clipTextToBox(doc,lines,tx,y+1.7,Math.max(1,x+cw[i]-tx-1),rowH-2.4,{lineHeightFactor:1.03});}y+=rowH;}doc.setFillColor(255);doc.rect(0,h-footerH,w,footerH,'F');doc.setTextColor(0);doc.setFont('helvetica','normal');doc.setFontSize(footerFont);const footer='NoBroker Loans · Master Catalog · Download layout uses one row per product. HLC Payout % shown is the active T1/T2 payout. T1 uses Column T as supplied; T2 is derived at 85% of actuals.';const footerLines=pdfHardWrap(doc,footer,w-m-22,footerFont);clipTextToBox(doc,footerLines,m,h-footerH+3,w-m-22,footerH-5,{lineHeightFactor:1.05});if(assets.qr)doc.addImage(assets.qr,'PNG',w-16,h-footerH+1.5,11,11,undefined,'FAST');}
-
-async function generateRichPdf(recs,stamp,finRecs=[]){await lazyScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','jspdf');const {jsPDF}=window.jspdf;const o='landscape';const doc=new jsPDF({unit:'mm',format:'a4',orientation:o,compress:true});const cover=await fixedRichPageData(o,0),benefits=await fixedRichPageData(o,1),bg=await fetchDataUrl('assets/rich-background.jpg'),qr=await fetchDataUrl('assets/partner-qr.png').catch(()=>null);const entries=orderedEntries(recs);const logos={};for(const name of unique(entries.map(e=>e.institution)))logos[name]=await logoForInstitution(name);let w=doc.internal.pageSize.getWidth(),h=doc.internal.pageSize.getHeight();doc.addImage(cover,'JPEG',0,0,w,h,undefined,'FAST');richMonthStampOverlay(doc,w,h,o);doc.addPage('a4',o);w=doc.internal.pageSize.getWidth();h=doc.internal.pageSize.getHeight();doc.addImage(benefits,'JPEG',0,0,w,h,undefined,'FAST');const a=auditText(stamp);richAuditOverlay(doc,a,w,h,o);for(const key of state.sequence){const group=entries.filter(e=>e.sequenceKey===key);if(!group.length)continue;const plan=paginateRichGroup(doc,group,o);for(const pageRows of plan.pages){doc.addPage('a4',o);await drawRichGroupPage(doc,pageRows,key,{bg,qr,logos},o)}}if(finRecs.length)await appendFinwizzPdfPages(doc,finRecs,o,{rich:true,bg});if(true){const nm=$('#cover-name')?.value.trim()||'',dg=$('#cover-designation')?.value.trim()||'',ct=$('#cover-contact')?.value.trim()||'';doc.addPage('a4',o);w=doc.internal.pageSize.getWidth();h=doc.internal.pageSize.getHeight();await addRichBackground(doc,bg,o);doc.setFillColor(255,255,255);if(doc.setGState)doc.setGState(new doc.GState({opacity:.80}));doc.roundedRect(w*.09,h*.23,w*.82,h*.54,8,8,'F');if(doc.setGState)doc.setGState(new doc.GState({opacity:1}));doc.setTextColor(15,15,15);doc.setFont('helvetica','bold');doc.setFontSize(richFont('name',o));doc.text(nm||' ',w/2,h*.42,{align:'center',maxWidth:w*.7});doc.setFont('helvetica','normal');doc.setFontSize(richFont('designation',o));doc.text(dg||' ',w/2,h*.52,{align:'center',maxWidth:w*.7});doc.setFontSize(richFont('contact',o));doc.text(ct||' ',w/2,h*.61,{align:'center',maxWidth:w*.7});}return doc;}
 
 async function downloadExcel(recs,stamp,finRecs=[]){
-  await lazyScript('https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js','XLSX');
-  const a=auditText(stamp),wb=XLSX.utils.book_new();
-  const rows=[['Master Catalog',monthStamp()],['View',recs.length?`${currentTier()} · ${state.factor}%`:'3rd Party only'],['Public IP',a.ip],['Download Date',a.date],['Download Time',a.time],['Timezone',a.tz],[],['Institution Name','Code','Gross/Net','Product Group','Product Type','Sub-Product / Variant','HLC Payout %','Payout Timeline','Payment Type','Applicable Cities','Payout Conditions / Additional Conditions','Clawback']];
-  orderedEntries(recs).forEach(e=>{if(e.records.some(isUpcoming)){rows.push([e.institution,upcomingLabel(),'','','','','','','','','','']);return;}e.records.forEach(r=>rows.push([r.institutionName,r.code,r.grossNet,PRODUCT_LABELS[r.productGroup]||r.productGroup,r.productType,r.variant,r.payoutDisplay,r.payoutTimeline,r.paymentType,r.applicableCities,downloadPayoutConditions(r),r.clawback]));});
-  const mainWs=XLSX.utils.aoa_to_sheet(rows);
-  mainWs['!cols']=[{wch:26},{wch:16},{wch:11},{wch:14},{wch:16},{wch:24},{wch:14},{wch:22},{wch:16},{wch:24},{wch:60},{wch:34}];
-  XLSX.utils.book_append_sheet(wb,mainWs,`${monthStamp()} Payout Catalog`.slice(0,31));
-  const cond=[['Institution Name','Code','Product','Variant','Payout Conditions / Additional Conditions']];
-  orderedEntries(recs).forEach(e=>{if(e.records.some(isUpcoming))return;e.records.forEach(r=>{const pc=downloadPayoutConditions(r);if(pc)cond.push([e.institution,r.code,PRODUCT_LABELS[r.productGroup]||r.productType||r.productGroup,r.variant,pc])})});
-  const condWs=XLSX.utils.aoa_to_sheet(cond);
-  condWs['!cols']=[{wch:28},{wch:16},{wch:18},{wch:26},{wch:75}];
-  XLSX.utils.book_append_sheet(wb,condWs,'Payout Conditions');
-  if(finRecs.length){const fw=[FINWIZZ_PDF_HEADERS];finRecs.forEach(r=>fw.push([r.institutionName,r.mode,r.code,r.grossNet,r.productType,r.variant,r.productPayout,r.payoutTimeline,r.applicableCities,r.conditions,r.paymentType]));XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(fw),'3rd Party');}
-  XLSX.writeFile(wb,`${fileBase()}.xlsx`);
+ await lazyScript('https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js','XLSX');
+ const rows=orderedEntries(recs).flatMap(e=>e.records).concat(finRecs.map(r=>({...r,sourceKind:'third'})));
+ const wb=XLSX.utils.book_new(),ws=XLSX.utils.aoa_to_sheet([COMPACT_HEADERS,...rows.map(compactCells),[],...COMPACT_FOOTER.map(t=>[t])]);
+ ws['!cols']=[{wch:12},{wch:28},{wch:20},{wch:12},{wch:48},{wch:70},{wch:28}];
+ XLSX.utils.book_append_sheet(wb,ws,'Compact Conditions');XLSX.writeFile(wb,`${fileBase()}.xlsx`);
 }
 
-function revampPrintMode(){return $('input[name="print-mode"]:checked')?.value||'compact';}
-function revampText(x){return x==null?'':String(x).trim();}
-function revampWrap(doc,txt,maxW,font=8){doc.setFontSize(font);const s=revampText(txt)||'—';return doc.splitTextToSize(s,Math.max(12,maxW));}
-function revampAnnexure(doc,records,mode){
- if(mode!=='detail'||!records.length)return;
- const margin=13,w=297,h=210;let y=18;
- function next(){doc.addPage('a4','landscape');y=18;doc.setFillColor(216,0,0);doc.rect(0,0,w,9,'F');doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('PAYOUT CONDITIONS — ANNEXURE',margin,y);y+=12;}
- next();
- records.forEach((r,i)=>{
-  const full=revampText(r.conditions)||'No additional conditions specified.';
-  const cap=revampText(r.payoutCapping);const login=revampText(r.loginProcess);
-  const text=[full,cap?'Payout Capping: '+cap:''].filter(Boolean).join('\n');
-  const title=`${i+1}. ${r.institutionName}  |  ${r.code}  |  ${r.productType} / ${r.variant}`;
-  doc.setFont('helvetica','normal');const lines=revampWrap(doc,text,w-2*margin-6,8.2);
-  const loginLines=login?revampWrap(doc,'Login Mandate / Process: '+login,w-2*margin-6,8.2):[];
-  const blockH=8+(lines.length+loginLines.length)*4.1+5;
-  if(y+blockH>h-14)next();
-  doc.setFillColor(247,242,242);doc.rect(margin,y,w-2*margin,7,'F');doc.setTextColor(100,0,0);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.text(title,margin+2,y+4.8,{maxWidth:w-2*margin-4});y+=9;
-  doc.setTextColor(30);doc.setFont('helvetica','normal');doc.setFontSize(8.2);
-  for(const line of lines){if(y>h-15)next();doc.text(line,margin+2,y);y+=4.1;}
-  if(loginLines.length){y+=2;doc.setFont('helvetica','bold');for(const line of loginLines){if(y>h-15)next();doc.text(line,margin+2,y);y+=4.1;}}
-  y+=6;
- });
-}
-function revampFitText(doc,text,x,y,w,h,{maxFont=6.2,minFont=4.2,bold=false,color=[20,20,20]}={}){
-  const clean=revampText(text)||'—';let font=maxFont,lines,lineH;
-  while(font>=minFont){doc.setFont('helvetica',bold?'bold':'normal');doc.setFontSize(font);lines=doc.splitTextToSize(clean,Math.max(3,w));lineH=font*.3528*1.12;if(lines.length*lineH<=h-.8)break;font-=.25;}
-  doc.setTextColor(...color);doc.setFont('helvetica',bold?'bold':'normal');doc.setFontSize(Math.max(font,minFont));lineH=Math.max(font,minFont)*.3528*1.12;
-  const maxLines=Math.max(1,Math.floor((h-.8)/lineH));const shown=(lines||[clean]).slice(0,maxLines);shown.forEach((ln,i)=>doc.text(ln,x,y+lineH*(i+1)-.6,{maxWidth:w}));
-}
-async function drawRevampProductCard(doc,r,mode,x,y,w,h){
-  const leftW=w*.64,rightW=w-leftW,labelW=leftW*.43,valueW=leftW-labelW,titleH=11,rowH=(h-titleH)/9;
-  const fields=r.sourceKind==='third'?
-   [['Code',r.code],['Gross/Net',r.grossNet],['Product Type',r.productType],['Sub-Product/Variant',r.variant],['Metro Cities Payout %',state.view==='public'?'Hidden in Code Catalog':r.productPayout],['Payout Timeline',r.payoutTimeline],['Applicable Cities',r.applicableCities],['Payment Type (MIS/Spot)',r.paymentType],['Payout Capping',r.payoutCapping]]:
-   [['Code',r.code],['Gross/Net',r.grossNet],['Product Type',r.productType],['Sub-Product/Variant',r.variant],['Metro Cities Payout %',state.view==='public'?'Hidden in Code Catalog':(r.payoutDisplay||r.payoutT1)],['Payout Timeline',r.payoutTimeline],['Applicable Cities',r.applicableCities],['Payment Type (MIS/Spot)',r.paymentType],['Payout Capping',r.payoutCapping]];
-  doc.setDrawColor(216,0,0);doc.setLineWidth(.45);doc.rect(x,y,w,h);
-  doc.setFillColor(216,0,0);doc.rect(x,y,leftW,titleH,'F');revampFitText(doc,r.institutionName,x+2,y+1,leftW-4,titleH-2,{maxFont:10,minFont:6,bold:true,color:[255,255,255]});
-  let yy=y+titleH;
-  for(const [label,value] of fields){doc.setFillColor(216,0,0);doc.rect(x,yy,labelW,rowH,'F');doc.setFillColor(255);doc.rect(x+labelW,yy,valueW,rowH,'F');doc.setDrawColor(225);doc.rect(x+labelW,yy,valueW,rowH);revampFitText(doc,label,x+2,yy+.35,labelW-4,rowH-.7,{maxFont:5.8,minFont:4.2,color:[255,255,255]});revampFitText(doc,value,x+labelW+2,yy+.35,valueW-4,rowH-.7,{maxFont:5.8,minFont:4.1});yy+=rowH;}
-  const rx=x+leftW,logoH=mode==='compact'?31:50;
-  doc.setDrawColor(216,0,0);doc.rect(rx,y,rightW,logoH);
-  const logo=await logoForInstitution(r.institutionName).catch(()=>null);
-  if(logo){try{const pad=5;doc.addImage(logo,'PNG',rx+pad,y+pad,rightW-2*pad,logoH-2*pad,undefined,'FAST')}catch(_){revampFitText(doc,'INSTITUTION LOGO',rx+4,y+4,rightW-8,logoH-8,{maxFont:7,minFont:5,bold:true});}}
-  else revampFitText(doc,'INSTITUTION LOGO',rx+4,y+4,rightW-8,logoH-8,{maxFont:7,minFont:5,bold:true});
-  if(mode==='compact'){
-    const headH=8,cy=y+logoH+headH,ch=h-logoH-headH;doc.setFillColor(216,0,0);doc.rect(rx,y+logoH,rightW,headH,'F');revampFitText(doc,'Payout Conditions / Additional Conditions',rx+2,y+logoH+.5,rightW-4,headH-1,{maxFont:5.4,minFont:4.2,bold:true,color:[255,255,255]});doc.setDrawColor(216,0,0);doc.rect(rx,cy,rightW,ch);const conditions=r.sourceKind==='third'?r.conditions:(r.distilledConditions||r.conditions);revampFitText(doc,conditions,rx+2,cy+1,rightW-4,ch-2,{maxFont:5.3,minFont:3.8});
-  }else{
-    const noteY=y+logoH,noteH=h-logoH;doc.setDrawColor(216,0,0);doc.rect(rx,noteY,rightW,noteH);revampFitText(doc,'Check annexure for complete payout conditions and login mandate/process.',rx+3,noteY+3,rightW-6,noteH-6,{maxFont:5.4,minFont:4.1});
-  }
-}
-async function generateRevampedPdf(recs,stamp,finRecs=[],rich=true){
+async function generateRevampedPdf(recs,stamp,finRecs=[]){
  await lazyScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','jspdf');
- const {jsPDF}=window.jspdf,doc=new jsPDF({unit:'mm',format:'a4',orientation:'landscape',compress:true});const W=297,H=210,mode=revampPrintMode();
- const cover=await fixedRichPageData('landscape',0),benefits=await fixedRichPageData('landscape',1);doc.addImage(cover,'JPEG',0,0,W,H,undefined,'FAST');richMonthStampOverlay(doc,W,H,'landscape');doc.addPage('a4','landscape');doc.addImage(benefits,'JPEG',0,0,W,H,undefined,'FAST');richAuditOverlay(doc,auditText(stamp),W,H,'landscape');
- const mainRows=orderedEntries(recs).flatMap(e=>e.records.map(r=>({...r,sourceKind:'main'})));const all=mainRows.concat(finRecs.map(r=>({...r,sourceKind:'third'})));
- const mx=8,my=8,gx=5,gy=5,cardW=(W-2*mx-gx)/2,cardH=(H-2*my-gy)/2;
- for(let i=0;i<all.length;i+=4){doc.addPage('a4','landscape');const batch=all.slice(i,i+4);for(let j=0;j<batch.length;j++){const col=j%2,row=Math.floor(j/2);await drawRevampProductCard(doc,batch[j],mode,mx+col*(cardW+gx),my+row*(cardH+gy),cardW,cardH);}}
- if(!all.length){doc.addPage('a4','landscape');doc.setFontSize(16);doc.text('No selected products',20,25);}
- revampAnnexure(doc,all,mode);
- const nm=$('#cover-name')?.value.trim()||'',dg=$('#cover-designation')?.value.trim()||'',ct=$('#cover-contact')?.value.trim()||'';
- doc.addPage('a4','landscape');let bg=null;try{bg=await fetchDataUrl('assets/rich-background.jpg')}catch(_){bg=null}if(bg)await addRichBackground(doc,bg,'landscape');doc.setFillColor(255,255,255);if(doc.setGState)doc.setGState(new doc.GState({opacity:.84}));doc.roundedRect(W*.09,H*.23,W*.82,H*.54,8,8,'F');if(doc.setGState)doc.setGState(new doc.GState({opacity:1}));doc.setTextColor(15);doc.setFont('helvetica','bold');doc.setFontSize(34);doc.text(nm||' ',W/2,H*.42,{align:'center',maxWidth:W*.7});doc.setFont('helvetica','normal');doc.setFontSize(22);doc.text(dg||' ',W/2,H*.52,{align:'center',maxWidth:W*.7});doc.setFontSize(16);doc.text(ct||' ',W/2,H*.61,{align:'center',maxWidth:W*.7});
+ const doc=new window.jspdf.jsPDF({unit:'mm',format:'a4',orientation:'landscape',compress:true});
+ const qr=await fetchDataUrl('assets/partner-qr.png');
+ const all=orderedEntries(recs).flatMap(e=>e.records).concat(finRecs.map(r=>({...r,sourceKind:'third'})));
+ const widths=[21,34,29,18,62,88,29],margin=8,font=7,lineH=3.1,bottom=171;
+ let y=30,page=0;
+ const logoCache={};
+ function newPage(){
+  if(page++)doc.addPage('a4','landscape');
+  doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(17);doc.text('MASTER CATALOG',148.5,13,{align:'center'});
+  doc.setFontSize(9);doc.text(monthStamp(),148.5,19,{align:'center'});
+  doc.setFillColor(0);doc.rect(margin,23,281,9,'F');doc.setTextColor(255);doc.setFontSize(8);
+  let x=margin;COMPACT_HEADERS.forEach((h,i)=>{doc.text(h,x+2,28.5);x+=widths[i]});y=32;
+  if(all.some(r=>/spot/i.test(r.paymentType||''))){doc.setFillColor(125,215,79);doc.rect(8,173,281,4,'F');doc.setTextColor(0);doc.setFontSize(7);doc.text('* AVAIL SPOT PAYMENT ON HIGHLIGHTED BANKS',148.5,176,{align:'center'});}
+  doc.setTextColor(0);doc.setFont('helvetica','normal');doc.setFontSize(7.5);
+  let fy=183;COMPACT_FOOTER.forEach(t=>{const lines=doc.splitTextToSize(t,249);doc.text(lines,margin,fy,{lineHeightFactor:1.15});fy+=lines.length*3.1+1.5;});
+  doc.addImage(qr,'PNG',263,178,26,26,undefined,'FAST');
+  doc.setFontSize(5);const audit=auditText(stamp);doc.text(`Page ${page} | ${audit.date} ${audit.time} | IP: ${audit.ip}`,margin,207);
+ }
+ newPage();
+ for(const r of all){
+  doc.setFont('helvetica','normal');doc.setFontSize(font);
+  const lines=compactCells(r).map((v,i)=>pdfHardWrap(doc,v,widths[i]-4,font));
+  const count=Math.max(...lines.map(a=>a.length));let offset=0;
+  if(!(r.institutionName in logoCache))logoCache[r.institutionName]=await logoForInstitution(r.institutionName).catch(()=>null);
+  while(offset<count){
+   if(y+14>bottom)newPage();
+   const capacity=Math.max(1,Math.floor((bottom-y-4)/lineH));
+   if(offset===0 && count>capacity && count<=Math.floor((bottom-32-4)/lineH)){newPage();continue;}
+   const n=Math.min(count-offset,capacity),height=Math.max(14,n*lineH+4),spot=/spot/i.test(r.paymentType||'');
+   doc.setFillColor(...(spot?[125,215,79]:[255,255,255]));doc.rect(margin,y,281,height,'F');
+   let x=margin;doc.setTextColor(0);doc.setDrawColor(140);doc.setLineWidth(.15);doc.setFont('helvetica','normal');doc.setFontSize(font);
+   widths.forEach((w,i)=>{doc.rect(x,y,w,height);if(i>0&&lines[i].slice(offset,offset+n).length)doc.text(lines[i].slice(offset,offset+n),x+2,y+3.5,{lineHeightFactor:lineH/(font*.3528)});x+=w;});
+   const logo=logoCache[r.institutionName];if(logo&&offset===0){const props=doc.getImageProperties(logo),scale=Math.min(17/props.width,(height-4)/props.height);doc.addImage(logo,'PNG',margin+(21-props.width*scale)/2,y+(height-props.height*scale)/2,props.width*scale,props.height*scale,undefined,'FAST');}
+   y+=height;offset+=n;
+  }
+ }
+
  return doc;
 }
 
@@ -491,7 +445,6 @@ function installEvents(){
   $('#select-visible').onclick=()=>{if(state.catalogSource==='finwizz'){visibleRecords().forEach(r=>state.selectedFinwizz.add(r.id));}else{groupBanks(visibleRecords()).forEach(b=>state.selected.add(b.name));}renderAll()};
   $('#clear-selection').onclick=()=>{if(state.catalogSource==='finwizz')state.selectedFinwizz.clear();else state.selected.clear();renderAll()};
   $$('[data-close]').forEach(b=>b.onclick=()=>closeOverlay(b.dataset.close));$$('.overlay').forEach(o=>o.onclick=e=>{if(e.target===o)closeOverlay(o.id)});
-  $('#download-fab').onclick=openDownloadStudio;
   $('#download-city-filter').onchange=()=>{renderSequencer();schedulePreview()};
   $('#factor-input').onchange=refreshForFactor;$('#factor-input').oninput=()=>{$('#factor-input').value=Math.min(currentCap(),Math.max(0,Number($('#factor-input').value)||0));};
   $('#include-finwizz-download').onchange=async e=>{state.includeFinwizzInDownload=e.target.checked;if(e.target.checked){try{await ensureFinwizzDownloadLoaded();if(!state.selectedFinwizz.size)$('#finwizz-download-picker').classList.remove('hidden');}catch(err){state.includeFinwizzInDownload=false;e.target.checked=false;alert(`3rd Party catalog could not be loaded: ${err.message}`);}}updateFinwizzDownloadCount();schedulePreview();};
