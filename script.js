@@ -265,6 +265,9 @@ function syncPrintInputs(){const p=state.print;$('#s-margin').value=p.margin;$('
 function readPrintInputs(){readRichInputs();state.print={...state.print,preset:'custom',margin:+$('#s-margin').value,font:+$('#s-font').value,line:+$('#s-line').value,fieldGap:+$('#s-field-gap').value,blockGap:+$('#s-block-gap').value,header:+$('#s-header').value,footer:+$('#s-footer').value,qrGap:+$('#s-qr-gap').value,cardPadding:+$('#s-card-padding').value,sectionGap:+$('#s-section-gap').value,orientation:'landscape'};savePrintSettings();updateDownloadButton()}
 function setPreset(name){const richText={...RICH_TEXT_DEFAULTS,...(state.print.richText||{})};state.print={...PRESETS[name],orientation:'landscape',preset:name,richText};savePrintSettings();syncPrintInputs();updateDownloadButton()}
 function resetRichTextSettings(){state.print.richText={...RICH_TEXT_DEFAULTS};savePrintSettings();syncRichInputs();updateDownloadButton()}
+function ensureDownloadAccessForm(){
+ if(!document.getElementById("download-auth-form"))document.body.insertAdjacentHTML("beforeend","<div aria-hidden=\"true\" class=\"overlay\" id=\"download-auth-overlay\"><section class=\"modal\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"download-auth-title\" style=\"width:min(420px,94vw);padding:28px\"><button class=\"modal-close\" data-close=\"download-auth-overlay\" type=\"button\" aria-label=\"Close\">\u00d7</button><h2 id=\"download-auth-title\">Unlock download</h2><form id=\"download-auth-form\"><label style=\"display:block;margin:16px 0\">ID<input id=\"download-auth-id\" type=\"text\" autocomplete=\"username\" required style=\"display:block;width:100%;margin-top:6px;padding:10px\"></label><label style=\"display:block;margin:16px 0\">Code<input id=\"download-auth-code\" type=\"password\" inputmode=\"numeric\" autocomplete=\"current-password\" required style=\"display:block;width:100%;margin-top:6px;padding:10px\"></label><p id=\"download-auth-error\" role=\"alert\" style=\"color:#d80000;min-height:20px\"></p><button class=\"primary-btn\" id=\"download-auth-submit\" type=\"submit\" style=\"display:block;width:100%;background:#d80000;color:white;padding:12px\">Unlock download</button></form></section></div>");
+}
 let downloadAuthorized=false;
 function requestDownloadAccess(){
  $('#download-auth-form').reset();$('#download-auth-error').textContent='';
@@ -326,7 +329,7 @@ async function logoForInstitution(name){
 function wrap(doc,text,width,fontSize){doc.setFontSize(fontSize);return doc.splitTextToSize(String(text||''),width)}
 function auditText(stamp){const dt=new Date(stamp.timestamp||Date.now());return {ip:stamp.ip||'Unavailable',date:dt.toLocaleDateString(),time:dt.toLocaleTimeString(),tz:Intl.DateTimeFormat().resolvedOptions().timeZone||'Local'};}
 
-const COMPACT_HEADERS=['Logo','bank','code','type','Payout %','payout dates','conditions','City'];
+const COMPACT_HEADERS=['Logo','bank','code','type','Product Type','Payout %','payout dates','conditions','City'];
 const COMPACT_GROUPS=[['Public|Spot','PSU Banks SPOT'],['Public|MIS','PSU Banks MIS'],['Private|Spot','Private Banks SPOT'],['Private|MIS','Private Banks MIS'],['NBFC|Spot','NBFC SPOT'],['NBFC|MIS','NBFC MIS']];
 function compactGroupKey(r){return `${r.institutionClass||'NBFC'}|${isUpcoming(r)?'MIS':(/spot/i.test(r.paymentType||'')?'Spot':'MIS')}`;}
 const COMPACT_FOOTER=[
@@ -334,7 +337,7 @@ const COMPACT_FOOTER=[
  '*Send all login confirmations to nbloansadmin@nobroker.in with banker name, email ID, customer name, loan amount, and loan type **100% Subvention & PF deductions value is applicable on DSA Payout.'
 ];
 function compactConditions(r){const compact=String(r.distilledConditions??'').trim();return compact||String(r.conditions??'').trim();}
-function compactCells(r){return ['',r.institutionName||'',r.code||'',r.grossNet||'',r.payoutT1??'',r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
+function compactCells(r){return ['',r.institutionName||'',r.code||'',r.grossNet||'',r.productType||r.productGroup||'',r.payoutT1??'',r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
 function pdfSafeText(value){return String(value??'').replace(/₹/g,'Rs. ').replace(/[\u2010-\u2015]/g,'-').replace(/[\u2018\u2019]/g,"'").replace(/[\u201C\u201D]/g,'"').replace(/\u2022/g,'-').replace(/\u00a0/g,' ').replace(/\u200b/g,'');}
 function conditionWordCount(r){return compactConditions(r).split(/\s+/u).filter(Boolean).length;}
 function pdfHardWrap(doc,value,width,fontSize){doc.setFontSize(fontSize);const text=pdfSafeText(value).replace(/\r/g,'');const out=[];for(const para of text.split('\n')){if(!para){out.push('');continue;}const soft=doc.splitTextToSize(para,Math.max(1,width));for(const item of soft){let s=String(item??'');if(doc.getTextWidth(s)<=width+.01){out.push(s);continue;}let buf='';for(const ch of s){const test=buf+ch;if(buf&&doc.getTextWidth(test)>width){out.push(buf);buf=ch;}else buf=test;}if(buf)out.push(buf);}}return out.length?out:[''];}
@@ -348,7 +351,7 @@ async function generateRevampedPdf(recs,stamp){
  const qr=await fetchDataUrl('assets/partner-qr.png');
  const all=orderedEntries(recs).flatMap(e=>e.records);
  const annexure=all.filter(r=>conditionWordCount(r)>100);const annexureRefs=new Map(annexure.map((r,i)=>[r,i+1]));
- const widths=[18,31,25,16,25,49,91,26],margin=8,font=7,lineH=3.1,bottom=171;
+ const widths=[17,29,24,16,22,23,45,80,25],margin=8,font=7,lineH=3.1,bottom=171;
  let y=38,page=0,groupTitle='',groupRows=[];
  const logoCache={};
  function newPage(isAnnexure=false){
@@ -371,7 +374,7 @@ async function generateRevampedPdf(recs,stamp){
  groupRows=all.filter(r=>compactGroupKey(r)===key);if(!groupRows.length)continue;groupTitle=title;newPage();
  for(const r of groupRows){
   doc.setFont('helvetica','normal');doc.setFontSize(font);
-  const cells=compactCells(r);if(annexureRefs.has(r))cells[6]=`* Read detailed payout conditions in the Annexure\nReference A${annexureRefs.get(r)}`;
+  const cells=compactCells(r);if(annexureRefs.has(r))cells[7]=`* Read detailed payout conditions in the Annexure\nReference A${annexureRefs.get(r)}`;
   const lines=cells.map((v,i)=>pdfHardWrap(doc,v,widths[i]-4,font));
   const count=Math.max(...lines.map(a=>a.length));let offset=0;
   if(!(r.institutionName in logoCache))logoCache[r.institutionName]=await logoForInstitution(r.institutionName).catch(()=>null);
@@ -383,7 +386,7 @@ async function generateRevampedPdf(recs,stamp){
    doc.setFillColor(...(spot?[125,215,79]:[255,255,255]));doc.rect(margin,y,281,height,'F');
    let x=margin;doc.setTextColor(0);doc.setDrawColor(140);doc.setLineWidth(.15);doc.setFont('helvetica','normal');doc.setFontSize(font);
    widths.forEach((w,i)=>{doc.rect(x,y,w,height);if(i>0&&lines[i].slice(offset,offset+n).length)clipTextToBox(doc,lines[i].slice(offset,offset+n),x+2,y+1.6,w-4,height-3,{lineHeightFactor:lineH/(font*.3528)});x+=w;});
-   const logo=logoCache[r.institutionName];if(logo&&offset===0){const props=doc.getImageProperties(logo),scale=Math.min(14/props.width,(height-4)/props.height);doc.addImage(logo,'PNG',margin+(18-props.width*scale)/2,y+(height-props.height*scale)/2,props.width*scale,props.height*scale,undefined,'FAST');}
+   const logo=logoCache[r.institutionName];if(logo&&offset===0){const props=doc.getImageProperties(logo),scale=Math.min(14/props.width,(height-4)/props.height);doc.addImage(logo,'PNG',margin+(17-props.width*scale)/2,y+(height-props.height*scale)/2,props.width*scale,props.height*scale,undefined,'FAST');}
    y+=height;offset+=n;
   }
  }
@@ -434,6 +437,7 @@ async function switchCatalogView(view){
 }
 
 function installEvents(){
+  ensureDownloadAccessForm();
   $('#download-fab').onclick=requestDownloadAccess;
   $('#download-auth-form').onsubmit=unlockDownload;
   $('#code-catalog-tab').onclick=()=>switchCatalogView('public');$('#payout-catalog-tab').onclick=()=>switchCatalogView('t1');$$('input[name="print-mode"]').forEach(el=>el.onchange=()=>updateDownloadButton());
@@ -452,15 +456,15 @@ function installEvents(){
   window.addEventListener('keyup',e=>{if(e.key==='PrintScreen')showScreenshotGuard()});
 }
 async function init(){
-  loadPrintSettings();
-  installEvents();
   try{
+    loadPrintSettings();
+    installEvents();
     const restored=await restoreSession();
     await loadCatalog('public');
   }catch(err){
     console.error(err);
     const status=document.getElementById('source-status');
-    if(status) status.innerHTML=`<span class="status-dot" style="background:#d80000"></span>Catalog data could not be loaded. Keep index.html, styles.css, script.js and catalog-data.json together in the repository root.`;
+    if(status) status.innerHTML=`<span class="status-dot" style="background:#d80000"></span>Catalog could not start. Deploy matching index.html and script.js files, and keep catalog-data.json in the site root.`;
     const results=document.getElementById('results');
     if(results) results.innerHTML='<div style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">Catalog data failed to load. Confirm catalog-data.json is in the same folder as index.html, then redeploy.</div>';
   }
