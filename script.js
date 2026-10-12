@@ -250,7 +250,12 @@ function closeOverlay(id){if(id==='download-overlay')downloadAuthorized=false;co
 async function restoreSession(){return false;}
 
 function selectedBanks(){return [...state.selected];}
-function selectedRecordsForDownload(){const banks=new Set(selectedBanks());let recs=mainRecords().filter(r=>banks.has(r.institutionName));const cf=$('#download-city-filter')?.value||'';if(cf)recs=recs.filter(r=>isUpcoming(r)||r.applicableCities===cf);return recs;}
+function excludeFromPrintedCatalog(row){
+ const marker=/not\s+to\s+include\s+in\s+catalog/i;
+ const contains=value=>typeof value==='string'?marker.test(value):Array.isArray(value)?value.some(contains):value&&typeof value==='object'?Object.values(value).some(contains):false;
+ return contains(row);
+}
+function selectedRecordsForDownload(){const banks=new Set(selectedBanks());let recs=mainRecords().filter(r=>banks.has(r.institutionName)&&!excludeFromPrintedCatalog(r));const cf=$('#download-city-filter')?.value||'';if(cf)recs=recs.filter(r=>isUpcoming(r)||r.applicableCities===cf);return recs;}
 function selectedFinwizzRecordsForDownload(){if(!state.includeFinwizzInDownload||!state.finwizzRecords)return [];return finWizzRecords().filter(r=>state.selectedFinwizz.has(r.id));}
 function hasDownloadRecords(){return selectedRecordsForDownload().length>0||selectedFinwizzRecordsForDownload().length>0;}
 function sequenceCounts(recs){const map={};groupDownloadEntries(recs).forEach(e=>map[e.sequenceKey]=(map[e.sequenceKey]||0)+1);return map;}
@@ -349,7 +354,8 @@ async function generateRevampedPdf(recs,stamp){
  await lazyScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','jspdf');
  const doc=new window.jspdf.jsPDF({unit:'mm',format:'a4',orientation:'landscape',compress:true});
  const qr=await fetchDataUrl('assets/partner-qr.png');
- const all=orderedEntries(recs).flatMap(e=>e.records);
+ const all=orderedEntries(recs.filter(r=>!excludeFromPrintedCatalog(r))).flatMap(e=>e.records);
+ if(!all.length)throw new Error('No printable products remain in this selection.');
  const annexure=all.filter(r=>conditionWordCount(r)>100);const annexureRefs=new Map(annexure.map((r,i)=>[r,i+1]));
  const widths=[17,29,24,16,22,23,45,80,25],margin=8,font=7,lineH=3.1,bottom=171;
  let y=38,page=0,groupTitle='',groupRows=[];
