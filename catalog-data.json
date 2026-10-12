@@ -35,7 +35,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "100 % IN 6 months and 50% in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Payout applicable only if cheque cleared"
+      "distilledConditions": "Payout applicable only if cheque cleared",
+      "catalogDirective": ""
     },
     {
       "id": "241f84a586ec63e5",
@@ -55,7 +56,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "100 % IN 6 months and 50% in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "25d4e3b0b9baf108",
@@ -75,7 +77,8 @@
       "payoutT1": "1.05%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "00867f7d4fcef412",
@@ -95,7 +98,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "10 Lakhs",
       "clawback": "12 months 100 %\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "PF if any not collected will be deducted as subvention from payout \nThis slab only for ROI < 10.5%"
+      "distilledConditions": "PF if any not collected will be deducted as subvention from payout \nThis slab only for ROI < 10.5%",
+      "catalogDirective": ""
     },
     {
       "id": "266c3db26e9254a0",
@@ -115,7 +119,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "10 Lakhs",
       "clawback": "12 months 100 %\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Any Home Loan with an interest rate of 10.50% or above is considered Pragati HL.\nInformal Home Loan cases with interest rate of 10.75% or above are considered Pragati Aashiyana."
+      "distilledConditions": "Any Home Loan with an interest rate of 10.50% or above is considered Pragati HL.\nInformal Home Loan cases with interest rate of 10.75% or above are considered Pragati Aashiyana.",
+      "catalogDirective": ""
     },
     {
       "id": "c7a0214abc2bab61",
@@ -135,7 +140,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "10 Lakhs",
       "clawback": "12 months 100 %\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Informal Loan Against Property cases with interest rate of 11.25% or above are considered Micro LAP."
+      "distilledConditions": "Informal Loan Against Property cases with interest rate of 11.25% or above are considered Micro LAP.",
+      "catalogDirective": ""
     },
     {
       "id": "aa3c05fa7e73c211",
@@ -155,7 +161,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "10 Lakhs",
       "clawback": "12 months 100 %\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Informal Loan Against Property cases with interest rate of 11.25% or above are considered Micro LAP."
+      "distilledConditions": "Informal Loan Against Property cases with interest rate of 11.25% or above are considered Micro LAP.",
+      "catalogDirective": ""
     },
     {
       "id": "0e2677933030c898",
@@ -175,7 +182,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "7Lakhs",
       "clawback": "Not Mentioned, TO be takes as 12 months as per RBI\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Flat 0.50% Payout for HL Subvention cases"
+      "distilledConditions": "Flat 0.50% Payout for HL Subvention cases",
+      "catalogDirective": ""
     },
     {
       "id": "d817f4b0b9048fc9",
@@ -195,7 +203,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "7Lakhs",
       "clawback": "Not Mentioned, TO be takes as 12 months as per RBI\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Flat 0.50% Payout for HL Subvention cases"
+      "distilledConditions": "Flat 0.50% Payout for HL Subvention cases",
+      "catalogDirective": ""
     },
     {
       "id": "b270f643af907d23",
@@ -215,7 +224,8 @@
       "payoutT1": "1.30%",
       "payoutCapping": "10 Lakhs",
       "clawback": "Not Mentioned, TO be takes as 12 months as per RBI\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Subvention from the payout on the differential PF amount collected against the mandate of PF of 0.50% for LAP.\\"
+      "distilledConditions": "Subvention from the payout on the differential PF amount collected against the mandate of PF of 0.50% for LAP.\\",
+      "catalogDirective": ""
     },
     {
       "id": "13b4a0d01f7ea5b8",
@@ -235,7 +245,8 @@
       "payoutT1": "90% of minimum of(PF Collected or 1% of Sanctioned)",
       "payoutCapping": "The payout for ODLAP linked to reimbursement of 100% of PF collected OR 1% of Sanctioned whichever is lower.",
       "clawback": "Not Mentioned, TO be takes as 12 months as per RBI\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "The payout for ODLAP linked to reimbursement of 100% of PF collected OR 1% of Sanctioned whichever is lower."
+      "distilledConditions": "The payout for ODLAP linked to reimbursement of 100% of PF collected OR 1% of Sanctioned whichever is lower.",
+      "catalogDirective": ""
     },
     {
       "id": "fb904c141ff34e34",
@@ -255,7 +266,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "Not Mentioned, TO be takes as 12 months as per RBI\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "DSA - ASHA and Sugam Lap - 1.10% on Disbursement amount for ASHA and Sugam LAP cases."
+      "distilledConditions": "DSA - ASHA and Sugam Lap - 1.10% on Disbursement amount for ASHA and Sugam LAP cases.",
+      "catalogDirective": ""
     },
     {
       "id": "eb7f74f0df4f8488",
@@ -275,7 +287,8 @@
       "payoutT1": "1.20%",
       "payoutCapping": "7.5 Lakhs",
       "clawback": "Loan is part-payment/foreclosed/cancelled within 1 year of disbursal, the same will be adjusted/collected\nfrom partner in subsequent month.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "d05809a2d0057060",
@@ -295,7 +308,8 @@
       "payoutT1": "90% of PF Collected",
       "payoutCapping": "7.5 Lakhs",
       "clawback": "Loan is part-payment/foreclosed/cancelled within 1 year of disbursal, the same will be adjusted/collected\nfrom partner in subsequent month.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "e9862c5436586244",
@@ -315,7 +329,8 @@
       "payoutT1": "90% of (75% of PF Collected)",
       "payoutCapping": "7.5 Lakhs",
       "clawback": "Loan is part-payment/foreclosed/cancelled within 1 year of disbursal, the same will be adjusted/collected\nfrom partner in subsequent month.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "337fe39612c28a5f",
@@ -335,7 +350,8 @@
       "payoutT1": "90% of PF Collected",
       "payoutCapping": "6 Lakhs",
       "clawback": "Loan is part-payment/foreclosed/cancelled within 1 year of disbursal, the same will be adjusted/collected\nfrom partner in subsequent month.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "ea93c84429263dfb",
@@ -355,7 +371,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "6 Lakhs",
       "clawback": "Loan is part-payment/foreclosed/cancelled within 1 year of disbursal, the same will be adjusted/collected\nfrom partner in subsequent month.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "8ceb8dc0b1ff6537",
@@ -375,7 +392,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "76dfa5b52bd76470",
@@ -395,7 +413,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "6798dd84b5f43037",
@@ -415,7 +434,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "e05073a5d2dd8bb3",
@@ -435,7 +455,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "6f096513f64f6f3c",
@@ -455,7 +476,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "1d211afb129bddfb",
@@ -475,7 +497,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "84520039ad822187",
@@ -495,7 +518,8 @@
       "payoutT1": "1.25%",
       "payoutCapping": "Loan Amount capping of 10 Cr",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "560a9a266be5d4b6",
@@ -515,7 +539,8 @@
       "payoutT1": "90% of NB Receivable(After MIS)",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "8b975e42e2f440d3",
@@ -535,7 +560,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "\\",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "643b225c78529ea7",
@@ -555,7 +581,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "Loan Amount capping of 10 Cr",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "6124d3e2649277d6",
@@ -575,7 +602,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.45%",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "0c9a36f7589957b9",
@@ -595,13 +623,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "Loan Amount capping of 10 Cr",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "3aa9e2c8886231ca",
       "sourceRow": 34,
       "institutionName": "Bajaj Housing",
-      "code": "118395.0",
+      "code": "118395",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -615,13 +644,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "HL - 0.85%\nBT- 0.63%",
       "payoutCapping": "More than 5Cr Case payout capped at 0.70%.\nPer case capping 6 Lakhs.\nBT Case Capping - 0.70%",
-      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "4dc66ae554ac00b8",
       "sourceRow": 35,
       "institutionName": "Bajaj Housing",
-      "code": "118395.0",
+      "code": "118395",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -635,13 +665,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "HL - 0.85%\nBT- 0.63%\"",
       "payoutCapping": "More than 5Cr Case payout capped at 0.70%.\nPer case capping 6 Lakhs.\nBT Case Capping - 0.70%",
-      "clawback": "12 month 50 %, 100 % in 6 months\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 month 50 %, 100 % in 6 months\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "ebb564d2933dd83b",
       "sourceRow": 36,
       "institutionName": "Bajaj Housing",
-      "code": "118395.0",
+      "code": "118395",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -655,13 +686,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "HL - 0.85%\nBT- 0.63%\"",
       "payoutCapping": "",
-      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "37d8b19733873103",
       "sourceRow": 37,
       "institutionName": "Bajaj Housing",
-      "code": "118395.0",
+      "code": "118395",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -675,13 +707,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "",
-      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "1b6ee787941dad71",
       "sourceRow": 38,
       "institutionName": "Bajaj Housing",
-      "code": "118395.0",
+      "code": "118395",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -695,13 +728,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "HL - 0.85%\nBT- 0.63%",
       "payoutCapping": "",
-      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "74815658c080047a",
       "sourceRow": 39,
       "institutionName": "Bajaj Housing",
-      "code": "118395.0",
+      "code": "118395",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -715,7 +749,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.67%",
       "payoutCapping": "",
-      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 month 50 %, 100 % in 6 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "125b5ec93181db21",
@@ -735,7 +770,8 @@
       "payoutT1": "HL-0.80%\nBT - 0.90% - 0.80%(SPOT) & 0.10% After MIS",
       "payoutCapping": "10 Lakhs per case\n\n20% minimum sanction\n\nNo Payout for ETB cx",
       "clawback": "12 months - 50% Recovery, 24 Months - 25% Recovery\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "0e30062429be75a7",
@@ -755,7 +791,8 @@
       "payoutT1": "0.80%",
       "payoutCapping": "10 Lakhs per case\n\n20% minimum sanction\n\nNo Payout for ETB cx",
       "clawback": "12 months - 50% Recovery, 24 Months - 25% Recovery\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "47b99f86cddc4774",
@@ -775,7 +812,8 @@
       "payoutT1": "HL - 0.90%\nBT - 0.90%",
       "payoutCapping": "12 Lakhs per case / Min. ticket Size 10 Lakhs, 10% disbursement needed",
       "clawback": "100% in 1 year\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ">Existing top-up loan & additional top-up loans, at the time of takeoover is eligible for payment of commission. Top-up loans sanctioned subsequently, after takeover of loan is not eligible for payment of commission."
+      "distilledConditions": ">Existing top-up loan & additional top-up loans, at the time of takeoover is eligible for payment of commission. Top-up loans sanctioned subsequently, after takeover of loan is not eligible for payment of commission.",
+      "catalogDirective": ""
     },
     {
       "id": "2e13af5ad462d94d",
@@ -795,7 +833,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "12 Lakhs per case / Min. ticket Size 10 Lakhs, 10% disbursement needed",
       "clawback": "100% in 1 year\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ">Existing top-up loan & additional top-up loans, at the time of takeoover is eligible for payment of commission. Top-up loans sanctioned subsequently, after takeover of loan is not eligible for payment of commission."
+      "distilledConditions": ">Existing top-up loan & additional top-up loans, at the time of takeoover is eligible for payment of commission. Top-up loans sanctioned subsequently, after takeover of loan is not eligible for payment of commission.",
+      "catalogDirective": ""
     },
     {
       "id": "6f0ac5b8d06b5f9f",
@@ -815,7 +854,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "8 Lakhs per case and 10 Lakhs per month per Zone\n\n30% disbursement minium",
       "clawback": "Within 1 Year- 100% of commission to pe paid back, 50% Commission to be paid back if it happens within 2 tears\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "0f49b8868381c731",
@@ -835,13 +875,14 @@
       "payoutT1": "HL (<1 Cr.) - 0.80%\nHL (>1 Cr) - 0.90%",
       "payoutCapping": "11 Lakhs / (No Payout Till 2.99Cr Or < 50L Cases ) Extra .10% On 1Cr Above Loan Amount \"",
       "clawback": "Within 1 Year- 100% of commission to pe paid back, 50% Commission to be paid back if it happens within 2 tears\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Max payout will be 0.9% including all bonus payouts"
+      "distilledConditions": "Max payout will be 0.9% including all bonus payouts",
+      "catalogDirective": ""
     },
     {
       "id": "5a57873dcdaa0222",
       "sourceRow": 46,
       "institutionName": "Capri Finance",
-      "code": "1355.0",
+      "code": "1355",
       "grossNet": "Net",
       "productType": "HL",
       "productGroup": "OTHER",
@@ -855,13 +896,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "In Process Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "In Process Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "d3d03ff73af3cf7e",
       "sourceRow": 47,
       "institutionName": "Capri Finance",
-      "code": "1355.0",
+      "code": "1355",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -875,7 +917,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "",
       "payoutCapping": "",
-      "clawback": "In Process Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "In Process Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "e1b46d5156abfddc",
@@ -895,7 +938,8 @@
       "payoutT1": "HL Fresh - 0.80%\nHL Take Over - 0.90%",
       "payoutCapping": "15 Lakhs / 0.10 % Extra on takeovers & loan above 5 Cr and 0.05% Extra on Central & state govt employees",
       "clawback": "Recovery of DSA payout during the Claw Back Period:\n\n100% recover if the account is taken over within one year from the date of first disbursement.\n50% recover if the account is taken over within Two years and after completion of 1 year from the date of first disbursement.\n25% recover if the account is taken over within Three years and after completion of 2 years from the date of first disbursement.\nIn case the account becomes impaired within one year (Quick Mortality Account) 100% recovery of commission shall be made from DSA.",
-      "distilledConditions": "No payout will be paid for leads created after 15.09.2026 for the proposals with loan amount lesser than or equal to Rs.30.00 Lakh and education loans backed by the mortgage Security."
+      "distilledConditions": "No payout will be paid for leads created after 15.09.2026 for the proposals with loan amount lesser than or equal to Rs.30.00 Lakh and education loans backed by the mortgage Security.",
+      "catalogDirective": ""
     },
     {
       "id": "24727d1317f96996",
@@ -915,13 +959,14 @@
       "payoutT1": "LAP Fresh - 0.80%\nLAP Take Over - 0.90%",
       "payoutCapping": "15 Lakhs / 0.10 % Extra on takeovers & loan above 5 Cr and 0.05% Extra on Central & state govt employees\n\nminimum 30lakh disbursement needed",
       "clawback": "Recovery of DSA payout during the Claw Back Period:\n\n100% recover if the account is taken over within one year from the date of first disbursement.\n50% recover if the account is taken over within Two years and after completion of 1 year from the date of first disbursement.\n25% recover if the account is taken over within Three years and after completion of 2 years from the date of first disbursement.\nIn case the account becomes impaired within one year (Quick Mortality Account) 100% recovery of commission shall be made from DSA.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "9a3d36e402f58567",
       "sourceRow": 50,
       "institutionName": "CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD",
-      "code": "11005569.0",
+      "code": "11005569",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -935,13 +980,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "8d3ac7f9f2f5dd86",
       "sourceRow": 51,
       "institutionName": "CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (North, West and East Zone)",
-      "code": "77620.0",
+      "code": "77620",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -955,13 +1001,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "62ac725a55161a05",
       "sourceRow": 52,
       "institutionName": "CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (North, West and East Zone)",
-      "code": "77620.0",
+      "code": "77620",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -975,13 +1022,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "17223e82fde2736a",
       "sourceRow": 53,
       "institutionName": "CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (South Zone)",
-      "code": "77620.0",
+      "code": "77620",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -995,13 +1043,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "3c36349903feeaf2",
       "sourceRow": 54,
       "institutionName": "CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (South Zone)",
-      "code": "77620.0",
+      "code": "77620",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1015,7 +1064,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "c8154c774b8347fa",
@@ -1035,7 +1085,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "b32ddc553008d885",
@@ -1055,7 +1106,8 @@
       "payoutT1": "1.05%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "997e126685026703",
@@ -1075,7 +1127,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.63% (NEED TO REMOVE FROM CATALOG)",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "c5d099b1ff5e3d84",
@@ -1095,7 +1148,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.63% (NEED TO REMOVE FROM CATALOG)",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "66501b7c10967fb9",
@@ -1115,13 +1169,14 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "30a6364bbee18383",
       "sourceRow": 60,
       "institutionName": "Federal Bank",
-      "code": "6937.0",
+      "code": "6937",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1135,13 +1190,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "10 Lakhs max per case\n\n\nminimum 25 lakhs disbursement needed",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "bef9256e674b1dd7",
       "sourceRow": 61,
       "institutionName": "Federal Bank",
-      "code": "6937.0",
+      "code": "6937",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1155,7 +1211,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "13 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "44b1ff7bf4f920d1",
@@ -1175,7 +1232,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "Max Ticket Size of 5 Cr",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "e5fa7fad986e131b",
@@ -1195,7 +1253,8 @@
       "payoutT1": "1.10%",
       "payoutCapping": "Max Ticket Size of 5 Cr",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "2aead00c564708cf",
@@ -1215,7 +1274,8 @@
       "payoutT1": "0.75%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Note: Processing Fee (PF) of 0.25% is mandatory. In case PF exceeds 0.25%, 40% of the excess PF will be shared as additional payout, subject to the terms mentioned below."
+      "distilledConditions": "Note: Processing Fee (PF) of 0.25% is mandatory. In case PF exceeds 0.25%, 40% of the excess PF will be shared as additional payout, subject to the terms mentioned below.",
+      "catalogDirective": ""
     },
     {
       "id": "736126eab6df0bda",
@@ -1235,7 +1295,8 @@
       "payoutT1": "0.40%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "2370238d1968e9a9",
@@ -1255,7 +1316,8 @@
       "payoutT1": "1.55%",
       "payoutCapping": "5 cr",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Note: Processing Fee (PF) of 0.25% is mandatory. In case PF exceeds 0.25%, 50% of the excess PF will be shared as additional payout, subject to the terms mentioned below."
+      "distilledConditions": "Note: Processing Fee (PF) of 0.25% is mandatory. In case PF exceeds 0.25%, 50% of the excess PF will be shared as additional payout, subject to the terms mentioned below.",
+      "catalogDirective": ""
     },
     {
       "id": "ccf0d5c894c355ca",
@@ -1275,13 +1337,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "c96df4bedc690216",
       "sourceRow": 68,
       "institutionName": "HDFC Bank",
-      "code": "461564.0",
+      "code": "461564",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1295,13 +1358,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "20 Lakhs",
-      "clawback": "100% in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "100% in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "7e292244973a7f9f",
       "sourceRow": 69,
       "institutionName": "HDFC Bank",
-      "code": "461564.0",
+      "code": "461564",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1315,13 +1379,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.30%",
       "payoutCapping": "LAP/LARR/LCP: For a single case > Rs. 20 Crs – Payout to be as per\napplicable slab till 20 Crs",
-      "clawback": "100% in 12 months\nAlso,subvention of PF and also rate discounts will be deducted\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "100% in 12 months\nAlso,subvention of PF and also rate discounts will be deducted\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "33153f31bf887cba",
       "sourceRow": 70,
       "institutionName": "HDFC Bank",
-      "code": "461564.0",
+      "code": "461564",
       "grossNet": "Net",
       "productType": "DOD",
       "productGroup": "OTHER",
@@ -1335,7 +1400,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of PF Collected",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "75ab91954ecdb6a7",
@@ -1355,13 +1421,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "4c33d28381557f35",
       "sourceRow": 74,
       "institutionName": "Hinduja",
-      "code": "437842.0",
+      "code": "437842",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1375,13 +1442,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "5fd73525d76e2bfc",
       "sourceRow": 75,
       "institutionName": "Hinduja",
-      "code": "437842.0",
+      "code": "437842",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1395,13 +1463,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "160b2d9df5b92335",
       "sourceRow": 76,
       "institutionName": "Hinduja",
-      "code": "437842.0",
+      "code": "437842",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1415,7 +1484,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "LAP : 0.72% (<20L Cases)\nLAP : 1.35% (>20L Cases)",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "0a5fb6632344e534",
@@ -1435,7 +1505,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.45%",
       "payoutCapping": "",
-      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "349f4f7260385dd5",
@@ -1455,7 +1526,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "",
-      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "163e544a29934b9f",
@@ -1475,7 +1547,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of NB Receivable",
       "payoutCapping": "",
-      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "9ac2a7f8b1204f8c",
@@ -1495,13 +1568,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of NB Receivable",
       "payoutCapping": "",
-      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% if any loan is closed or BT in 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "e97f15e71ab6594f",
       "sourceRow": 81,
       "institutionName": "ICICI Bank BL",
-      "code": "292595.0",
+      "code": "292595",
       "grossNet": "Net",
       "productType": "BL",
       "productGroup": "OTHER",
@@ -1515,13 +1589,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "3e3f1c6480a62c19",
       "sourceRow": 82,
       "institutionName": "ICICI Bank DSA",
-      "code": "292595.0",
+      "code": "292595",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1535,13 +1610,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.80%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "7b9d9ac053456bc1",
       "sourceRow": 83,
       "institutionName": "ICICI Bank DSA",
-      "code": "292595.0",
+      "code": "292595",
       "grossNet": "Net",
       "productType": "Insurance",
       "productGroup": "OTHER",
@@ -1555,13 +1631,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of NB Receivable",
       "payoutCapping": "",
-      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "9e723032bfda49ea",
       "sourceRow": 84,
       "institutionName": "ICICI Bank DSA",
-      "code": "292595.0",
+      "code": "292595",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1575,13 +1652,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "ef60c2b245b6f71c",
       "sourceRow": 85,
       "institutionName": "ICICI Bank DSA",
-      "code": "292595.0",
+      "code": "292595",
       "grossNet": "Net",
       "productType": "LAP OD",
       "productGroup": "LAP",
@@ -1595,13 +1673,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of NB Receivable",
       "payoutCapping": "",
-      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "1 Year - 100% Payout recovery less PF collected on the case.\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "7e81a772add3b256",
       "sourceRow": 86,
       "institutionName": "ICICI Bank PL",
-      "code": "292595.0",
+      "code": "292595",
       "grossNet": "Net",
       "productType": "PL",
       "productGroup": "OTHER",
@@ -1615,13 +1694,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "a5c45f2f2cc9e45d",
       "sourceRow": 87,
       "institutionName": "ICICI Connector",
-      "code": "308124.0",
+      "code": "308124",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1635,13 +1715,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.54%",
       "payoutCapping": "5 Lakhs",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "d7c69dd8dab757db",
       "sourceRow": 88,
       "institutionName": "ICICI Connector",
-      "code": "308124.0",
+      "code": "308124",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1655,13 +1736,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.49%",
       "payoutCapping": "5 Lakhs",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "370118bcd385368e",
       "sourceRow": 89,
       "institutionName": "ICICI HFC",
-      "code": "366359.0",
+      "code": "366359",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1675,13 +1757,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.80%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "6e21fd4fedb97377",
       "sourceRow": 90,
       "institutionName": "ICICI HFC",
-      "code": "366359.0",
+      "code": "366359",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1695,13 +1778,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "6b684d71f2fa24bf",
       "sourceRow": 91,
       "institutionName": "ICICI HFC",
-      "code": "366359.0",
+      "code": "366359",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1715,13 +1799,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "44ad26c07e1f65fe",
       "sourceRow": 92,
       "institutionName": "ICICI HFC",
-      "code": "366359.0",
+      "code": "366359",
       "grossNet": "Net",
       "productType": "Micro LAP",
       "productGroup": "LAP",
@@ -1735,7 +1820,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months \n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Fraud /Buyer-seller Collision- 100% Recovery, BT-100%I in 6 months & 50 within 12 months,Paraller Funding- 100% Recovery if identified within 12 months \n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "b25ddd4e77f1e7b6",
@@ -1755,7 +1841,8 @@
       "payoutT1": "0.9%\nInternal Top Up - 0.45%",
       "payoutCapping": "Other Case - 5 Lakhs\n\nCapping - 7.5 Lakhs for HL and LAP Case (Super Prime and Prime Case, CIBIL above 771)",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Commission for the LIP accounts sourced \n\n Internal Top up (pay-out for internal top-up to be restricted to 50% of actual payout\nas per applicable slab). However, the primary loan for which internal top-up is sanctioned\nshould not be under SMA during preceding six months period. \n\nNo payout to be made for LIP\nproduct. Pay-out for Internal top up to DSA will be made only for HL cases of Salaried and\nSEP borrowers where the primary loan was not sourced by Branch/RAC.\n\nIn the event of any account sourced through DSA is turning NPA - it shall be recovered\nfrom the C-DSA.\n\n There shall not be any pay-out for loans sanctioned/ disbursed to IDBI Bank employees and\nOBST, DST, DSA, Corporate DSA, CPA and Retainers who are associated with Bank."
+      "distilledConditions": "Commission for the LIP accounts sourced \n\n Internal Top up (pay-out for internal top-up to be restricted to 50% of actual payout\nas per applicable slab). However, the primary loan for which internal top-up is sanctioned\nshould not be under SMA during preceding six months period. \n\nNo payout to be made for LIP\nproduct. Pay-out for Internal top up to DSA will be made only for HL cases of Salaried and\nSEP borrowers where the primary loan was not sourced by Branch/RAC.\n\nIn the event of any account sourced through DSA is turning NPA - it shall be recovered\nfrom the C-DSA.\n\n There shall not be any pay-out for loans sanctioned/ disbursed to IDBI Bank employees and\nOBST, DST, DSA, Corporate DSA, CPA and Retainers who are associated with Bank.",
+      "catalogDirective": ""
     },
     {
       "id": "c34ff55139d1d73c",
@@ -1775,13 +1862,14 @@
       "payoutT1": "1.05%",
       "payoutCapping": "Capping - 7.5 Lakhs for HL and LAP Case (Super Prime and Prime Case, CIBIL above 771) Other Case - 5 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Commission for the LIP accounts sourced will not be paid\n\n Internal Top up (pay-out for internal top-up to be restricted to 50% of actual payout\nas per applicable slab). However, the primary loan for which internal top-up is sanctioned\nshould not be under SMA during preceding six months period. \n\nNo payout to be made for LIP\nproduct. Pay-out for Internal top up to DSA will be made only for HL cases of Salaried and\nSEP borrowers where the primary loan was not sourced by Branch/RAC.\n\nIn the event of any account sourced through DSA is turning NPA - it shall be recovered\nfrom the C-DSA.\n\n There shall not be any pay-out for loans sanctioned/ disbursed to IDBI Bank employees and\nOBST, DST, DSA, Corporate DSA, CPA and Retainers who are associated with Bank."
+      "distilledConditions": "Commission for the LIP accounts sourced will not be paid\n\n Internal Top up (pay-out for internal top-up to be restricted to 50% of actual payout\nas per applicable slab). However, the primary loan for which internal top-up is sanctioned\nshould not be under SMA during preceding six months period. \n\nNo payout to be made for LIP\nproduct. Pay-out for Internal top up to DSA will be made only for HL cases of Salaried and\nSEP borrowers where the primary loan was not sourced by Branch/RAC.\n\nIn the event of any account sourced through DSA is turning NPA - it shall be recovered\nfrom the C-DSA.\n\n There shall not be any pay-out for loans sanctioned/ disbursed to IDBI Bank employees and\nOBST, DST, DSA, Corporate DSA, CPA and Retainers who are associated with Bank.",
+      "catalogDirective": ""
     },
     {
       "id": "32b5c4bc8b439937",
       "sourceRow": 95,
       "institutionName": "IDFC First Bank - Rural Vertical",
-      "code": "325760.0",
+      "code": "325760",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1795,13 +1883,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "Minimum 10 lakh sanction needed",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "8d9bd697a3b36647",
       "sourceRow": 96,
       "institutionName": "IDFC First Bank - Rural Vertical",
-      "code": "325760.0",
+      "code": "325760",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1815,13 +1904,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.05%",
       "payoutCapping": "Minimum 10 lakh sanction needed",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "3298b2c567503c92",
       "sourceRow": 97,
       "institutionName": "IDFC First Bank - Urban Vertical",
-      "code": "271772.0",
+      "code": "271772",
       "grossNet": "Net",
       "productType": "HL",
       "productGroup": "OTHER",
@@ -1835,13 +1925,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "8 lakh payout per case",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "0bcea79a6af4061e",
       "sourceRow": 98,
       "institutionName": "IDFC First Bank - Urban Vertical",
-      "code": "271772.0",
+      "code": "271772",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1855,13 +1946,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "8 lakh payout per case",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "13f5f5fe37355301",
       "sourceRow": 99,
       "institutionName": "IIFL",
-      "code": "114186.0",
+      "code": "114186",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1875,13 +1967,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "5 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "81b8a63b37b660c1",
       "sourceRow": 100,
       "institutionName": "IIFL",
-      "code": "114186.0",
+      "code": "114186",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1895,7 +1988,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "26f7939b8d022440",
@@ -1915,7 +2009,8 @@
       "payoutT1": "HL - 0.80%\nBT - 0.90%",
       "payoutCapping": "10 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "dfbbe8a55ea9974d",
@@ -1935,13 +2030,14 @@
       "payoutT1": "0.90%",
       "payoutCapping": "8 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Clearance of IMD and PF, else payout will not be processed.\nIf the PF as per pricing grid is not paid than that amount will be subvented from Payout.\nInsurance File and value is not considered in Payout calculation.\nCalculation of Fresh File: Count of fresh file will be considered basis unique customers and Insurance LAN is not included."
+      "distilledConditions": "Clearance of IMD and PF, else payout will not be processed.\nIf the PF as per pricing grid is not paid than that amount will be subvented from Payout.\nInsurance File and value is not considered in Payout calculation.\nCalculation of Fresh File: Count of fresh file will be considered basis unique customers and Insurance LAN is not included.",
+      "catalogDirective": ""
     },
     {
       "id": "faf18dec769b7b98",
       "sourceRow": 103,
       "institutionName": "Jio Finance",
-      "code": "900001672.0",
+      "code": "900001672",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -1955,13 +2051,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "25 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "d5c6cfe86d379efc",
       "sourceRow": 104,
       "institutionName": "Jio Finance",
-      "code": "900001672.0",
+      "code": "900001672",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -1975,7 +2072,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.25% Below 2.5Cr \n1.35% Above 2.5Cr",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "cd555e9030c6f198",
@@ -1995,7 +2093,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "6 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Non - Individual HL to be considered under MSME Loans and payout capped at 0.20% of Loan Value"
+      "distilledConditions": "Non - Individual HL to be considered under MSME Loans and payout capped at 0.20% of Loan Value",
+      "catalogDirective": ""
     },
     {
       "id": "fecc2e3abd5cc3d0",
@@ -2015,7 +2114,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "15 Lakh",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "4a18d1f5a214390a",
@@ -2035,7 +2135,8 @@
       "payoutT1": "90% of (75% of PF Collected)",
       "payoutCapping": "15 Lakh / Secured OD or CC Payout is 75% of the PF collected, Individual cases and cases where there is Nil Pre Closure Charges maximum pay-out will be P.F Plus 0.50%.",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "d766c4b945af6559",
@@ -2055,13 +2156,14 @@
       "payoutT1": "1.35% Below 1Cr, 1.75% Above 1 Cr",
       "payoutCapping": "Slab for Amount Disbursed /Number of leads referred in a month Rate \n\nUpto 1 Crore of Disbursement value 1.5% of the disbursed value \n1.1 Crore to 2 Crores 1.75% of the disbursed value \n2.1 Crores and above 2% of the disbursed value",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "e7d6ad04ff7de9c1",
       "sourceRow": 109,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2075,13 +2177,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "15 Lakhs",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "f4d5a53acda0069a",
       "sourceRow": 110,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2095,13 +2198,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.30%",
       "payoutCapping": "15 Lakhs",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "21710f7f3ec1591d",
       "sourceRow": 111,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2115,13 +2219,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of PF Collected",
       "payoutCapping": "",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "1555101280c7831f",
       "sourceRow": 112,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -2135,13 +2240,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.30%",
       "payoutCapping": "15 Lakhs",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "7aa559cee2279b86",
       "sourceRow": 113,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "Business Loan",
       "productGroup": "BL",
@@ -2155,13 +2261,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "c4806c42e2c6c790",
       "sourceRow": 114,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -2175,13 +2282,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of PF Collected",
       "payoutCapping": "15 Lakhs",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "f3ac5cbbb75fdb75",
       "sourceRow": 115,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "Insurance",
       "productGroup": "OTHER",
@@ -2195,13 +2303,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of NB Receivable",
       "payoutCapping": "",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "da0e90347e64ad8c",
       "sourceRow": 116,
       "institutionName": "Kotak Bank",
-      "code": "83404836.0",
+      "code": "83404836",
       "grossNet": "Net",
       "productType": "Insurance",
       "productGroup": "OTHER",
@@ -2215,7 +2324,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of NB Receivable",
       "payoutCapping": "",
-      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "50% Payout Clawback if BT within 15 Months\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "5517a18a0bd9c7b8",
@@ -2235,7 +2345,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "7 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "126ec563cc78c5f1",
@@ -2255,7 +2366,8 @@
       "payoutT1": "Min of (90% of (PF Collected + 0.6%) or 1.35%)",
       "payoutCapping": "7 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "89be5d0bbb89deb9",
@@ -2275,7 +2387,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.50%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "257fa85c5c3f8d7a",
@@ -2295,7 +2408,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.50%",
       "payoutCapping": "",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "30c4732a40981ef8",
@@ -2315,7 +2429,8 @@
       "payoutT1": "0.85%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "a3abbd789a1e11e5",
@@ -2335,7 +2450,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "234fcdd41e6e70c4",
@@ -2355,7 +2471,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "b6af769028ce1959",
@@ -2375,7 +2492,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "29752f7629c9ddd4",
@@ -2395,7 +2513,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "5195e55a5ecc2cce",
@@ -2415,7 +2534,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "Loan Value capped at 2Cr",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "ec78f773c20635da",
@@ -2435,7 +2555,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "Loan value capped at 5Cr",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "3a7719f1c2320b5e",
@@ -2455,7 +2576,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "Loan Amount Capping of Rs. 5 Cr",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "964acaa461228cef",
@@ -2475,7 +2597,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "Loan Amount Capping of Rs. 5 Cr",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "c02ba66c00ed618e",
@@ -2495,7 +2618,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "90% of NB Receivable",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "ce780c192f7b1adb",
@@ -2515,7 +2639,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "Loan Amount Capping - 10 Cr, any case above 10 Cr needs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "ef8735750119a91a",
@@ -2535,7 +2660,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "cc70cb9a7a568f07",
@@ -2555,7 +2681,8 @@
       "payoutT1": "HL - 0.80%,\nBT - 0.90%",
       "payoutCapping": "10 Lakhs minimum loan value",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "50% of the Service Charges shall be paid after 1st disbursement and remaining 50% would be paid after making\ndisbursement of 25% of Home Loan amount sanctioned.\n\nIn case of loan takeover business, service charges will be 10 bps over and above the approved normal charges for per\nconverted lead. However, it should be ensured that Bank from which the loan is being taken over has initially sanctioned\nthe loan and the loan is being taken over for the first time only by our Bank.\nIn no case commission to be paid for takeover of Home Loan to staff and their relatives."
+      "distilledConditions": "50% of the Service Charges shall be paid after 1st disbursement and remaining 50% would be paid after making\ndisbursement of 25% of Home Loan amount sanctioned.\n\nIn case of loan takeover business, service charges will be 10 bps over and above the approved normal charges for per\nconverted lead. However, it should be ensured that Bank from which the loan is being taken over has initially sanctioned\nthe loan and the loan is being taken over for the first time only by our Bank.\nIn no case commission to be paid for takeover of Home Loan to staff and their relatives.",
+      "catalogDirective": ""
     },
     {
       "id": "6c4fd835776f16c6",
@@ -2575,7 +2702,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "I} On loan amount greater than INR 10 Crs, the sourcing fee/commission will be subject to specific prior approval by PNBHFL and will be on case to case basis."
+      "distilledConditions": "I} On loan amount greater than INR 10 Crs, the sourcing fee/commission will be subject to specific prior approval by PNBHFL and will be on case to case basis.",
+      "catalogDirective": ""
     },
     {
       "id": "d8c6868d6413d800",
@@ -2595,7 +2723,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "22f2ad618ae16ca9",
@@ -2615,7 +2744,8 @@
       "payoutT1": "0.72%",
       "payoutCapping": "6 Lakhs // Payout on construction finance (CF) cases is linked to PF collection. It would be 50% of PF, subject to a minimum 1% PF retention with Sammaan Capital.\n\no   Maximum payout per case shall be capped at- (i) LAP - 05 Lakhs & (ii) HL - 03 Lakhs;",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "54be4da4c336d471",
@@ -2635,7 +2765,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "6 Lakhs // Payout on construction finance (CF) cases is linked to PF collection. It would be 50% of PF, subject to a minimum 1% PF retention with Sammaan Capital.\n\no   Maximum payout per case shall be capped at- (i) LAP - 05 Lakhs & (ii) HL - 03 Lakhs;",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "4c22e1f1625ff126",
@@ -2655,7 +2786,8 @@
       "payoutT1": "0.63%",
       "payoutCapping": "6 Lakhs // Payout on construction finance (CF) cases is linked to PF collection. It would be 50% of PF, subject to a minimum 1% PF retention with Sammaan Capital.\no   Maximum payout per case shall be capped at- (i) LAP - 05 Lakhs & (ii) HL - 03 Lakhs;",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "9e00699dc05849fa",
@@ -2675,7 +2807,8 @@
       "payoutT1": "0.80%",
       "payoutCapping": "Payout on Construction Finance (CF) cases shall be linked to Processing Fee (PF) collection and shall be limited to 50% of the PF collected, subject to a minimum PF retention of 1% by Sammaan Capital\n\no   Maximum payout per case shall be capped at- (i) LAP - 05 Lakhs & (ii) HL - 03 Lakhs;",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "5afd563040cbe183",
@@ -2695,7 +2828,8 @@
       "payoutT1": "1.20%",
       "payoutCapping": "No Capping",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Min PF for Mass LAP - 1%"
+      "distilledConditions": "Min PF for Mass LAP - 1%",
+      "catalogDirective": ""
     },
     {
       "id": "39959f67c555f4a2",
@@ -2715,13 +2849,14 @@
       "payoutT1": "1.35%",
       "payoutCapping": "No Capping",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "Min PF for Mass LAP - 1%"
+      "distilledConditions": "Min PF for Mass LAP - 1%",
+      "catalogDirective": ""
     },
     {
       "id": "813a104ba9f983d4",
       "sourceRow": 143,
       "institutionName": "Sundaram Home Finance",
-      "code": "701943.0",
+      "code": "701943",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2735,13 +2870,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "No Capping",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "0cf54ff37086f8ca",
       "sourceRow": 144,
       "institutionName": "Sundaram Home Finance",
-      "code": "701943.0",
+      "code": "701943",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -2755,13 +2891,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "No Capping",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "41473171c0728802",
       "sourceRow": 145,
       "institutionName": "Tata Capital HFL (DSA)",
-      "code": "8097192.0",
+      "code": "8097192",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2775,13 +2912,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "15 Lakhs\n0.35% PF",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "9491f54bef73abfc",
       "sourceRow": 146,
       "institutionName": "Tata Capital HFL (DSA)",
-      "code": "8097192.0",
+      "code": "8097192",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2795,13 +2933,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.90%",
       "payoutCapping": "15 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "3f19a529fbd12f12",
       "sourceRow": 147,
       "institutionName": "Tata Capital HFL (DSA)",
-      "code": "8097192.0",
+      "code": "8097192",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -2815,13 +2954,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "20 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "b040b67890328597",
       "sourceRow": 148,
       "institutionName": "Tata Capital HFL (DSA)",
-      "code": "8097192.0",
+      "code": "8097192",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -2835,13 +2975,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "1.35%",
       "payoutCapping": "20 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": ""
     },
     {
       "id": "d8ea7efb79c0638b",
       "sourceRow": 149,
       "institutionName": "Tata Capital HFL Connector",
-      "code": "10021651.0",
+      "code": "10021651",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2855,13 +2996,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.63%",
       "payoutCapping": "5 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "b77f54af130acc86",
       "sourceRow": 150,
       "institutionName": "Tata Capital HFL Connector",
-      "code": "10021651.0",
+      "code": "10021651",
       "grossNet": "Net",
       "productType": "Home Loan",
       "productGroup": "HL",
@@ -2875,13 +3017,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.63%",
       "payoutCapping": "5 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "4a62f56c67340d57",
       "sourceRow": 151,
       "institutionName": "Tata Capital HFL Connector",
-      "code": "10021651.0",
+      "code": "10021651",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -2895,13 +3038,14 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.63%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "4e6dda96f9b1796c",
       "sourceRow": 152,
       "institutionName": "Tata Capital HFL Connector",
-      "code": "10021651.0",
+      "code": "10021651",
       "grossNet": "Net",
       "productType": "LAP",
       "productGroup": "LAP",
@@ -2915,7 +3059,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "0.64%",
       "payoutCapping": "7.5 Lakhs",
-      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "078ef1623f1b3a6c",
@@ -2935,7 +3080,8 @@
       "payoutT1": "1.35%",
       "payoutCapping": "7.5 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "556ab7c1bd0e27ef",
@@ -2955,7 +3101,8 @@
       "payoutT1": "0.36%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "0ed5be1f5c7357fb",
@@ -2975,7 +3122,8 @@
       "topSlabLoanVal": "",
       "payoutT1": "After Discussion",
       "payoutCapping": "",
-      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout"
+      "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "9802daed5d3a8b5f",
@@ -2995,7 +3143,8 @@
       "payoutT1": "0.50%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "02d914d985788883",
@@ -3015,7 +3164,8 @@
       "payoutT1": "<5 cr: 1.20%\n>5 cr: 1.45%",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": "iii. Pay-out will get subverted if the PF collected is below 1.00 % in any case."
+      "distilledConditions": "iii. Pay-out will get subverted if the PF collected is below 1.00 % in any case.",
+      "catalogDirective": ""
     },
     {
       "id": "205156585e007dac",
@@ -3035,7 +3185,8 @@
       "payoutT1": "Case to Case basis",
       "payoutCapping": "",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "60b6c576f7c93e33",
@@ -3055,7 +3206,8 @@
       "payoutT1": "0.80%",
       "payoutCapping": "12 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "f15eb231263f85f7",
@@ -3075,7 +3227,8 @@
       "payoutT1": "0.80%",
       "payoutCapping": "12 Lakhs",
       "clawback": "12 months 100%\n\nAny other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "46385b8362d8d2bd",
@@ -3095,7 +3248,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     },
     {
       "id": "c6ffc60187d2e212",
@@ -3115,7 +3269,8 @@
       "payoutT1": "0.90%",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "distilledConditions": ""
+      "distilledConditions": "",
+      "catalogDirective": ""
     }
   ]
 }
