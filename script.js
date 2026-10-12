@@ -7,7 +7,7 @@ async function loadCatalogSource(){
   if(!response.ok) throw new Error(`Catalog data failed to load (${response.status})`);
   const payload=await response.json();
   if(!payload || !Array.isArray(payload.records)) throw new Error('catalog-data.json has an invalid structure');
-  CATALOG_SOURCE=payload;
+  CATALOG_SOURCE={...payload,records:payload.records.filter(r=>!excludedFromCatalog(r)).map(normalizeCatalogRecord)};
   return CATALOG_SOURCE;
 }
 let FINWIZZ_SOURCE=null;
@@ -18,7 +18,7 @@ async function loadFinwizzSource(){
   const payload=await response.json();
   if(!payload || !Array.isArray(payload.records)) throw new Error('finwizz-data.json has an invalid structure');
   FINWIZZ_SOURCE=payload;
-  state.finwizzRecords=payload.records.map(r=>({...r,provider:'Finwizz'}));
+  state.finwizzRecords=payload.records.filter(r=>!excludedFromCatalog(r)).map(r=>({...normalizeCatalogRecord(r),provider:'Finwizz'}));
   return FINWIZZ_SOURCE;
 }
 const EMBEDDED_CLASSIFICATION={"Aadhar Housing Finance":"NBFC","Aditya Birla Capital Ltd.":"NBFC","Aditya Birla Housing Finance Ltd":"NBFC","Axis Bank Connector":"Private","Axis Bank Connector (ASHA and Sugam LAP)":"Private","Axis Bank DSA":"Private","Axis Bank DSA (ASHA and Sugam LAP)":"Private","Axis Finance":"NBFC","Bajaj Finserv":"NBFC","Bajaj Housing":"NBFC","Bank of Baroda Corporate Code":"Public","Bank of India":"Public","Bank of Maharashtra":"Public","CENTRAL BANK OF INDIA":"Public","CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD":"NBFC","CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (North, West and East Zone)":"NBFC","CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (South Zone)":"NBFC","Canara Bank":"Public","DCB Bank":"Private","DCB Bank - Connector - Net":"Private","Easy Home Loan Finance":"NBFC","Federal Bank":"Private","GICHFL":"NBFC","GODREJ":"NBFC","HDFC Bank":"Private","HDFC Credila Education Loan":"NBFC","HSBC Connector":"Private","Hinduja":"NBFC","ICICI Bank BL":"Private","ICICI Bank DSA":"Private","ICICI Bank PL":"Private","ICICI Connector":"Private","ICICI HFC":"NBFC","IDBI Bank":"Private","IDFC First Bank - Rural Vertical":"Private","IDFC First Bank - Urban Vertical":"Private","IIFL":"NBFC","Indian Bank":"Public","Indusind Bank":"Private","Jio Finance":"NBFC","Karnataka Bank":"Private","Karur Vyasya Bank":"Private","Kinara Capital":"NBFC","Kotak Bank":"Private","L& T Finance":"NBFC","LICHFL":"NBFC","Mahindra Rural Housing":"NBFC","Mintifi Finserv":"NBFC","Motilal Oswald Home Finance":"NBFC","Muthoot Finance":"NBFC","PNB Bank":"Public","PNBHFL":"NBFC","Piramal":"NBFC","SMFG India Credit Ltd":"NBFC","Sammaan Finance Corpoarate (SFL) Conector":"NBFC","Sammaan Finance Corpoarate (SFL) DSA":"NBFC","Samman Housing (India Bulls) (SCL) Conector":"NBFC","Samman Housing (India Bulls) (SCL) DSA":"NBFC","Sundaram Home Finance":"NBFC","Tata Capital HFL (DSA)":"NBFC","Tata Capital HFL Connector":"NBFC","Tata Capital Ltd":"NBFC","Truhome Finance (Shriram Housing Finance)":"NBFC","Ujjivan Small Finance Bank":"Private","Union Bank- Karnataka Regional":"Public","Union Bank- Mumbai Regional":"Public","Vastu Finance":"NBFC"};
@@ -138,8 +138,8 @@ async function loadCatalog(view=state.view,factor=null){
 }
 function applyCatalog(j,requestedView){const studioOpen=$('#download-overlay')?.classList.contains('open');const dlCity=studioOpen?($('#download-city-filter')?.value||''):'';state.records=j.records||[];state.schemaVersion=j.schemaVersion||'';state.view=requestedView;state.factor=j.factor;state.cap=j.cap;if(!studioOpen)state.selected.clear();buildFilters();if(studioOpen&&dlCity)$('#download-city-filter').value=dlCity;renderInternalSwitcher();renderAll();updateSourceStatus();}
 
-function mainRecords(){return state.records.filter(r=>r.thirdPartyProvider!=='FinWizz');}
-function finWizzRecords(){return state.finwizzRecords||[];}
+function mainRecords(){return state.records.filter(r=>r.thirdPartyProvider!=='FinWizz'&&!excludedFromCatalog(r));}
+function finWizzRecords(){return (state.finwizzRecords||[]).filter(r=>!excludedFromCatalog(r));}
 function activeSourceRecords(){return state.catalogSource==='finwizz'?finWizzRecords():mainRecords();}
 function visibleRecords(){
   const q=state.search.trim().toLowerCase(),base=activeSourceRecords(),logged=state.view!=='public';
@@ -274,12 +274,18 @@ function closeOverlay(id){if(id==='download-overlay')downloadAuthorized=false;co
 async function restoreSession(){return false;}
 
 function selectedBanks(){return [...state.selected];}
-function excludeFromPrintedCatalog(row){
- if(markedUpcomingProduct(row))return true;
+function excludedFromCatalog(row){
  const marker=/not\s+to\s+include\s+in\s+catalog/i;
  const contains=value=>typeof value==='string'?marker.test(value):Array.isArray(value)?value.some(contains):value&&typeof value==='object'?Object.values(value).some(contains):false;
  return contains(row);
 }
+function normalizeCode(value){
+ // Identifiers stay strings. Repair only the integer-decimal artifact from spreadsheet imports.
+ return String(value??'').trim().replace(/^(\d+)\.0+$/, '$1');
+}
+function normalizeCatalogRecord(row){return {...row,code:normalizeCode(row.code)};}
+function excludeFromPrintedCatalog(row){return excludedFromCatalog(row)||markedUpcomingProduct(row);}
+
 function selectedRecordsForDownload(){const banks=new Set(selectedBanks());let recs=mainRecords().filter(r=>banks.has(r.institutionName)&&!excludeFromPrintedCatalog(r));const cf=$('#download-city-filter')?.value||'';if(cf)recs=recs.filter(r=>isUpcoming(r)||r.applicableCities===cf);return recs;}
 function selectedFinwizzRecordsForDownload(){if(!state.includeFinwizzInDownload||!state.finwizzRecords)return [];return finWizzRecords().filter(r=>state.selectedFinwizz.has(r.id));}
 function hasDownloadRecords(){return selectedRecordsForDownload().length>0||selectedFinwizzRecordsForDownload().length>0;}
