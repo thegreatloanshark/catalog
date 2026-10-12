@@ -561,7 +561,7 @@
       "payoutT1": "\\",
       "payoutCapping": "",
       "clawback": "Any other recovery/subvention/ adjustments done by the bank will be also be adjusted/recovered from the channel payout",
-      "catalogDirective": ""
+      "catalogDirective": "Not to Include in Catalog"
     },
     {
       "id": "643b225c78529ea7",
@@ -1007,7 +1007,7 @@
     {
       "id": "62ac725a55161a05",
       "sourceRow": 52,
-      "institutionName": "CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (North, West and East Zone)",
+      "institutionName": "CHOLAMANDALAM INVESTMENT & FINANCE COMPANY LTD (North, West and South Zone)",
       "code": "77620",
       "grossNet": "Net",
       "productType": "LAP",
