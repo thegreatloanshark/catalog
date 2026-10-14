@@ -59,7 +59,7 @@
 <div class="studio-layout" style="display:flex;flex-direction:column;min-height:0;overflow:hidden">
 <div class="studio-controls" style="overflow-y:auto;min-height:0;max-height:none">
 
-<section class="studio-card" id="calc-card"><h3>Payout calculator</h3><p class="muted">Optional. The current tier cap cannot be exceeded.</p><div class="factor-row"><input id="factor-input" min="0" step="1" type="number"/><b>%</b><span id="factor-cap"></span></div></section>
+<section class="studio-card" id="calc-card"><h3>PDF payout calculator</h3><p class="muted">Choose the payout basis for this PDF. Rates are scaled from the standard 90% basis using Round Down.</p><div class="factor-row"><input aria-label="PDF payout basis percentage" id="factor-input" min="0" max="90" step="any" value="90" type="number"/><b>%</b><span id="factor-cap"></span></div></section>
 <section class="studio-card" id="download-city-card"><h3>Applicable Cities</h3><select id="download-city-filter"><option value="">All applicable-city values</option></select></section>
 
 
@@ -71,7 +71,7 @@
 <div class="download-actions" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;flex-shrink:0;background:white;border-top:1px solid #ddd;position:relative;z-index:2"><span id="download-summary" aria-live="polite"></span><div style="display:flex;gap:10px"><button class="secondary-btn" data-close="download-overlay">Cancel</button><button class="primary-btn" type="button" style="display:inline-flex!important;visibility:visible!important;opacity:1!important;background:#d80000;color:white;min-height:44px;padding:12px 20px" id="final-download">Download PDF</button></div></div>
 </div>
 </section></div>
-<script src="./script.js?v=catalog-codes-exclusions-20261012" defer></script>
+<script src="./script.js?v=catalog-pdf-calculator-20261014" defer></script>
 
 </body>
 </html>
