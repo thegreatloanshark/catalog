@@ -78,7 +78,7 @@ const SEQ_DEFAULT=['Public|Spot','Public|MIS','Private|Spot','Private|MIS','NBFC
 const PRESETS={compact:{margin:5,font:7.4,line:1.10,fieldGap:.5,blockGap:.8,header:10,footer:16,qrGap:1.3,cardPadding:1,sectionGap:1.2},standard:{margin:8,font:8.4,line:1.26,fieldGap:1,blockGap:1.4,header:12,footer:22,qrGap:2.5,cardPadding:1.5,sectionGap:2.2},spacious:{margin:10,font:9.2,line:1.42,fieldGap:1.8,blockGap:2.2,header:14,footer:26,qrGap:3.5,cardPadding:2,sectionGap:3.2}};
 const RICH_TEXT_DEFAULTS={month:9,auditTitle:6.5,auditBody:5.4,catalogTitle:18,sectionTitle:11.5,tableHeader:3.8,tableBody:3.55,footer:5.6,finTitle:18,finSubtitle:7,finBody:6.8,name:34,designation:22,contact:16};
 const RICH_PORTRAIT_RATIO={month:10/9,auditTitle:1,auditBody:1,catalogTitle:15/18,sectionTitle:9.5/11.5,tableHeader:3.15/3.8,tableBody:2.9/3.55,footer:1,finTitle:16/18,finSubtitle:1,finBody:6.2/6.8,name:28/34,designation:18/22,contact:13/16};
-const state={records:[],schemaVersion:'',user:null,token:'',view:'public',city:'Bengaluru',factor:null,cap:null,display:'list',catalogSource:'main',filters:{product:'',payment:'',city:''},search:'',selected:new Set(),finwizzRecords:null,selectedFinwizz:new Set(),includeFinwizzInDownload:false,sequence:[...SEQ_DEFAULT],print:{...PRESETS.compact,orientation:'landscape',richText:{...RICH_TEXT_DEFAULTS}},pdfStyle:'rich',previewTimer:null,logoManifest:null};
+const state={records:[],schemaVersion:'',user:null,token:'',view:'public',city:'Bengaluru',factor:null,cap:null,display:'list',catalogSource:'main',filters:{product:'',payment:'',city:''},search:'',selected:new Set(),finwizzRecords:null,selectedFinwizz:new Set(),includeFinwizzInDownload:false,sequence:[...SEQ_DEFAULT],print:{...PRESETS.compact,orientation:'landscape',richText:{...RICH_TEXT_DEFAULTS}},pdfStyle:'rich',previewTimer:null,logoManifest:null,pdfFactor:90};
 
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function meaningful(v){return v!==null&&v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';}
@@ -329,16 +329,22 @@ function openDownloadStudio(){
   groupBanks(rows).forEach(b=>state.selected.add(b.name));
  }
  state.includeFinwizzInDownload=false;
- state.factor=state.factor??currentCap();$('#factor-input').max=currentCap();$('#factor-input').value=state.factor;$('#factor-cap').textContent=`Maximum ${currentCap()}% for ${currentTier()||'T1'}`;
+ $('#factor-input').max=90;$('#factor-input').value=state.pdfFactor;$('#factor-cap').textContent='0–90%';
  $('#network-consent').checked=false;
  openOverlay('download-overlay');updateDownloadButton();renderSelection();
 }
 function updateDownloadButton(){
  const count=selectedRecordsForDownload().length,btn=$('#final-download');
  $('#download-summary').textContent=`${count} product rows`;
- btn.disabled=count===0;btn.textContent='Download PDF';btn.title=count?'Download compact payout conditions':'Select at least one bank';
+ btn.disabled=count===0||readPdfFactor()===null;btn.textContent='Download PDF';btn.title=count?'Download compact payout conditions':'Select at least one bank';
 }
-async function refreshForFactor(){const value=Math.max(0,Math.min(currentCap(),Number($('#factor-input').value)||0));$('#factor-input').value=value;state.factor=value;await loadCatalog(state.view==='city'?'city':state.view,value);updateDownloadButton();}
+function readPdfFactor(){
+ const input=$('#factor-input'),raw=String(input.value).trim(),value=Number(raw);
+ const valid=raw!==''&&Number.isFinite(value)&&value>=0&&value<=90;
+ input.setCustomValidity(valid?'':'Enter a payout basis from 0 to 90%.');
+ return valid?value:null;
+}
+function refreshForFactor(){const value=readPdfFactor();if(value!==null)state.pdfFactor=value;updateDownloadButton();}
 async function getNetworkStamp(){const timestamp=new Date().toISOString();for(const url of ['https://api.ipify.org?format=json','https://api64.ipify.org?format=json']){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),3000);try{const r=await fetch(url,{cache:'no-store',signal:controller.signal});if(!r.ok)continue;const j=await r.json();if(j?.ip)return {ip:j.ip,timestamp};}catch(e){}finally{clearTimeout(timer);}}return {ip:'Unavailable',timestamp};}
 function monthStamp(){return new Intl.DateTimeFormat('en-US',{month:'short',year:'2-digit'}).format(new Date()).replace(' ','-')}
 function fileBase(){return `Master Catalog ${monthStamp()}`}
@@ -373,7 +379,7 @@ const COMPACT_FOOTER=[
  '*Send all login confirmations to nbloansadmin@nobroker.in with banker name, email ID, customer name, loan amount, and loan type **100% Subvention & PF deductions value is applicable on DSA Payout.'
 ];
 function compactConditions(r){const compact=String(r.distilledConditions??'').trim();return compact||String(r.conditions??'').trim();}
-function compactCells(r){return ['',r.institutionName||'',r.code||'',r.grossNet||'',productWithVariant(r),r.payoutT1??'',r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
+function compactCells(r,payoutFactor=90){return ['',r.institutionName||'',r.code||'',r.grossNet||'',productWithVariant(r),localTransform(r.payoutT1,payoutFactor),r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
 function pdfSafeText(value){return String(value??'').replace(/₹/g,'Rs. ').replace(/[\u2010-\u2015]/g,'-').replace(/[\u2018\u2019]/g,"'").replace(/[\u201C\u201D]/g,'"').replace(/\u2022/g,'-').replace(/\u00a0/g,' ').replace(/\u200b/g,'');}
 function conditionWordCount(r){return compactConditions(r).split(/\s+/u).filter(Boolean).length;}
 function pdfHardWrap(doc,value,width,fontSize){doc.setFontSize(fontSize);const text=pdfSafeText(value).replace(/\r/g,'');const out=[];for(const para of text.split('\n')){if(!para){out.push('');continue;}const soft=doc.splitTextToSize(para,Math.max(1,width));for(const item of soft){let s=String(item??'');if(doc.getTextWidth(s)<=width+.01){out.push(s);continue;}let buf='';for(const ch of s){const test=buf+ch;if(buf&&doc.getTextWidth(test)>width){out.push(buf);buf=ch;}else buf=test;}if(buf)out.push(buf);}}return out.length?out:[''];}
@@ -381,7 +387,8 @@ function clipTextToBox(doc,lines,x,y,w,h,opts={}){if(!lines?.length||w<=0||h<=0)
 async function appendFinwizzPdfPages(doc,recs,orientation,{rich=false,bg=null}={}){if(!recs.length)return;let w,h,m=rich?8:10,y=0;const labelW=orientation==='portrait'?46:58;const font=rich?richFont('finBody',orientation):(orientation==='portrait'?6.2:6.8);const lineH=font*.3528*1.08;const titleFont=rich?richFont('finTitle',orientation):(orientation==='portrait'?16:18);const subtitleFont=rich?richFont('finSubtitle',orientation):7;const startPage=async()=>{doc.addPage('a4',orientation);w=doc.internal.pageSize.getWidth();h=doc.internal.pageSize.getHeight();if(rich&&bg){await addRichBackground(doc,bg,orientation);doc.setFillColor(255,255,255);if(doc.setGState)doc.setGState(new doc.GState({opacity:.88}));doc.roundedRect(m-2,12,w-2*m+4,h-24,5,5,'F');if(doc.setGState)doc.setGState(new doc.GState({opacity:1}));}doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(titleFont);doc.text('3rd Party Catalog',w/2,21,{align:'center',maxWidth:w-2*m-8});doc.setFont('helvetica','normal');doc.setFontSize(subtitleFont);doc.text('Independent 3rd Party product feed · values shown exactly as supplied',w/2,27,{align:'center',maxWidth:w-2*m-8});y=33;};await startPage();for(const r of recs){const fields=finwizzPdfFields(r).filter(([,v])=>meaningful(v));doc.setFontSize(font);let needed=10;const prepared=[];for(const [label,value] of fields){const valW=w-2*m-labelW-3,lab=pdfHardWrap(doc,label,labelW-2,font-.2),val=pdfHardWrap(doc,value,valW,font),lines=Math.max(lab.length,val.length),rowH=Math.max(4.5,2+lines*lineH);prepared.push({lab,val,rowH,valW});needed+=rowH;}if(y+needed>h-12)await startPage();doc.setFont('helvetica','bold');doc.setFontSize(font+1);const cardTitle=`${r.institutionName} · ${r.productType||'Product'} · ${r.code||'—'}`;const titleLines=pdfHardWrap(doc,cardTitle,w-2*m-4,font+1);const cardH=Math.max(8,3+titleLines.length*(font+1)*.3528*1.05);if(y+cardH+needed-10>h-12)await startPage();doc.setFillColor(246,242,235);doc.setDrawColor(210);doc.roundedRect(m,y,w-2*m,cardH,1.5,1.5,'FD');clipTextToBox(doc,titleLines,m+2,y+1,w-2*m-4,cardH-2,{lineHeightFactor:1.05});y+=cardH+2;for(const row of prepared){const {lab,val,rowH,valW}=row;doc.setDrawColor(230);doc.line(m,y,w-m,y);doc.setFont('helvetica','bold');doc.setFontSize(font-.2);doc.setTextColor(90);clipTextToBox(doc,lab,m+1,y+1.4,labelW-2,rowH-2,{lineHeightFactor:1.08});doc.setFont('helvetica','normal');doc.setFontSize(font);doc.setTextColor(20);clipTextToBox(doc,val,m+labelW,y+1.4,valW,rowH-2,{lineHeightFactor:1.08});y+=rowH;}y+=3;}}
 
 
-async function generateRevampedPdf(recs,stamp){
+async function generateRevampedPdf(recs,stamp,payoutFactor=90){
+ if(!Number.isFinite(payoutFactor)||payoutFactor<0||payoutFactor>90)throw new Error('Enter a payout basis from 0 to 90%.');
  await lazyScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','jspdf');
  const doc=new window.jspdf.jsPDF({unit:'mm',format:'a4',orientation:'landscape',compress:true});
  const qr=await fetchDataUrl('assets/partner-qr.png');
@@ -394,7 +401,7 @@ async function generateRevampedPdf(recs,stamp){
  function newPage(isAnnexure=false){
   if(page++)doc.addPage('a4','landscape');
   doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(17);doc.text('MASTER CATALOG',148.5,13,{align:'center'});
-  doc.setFontSize(9);doc.text(monthStamp(),281,13,{align:'right'});doc.setFontSize(12);doc.text(groupTitle,148.5,23,{align:'center'});
+  doc.setFontSize(9);doc.text(monthStamp(),281,13,{align:'right'});doc.setFont('helvetica','normal');doc.setFontSize(7);doc.text(`Payout basis: ${payoutFactor}%`,margin,19);doc.setFont('helvetica','bold');doc.setFontSize(12);doc.text(groupTitle,148.5,23,{align:'center'});
   if(!isAnnexure){doc.setFillColor(0);doc.rect(margin,29,281,9,'F');doc.setTextColor(255);doc.setFontSize(8);
   let x=margin;COMPACT_HEADERS.forEach((h,i)=>{doc.text(h,x+2,34.5);x+=widths[i]});}y=38;
   if(!isAnnexure&&groupRows.some(r=>/spot/i.test(r.paymentType||''))){doc.setFillColor(125,215,79);doc.rect(8,173,281,4,'F');doc.setTextColor(0);doc.setFontSize(7);doc.text('* AVAIL SPOT PAYMENT ON HIGHLIGHTED BANKS',148.5,176,{align:'center'});}
@@ -411,7 +418,7 @@ async function generateRevampedPdf(recs,stamp){
  groupRows=all.filter(r=>compactGroupKey(r)===key);if(!groupRows.length)continue;groupTitle=title;newPage();
  for(const r of groupRows){
   doc.setFont('helvetica','normal');doc.setFontSize(font);
-  const cells=compactCells(r);if(annexureRefs.has(r))cells[7]=`* Read detailed payout conditions in the Annexure\nReference A${annexureRefs.get(r)}`;
+  const cells=compactCells(r,payoutFactor);if(annexureRefs.has(r))cells[7]=`* Read detailed payout conditions in the Annexure\nReference A${annexureRefs.get(r)}`;
   const lines=cells.map((v,i)=>pdfHardWrap(doc,v,widths[i]-4,font));
   const count=Math.max(...lines.map(a=>a.length));let offset=0;
   if(!(r.institutionName in logoCache))logoCache[r.institutionName]=await logoForInstitution(r.institutionName).catch(()=>null);
@@ -458,8 +465,9 @@ async function finalDownload(){
  if(!downloadAuthorized){closeOverlay('download-overlay');requestDownloadAccess();return;}
  if(!$('#network-consent').checked){alert('Please confirm the download audit checkbox before downloading.');return;}
  const recs=selectedRecordsForDownload();if(!recs.length){alert('Select at least one bank before downloading.');return;}
+ const payoutFactor=readPdfFactor();if(payoutFactor===null){$('#factor-input').reportValidity();return;}state.pdfFactor=payoutFactor;
  const btn=$('#final-download');btn.disabled=true;btn.textContent='Preparing…';
- try{const stamp=await getNetworkStamp();const doc=await generateRevampedPdf(recs,stamp);doc.save(`${fileBase()}.pdf`);closeOverlay('download-overlay');}
+ try{const stamp=await getNetworkStamp();const doc=await generateRevampedPdf(recs,stamp,payoutFactor);doc.save(`${fileBase()} - ${payoutFactor}pct.pdf`);closeOverlay('download-overlay');}
  catch(e){console.error('Download failed',e);alert(`Download failed: ${e?.message||e}`);}
  finally{updateDownloadButton();}
 }
@@ -487,7 +495,7 @@ function installEvents(){
   $('#clear-selection').onclick=()=>{if(state.catalogSource==='finwizz')state.selectedFinwizz.clear();else state.selected.clear();renderAll()};
   $$('[data-close]').forEach(b=>b.onclick=()=>closeOverlay(b.dataset.close));$$('.overlay').forEach(o=>o.onclick=e=>{if(e.target===o)closeOverlay(o.id)});
   $('#download-city-filter').onchange=()=>{updateDownloadButton()};
-  $('#factor-input').onchange=refreshForFactor;$('#factor-input').oninput=()=>{$('#factor-input').value=Math.min(currentCap(),Math.max(0,Number($('#factor-input').value)||0));};
+  $('#factor-input').onchange=refreshForFactor;$('#factor-input').oninput=refreshForFactor;
   $$('[data-preset]').forEach(b=>b.onclick=()=>setPreset(b.dataset.preset));['s-margin','s-font','s-line','s-field-gap','s-block-gap','s-header','s-footer','s-qr-gap','s-card-padding','s-section-gap',...Object.values(RICH_INPUTS)].forEach(id=>{const el=$('#'+id);if(el)el.oninput=readPrintInputs});$$('input[name="orientation"]').forEach(x=>x.onchange=readPrintInputs);const resetPrint=$('#reset-print-settings');if(resetPrint)resetPrint.onclick=()=>setPreset('compact');const resetRich=$('#reset-rich-settings');if(resetRich)resetRich.onclick=resetRichTextSettings;$('#network-consent').onchange=updateDownloadButton;$('#final-download').onclick=finalDownload;
   document.addEventListener('keydown',e=>{if(e.key==='Escape')$$('.overlay.open').forEach(o=>closeOverlay(o.id));const screenKey=e.key==='PrintScreen'||((e.metaKey||e.ctrlKey)&&e.shiftKey&&['3','4','5','s','S'].includes(e.key));if(screenKey){e.preventDefault();showScreenshotGuard()}});
   window.addEventListener('keyup',e=>{if(e.key==='PrintScreen')showScreenshotGuard()});
