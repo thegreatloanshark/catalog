@@ -435,12 +435,17 @@ const COMPACT_FOOTER=[
  '*Send all login confirmations to nbloansadmin@nobroker.in with banker name, email ID, customer name, loan amount, and loan type **100% Subvention & PF deductions value is applicable on DSA Payout.'
 ];
 function compactConditions(r){const compact=String(r.distilledConditions??'').trim();return compact||String(r.conditions??'').trim();}
+function pdfConditionText(value){
+ return String(value??'').trim()
+  .replace(/\[([^\]]*)\]\(https?:\/\/(?:drive|docs)\.google\.com\/[^\s)]*\)/gi,'NA')
+  .replace(/(?:https?:\/\/)?(?:drive|docs)\.google\.com\/[^\s<>]*/gi,'NA');
+}
 function pdfConditionPlan(r,source='main'){
- const compact=String(r.distilledConditions??'').trim();
- const full=String(r.conditions??'').trim();
+ const compact=pdfConditionText(r.distilledConditions);
+ const full=pdfConditionText(r.conditions);
  if(source==='main'&&compact)return {table:compact,annexure:full||'No additional payout conditions provided in Column H.'};
- const selected=compactConditions(r);
- return {table:selected,annexure:conditionWordCount(r)>100?selected:null};
+ const selected=compact||full;
+ return {table:selected,annexure:selected.split(/\s+/u).filter(Boolean).length>100?selected:null};
 }
 function pdfTableConditions(r,source,reference){
  const plan=pdfConditionPlan(r,source);
@@ -509,23 +514,29 @@ async function generateRevampedPdf(recs,stamp,payoutFactor=90,{source='main'}={}
  }
  if(annexure.length){
   groupTitle='Annexure';groupRows=[];newPage(true);
+  const columnGap=7,columnWidth=(281-columnGap)/2,textWidth=columnWidth-4;
+  let column=0;
+  const nextColumn=()=>{if(column===0){column=1;y=38;}else{column=0;newPage(true);}};
   for(const r of annexure){
    const ref=`A${annexureRefs.get(r)}`;
    const identity=`${ref} | ${r.institutionName||''} | Code: ${r.code||'-'} | Product: ${productWithVariant(r)||'-'}`;
-   const heading=pdfHardWrap(doc,identity,277,9);
-   const body=pdfHardWrap(doc,pdfConditionPlan(r,source).annexure,277,8);
+   doc.setFont('helvetica','bold');
+   const heading=pdfHardWrap(doc,identity,textWidth,9);
+   doc.setFont('helvetica','normal');
+   const body=pdfHardWrap(doc,pdfConditionPlan(r,source).annexure,textWidth,8);
    let offset=0;
    while(offset<body.length){
     const headingH=heading.length*4+5;
-    if(y+headingH+8>bottom)newPage(true);
-    doc.setFillColor(242,242,242);doc.rect(margin,y,281,headingH,'F');doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(9);
-    doc.text(heading,margin+2,y+4,{lineHeightFactor:4/(9*.3528)});y+=headingH;
-    if(offset){doc.setFontSize(7);doc.text(`${ref} (continued)`,margin+2,y+3);y+=5;}
+    if(y+headingH+(offset?5:0)+8>bottom)nextColumn();
+    const columnX=margin+column*(columnWidth+columnGap);
+    doc.setFillColor(242,242,242);doc.rect(columnX,y,columnWidth,headingH,'F');doc.setTextColor(0);doc.setFont('helvetica','bold');doc.setFontSize(9);
+    doc.text(heading,columnX+2,y+4,{lineHeightFactor:4/(9*.3528)});y+=headingH;
+    if(offset){doc.setFontSize(7);doc.text(`${ref} (continued)`,columnX+2,y+3);y+=5;}
     doc.setFont('helvetica','normal');doc.setFontSize(8);
     const capacity=Math.max(1,Math.floor((bottom-y-3)/3.7)),chunk=body.slice(offset,offset+capacity);
-    clipTextToBox(doc,chunk,margin+2,y+1,277,chunk.length*3.7+2,{lineHeightFactor:3.7/(8*.3528)});
+    clipTextToBox(doc,chunk,columnX+2,y+1,textWidth,chunk.length*3.7+2,{lineHeightFactor:3.7/(8*.3528)});
     y+=chunk.length*3.7+7;offset+=chunk.length;
-    if(offset<body.length)newPage(true);
+    if(offset<body.length)nextColumn();
    }
   }
  }
