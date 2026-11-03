@@ -1,14 +1,54 @@
 (() => {
 'use strict';
-let CATALOG_SOURCE=null;
-async function loadCatalogSource(){
-  if(CATALOG_SOURCE) return CATALOG_SOURCE;
-  const response=await fetch('./catalog-data.json',{cache:'no-store'});
-  if(!response.ok) throw new Error(`Catalog data failed to load (${response.status})`);
-  const payload=await response.json();
-  if(!payload || !Array.isArray(payload.records)) throw new Error('catalog-data.json has an invalid structure');
-  CATALOG_SOURCE={...payload,records:payload.records.filter(r=>!excludedFromCatalog(r)).map(normalizeCatalogRecord)};
-  return CATALOG_SOURCE;
+const CATALOG_API='https://lbyqsdhzbhumxapibxzg.supabase.co';
+const CATALOG_PUBLIC_KEY='sb_publishable_fWGYfEF6dDJ0n_VHoq1uLg_L4oOGdrs';
+let CATALOG_SOURCE=null, catalogRequest=null, catalogLastError='', catalogRefreshTimer=null;
+async function catalogGet(path){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
+ try{
+  const response=await fetch(`${CATALOG_API}/rest/v1/${path}`,{headers:{apikey:CATALOG_PUBLIC_KEY},cache:'no-store',signal:controller.signal});
+  if(!response.ok)throw new Error(`Supabase catalog request failed (${response.status})`);
+  return await response.json();
+ }finally{clearTimeout(timer);}
+}
+async function loadCatalogSource(force=false){
+ if(catalogRequest)return catalogRequest;
+ if(CATALOG_SOURCE&&!force)return CATALOG_SOURCE;
+ catalogRequest=(async()=>{
+  const records=[];
+  for(let offset=0;;){
+   const page=await catalogGet(`catalog_products?select=*&order=sourceRow.asc,id.asc&limit=500&offset=${offset}`);
+   if(!Array.isArray(page))throw new Error('Invalid Supabase catalog response');
+   records.push(...page);if(!page.length)break;offset+=page.length;
+  }
+  const meta=await catalogGet('catalog_metadata?select=metadata&catalog_key=eq.main');
+  if(!records.length)throw new Error('Supabase has no catalog products yet');
+  CATALOG_SOURCE={...(meta[0]?.metadata||{}),records:records.filter(r=>!excludedFromCatalog(r)).map(normalizeCatalogRecord)};
+  catalogLastError='';return CATALOG_SOURCE;
+ })();
+ try{return await catalogRequest;}catch(e){catalogLastError=e.message;throw e;}finally{catalogRequest=null;}
+}
+async function refreshCatalogFromSupabase(){
+ try{await loadCatalogSource(true);await loadCatalog(state.view,state.factor);}
+ catch(e){console.warn('Catalog refresh failed',e);updateSourceStatus();}
+}
+function scheduleCatalogRefresh(){
+ clearTimeout(catalogRefreshTimer);
+ catalogRefreshTimer=setTimeout(()=>{if(!document.hidden)refreshCatalogFromSupabase();},750);
+}
+async function startCatalogUpdates(){
+ // Polling and focus refresh also recover missed or unavailable WebSocket events.
+ setInterval(()=>{if(!document.hidden)scheduleCatalogRefresh();},60000);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleCatalogRefresh();});
+ window.addEventListener('online',scheduleCatalogRefresh);
+ try{
+  await lazyScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js','supabase');
+  const client=window.supabase.createClient(CATALOG_API,CATALOG_PUBLIC_KEY,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+  client.channel('catalog-live')
+   .on('postgres_changes',{event:'*',schema:'public',table:'catalog_products'},scheduleCatalogRefresh)
+   .on('postgres_changes',{event:'*',schema:'public',table:'catalog_metadata'},scheduleCatalogRefresh)
+   .subscribe(status=>{if(status==='SUBSCRIBED')scheduleCatalogRefresh();});
+ }catch(e){console.warn('Realtime unavailable; periodic refresh remains active.',e);}
 }
 let FINWIZZ_SOURCE=null;
 async function loadFinwizzSource(){
@@ -128,7 +168,7 @@ async function loadCatalog(view=state.view,factor=null){
   f=Math.max(0,Math.min(cap,f));
   const recs=source.records.map(r=>({
     ...r,
-    institutionClass:EMBEDDED_CLASSIFICATION[r.institutionName]||'NBFC',
+    institutionClass:r.institutionClass||EMBEDDED_CLASSIFICATION[r.institutionName]||(/^UCO Bank$/i.test(r.institutionName)?'Public':'NBFC'),
     thirdPartyProvider:localProviderFlag(r),
     payoutDisplay:isUpcoming(r)?'':(effective==='public'?'':localTransform(r.payoutT1,90)),
     factor:effective==='raw'?null:f,
@@ -136,7 +176,7 @@ async function loadCatalog(view=state.view,factor=null){
   }));
   applyCatalog({ok:true,schemaVersion:source.schemaVersion,view:effective,factor:effective==='raw'?null:f,cap:effective==='raw'?null:cap,records:recs},view);
 }
-function applyCatalog(j,requestedView){const studioOpen=$('#download-overlay')?.classList.contains('open');const dlCity=studioOpen?($('#download-city-filter')?.value||''):'';state.records=j.records||[];state.schemaVersion=j.schemaVersion||'';state.view=requestedView;state.factor=j.factor;state.cap=j.cap;if(!studioOpen)state.selected.clear();buildFilters();if(studioOpen&&dlCity)$('#download-city-filter').value=dlCity;renderInternalSwitcher();renderAll();updateSourceStatus();}
+function applyCatalog(j,requestedView){const studioOpen=$('#download-overlay')?.classList.contains('open');const dlCity=studioOpen?($('#download-city-filter')?.value||''):'';state.records=j.records||[];state.schemaVersion=j.schemaVersion||'';state.view=requestedView;state.factor=j.factor;state.cap=j.cap;const availableBanks=new Set(state.records.map(r=>r.institutionName));for(const name of state.selected)if(!availableBanks.has(name))state.selected.delete(name);buildFilters();if(studioOpen&&dlCity)$('#download-city-filter').value=dlCity;renderInternalSwitcher();renderAll();updateSourceStatus();}
 
 function mainRecords(){return state.records.filter(r=>r.thirdPartyProvider!=='FinWizz'&&!excludedFromCatalog(r));}
 function finWizzRecords(){return (state.finwizzRecords||[]).filter(r=>!excludedFromCatalog(r));}
@@ -192,7 +232,7 @@ function updateSourceStatus(){
     status.innerHTML=`<span class="status-dot"></span>${rows.length} 3rd Party product records · ${new Set(rows.map(r=>r.institutionName)).size} institutions · lazy loaded`;
     return;
   }
-  status.innerHTML=`<span class="status-dot"></span>${state.records.length} current product records · ${new Set(state.records.map(r=>r.institutionName)).size} institutions · catalog-data.json · Sheet1 source`;
+  status.innerHTML=`<span class="status-dot"></span>${state.records.length} current product records · ${new Set(state.records.map(r=>r.institutionName)).size} institutions · Supabase · Core Sheet · ${CATALOG_SOURCE?.syncedAt?'Last sync: '+esc(new Date(CATALOG_SOURCE.syncedAt).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}))+' IST':'Sync time unavailable'}${catalogLastError?' · Refresh failed; showing last loaded data':''}`;
 }
 function buildFilters(){const fin=state.catalogSource==='finwizz';const records=fin?finWizzRecords():mainRecords();const products=fin?unique(records.map(r=>r.productType)).sort():['HL','LAP','PL','BL','OTHER'];const payments=fin?unique(records.map(r=>r.paymentType)).sort():['Spot','MIS'];const cities=unique(records.map(r=>r.applicableCities)).sort((a,b)=>a.localeCompare(b));$('#filter-cluster').innerHTML=`<label class="filter-control"><span>Product</span><select id="product-filter"><option value="">All products</option>${products.map(v=>`<option value="${esc(v)}">${fin?esc(v):PRODUCT_LABELS[v]}</option>`).join('')}</select></label><label class="filter-control"><span>Payment basis</span><select id="payment-filter"><option value="">${fin?'All payment types':'Spot + MIS'}</option>${payments.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}</select></label><label class="filter-control"><span>Applicable Cities</span><select id="city-filter"><option value="">All city values</option>${cities.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}</select></label>`;$('#product-filter').value=state.filters.product;$('#payment-filter').value=state.filters.payment;$('#city-filter').value=state.filters.city;$('#product-filter').onchange=e=>{state.filters.product=e.target.value;renderAll()};$('#payment-filter').onchange=e=>{state.filters.payment=e.target.value;renderAll()};$('#city-filter').onchange=e=>{state.filters.city=e.target.value;renderAll()};{const dl=$('#download-city-filter');dl.innerHTML=`<option value="">All applicable-city values</option>${cities.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}`;}}
 function renderInternalSwitcher(){const box=$('#internal-switcher');if(box)box.classList.add('hidden');}
@@ -492,15 +532,22 @@ async function generateRevampedPdf(recs,stamp,payoutFactor=90,{source='main'}={}
  return doc;
 }
 
+let pdfDownloadBusy=false;
 async function finalDownload(){
+ if(pdfDownloadBusy)return;
  if(!downloadAuthorized){closeOverlay('download-overlay');requestDownloadAccess();return;}
  if(!$('#network-consent').checked){alert('Please confirm the download audit checkbox before downloading.');return;}
- const fin=state.downloadSource==='finwizz',recs=recordsForPdfDownload();if(!recs.length){alert('Select at least one printable product before downloading.');return;}
+ const fin=state.downloadSource==='finwizz';
  const payoutFactor=fin?90:readPdfFactor();if(payoutFactor===null){$('#factor-input').reportValidity();return;}if(!fin)state.pdfFactor=payoutFactor;
- const btn=$('#final-download');btn.disabled=true;btn.textContent='Preparing…';
- try{const stamp=await getNetworkStamp();const doc=await generateRevampedPdf(recs,stamp,payoutFactor,{source:fin?'finwizz':'main'});doc.save(fin?`FinWizz Catalog ${monthStamp()}.pdf`:`${fileBase()} - ${payoutFactor}pct.pdf`);closeOverlay('download-overlay');}
- catch(e){console.error('Download failed',e);alert(`Download failed: ${e?.message||e}`);}
- finally{updateDownloadButton();}
+ const btn=$('#final-download');pdfDownloadBusy=true;btn.disabled=true;btn.textContent='Preparing…';
+ try{
+  if(!fin){await loadCatalogSource(true);await loadCatalog(state.view,state.factor);}
+  const recs=recordsForPdfDownload().map(r=>({...r}));
+  if(!recs.length)throw new Error('No selected printable products remain in the latest catalog.');
+  const stamp=await getNetworkStamp();const doc=await generateRevampedPdf(recs,stamp,payoutFactor,{source:fin?'finwizz':'main'});
+  doc.save(fin?`FinWizz Catalog ${monthStamp()}.pdf`:`${fileBase()} - ${payoutFactor}pct.pdf`);closeOverlay('download-overlay');
+ }catch(e){console.error('Download failed',e);alert(`Download failed: ${e?.message||e}`);}
+ finally{pdfDownloadBusy=false;updateDownloadButton();}
 }
 
 function showScreenshotGuard(){const g=$('#screenshot-guard');g.classList.add('active');g.setAttribute('aria-hidden','false');setTimeout(()=>{g.classList.remove('active');g.setAttribute('aria-hidden','true')},1800)}
@@ -537,12 +584,13 @@ async function init(){
     installEvents();
     const restored=await restoreSession();
     await loadCatalog('public');
+    startCatalogUpdates();
   }catch(err){
     console.error(err);
     const status=document.getElementById('source-status');
-    if(status) status.innerHTML=`<span class="status-dot" style="background:#d80000"></span>Catalog could not start. Deploy matching index.html and script.js files, and keep catalog-data.json in the site root.`;
+    if(status) status.innerHTML=`<span class="status-dot" style="background:#d80000"></span>Catalog could not start. Check the Supabase connection and reload this page.`;
     const results=document.getElementById('results');
-    if(results) results.innerHTML='<div style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">Catalog data failed to load. Confirm catalog-data.json is in the same folder as index.html, then redeploy.</div>';
+    if(results) results.innerHTML='<div style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">Catalog data failed to load from Supabase. Check your connection and reload this page.</div>';
   }
 }
 init();
