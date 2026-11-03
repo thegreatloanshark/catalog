@@ -395,6 +395,19 @@ const COMPACT_FOOTER=[
  '*Send all login confirmations to nbloansadmin@nobroker.in with banker name, email ID, customer name, loan amount, and loan type **100% Subvention & PF deductions value is applicable on DSA Payout.'
 ];
 function compactConditions(r){const compact=String(r.distilledConditions??'').trim();return compact||String(r.conditions??'').trim();}
+function pdfConditionPlan(r,source='main'){
+ const compact=String(r.distilledConditions??'').trim();
+ const full=String(r.conditions??'').trim();
+ if(source==='main'&&compact)return {table:compact,annexure:full||'No additional payout conditions provided in Column H.'};
+ const selected=compactConditions(r);
+ return {table:selected,annexure:conditionWordCount(r)>100?selected:null};
+}
+function pdfTableConditions(r,source,reference){
+ const plan=pdfConditionPlan(r,source);
+ if(reference==null)return plan.table;
+ const note=`* Read detailed payout conditions in the Annexure\nReference A${reference}`;
+ return source==='main'&&String(r.distilledConditions??'').trim()?`${plan.table}\n\n${note}`:note;
+}
 function compactCells(r,payoutFactor=90,source='main'){return ['',r.institutionName||'',r.code||'',r.grossNet||'',productWithVariant(r),source==='finwizz'?(r.productPayout??''):localTransform(r.payoutT1,payoutFactor),r.payoutTimeline||'',compactConditions(r),r.applicableCities||''];}
 function pdfSafeText(value){return String(value??'').replace(/₹/g,'Rs. ').replace(/[\u2010-\u2015]/g,'-').replace(/[\u2018\u2019]/g,"'").replace(/[\u201C\u201D]/g,'"').replace(/\u2022/g,'-').replace(/\u00a0/g,' ').replace(/\u200b/g,'');}
 function conditionWordCount(r){return compactConditions(r).split(/\s+/u).filter(Boolean).length;}
@@ -411,7 +424,7 @@ async function generateRevampedPdf(recs,stamp,payoutFactor=90,{source='main'}={}
  const qr=await fetchDataUrl('assets/partner-qr.png');
  const all=orderedEntries(recs.filter(r=>!excludeFromPrintedCatalog(r))).flatMap(e=>e.records);
  if(!all.length)throw new Error('No printable products remain in this selection.');
- const annexure=all.filter(r=>conditionWordCount(r)>100);const annexureRefs=new Map(annexure.map((r,i)=>[r,i+1]));
+ const annexure=all.filter(r=>pdfConditionPlan(r,source).annexure!==null);const annexureRefs=new Map(annexure.map((r,i)=>[r,i+1]));
  const widths=[17,29,24,16,22,23,45,80,25],margin=8,font=7,lineH=3.1,bottom=171;
  let y=38,page=0,groupTitle='',groupRows=[];
  const logoCache={};
@@ -436,7 +449,7 @@ async function generateRevampedPdf(recs,stamp,payoutFactor=90,{source='main'}={}
  groupRows=all.filter(r=>(fin?(/spot/i.test(r.paymentType||'')?'Spot':'MIS'):compactGroupKey(r))===key);if(!groupRows.length)continue;groupTitle=title;newPage();
  for(const r of groupRows){
   doc.setFont('helvetica','normal');doc.setFontSize(font);
-  const cells=compactCells(r,payoutFactor,source);if(annexureRefs.has(r))cells[7]=`* Read detailed payout conditions in the Annexure\nReference A${annexureRefs.get(r)}`;
+  const cells=compactCells(r,payoutFactor,source);cells[7]=pdfTableConditions(r,source,annexureRefs.get(r));
   const lines=cells.map((v,i)=>pdfHardWrap(doc,v,widths[i]-4,font));
   const count=Math.max(...lines.map(a=>a.length));let offset=0;
   if(!(r.institutionName in logoCache))logoCache[r.institutionName]=await logoForInstitution(r.institutionName).catch(()=>null);
@@ -460,7 +473,7 @@ async function generateRevampedPdf(recs,stamp,payoutFactor=90,{source='main'}={}
    const ref=`A${annexureRefs.get(r)}`;
    const identity=`${ref} | ${r.institutionName||''} | Code: ${r.code||'-'} | Product: ${productWithVariant(r)||'-'}`;
    const heading=pdfHardWrap(doc,identity,277,9);
-   const body=pdfHardWrap(doc,compactConditions(r),277,8);
+   const body=pdfHardWrap(doc,pdfConditionPlan(r,source).annexure,277,8);
    let offset=0;
    while(offset<body.length){
     const headingH=heading.length*4+5;
