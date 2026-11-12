@@ -24,3 +24,15 @@ Commit and deploy through your existing Vercel flow. The new page is /vehicle-lo
 
 ## Validation
 JavaScript syntax checks passed. Workbook mapping checked for DSA-only/ non-NB payout columns, merged cell inheritance and row/header alignment. Actual jsPDF generation succeeded; representative new-car, used-car and terms pages were rendered and inspected. Browser interaction and deployed-site testing remain after installation.
+
+## PDF printing update
+Replace vehicle-loans.js and vehicle-loans.html from this package if the Vehicle Loans catalog is already installed.
+
+Vehicle PDF now uses the NoBroker compact landscape structure: Logo | bank | type | Product Type | Payout % | payout dates | conditions | City. Code is excluded. Missing gross/net, dates and city values show NA; no unsupported details are inferred. Available logos use the existing bank-logos.png sprite; unmatched logos remain blank.
+
+Full payout conditions of more than 100 words move to a two-column Annexure with generated A references. Conditions at or below 100 words stay in the table. Scheme/eligibility criteria remain alongside the reference so payout applicability is not lost. Identical full conditions for the same lender/product share a reference. The vehicle workbook has no distilled/summary field, so the NB Column-H fallback is applied. Drive/Docs URLs become NA. ROI/PF/subvention terms remain PDF-only in the two-column Annexure.
+
+Footer: For loan application login assistance, please contact the designated point of contact for your region or area.
+The prior email/subvention footer instructions are removed from the Vehicle Loans PDF. QR, page number and catalog CTA are retained. Website data and layouts are unchanged.
+
+Validated syntax, all 271 payout records, short/long condition handling, Drive URL treatment, real PDF generation and representative compact/Annexure rendering. Deployed browser checks remain.
