@@ -1,0 +1,4561 @@
+{
+  "provider": "CarDekho",
+  "title": "Vehicle Loans",
+  "source": "Car Dekho-Payout Grid Updated.xlsx",
+  "usedCarPeriod": "UC_Payout Scheme_Oct'26",
+  "newCar": [
+    {
+      "title": "BOB",
+      "headers": [
+        "Bank",
+        "GMV (Per Case) In Lakhs",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        2
+      ],
+      "rows": [
+        [
+          "BOB",
+          "0-50",
+          "1.17%",
+          "C1"
+        ],
+        [
+          "BOB",
+          "50+",
+          "1.26%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: NIL Payout for existing car loan customer \nMaximum Pay-out to be 7 lakhs\nNR% to be maintained at 0.80% (Overall bank wise portfolio)"
+      ],
+      "sourceRows": [
+        2,
+        3
+      ]
+    },
+    {
+      "title": "BOI",
+      "headers": [
+        "Bank",
+        "GMV (Per Case) In Lakhs",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        2
+      ],
+      "rows": [
+        [
+          "BOI",
+          "0-50",
+          "1.35%",
+          "C1"
+        ],
+        [
+          "BOI",
+          "50+",
+          "1.395%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. Min Ticket Size- 5 Lacs else NIL payout\n2. NIL payout for Pre-Approved cases\n3. NIL Payout for Non-Retail (Taxi, Agri, commercial)\n4. NR% to be maintained at 0.95% (Overall bank wise portfolio)",
+        "C2: 5. Maximum Pay-out to be 8 lakhs"
+      ],
+      "sourceRows": [
+        6,
+        7
+      ]
+    },
+    {
+      "title": "Canara Bank",
+      "headers": [
+        "Bank",
+        "GMV (Per Case) In Lakhs",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        2
+      ],
+      "rows": [
+        [
+          "Canara Bank",
+          "0-75",
+          "0.63%",
+          "C1"
+        ],
+        [
+          "Canara Bank",
+          ">75 Lacs",
+          "Product case to case approval",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. PO%-0.50% for Rahul Gupta\n2. Payout for only Passenger Vehicle, Nil payout for Fleet Taxi, CV, and Old Vehicle\n3. Nil payout for ETB customers\n4. Maximum Pay-out to be 0.65 lakhs"
+      ],
+      "sourceRows": [
+        10,
+        11
+      ]
+    },
+    {
+      "title": "IOB",
+      "headers": [
+        "Bank",
+        "GMV (Per Case) In Lakhs",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        2
+      ],
+      "rows": [
+        [
+          "IOB",
+          "All",
+          "1.575%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. Payout for only Passenger Vehicle, Nil payout for Fleet Taxi, CV, and Old Vehicle\n2. Min Ticket Size- 3 Lacs else NIL payout, NIL PO for ETB customers of IOB and Company cases"
+      ],
+      "sourceRows": [
+        14
+      ]
+    },
+    {
+      "title": "UCO",
+      "headers": [
+        "Bank",
+        "GMV (Per Case) In Lakhs",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        2
+      ],
+      "rows": [
+        [
+          "UCO",
+          "0-50",
+          "1.08%",
+          "C1"
+        ],
+        [
+          "UCO",
+          "50+",
+          "0.99%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: Maximum Pay-out to be 1.3 Lakhs"
+      ],
+      "sourceRows": [
+        17,
+        18
+      ]
+    },
+    {
+      "title": "PSB",
+      "headers": [
+        "Bank",
+        "GMV (Per Case) In Lakhs",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        2
+      ],
+      "rows": [
+        [
+          "PSB",
+          "0-50",
+          "1.17%",
+          "C1"
+        ],
+        [
+          "PSB",
+          ">50 lacs",
+          "1.26%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. Active Location- Pan India\n2. Maximum Pay-out to be 3.5 Lakhs\n3. Min Ticket Size- 5 Lacs else NIL payout\n4. Agri Profile- NIL Payout"
+      ],
+      "sourceRows": [
+        21,
+        22
+      ]
+    },
+    {
+      "title": "Indian Bank",
+      "headers": [
+        "Bank",
+        "GMV (Per Case) In Lakhs",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        2
+      ],
+      "rows": [
+        [
+          "Indian Bank",
+          "All",
+          "0.81%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: ETB customers are allowed."
+      ],
+      "sourceRows": [
+        25
+      ]
+    },
+    {
+      "title": "HDFC",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Loan Amount",
+        "Tenure",
+        "CIBIL",
+        "ROI Grid",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "HDFC",
+          "Normal",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730",
+          "< 10 Lakh",
+          ">39",
+          ">=730",
+          "9.15%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730",
+          "< 10 Lakh",
+          ">39",
+          "No Hit, < 730",
+          "9.25%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730",
+          "10 to 25 lacs",
+          ">39",
+          ">=730",
+          "9.1%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730",
+          "10 to 25 lacs",
+          ">39",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730",
+          ">=25 lac",
+          ">39",
+          ">=730",
+          "9.1%",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730",
+          ">=25 lac",
+          ">39",
+          "No Hit, < 730",
+          "9.15%",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730",
+          "< 10 Lakh",
+          ">39",
+          ">=730",
+          "9.25%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730",
+          "< 10 Lakh",
+          ">39",
+          "No Hit, < 730",
+          "9.35%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730",
+          "10 to 25 lacs",
+          ">39",
+          ">=730",
+          "9.2%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730",
+          "10 to 25 lacs",
+          ">39",
+          "No Hit, < 730",
+          "9.3%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730",
+          ">=25 lac",
+          ">39",
+          ">=730",
+          "9.1%",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "Normal",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730",
+          ">=25 lac",
+          ">39",
+          "No Hit, < 730",
+          "9.15%",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "<10 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "<10 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "<10 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "<10 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.1%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.05%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.05%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          ">= 25 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          ">= 25 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          ">= 25 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.1%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SALARIED_NO HIT,< 730\nSALARIED_>=730/PA/PQ",
+          ">= 25 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.05%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "<10 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "<10 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "<10 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.3%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "<10 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.25%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "10 - 20 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.15%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          "20 - 25 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.05%",
+          "0.72%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          ">= 25 lac",
+          "12 to 38 months",
+          "No Hit, < 730",
+          "9.2%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          ">= 25 lac",
+          "12 to 38 months",
+          ">=730 / PA / PQ",
+          "9.15%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          ">= 25 lac",
+          "> 39 months",
+          "No Hit, < 730",
+          "9.1%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "DIAL( Xpress Car Loans)",
+          "SELF EMPLOYED_NO HIT,< 730\nSELF EMPLOYED_>=730/PA/PQ",
+          ">= 25 lac",
+          "> 39 months",
+          ">=730 / PA / PQ",
+          "9.05%",
+          "0.45%",
+          "C2"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          "<10 lac",
+          "12 to 38 months",
+          "N.A",
+          "9.15%",
+          "0.585%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          "<10 lac",
+          "39 to 84 months",
+          "N.A",
+          "8.9%",
+          "0.585%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          "10 lac-20lac",
+          "12 to 38 months",
+          "N.A",
+          "9.15%",
+          "0.495%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          "10 lac-20lac",
+          "39 to 84 months",
+          "N.A",
+          "8.85%",
+          "0.495%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          ">20lac to 25lacs",
+          "12 to 38 months",
+          "N.A",
+          "9.15%",
+          "0.495%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          ">20lac to 25lacs",
+          "39 to 84 months",
+          "N.A",
+          "8.85%",
+          "0.495%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          ">=25 lacs",
+          "12 to 38 months",
+          "N.A",
+          "9.15%",
+          "0.45%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "Zip Drive",
+          "Zip Drive",
+          ">=25 lacs",
+          "39 to 84 months",
+          "N.A",
+          "8.65%",
+          "0.45%",
+          "C3"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - No Hit, <730",
+          "<10 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - No Hit, <730",
+          "10 L to <20 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - No Hit, <730",
+          ">20L - 25L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - No Hit, <730",
+          ">=25 lacs",
+          ">39",
+          "No Hit, < 730",
+          "8.9%",
+          "0.45%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - >=730",
+          "<10 L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - >=730",
+          "10 L to <20 L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - >=730",
+          ">20L - 25L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "SPECIAL SCHEME FOR CSD (Defence Personal)",
+          "ALCSD - >=730",
+          ">=25 lacs",
+          ">39",
+          ">=730",
+          "8.85%",
+          "0.45%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "EVCARAL",
+          "EVCARAL - No Hit, <730",
+          "<10 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "EVCARAL",
+          "EVCARAL - No Hit, <730",
+          "10 L to <20 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "EVCARAL",
+          "EVCARAL - No Hit, <730",
+          ">=20 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.45%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "EVCARAL",
+          "EVCARAL - >=730,Corporate and Company \nCases",
+          "<10 L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "EVCARAL",
+          "EVCARAL - >=730,Corporate and Company \nCases",
+          "10 L to <20 L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.585%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "EVCARAL",
+          "EVCARAL - >=730,Corporate and Company \nCases",
+          ">=20 L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.45%",
+          "C4"
+        ],
+        [
+          "HDFC",
+          "URCAL",
+          "URCAL",
+          "<10 L",
+          ">39",
+          "N.A",
+          "8.9%",
+          "0.585%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "URCAL",
+          "URCAL",
+          "10 L to <20 L",
+          ">39",
+          "N.A",
+          "8.85%",
+          "0.585%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "URCAL",
+          "URCAL",
+          ">20L - 25L",
+          ">39",
+          "N.A",
+          "8.85%",
+          "0.585%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "URCAL",
+          "URCAL",
+          ">=25 lacs",
+          ">39",
+          "N.A",
+          "8.65%",
+          "0.45%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "WINDSOR-No -hit ,<730",
+          "<10 L",
+          ">39",
+          "No Hit, < 730",
+          "8.9%",
+          "0.585%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "WINDSOR-No -hit ,<730",
+          "10 L to =<20 L",
+          ">39",
+          "No Hit, < 730",
+          "8.9%",
+          "0.585%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "WINDSOR->730 Corporate & Company Cases",
+          "<10 L",
+          ">39",
+          ">=730",
+          "8.7%",
+          "0.585%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "WINDSOR->730 Corporate & Company Cases",
+          "10 L to= <20 L",
+          ">39",
+          ">=730",
+          "8.7%",
+          "0.585%",
+          "C5"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "HYBRIDAL-No Hit <730",
+          "<10 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.585%",
+          "C6"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "HYBRIDAL-No Hit <730",
+          "10 L to <20 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.585%",
+          "C6"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "HYBRIDAL-No Hit <730",
+          ">=20 L",
+          ">39",
+          "No Hit, < 730",
+          "9%",
+          "0.45%",
+          "C6"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "HYBRIDAL->=730 ,coroporate and company \ncases",
+          "<10 L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.585%",
+          "C6"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "HYBRIDAL->=730 ,coroporate and company \ncases",
+          "10 L to <20 L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.585%",
+          "C6"
+        ],
+        [
+          "HDFC",
+          "Special Model Scheme",
+          "HYBRIDAL->=730 ,coroporate and company \ncases",
+          ">20=L",
+          ">39",
+          ">=730",
+          "8.95%",
+          "0.45%",
+          "C6"
+        ],
+        [
+          "HDFC",
+          "TAXI/TRAVEL",
+          "TAXI Aggregator",
+          "NA",
+          "39 - 84",
+          "N.A",
+          "10.5%",
+          "0.315%",
+          "C7"
+        ],
+        [
+          "HDFC",
+          "TAXI/TRAVEL",
+          "TAXI MEDIUM OPERATOR",
+          "NA",
+          "39 - 84",
+          "N.A",
+          "9.25%",
+          "0.18%",
+          "C7"
+        ],
+        [
+          "HDFC",
+          "TAXI/TRAVEL",
+          "TAXI SMALL FLEET",
+          "NA",
+          "39 - 84",
+          "N.A",
+          "14%",
+          "0.315%",
+          "C7"
+        ],
+        [
+          "HDFC",
+          "TAXI/TRAVEL",
+          "TAXI FTU",
+          "10 lacs only",
+          "48",
+          "N.A",
+          "13%",
+          "1.125%",
+          "C8"
+        ],
+        [
+          "HDFC",
+          "TAXI/TRAVEL",
+          "TAXI FTU",
+          "10 lacs only",
+          "48",
+          "N.A",
+          "14%+",
+          "1.35%",
+          "C8"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "no hit < 730",
+          "9%",
+          "0.765%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "> 730",
+          "8.9%",
+          "0.765%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "no hit < 730",
+          "9.15%",
+          "0.9%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "> 730",
+          "9.05%",
+          "0.9%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 lakh to < 25 lakhs",
+          ">39",
+          "no hit < 730",
+          "8.85%",
+          "0.675%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 lakh to < 25 lakhs",
+          ">39",
+          "> 730",
+          "8.75%",
+          "0.675%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 lakh to < 25 lakhs",
+          ">39",
+          "no hit < 730",
+          "9%",
+          "0.765%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 lakh to < 25 lakhs",
+          ">39",
+          "> 730",
+          "8.9%",
+          "0.765%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "25 Lakhs to < 30 Lakhs",
+          ">39",
+          "no hit < 730",
+          "8.45%",
+          "0.225%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "25 Lakhs to < 30 Lakhs",
+          ">39",
+          "> 730",
+          "8.45%",
+          "0.225%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          ">= 30 Lakhs & APL",
+          ">39",
+          "no hit < 730",
+          "8.05%",
+          "0.09%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          ">= 30 Lakhs & APL",
+          ">39",
+          "> 730",
+          "8.05%",
+          "0.09%",
+          "C9"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "no hit < 730",
+          "9%",
+          "0.765%",
+          "C10"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "> 730",
+          "8.9%",
+          "0.765%",
+          "C10"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "no hit < 730",
+          "9.15%",
+          "0.9%",
+          "C10"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "upto 15 lakh",
+          ">39",
+          "> 730",
+          "9.05%",
+          "0.9%",
+          "C10"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 Lakhs to < 25 Lakhs",
+          ">39",
+          "no hit < 730",
+          "8.85%",
+          "0.585%",
+          "C10"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 Lakhs to < 25 Lakhs",
+          ">39",
+          "> 730",
+          "8.75%",
+          "0.585%",
+          "C10"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 Lakhs to < 25 Lakhs",
+          ">39",
+          "no hit < 730",
+          "9%",
+          "0.675%",
+          "C10"
+        ],
+        [
+          "HDFC",
+          "GO4IT",
+          "Normal",
+          "15 Lakhs to < 25 Lakhs",
+          ">39",
+          "> 730",
+          "9%",
+          "0.675%",
+          "C10"
+        ]
+      ],
+      "notes": [
+        "C1: •For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of 1.30% For Up to <10 lakh \n•For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of   1.30% For Up to <=10 lakh to 25lkh•For every 15 BPS \nhigher rate, the DSA pay-out would be 10 BPS higher up to a maximum of    1.00% For Above >=25lkh\n•Foreclosure charges will be Nil after 24 Months subject to nil cheque bounce and Repayment from own source of fund / No Loan Takeover.\n•No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months\nSubvention Grid (Applicable only for Normal, Xpress, URCAL and BIZIP)\n•For every 15 BPS Lower rate, the DSA pay-out would deduct by 10 BPS to a minimum of 8.70% For Up to <10 lakh. \n•For every 15 BPS Lower  rate, the DSA pay-out would be 20 BPS lower up to a minimum of  8.45% For Up to <=10 lakh to 25lkh\n•For every 25 BPS Lower rate, the DSA pay-out would be 10 BPS Lower up to a Minimum of  8.20% For Above >=25lkh",
+        "C2: •Foreclosure charges will be Nil after 24 Months subject to nil cheque bounce and Repayment from own source of fund / No Loan Takeover.\n•Any subvention on the rack rate shared would have to be approved by the Product team.\n•No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months\nSubvention Grid (Applicable only for Normal, Xpress, URCAL and BIZIP)\n•For every 15 BPS Lower rate, the DSA pay-out would deduct by 10 BPS to a minimum of 8.70% For Up to <10 lakh. \n•For every 15 BPS Lower  rate, the DSA pay-out would be 20 BPS lower up to a minimum of  8.45% For Up to <=10 lakh to 25lkh\n•For every 25 BPS Lower rate, the DSA pay-out would be 10 BPS Lower up to a Minimum of  8.20% For Above >=25lkh",
+        "C3: •For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of 1.30% For Up to <10 lakh \n•For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of  1.30% For Up to <=10 lakh to 20 lakh\n•For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of 1.00% For Above >=20lkh\n•Any subvention on the rack rate shared would have to be approved by the Product team.\n•No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months\nSubvention Grid (Applicable only for Normal, Xpress, URCAL and BIZIP)\n•For every 15 BPS Lower rate, the DSA pay-out would deduct by 10 BPS to a minimum of 8.70% For Up to <10 lakh. \n•For every 15 BPS Lower  rate, the DSA pay-out would be 20 BPS lower up to a minimum of  8.45% For Up to <=10 lakh to 25lkh\n•For every 25 BPS Lower rate, the DSA pay-out would be 10 BPS Lower up to a Minimum of  8.20% For Above >=25lkh",
+        "C4: •For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of 1.30% For Up to <10 lakh \n•For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of  1.30% For Up to <=10 lakh to 20 lakh\n•For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of 1.00% For Above >=20lkh\n•Any subvention on the rack rate shared would have to be approved by the Product team.\n•No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months",
+        "C5: •For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of 1.30% For Up to <10 lakh \n•For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of  1.30% For Up to <=10 lakh to 20 lakh\n•For every 15 BPS higher rate, the DSA pay-out would be 10 BPS higher up to a maximum of 1.00% For Above >=20lkh\n•Any subvention on the rack rate shared would have to be approved by the Product team.\n•No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months\nSubvention Grid (Applicable only for Normal, Xpress, URCAL and BIZIP)\n•For every 15 BPS Lower rate, the DSA pay-out would deduct by 10 BPS to a minimum of 8.70% For Up to <10 lakh. \n•For every 15 BPS Lower  rate, the DSA pay-out would be 20 BPS lower up to a minimum of  8.45% For Up to <=10 lakh to 25lkh\n•For every 25 BPS Lower rate, the DSA pay-out would be 10 BPS Lower up to a Minimum of  8.30% For Above >=25lkh",
+        "C6: •No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months",
+        "C7: No Rate and Channel Payout Deviation allowed\n•No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months",
+        "C8: •Max loan amt - 10 lacs                     •Nil payout below 13%\n•Tenure 48 months,  10 BPS higher for cases >60months\n•Eligible cars - Alto/Wagon R/Swift/Celerio/S presso/Ignis/Aura/Dzire/Nexon/Tigor/Amaze/Ertiga",
+        "C9: •No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months\nfor emerging Market- North 1 - Delhi NCR,HR,UK,HP,CH\nNorth 2 - UP,PB\nSouth 1 - KL,TN\nWest 3 - MP,RJ,CHHATSIGARH,MH - AURANGABAD, JALGAON, NAGPUR,NASIK///Conditions for GO4IT scheme.\nPayouts under the applicable scheme shall be determined solely based on the region of the sourcing staff, irrespective of the customer’s geographical \nlocation and dealer’s location.\nFor example: If a sales Manager belonging to the Gujarat region sources a case for a customer located in Delhi, the payout will be processed as per the \nprime region payout structure.",
+        "C10: •No Pay-out to DSA in 39 Months & below tenures and 10 BPS higher for cases >60months\nThis scheme is exclusively for Prime Region\nWest 1- GOA, MAHARASHTRA - KOLHAPUR, MUMBAI, PUNE, THANE\nWest 2 - Gujarat\nSouth 2 - ANDHRA PRADESH, KARNATAKA, TELANGANA\nEast - ARUNACHAL PRADESH, ASSAM, BIHAR, JHARKHAND, MEGHALAYA, NAGALAND, ORISSA , WEST BENGAL, MANRPUR, SIKKIM, \nTRIPURA///conditions for GO4IT scheme.\nPayouts under the applicable scheme shall be determined solely based on the region of the sourcing staff, irrespective of the customer’s geographical \nlocation and dealer’s location.\nFor example: If a sales Manager belonging to the Gujarat region sources a case for a customer located in Delhi, the payout will be processed as per the \nprime region payout structure."
+      ],
+      "sourceRows": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133
+      ]
+    },
+    {
+      "title": "Axis",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Car Segment",
+        "Minimum rates - Car Category wise",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5
+      ],
+      "rows": [
+        [
+          "Axis",
+          "NORMAL",
+          "Income Proof/Pre Approved",
+          "Seg A",
+          "9.5%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Income Proof/Pre Approved",
+          "Seg B",
+          "9.25%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Income Proof/Pre Approved",
+          "Seg C",
+          "8.85%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Income Proof/Pre Approved",
+          "Seg C+",
+          "8.75%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Income Proof/Pre Approved",
+          "Seg D",
+          "8.5%",
+          "1.44%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. No Deviation allowed under any scheme\n2. NIL Payout if, Tenure <39 months and Demo Cars"
+      ],
+      "sourceRows": [
+        136,
+        137,
+        138,
+        139,
+        140
+      ]
+    },
+    {
+      "title": "Axis",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Car Segment",
+        "Minimum rates - Car Category wise",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5
+      ],
+      "rows": [
+        [
+          "Axis",
+          "NORMAL",
+          "SURROGATE",
+          "Seg A",
+          "10.75%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "SURROGATE",
+          "Seg B",
+          "10.35%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "SURROGATE",
+          "Seg C",
+          "10.1%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "SURROGATE",
+          "Seg C+",
+          "10%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "SURROGATE",
+          "Seg D",
+          "9.75%",
+          "1.44%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. No Deviation allowed under any scheme\n2. NIL Payout if, Tenure <39 months and Demo Cars"
+      ],
+      "sourceRows": [
+        142,
+        143,
+        144,
+        145,
+        146
+      ]
+    },
+    {
+      "title": "Axis",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Car Segment",
+        "Minimum rates - Car Category wise",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5
+      ],
+      "rows": [
+        [
+          "Axis",
+          "NORMAL",
+          "Universal NIP",
+          "Seg A",
+          "11.15%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Universal NIP",
+          "Seg B",
+          "11.15%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Universal NIP",
+          "Seg C",
+          "11.05%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Universal NIP",
+          "Seg C+",
+          "11.05%",
+          "1.44%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. No Deviation allowed under any scheme\n2. NIL Payout if, Tenure <39 months and Demo Cars"
+      ],
+      "sourceRows": [
+        148,
+        149,
+        150,
+        151
+      ]
+    },
+    {
+      "title": "Axis",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Car Segment",
+        "Minimum rates-Fleet Non-FTU \n& Others",
+        "Minimum rates-Fleet - More \nthan 50 cars",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        6
+      ],
+      "rows": [
+        [
+          "Axis",
+          "NORMAL",
+          "Non-FTU & Others\nMore than 50 Cars",
+          "Seg A",
+          "10.75%",
+          "10.1%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Non-FTU & Others\nMore than 50 Cars",
+          "Seg B",
+          "10.55%",
+          "9.7%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Non-FTU & Others\nMore than 50 Cars",
+          "Seg C",
+          "10.3%",
+          "9.55%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Non-FTU & Others\nMore than 50 Cars",
+          "Seg C+",
+          "10.05%",
+          "9.45%",
+          "1.44%",
+          "C1"
+        ],
+        [
+          "Axis",
+          "NORMAL",
+          "Non-FTU & Others\nMore than 50 Cars",
+          "Seg D",
+          "9.8%",
+          "9.2%",
+          "1.44%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. No Deviation allowed under any scheme\n2. NIL Payout if, Tenure <39 months and Demo Cars"
+      ],
+      "sourceRows": [
+        154,
+        155,
+        156,
+        157,
+        158
+      ]
+    },
+    {
+      "title": "Bandhan Bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Loan Amount\nTenure",
+        "ROI",
+        "DSA Payout\nCIBIL >730",
+        "DSA Payout\nCIBIL >700< 730",
+        "DSA Payout CIBIL < 700",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5,
+        6,
+        7
+      ],
+      "rows": [
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "9%",
+          "0.315%",
+          "0.135%",
+          "0.09%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "9.25%",
+          "0.45%",
+          "0.315%",
+          "0.135%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "9.4%",
+          "0.72%",
+          "0.45%",
+          "0.315%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "9.6%",
+          "0.9%",
+          "0.72%",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "9.75%",
+          "1.125%",
+          "0.9%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "9.9%",
+          "1.26%",
+          "1.125%",
+          "0.9%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "10%",
+          "1.35%",
+          "1.26%",
+          "1.125%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          "<=Rs 10 Lacs\n>=37 months to 72 months",
+          "10.4%",
+          "1.575%",
+          "1.35%",
+          "1.26%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1.Tenor > 72 months up to 84 months 5 BPS will be higher ROI .\n2.For NIP/Single ITR Cases/Low LTV/FD lien Program/Repayment track program/CIBIL -1 cases 10-50 BPS will be higher ROI. \n3.No payout applicable for rates lower than the grid.\nFor below 36 months minimum ROI is to be 12% else Nil payout\n- Nil Payout for tenure up to 15 months.\n- 0.40% Payout for Tenure >=16 months < =24 months\n- 0.60% Payout for Tenure >=25 months =< 29 months.\n- 1%  Payout for Tenure >=30 months <= 36 months."
+      ],
+      "sourceRows": [
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169
+      ]
+    },
+    {
+      "title": "Bandhan Bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Loan Amount\nTenure",
+        "ROI",
+        "DSA Payout\nCIBIL >730",
+        "DSA Payout\nCIBIL >700< 730",
+        "DSA Payout CIBIL < 700",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5,
+        6,
+        7
+      ],
+      "rows": [
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "9%",
+          "0.45%",
+          "0.135%",
+          "0.135%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "9.15%",
+          "0.72%",
+          "0.45%",
+          "0.225%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "9.35%",
+          "0.9%",
+          "0.72%",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "9.6%",
+          "1.125%",
+          "0.9%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "9.75%",
+          "1.26%",
+          "1.125%",
+          "0.9%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "9.9%",
+          "1.44%",
+          "1.26%",
+          "1.125%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "10%",
+          "1.575%",
+          "1.44%",
+          "1.26%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 10 Lacs\n                   >   =   37 months to 72 months",
+          "10.2%",
+          "1.575%",
+          "1.575%",
+          "1.44%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1.Tenor > 72 months up to 84 months 5 BPS will be higher ROI .\n2.For NIP/Single ITR Cases/Low LTV/FD lien Program/Repayment track program/CIBIL -1 cases 10-50 BPS will be higher ROI. \n3.No payout applicable for rates lower than the grid.\nFor below 36 months minimum ROI is to be 12% else Nil payout\n- Nil Payout for tenure up to 15 months.\n- 0.40% Payout for Tenure >=16 months < =24 months\n- 0.60% Payout for Tenure >=25 months =< 29 months.\n- 1%  Payout for Tenure >=30 months <= 36 months."
+      ],
+      "sourceRows": [
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178
+      ]
+    },
+    {
+      "title": "Bandhan Bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Loan Amount\nTenure",
+        "ROI",
+        "DSA Payout\nCIBIL >730",
+        "DSA Payout\nCIBIL >700< 730",
+        "DSA Payout CIBIL < 700",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5,
+        6,
+        7
+      ],
+      "rows": [
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "9%",
+          "0.45%",
+          "0.225%",
+          "0.135%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "9.25%",
+          "0.675%",
+          "0.45%",
+          "0.225%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "9.5%",
+          "0.9%",
+          "0.675%",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "9.65%",
+          "1.125%",
+          "0.9%",
+          "0.675%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "9.8%",
+          "1.35%",
+          "1.125%",
+          "0.9%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "10%",
+          "1.575%",
+          "1.35%",
+          "1.125%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "10.1%",
+          "1.575%",
+          "1.575%",
+          "1.35%",
+          "C1"
+        ],
+        [
+          "Bandhan Bank",
+          "Normal",
+          "CIBIL >=730\nCIBIL >700< 730                           \nCIBIL < 700",
+          ">=Rs 25 Lacs\n>=37 months to 72 months",
+          "10.25%",
+          "1.575%",
+          "1.575%",
+          "1.575%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1.Tenor > 72 months up to 84 months 5 BPS will be higher ROI .\n2.For NIP/Single ITR Cases/Low LTV/FD lien Program/Repayment track program/CIBIL -1 cases 10-50 BPS will be higher ROI. \n3.No payout applicable for rates lower than the grid.\nFor below 36 months minimum ROI is to be 12% else Nil payout\n- Nil Payout for tenure up to 15 months.\n- 0.40% Payout for Tenure >=16 months < =24 months\n- 0.60% Payout for Tenure >=25 months =< 29 months.\n- 1%  Payout for Tenure >=30 months <= 36 months."
+      ],
+      "sourceRows": [
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187
+      ]
+    },
+    {
+      "title": "Federal Bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Loan Amount",
+        "CIBIL and Tenure",
+        "Rate Bracket",
+        "DSA Payout in New Car - TL",
+        "DSA Payout in New Car - OD",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        6,
+        7
+      ],
+      "rows": [
+        [
+          "Federal Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Bank Policy",
+          "7.9-8.09",
+          "0.675%",
+          "-",
+          "NA"
+        ],
+        [
+          "Federal Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Bank Policy",
+          "8.10-8.29",
+          "0.9%",
+          "-",
+          "NA"
+        ],
+        [
+          "Federal Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Bank Policy",
+          "8.30 to 8.49",
+          "0.99%",
+          "-",
+          "NA"
+        ],
+        [
+          "Federal Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Bank Policy",
+          "8.50 to 8.69",
+          "1.08%",
+          "-",
+          "NA"
+        ],
+        [
+          "Federal Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Bank Policy",
+          "8.70-8.89",
+          "1.215%",
+          "-",
+          "NA"
+        ],
+        [
+          "Federal Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Bank Policy",
+          "8.90 & above",
+          "1.305%",
+          "-",
+          "NA"
+        ],
+        [
+          "Federal Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Bank Policy",
+          ">=9%",
+          "1.305%",
+          "0.72%",
+          "NA"
+        ]
+      ],
+      "notes": [],
+      "sourceRows": [
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196
+      ]
+    },
+    {
+      "title": "Tata Capital",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "Tenure",
+        "IRR( Passenger Vehicle)",
+        "(Fleet Taxi/Commercial)",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "Tata Capital",
+          "Normal,\nFLEET & TAXI",
+          "Normal,\nFLEET & TAXI",
+          "All",
+          "36 and 48 months Only",
+          ">9.99%",
+          "N.A( Not Appplicable )",
+          "0.315%",
+          "C1"
+        ],
+        [
+          "Tata Capital",
+          "Normal,\nFLEET & TAXI",
+          "Normal,\nFLEET & TAXI",
+          "All",
+          ">24",
+          ">=10.50 -10.99%",
+          ">=11.00-11.49%",
+          "0.495%",
+          "C1"
+        ],
+        [
+          "Tata Capital",
+          "Normal,\nFLEET & TAXI",
+          "Normal,\nFLEET & TAXI",
+          "All",
+          ">24",
+          ">=11.00-11.49%",
+          ">=11.50-11.99%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "Tata Capital",
+          "Normal,\nFLEET & TAXI",
+          "Normal,\nFLEET & TAXI",
+          "All",
+          ">24",
+          ">=11.50-11.99%",
+          ">=12.00-12.50%",
+          "0.9%",
+          "C1"
+        ],
+        [
+          "Tata Capital",
+          "Normal,\nFLEET & TAXI",
+          "Normal,\nFLEET & TAXI",
+          "All",
+          ">24",
+          ">=12.00-14.00%",
+          ">=12.51-14.50%",
+          "1.08%",
+          "C1"
+        ],
+        [
+          "Tata Capital",
+          "Normal,\nFLEET & TAXI",
+          "Normal,\nFLEET & TAXI",
+          "All",
+          ">24",
+          ">14.00%",
+          ">14.50%",
+          "1.35%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: Hyundai Creta,Hyundai Alcazar,Maruti Invicto,MG hector,Mahindra XUV700,Mahindra XE9/6E,Thar Roxx,Kia Seltos,Tata Harrier,Tata Curv,Kia Syros( \nApplicable only for Non-Commercial Assets)\nMinimum Tenor Conditions -24 months\nNil Payout below 10.50%( Passenger Vehicle )\nNil Payout below  11.00% (Commercial Taxi/Fleet)"
+      ],
+      "sourceRows": [
+        199,
+        200,
+        201,
+        202,
+        203,
+        204
+      ]
+    },
+    {
+      "title": "Bajaj",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "Tenure",
+        "IRR",
+        "GMV (Per channel)",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "Bajaj",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Policy",
+          "As per Policy",
+          "0-50 Lacs",
+          "0.63%",
+          "C1"
+        ],
+        [
+          "Bajaj",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Policy",
+          "As per Policy",
+          "50+ Lacs - 75 Lacs",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "Bajaj",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Policy",
+          "As per Policy",
+          "75+ Lacs - 1.5 Cr",
+          "0.81%",
+          "C1"
+        ],
+        [
+          "Bajaj",
+          "Normal",
+          "Normal",
+          "All",
+          "As per Policy",
+          "As per Policy",
+          "1.50+ Cr",
+          "0.9%",
+          "C1"
+        ],
+        [
+          "Bajaj",
+          "Normal",
+          "Luxury",
+          "Ref to Conditions for List of Brands",
+          "As per Policy",
+          "As per Policy",
+          "Ref to Conditions for List of \nBrands",
+          "0.225%",
+          "C2"
+        ]
+      ],
+      "notes": [
+        "C1: As per communication in shared grid",
+        "C2: Mercedes-benz, BMW, JLR, Audi, Maserati, Rolls Royce, Buggati, Ferrari, \nLambhorgini, Toyota Velfire, Porsche, Bentley, Volvo, Aston Martin, Lexus, \nMcLaren, Alfa Romeo, Toyota Land Cruiser"
+      ],
+      "sourceRows": [
+        207,
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    {
+      "title": "Kogta Finance",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "Tenure",
+        "IRR",
+        "GMV (Per channel)",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "Kogta Finance",
+          "Normal",
+          "Normal",
+          "All",
+          ">36",
+          "13-13.99%",
+          "All",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "Kogta Finance",
+          "Normal",
+          "Normal",
+          "All",
+          ">36",
+          ">14%",
+          "All",
+          "0.9%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: Loan Amount <55 Lacs\nMinimum ROI to be maintained is 13% % else channel PO will be zero.\nOnly Private Use Vehicle and Existing Taxi fleet Cases to be funded .\nNo Commercial Usage  Vehicle  Allowed"
+      ],
+      "sourceRows": [
+        215,
+        216
+      ]
+    },
+    {
+      "title": "Mahindra Finance",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "Tenure",
+        "IRR",
+        "Loan Amount",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "Mahindra Finance",
+          "Normal",
+          "Normal",
+          "All",
+          ">36",
+          "As per Policy",
+          "All",
+          "0.81%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: Minimum ROI to be maintained is 12 % else channel PO will be zero.\nOnly Private Use Vehicle allowed to be funded\nNo New or Existing Taxi fleet Cases  or Commercial Usage Vehicle cases to be funded"
+      ],
+      "sourceRows": [
+        219
+      ]
+    },
+    {
+      "title": "Saraswat",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Tenure",
+        "Band",
+        "ROI",
+        "GMV (Per channel)",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "Saraswat",
+          "Normal",
+          "Income Proof CIBIL",
+          "As per Bank",
+          "CIBIL >=700 and -1",
+          ">=8.5-8.9%",
+          "All",
+          "0.99%",
+          "C1"
+        ],
+        [
+          "Saraswat",
+          "Normal",
+          "Income Proof CIBIL",
+          "As per Bank",
+          "CIBIL >=700 and -1",
+          ">=9.01-9.30%",
+          "All",
+          "1.125%",
+          "C1"
+        ],
+        [
+          "Saraswat",
+          "Normal",
+          "Income Proof CIBIL",
+          "As per Bank",
+          "CIBIL >=700 and -1",
+          ">9.31%",
+          "All",
+          "1.26%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1. ROI waiver approval to be taken from Business Product\n2. NIL Payout for tenure below 1 year\n3. For all No Income proof customer rate will be 1% higher\n4. Payout will knock off in same proportionate (e.g. ROI down by 25 BPS, payout will also reduce by 25 BPS)"
+      ],
+      "sourceRows": [
+        222,
+        223,
+        224
+      ]
+    },
+    {
+      "title": "ICICI Bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "ROI & Tenure",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        4
+      ],
+      "rows": [
+        [
+          "ICICI Bank",
+          "Loan Amount",
+          "< 14.99 L",
+          "As per Bank",
+          "1.17%",
+          "C1"
+        ],
+        [
+          "ICICI Bank",
+          "Loan Amount",
+          "15 - 29.99 L",
+          "As per Bank",
+          "1.125%",
+          "C1"
+        ],
+        [
+          "ICICI Bank",
+          "Loan Amount",
+          ">=30 L",
+          "As per Bank",
+          "1.08%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: ALPA case ROI >=9% else PO%- 0.50%\nCorporate cases to be done at grid rate only (Applicable only for Top Large Corporates, e.g Infosys)"
+      ],
+      "sourceRows": [
+        227,
+        228,
+        229
+      ]
+    },
+    {
+      "title": "Yes",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Loan Amount",
+        "Tenure",
+        "IRR % From",
+        "IRR % To",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Upto 12.5 Lacs",
+          ">36",
+          ">9.25",
+          "<=9.50",
+          "0.225%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Upto 12.5 Lacs",
+          ">36",
+          ">9.50",
+          "<=10.00",
+          "0.315%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Upto 12.5 Lacs",
+          ">36",
+          ">10.00",
+          "<=10.50",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Upto 12.5 Lacs",
+          ">36",
+          ">10.50",
+          "",
+          "0.585%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Above 12. 5 lacs",
+          ">36",
+          ">8.90",
+          "<=9.15",
+          "0.225%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Above 12. 5 lacs",
+          ">36",
+          ">9.15",
+          "<=9.40",
+          "0.315%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Above 12. 5 lacs",
+          ">36",
+          ">9.40",
+          "<=10.00",
+          "0.45%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "NORMAL",
+          "NORMAL",
+          "Above 12. 5 lacs",
+          ">36",
+          ">10.00",
+          "",
+          "0.585%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "Special Model Scheme",
+          "Standard( CIBIL > 730)",
+          "NA",
+          ">36",
+          ">=9.00",
+          "<=9.40",
+          "0.36%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "Special Model Scheme",
+          "Standard( CIBIL > 750)",
+          "NA",
+          ">36",
+          ">=8.85",
+          "<=9.40",
+          "0.36%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "Special Model Scheme",
+          "Standard( CIBIL > 770)",
+          "NA",
+          ">36",
+          ">=8.75",
+          "<=9.40",
+          "0.36%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "Special Model Scheme",
+          "Premium( CIBIL > 730)",
+          "NA",
+          ">36",
+          ">=8.70",
+          "<=8.90",
+          "0.225%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "Special Model Scheme",
+          "Premium( CIBIL > 750)",
+          "NA",
+          ">36",
+          ">=8.60",
+          "<=8.90",
+          "0.225%",
+          "C1"
+        ],
+        [
+          "Yes",
+          "Special Model Scheme",
+          "Premium( CIBIL > 770)",
+          "NA",
+          ">36",
+          ">8.50",
+          "<=8.90",
+          "0.225%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: No Payout to DSA If tenure is less than 36 Months and ROI -10.00%\nROI grid to be followed strictly ,No ROI deviation allowed"
+      ],
+      "sourceRows": [
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245
+      ]
+    },
+    {
+      "title": "AU bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Rate Range (Pvt)",
+        "DSA PO% Pvt",
+        "Rate Range (Taxi)",
+        "DSA PO% Taxi",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        4,
+        6
+      ],
+      "rows": [
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "9.01% - 9.49%",
+          "0.18%",
+          "11.00% - 11.99%",
+          "0.27%",
+          "C1"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "9.50% - 9.99%",
+          "0.225%",
+          "12.00% - 12.99%",
+          "0.36%",
+          "NA"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "10.00% - 10.49%",
+          "0.315%",
+          "13.00%- 13..99%",
+          "0.54%",
+          "NA"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "10.50% - 10.99%",
+          "0.45%",
+          "14.00%-14.99%",
+          "0.72%",
+          "NA"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "11.00% - 11.49%",
+          "0.54%",
+          "15.00% - &above",
+          "0.9%",
+          "NA"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "11.50% - 11.99%",
+          "0.63%",
+          "-",
+          "-",
+          "NA"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "12.00% -12.51%",
+          "0.765%",
+          "-",
+          "-",
+          "NA"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "12.51% -13.00%",
+          "0.945%",
+          "-",
+          "-",
+          "NA"
+        ],
+        [
+          "AU bank",
+          "Normal",
+          "Private\nTaxi",
+          "13.00%&above",
+          "1.17%",
+          "-",
+          "-",
+          "NA"
+        ]
+      ],
+      "notes": [
+        "C1: 1. Loan tenure – up to 17 month – NIL pay-out.\n2. Loan Tenure – 18-24 Months – 50 % (Half) of applicable pay-out slab.\n3.Nil payout for ROI less than 9.01% for private and 11% for Fleet/Taxi"
+      ],
+      "sourceRows": [
+        248,
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256
+      ]
+    },
+    {
+      "title": "Mannapuram",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Loan Amount",
+        "Tenure",
+        "IRR % From",
+        "IRR % To",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        7
+      ],
+      "rows": [
+        [
+          "Mannapuram",
+          "Normal",
+          "Normal",
+          "All",
+          "All",
+          ">18%",
+          "",
+          "3.375%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: 1.Payout of canceled cases within 6 months of disbursal will be reversed back\n2.WIRR of 18% to be maintained\n3.Min quareterly volume of 2.5 Cr"
+      ],
+      "sourceRows": [
+        259
+      ]
+    },
+    {
+      "title": "HDB Financial Services",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "Tenure",
+        "IRR",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        6
+      ],
+      "rows": [
+        [
+          "HDB Financial Services",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "10.76%% - 11.00%",
+          "0.315%",
+          "C1"
+        ],
+        [
+          "HDB Financial Services",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "11.01% - 11.25%",
+          "0.54%",
+          "C1"
+        ],
+        [
+          "HDB Financial Services",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "11.26%-12.00%",
+          "0.675%",
+          "C1"
+        ],
+        [
+          "HDB Financial Services",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "12.01%-12.75%",
+          "1.125%",
+          "C1"
+        ],
+        [
+          "HDB Financial Services",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "12.76%-13.25 %",
+          "1.35%",
+          "C1"
+        ],
+        [
+          "HDB Financial Services",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "13.26%-13.75%",
+          "1.575%",
+          "C1"
+        ],
+        [
+          "HDB Financial Services",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          ">13.76%",
+          "2.025%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: For Fleet taxi /commercial cases IRR will be decided on a case to case basis.\n• For less than 24 months - nil payout\n• Call on tenor greater than 60 months to be taken on cases to case basis\n• Minimum  CIBIL criteria are CIBIL-1 and 650\n• No payout below the rate of 11.01 %."
+      ],
+      "sourceRows": [
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268
+      ]
+    },
+    {
+      "title": "ESAF Small Finance Bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "Tenure",
+        "IRR",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        6
+      ],
+      "rows": [
+        [
+          "ESAF Small Finance Bank",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "10.01% - 11.00%",
+          "0.72%",
+          "C1"
+        ],
+        [
+          "ESAF Small Finance Bank",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "11.01%-12.50%",
+          "1.08%",
+          "C1"
+        ],
+        [
+          "ESAF Small Finance Bank",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "12.51%-13.50%",
+          "1.8%",
+          "C1"
+        ],
+        [
+          "ESAF Small Finance Bank",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "13.51%-14.50 %",
+          "2.25%",
+          "C1"
+        ],
+        [
+          "ESAF Small Finance Bank",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          "14.51%-15.00%",
+          "2.475%",
+          "C1"
+        ],
+        [
+          "ESAF Small Finance Bank",
+          "Normal\nFleet & Taxi",
+          "Normal\nFleet & Taxi",
+          "All",
+          ">24-60 M",
+          ">15%",
+          "2.7%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: • For Fleet taxi /commercial cases rates will 1% higher.\n• For < 24 months or >60 months - nil payout\n• Call on tenor greater than 60 months to be taken on cases to case basis by the Bank\n• No payout below the rate of 10.01 %."
+      ],
+      "sourceRows": [
+        271,
+        272,
+        273,
+        274,
+        275,
+        276
+      ]
+    },
+    {
+      "title": "South Indian Bank",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "IRR",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5
+      ],
+      "rows": [
+        [
+          "South Indian Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "8.75% and above",
+          "1.08%",
+          "C1"
+        ],
+        [
+          "South Indian Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "8.60% to 8.74%",
+          "0.9%",
+          "C1"
+        ],
+        [
+          "South Indian Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "8.45% to 8.59%",
+          "0.63%",
+          "C1"
+        ],
+        [
+          "South Indian Bank",
+          "Normal",
+          "Normal",
+          "All",
+          "8.35% to 8.44%",
+          "0.45%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: As per communication in shared grid"
+      ],
+      "sourceRows": [
+        279,
+        280,
+        281,
+        282
+      ]
+    },
+    {
+      "title": "Indostar Capital",
+      "headers": [
+        "Bank",
+        "Parent PromoCode",
+        "Child PromoCode",
+        "Band",
+        "IRR",
+        "DSA Payout",
+        "Conditions reference"
+      ],
+      "payoutColumns": [
+        5
+      ],
+      "rows": [
+        [
+          "Indostar Capital",
+          "Normal",
+          "Normal",
+          "All",
+          ">13.01%",
+          "0.9%",
+          "C1"
+        ],
+        [
+          "Indostar Capital",
+          "Normal",
+          "Normal",
+          "All",
+          ">14.01%",
+          "1.125%",
+          "C1"
+        ],
+        [
+          "Indostar Capital",
+          "Normal",
+          "Normal",
+          "All",
+          ">15.01%",
+          "1.8%",
+          "C1"
+        ],
+        [
+          "Indostar Capital",
+          "Normal",
+          "Normal",
+          "All",
+          ">15.51%",
+          "2.025%",
+          "C1"
+        ]
+      ],
+      "notes": [
+        "C1: As per communication in shared grid"
+      ],
+      "sourceRows": [
+        285,
+        286,
+        287,
+        288
+      ]
+    }
+  ],
+  "usedCar": [
+    {
+      "title": "Delta",
+      "headers": [
+        "Bank",
+        "0-15 lakh",
+        "15.01-30 lakh",
+        "30.01-50 lakh",
+        "50.01-100 lakh",
+        "Above 100 lakh"
+      ],
+      "payoutColumns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "rows": [
+        [
+          "AXIS BANK",
+          "3.15%",
+          "3.6%",
+          "3.6%",
+          "3.6%",
+          "3.6%"
+        ],
+        [
+          "Tata Capital",
+          "3.15%",
+          "3.15%",
+          "3.375%",
+          "3.6%",
+          "3.6%"
+        ],
+        [
+          "Kotak Mahindra",
+          "2.7%",
+          "2.925%",
+          "3.15%",
+          "3.15%",
+          "3.15%"
+        ],
+        [
+          "Jana Small Finance Bank",
+          "3.375%",
+          "3.375%",
+          "3.6%",
+          "3.6%",
+          "3.6%"
+        ],
+        [
+          "Piramal",
+          "3.15%",
+          "3.15%",
+          "3.15%",
+          "3.375%",
+          "3.6%"
+        ],
+        [
+          "Poonawalla Fincorp",
+          "3.15%",
+          "3.15%",
+          "3.15%",
+          "3.375%",
+          "3.375%"
+        ],
+        [
+          "Mahindra Finance (IP SE, Salaried)",
+          "2.7%",
+          "3.15%",
+          "3.375%",
+          "3.6%",
+          "3.6%"
+        ],
+        [
+          "HDFC Bank (refer point 2 of Terms & Conditions )",
+          "3.15%",
+          "3.15%",
+          "3.15%",
+          "3.375%",
+          "3.6%"
+        ],
+        [
+          "IDFC First Bank (Urban & Rural)",
+          "2.7%",
+          "2.7%",
+          "3.15%",
+          "3.6%",
+          "3.6%"
+        ],
+        [
+          "HDBFS",
+          "2.925%",
+          "3.15%",
+          "3.15%",
+          "3.15%",
+          "3.375%"
+        ],
+        [
+          "ICICI Bank",
+          "2.925%",
+          "2.925%",
+          "3.15%",
+          "3.15%",
+          "3.6%"
+        ],
+        [
+          "Bajaj Finserv",
+          "2.7%",
+          "2.7%",
+          "2.925%",
+          "3.15%",
+          "3.15%"
+        ]
+      ],
+      "notes": []
+    },
+    {
+      "title": "Gamma",
+      "headers": [
+        "Bank",
+        "0-15 lakh",
+        "15.01-30 lakh",
+        "30.01-50 lakh",
+        "50.01-100 lakh",
+        "Above 100 lakh"
+      ],
+      "payoutColumns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "rows": [
+        [
+          "Muthoot Capital",
+          "2.7%",
+          "2.7%",
+          "2.925%",
+          "2.925%",
+          "3.15%"
+        ],
+        [
+          "AXIS BANK (Internal Top Up)",
+          "2.7%",
+          "3.15%",
+          "3.15%",
+          "3.15%",
+          "3.15%"
+        ],
+        [
+          "HDFC Bank (Jaldi 5) (refer point 2 of Terms & Conditions )",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "2.925%",
+          "3.15%"
+        ],
+        [
+          "INDUSIND Bank",
+          "2.25%",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "3.15%"
+        ],
+        [
+          "The Federal Bank Limited",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "2.925%",
+          "2.925%"
+        ],
+        [
+          "YES BANK LTD",
+          "2.7%",
+          "2.7%",
+          "2.925%",
+          "2.925%",
+          "2.925%"
+        ],
+        [
+          "Indostar Capital Finance Limited",
+          "2.925%",
+          "2.925%",
+          "2.925%",
+          "2.925%",
+          "2.925%"
+        ],
+        [
+          "TVS Credit",
+          "2.25%",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "2.925%"
+        ],
+        [
+          "Saraswat Co-operative Bank",
+          "2.475%",
+          "2.925%",
+          "2.925%",
+          "2.925%",
+          "2.925%"
+        ],
+        [
+          "ESAF Small Finance Bank Limited",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "2.7%"
+        ],
+        [
+          "Suryoday Small Finance Bank Limited",
+          "2.475%",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "2.7%"
+        ],
+        [
+          "ITI Finance",
+          "2.475%",
+          "2.475%",
+          "2.7%",
+          "2.7%",
+          "2.7%"
+        ],
+        [
+          "EQUITAS SMALL FINANCE BANK",
+          "2.25%",
+          "2.475%",
+          "2.7%",
+          "2.7%",
+          "2.7%"
+        ],
+        [
+          "Toyota Financial",
+          "2.025%",
+          "2.25%",
+          "2.475%",
+          "2.7%",
+          "2.7%"
+        ],
+        [
+          "AUF",
+          "2.475%",
+          "2.475%",
+          "2.475%",
+          "2.475%",
+          "2.7%"
+        ],
+        [
+          "Bandhan Bank",
+          "2.25%",
+          "2.7%",
+          "2.7%",
+          "2.7%",
+          "2.7%"
+        ],
+        [
+          "Mahindra Finance (NIP SE)",
+          "0.9%",
+          "1.8%",
+          "1.8%",
+          "2.7%",
+          "2.7%"
+        ],
+        [
+          "Cholamandalam Investment And Finance Company",
+          "2.25%",
+          "2.475%",
+          "2.475%",
+          "2.475%",
+          "2.475%"
+        ],
+        [
+          "Arka Fincap",
+          "2.25%",
+          "2.25%",
+          "2.475%",
+          "2.475%",
+          "2.475%"
+        ],
+        [
+          "Sundaram Finance",
+          "2.025%",
+          "2.025%",
+          "2.25%",
+          "2.25%",
+          "2.25%"
+        ],
+        [
+          "ICICI Bank (Internal Top-Up)/(Internal BT)",
+          "2.025%",
+          "2.025%",
+          "2.025%",
+          "2.25%",
+          "2.25%"
+        ],
+        [
+          "ICICI Bank (ALPA)",
+          "2.25%",
+          "2.25%",
+          "2.25%",
+          "2.25%",
+          "2.25%"
+        ]
+      ],
+      "notes": []
+    },
+    {
+      "title": "Alpha",
+      "headers": [
+        "Bank",
+        "0-15 lakh",
+        "15.01-30 lakh",
+        "30.01-50 lakh",
+        "50.01-100 lakh",
+        "Above 100 lakh"
+      ],
+      "payoutColumns": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "rows": [
+        [
+          "Kogta Financier",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%"
+        ],
+        [
+          "Ambit Finvest Private Limited",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%"
+        ],
+        [
+          "IKF Finance (White Board Cars)",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%"
+        ],
+        [
+          "SK Finance",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%"
+        ],
+        [
+          "Vastu Finserve",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%",
+          "1.8%"
+        ]
+      ],
+      "notes": []
+    }
+  ],
+  "usedCarNotes": [
+    "1) NIL payout for Internal Topup cases in Mahindra, AU, Kogta, IndusInd, Equitas, IKF, Suryoday, Bandhan,Kotak, Saraswat, Bajaj, ITI, Jana Small Finance Bank and HDB.",
+    "2) The payout for all loan products and cases in HDFC will be calculated based on the Net GMV."
+  ],
+  "models": {
+    "title": "Vehicle model classifications",
+    "headers": [
+      "Make",
+      "Model",
+      "Car Segment"
+    ],
+    "payoutColumns": [],
+    "rows": [
+      [
+        "MARUTI",
+        "ALTO K10",
+        "CAT B"
+      ],
+      [
+        "HYUNDAI",
+        "CRETA",
+        "CAT C"
+      ],
+      [
+        "BMW",
+        "BMW",
+        "CAT D"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "SCORPIO CLASSIC",
+        "CAT C"
+      ],
+      [
+        "MG MOTOR",
+        "HECTOR",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "FRONX",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "EXTER",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "VENUE",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "CELERIO",
+        "CAT B"
+      ],
+      [
+        "MARUTI",
+        "BALENO",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "SCORPIO-N",
+        "CAT C+"
+      ],
+      [
+        "KIA MOTORS",
+        "CARENS",
+        "CAT C"
+      ],
+      [
+        "SKODA",
+        "KUSHAQ",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "SCORPIO",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "NIOS",
+        "CAT B"
+      ],
+      [
+        "MARUTI",
+        "GRAND VITARA",
+        "CAT C"
+      ],
+      [
+        "SKODA",
+        "SLAVIA",
+        "CAT C"
+      ],
+      [
+        "NISSAN",
+        "MAGNITE",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "THAR",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "URBAN CRUISER HYRYDER",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "BOLERO",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "AURA",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "PUNCH",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "XUV 3XO",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "SWIFT DZIRE",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "NEXON",
+        "CAT C"
+      ],
+      [
+        "KIA MOTORS",
+        "SELTOS",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "VERNA",
+        "CAT C"
+      ],
+      [
+        "KIA MOTORS",
+        "SONET",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "GLANZA",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "FORTUNER LEGENDER",
+        "CAT D"
+      ],
+      [
+        "MARUTI",
+        "EECO",
+        "CAT A"
+      ],
+      [
+        "TOYOTA",
+        "FORTUNER",
+        "CAT D"
+      ],
+      [
+        "MARUTI",
+        "WAGON R",
+        "CAT B"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "XUV 700",
+        "CAT C+"
+      ],
+      [
+        "TOYOTA",
+        "INNOVA",
+        "CAT C+"
+      ],
+      [
+        "HYUNDAI",
+        "I20",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "BOLERO NEO",
+        "CAT C"
+      ],
+      [
+        "HONDA",
+        "AMAZE",
+        "CAT C"
+      ],
+      [
+        "CITROEN",
+        "C3",
+        "CAT B"
+      ],
+      [
+        "VOLKSWAGEN",
+        "VIRTUS",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "SWIFT CNG",
+        "CAT B"
+      ],
+      [
+        "MARUTI",
+        "BREZZA",
+        "CAT C"
+      ],
+      [
+        "RENAULT",
+        "TRIBER",
+        "CAT B"
+      ],
+      [
+        "TATA",
+        "CURVV",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "SWIFT",
+        "CAT B"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "THAR ROXX",
+        "CAT C+"
+      ],
+      [
+        "MARUTI",
+        "XL6 CNG",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "ERTIGA",
+        "CAT C"
+      ],
+      [
+        "RENAULT",
+        "KIGER",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "CURVV EV",
+        "CAT C+"
+      ],
+      [
+        "BENZ",
+        "MERCEDES BENZ",
+        "CAT D"
+      ],
+      [
+        "TOYOTA",
+        "RUMION",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "INVICTO",
+        "CAT C+"
+      ],
+      [
+        "TATA",
+        "HARRIER",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "TIAGO",
+        "CAT B"
+      ],
+      [
+        "TOYOTA",
+        "INNOVA HYCROSS",
+        "CAT C+"
+      ],
+      [
+        "HONDA",
+        "HONDA CITY",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "VITARA BREZZA",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "SAFARI",
+        "CAT C+"
+      ],
+      [
+        "TATA",
+        "TIGOR",
+        "CAT C"
+      ],
+      [
+        "VOLKSWAGEN",
+        "TAIGUN",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "IGNIS",
+        "CAT B"
+      ],
+      [
+        "BYD",
+        "ATTO 3 EV",
+        "CAT D"
+      ],
+      [
+        "BMW",
+        "BMW 530D AT BSIV DIESEL",
+        "CAT D"
+      ],
+      [
+        "HYUNDAI",
+        "ALCAZAR",
+        "CAT C+"
+      ],
+      [
+        "TOYOTA",
+        "URBAN CRUISER TAISOR",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "CIAZ",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "ALTROZ",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "I20 N LINE",
+        "CAT C"
+      ],
+      [
+        "RENAULT",
+        "KWID",
+        "CAT B"
+      ],
+      [
+        "HONDA",
+        "ELEVATE",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "S PRESSO",
+        "CAT B"
+      ],
+      [
+        "TATA",
+        "PUNCH EV",
+        "CAT C"
+      ],
+      [
+        "MG MOTOR",
+        "COMET EV",
+        "CAT B"
+      ],
+      [
+        "MG MOTOR",
+        "WINDSOR EV",
+        "CAT C+"
+      ],
+      [
+        "MG MOTOR",
+        "ASTOR",
+        "CAT C"
+      ],
+      [
+        "MG MOTOR",
+        "HECTOR PLUS",
+        "CAT C+"
+      ],
+      [
+        "MG MOTOR",
+        "GLOSTER",
+        "CAT D"
+      ],
+      [
+        "KIA MOTORS",
+        "CARNIVAL",
+        "CAT D"
+      ],
+      [
+        "MARUTI",
+        "XL6",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "NEXON EV",
+        "CAT C"
+      ],
+      [
+        "CITROEN",
+        "C3 AIRCROSS",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "BREZZA CNG",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "TIAGO EV",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "GRAND I10",
+        "CAT B"
+      ],
+      [
+        "BMW",
+        "BMW-X5",
+        "CAT D"
+      ],
+      [
+        "MARUTI",
+        "BALENO CNG",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "THAR RWD",
+        "CAT C"
+      ],
+      [
+        "BYD",
+        "SEAL",
+        "CAT D"
+      ],
+      [
+        "TOYOTA",
+        "INNOVA CRYSTA",
+        "CAT C+"
+      ],
+      [
+        "HYUNDAI",
+        "VENUE S PLUS",
+        "CAT C"
+      ],
+      [
+        "PORCHE",
+        "PANAMERA D",
+        "CAT D"
+      ],
+      [
+        "BMW",
+        "X7 40D M SPORT",
+        "CAT D"
+      ],
+      [
+        "TATA",
+        "PUNCH - CNG",
+        "CAT C"
+      ],
+      [
+        "FORCE MOTORS",
+        "FORCE ONE",
+        "CAT D"
+      ],
+      [
+        "AUDI",
+        "AUDI",
+        "CAT D"
+      ],
+      [
+        "JEEP",
+        "COMPASS",
+        "CAT C+"
+      ],
+      [
+        "LAND ROVER",
+        "DEFENDER",
+        "CAT D"
+      ],
+      [
+        "MARUTI SUZUKI",
+        "VICTORIS",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "ERTIGA",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "EXTER",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "SCORPIO CLASSIC",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA",
+        "XUV7XO",
+        "CAT C+"
+      ],
+      [
+        "MAHINDRA",
+        "THAR ROXX",
+        "CAT C+"
+      ],
+      [
+        "TATA",
+        "NEXON",
+        "CAT C"
+      ],
+      [
+        "MG MOTOR",
+        "WINDSOR EV",
+        "CAT C+"
+      ],
+      [
+        "MARUTI",
+        "BREZZA",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "INNOVA",
+        "CAT C+"
+      ],
+      [
+        "HONDA",
+        "AMAZE",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "THAR",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "I20",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "SWIFT CNG",
+        "CAT B"
+      ],
+      [
+        "TOYOTA",
+        "URBAN CRUISER HYRYDER",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "BALENO",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "WAGON R",
+        "CAT B"
+      ],
+      [
+        "MARUTI",
+        "EECO",
+        "CAT A"
+      ],
+      [
+        "TATA",
+        "PUNCH EV",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "FRONX",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "CRETA",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "HARRIER - EV",
+        "CAT C+"
+      ],
+      [
+        "KIA",
+        "KIA CARENS CLAVIS",
+        "CAT C+"
+      ],
+      [
+        "MARUTI",
+        "GRAND VITARA",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "SWIFT",
+        "CAT B"
+      ],
+      [
+        "MAHINDRA",
+        "SCORPIO-N",
+        "CAT C+"
+      ],
+      [
+        "MAHINDRA",
+        "XEV9S - EV",
+        "CAT C+"
+      ],
+      [
+        "KIA MOTORS",
+        "SELTOS",
+        "CAT C"
+      ],
+      [
+        "RENAULT",
+        "KIGER",
+        "CAT C"
+      ],
+      [
+        "HYUNDAI",
+        "VENUE",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "RUMION",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "FORTUNER LEGENDER",
+        "CAT D"
+      ],
+      [
+        "SKODA",
+        "KUSHAQ",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "SAFARI",
+        "CAT C+"
+      ],
+      [
+        "TATA",
+        "SIERRA",
+        "CAT C"
+      ],
+      [
+        "RENAULT",
+        "TRIBER",
+        "CAT B"
+      ],
+      [
+        "MARUTI",
+        "SWIFT DZIRE",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "PUNCH",
+        "CAT C"
+      ],
+      [
+        "NISSAN",
+        "MAGNITE",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "FORTUNER",
+        "CAT D"
+      ],
+      [
+        "KIA MOTORS",
+        "CARENS",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "INNOVA HYCROSS",
+        "CAT C+"
+      ],
+      [
+        "HYUNDAI",
+        "AURA",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "NEXON EV",
+        "CAT C"
+      ],
+      [
+        "KIA MOTORS",
+        "SONET",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "GLANZA",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "ALTO K10",
+        "CAT B"
+      ],
+      [
+        "MARUTI",
+        "S PRESSO",
+        "CAT B"
+      ],
+      [
+        "TATA",
+        "TIAGO",
+        "CAT B"
+      ],
+      [
+        "MARUTI",
+        "EVITARA EV",
+        "CAT C+"
+      ],
+      [
+        "MARUTI",
+        "XL6 CNG",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA",
+        "BOLERO",
+        "CAT C"
+      ],
+      [
+        "MAHINDRA",
+        "XUV 3XO",
+        "CAT C"
+      ],
+      [
+        "KIA MOTORS",
+        "SYROS",
+        "CAT C"
+      ],
+      [
+        "VINFAST",
+        "VINFAST VF6",
+        "CAT C"
+      ],
+      [
+        "LAND ROVER",
+        "DEFENDER",
+        "CAT D"
+      ],
+      [
+        "MAHINDRA & MAHINDRA",
+        "BOLERO NEO",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "URBAN CRUISER TAISOR",
+        "CAT C"
+      ],
+      [
+        "BENZ",
+        "MERCEDES BENZ",
+        "CAT D"
+      ],
+      [
+        "BMW",
+        "BMW",
+        "CAT D"
+      ],
+      [
+        "HYUNDAI",
+        "NIOS",
+        "CAT B"
+      ],
+      [
+        "TATA",
+        "TIAGO EV",
+        "CAT C"
+      ],
+      [
+        "MARUTI",
+        "CELERIO",
+        "CAT B"
+      ],
+      [
+        "TATA",
+        "HARRIER",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "CURVV",
+        "CAT C"
+      ],
+      [
+        "NISSAN",
+        "GRAVITE",
+        "CAT B"
+      ],
+      [
+        "HYUNDAI",
+        "VENUE N LINE",
+        "CAT C"
+      ],
+      [
+        "SKODA",
+        "KYLAQ",
+        "CAT C"
+      ],
+      [
+        "TOYOTA",
+        "URBAN CRUISER",
+        "CAT C"
+      ],
+      [
+        "HONDA",
+        "HONDA CITY",
+        "CAT C"
+      ],
+      [
+        "TATA",
+        "ALTROZ",
+        "CAT C"
+      ],
+      [
+        "RENAULT",
+        "DUSTER",
+        "CAT C"
+      ]
+    ],
+    "notes": []
+  }
+}
