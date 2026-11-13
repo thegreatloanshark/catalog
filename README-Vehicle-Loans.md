@@ -30,7 +30,7 @@ Replace vehicle-loans.js and vehicle-loans.html from this package if the Vehicle
 
 Vehicle PDF now uses the NoBroker compact landscape structure: Logo | bank | Product Type | Payout % | conditions. Code, Type, payout dates and City are excluded. Available logos use the existing bank-logos.png sprite; unmatched logos remain blank.
 
-Full payout conditions of more than 100 words move to a two-column Annexure with generated A references. Conditions at or below 100 words stay in the table. Scheme/eligibility criteria remain alongside the reference so payout applicability is not lost. Identical full conditions for the same lender/product share a reference. The vehicle workbook has no distilled/summary field, so the NB Column-H fallback is applied. Drive/Docs URLs become NA. ROI/PF/subvention terms remain PDF-only in the two-column Annexure.
+Full payout conditions of more than 300 words move to a two-column Annexure with generated A references. Conditions at or below 300 words stay in the table. Scheme/eligibility criteria remain alongside the reference so payout applicability is not lost. Identical full conditions for the same lender/product share a reference. The vehicle workbook has no distilled/summary field, so the NB Column-H fallback is applied. Drive/Docs URLs become NA. ROI/PF/subvention terms remain PDF-only in the two-column Annexure.
 
 Footer: For loan application login assistance, please contact the designated point of contact for your region or area.
 The prior email/subvention footer instructions are removed from the Vehicle Loans PDF. QR, page number and catalog CTA are retained. Website data and layouts are unchanged.
@@ -38,3 +38,6 @@ The prior email/subvention footer instructions are removed from the Vehicle Loan
 Validated syntax, all 271 payout records, short/long condition handling, Drive URL treatment, real PDF generation and representative compact/Annexure rendering. Deployed browser checks remain.
 
 PDF footer also includes a clickable note on every page: For complete Vehicle Loans details, please visit the online catalog. Target: https://nbloans-catalog.vercel.app/vehicle-loans.html. The existing regional POC note is retained.
+
+## 13 November 2026 — Conditions capacity
+PDF condition threshold increased to 300 words. Spreadsheet soft line breaks reflow across the full 159 mm text area within the 163 mm conditions column; numbered/bulleted lists and paragraphs remain separated. Longer conditions retain full text in the Annexure. Replace vehicle-loans.js and vehicle-loans.html for this update.

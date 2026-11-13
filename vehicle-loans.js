@@ -9,6 +9,9 @@ function vehicleRender(){const sections=vehicleSelection(),count=sections.reduce
 function vehicleLoadScript(url){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=url;s.onload=resolve;s.onerror=()=>{s.remove();reject(new Error('PDF library could not load. Please retry.'));};document.head.appendChild(s);});}
 function vehicleSafe(t){return String(t??'').replace(/₹/g,'Rs. ').replace(/[–—]/g,'-').replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/•/g,'-');}
 function vehicleConditionText(value){return String(value??'').trim().replace(/\[([^\]]*)\]\(https?:\/\/(?:drive|docs)\.google\.com\/[^\s)]*\)/gi,'NA').replace(/(?:https?:\/\/)?(?:drive|docs)\.google\.com\/[^\s<>]*/gi,'NA');}
+// Reflow spreadsheet line wraps across the PDF cell, retaining paragraphs and list items.
+function vehiclePdfConditionFlow(value){return String(value??'').replace(/\r\n?/g,'\n').replace(/([^\n])\n(?!\s*\n|\s*(?:\d+[.)]|[-*•])\s)/g,'$1 ').trim();}
+const VEHICLE_PDF_CONDITION_WORD_LIMIT=300;
 function vehiclePdfRecords(sections){return sections.flatMap(t=>t.rows.map(row=>{
  const noteIndex=t.headers.findIndex(h=>/conditions reference/i.test(h));
  const refs=noteIndex<0?[]:String(row[noteIndex]).split(',').map(x=>x.trim());
@@ -19,7 +22,7 @@ function vehiclePdfRecords(sections){return sections.flatMap(t=>t.rows.map(row=>
  // This workbook has full conditions, not a separate distilled (W) field.
  if(t.kind==='usedCar')full=[...vehicleState.data.usedCarNotes,'Refer to Used Car Terms & Conditions in the Annexure for ROI, PF and subvention requirements.'].join('\n');
  full=vehicleConditionText(full);
- return {eligibility:t.kind==='newCar'?criteria.join('\n'):'',bank:row[0],type:'NA',product:t.kind==='newCar'?'New Car':'Used Car',payout:t.payoutColumns.map(i=>`${/^DSA Payout$/i.test(t.headers[i])?'':t.headers[i]+': '}${row[i]||'NA'}`).join('\n'),dates:'NA',city:'NA',full,annexure:full.split(/\s+/).filter(Boolean).length>100?full:null};
+ return {eligibility:t.kind==='newCar'?criteria.join('\n'):'',bank:row[0],type:'NA',product:t.kind==='newCar'?'New Car':'Used Car',payout:t.payoutColumns.map(i=>`${/^DSA Payout$/i.test(t.headers[i])?'':t.headers[i]+': '}${row[i]||'NA'}`).join('\n'),dates:'NA',city:'NA',full,annexure:full.split(/\s+/).filter(Boolean).length>VEHICLE_PDF_CONDITION_WORD_LIMIT?full:null};
 }));}
 async function vehicleMakePDF(sections,terms){
  if(!window.jspdf)await vehicleLoadScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js');
@@ -47,7 +50,7 @@ async function vehicleMakePDF(sections,terms){
  for(const product of ['New Car','Used Car']){
   const group=rows.filter(r=>r.product===product);if(!group.length)continue;title=product;newPage(true);
   for(const r of group){
-   const condition=refs.has(r)?`* Read detailed payout conditions in the Annexure\nReference A${refs.get(r)}`:r.full;
+   const condition=refs.has(r)?`* Read detailed payout conditions in the Annexure\nReference A${refs.get(r)}`:vehiclePdfConditionFlow(r.full);
    const values=['',r.bank,r.product,r.payout,[r.eligibility,condition].filter(Boolean).join('\n\n')];
    doc.setFont('helvetica','normal');const lines=values.map((v,i)=>wrap(v,widths[i]-4,font));const total=Math.max(...lines.map(l=>l.length));let offset=0;
    if(!logos.has(r.bank))logos.set(r.bank,await vehicleBankLogo(r.bank));
