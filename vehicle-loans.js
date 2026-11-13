@@ -26,7 +26,7 @@ async function vehicleMakePDF(sections,terms){
  const doc=new window.jspdf.jsPDF({orientation:'landscape',unit:'mm',format:'a4',compress:true});
  const rows=vehiclePdfRecords(sections),annexure=[],refs=new Map(),conditionKeys=new Map();
  for(const r of rows){if(r.annexure===null)continue;const key=JSON.stringify([r.bank,r.product,r.annexure]);if(!conditionKeys.has(key)){annexure.push(r);conditionKeys.set(key,annexure.length);}refs.set(r,conditionKeys.get(key));}
- const widths=[17,33,16,30,38,32,88,27],headers=['Logo','bank','type','Product Type','Payout %','payout dates','conditions','City'];
+ const widths=[17,33,30,38,163],headers=['Logo','bank','Product Type','Payout %','conditions'];
  const margin=8,bottom=171,lh=3.1,font=7;let page=0,y=38,title='';
  let qr=null;try{const res=await fetch('assets/partner-qr.png');if(res.ok)qr=await new Promise(async(resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(await res.blob());});}catch(e){}
  const wrap=(value,w,size)=>{doc.setFontSize(size);return doc.splitTextToSize(vehicleSafe(value||'NA'),w);};
@@ -39,6 +39,7 @@ async function vehicleMakePDF(sections,terms){
   if(table){doc.setFillColor(0);doc.rect(8,29,281,9,'F');doc.setTextColor(255);doc.setFontSize(8);let x=8;headers.forEach((h,i)=>{doc.text(h,x+2,34.5);x+=widths[i];});}
   doc.setFont('helvetica','normal');doc.setTextColor(0);doc.setFontSize(7.5);
   doc.text(doc.splitTextToSize('For loan application login assistance, please contact the designated point of contact for your region or area.',249),8,184,{lineHeightFactor:1.15});
+  doc.setTextColor(216,0,0);doc.textWithLink('For complete Vehicle Loans details, please visit the online catalog.',8,191,{url:'https://nbloans-catalog.vercel.app/vehicle-loans.html'});doc.setTextColor(0);
   if(qr)doc.addImage(qr,'PNG',263,178,26,26);
   doc.setFontSize(6);doc.text(`Page ${page}`,8,207);doc.setTextColor(216,0,0);doc.textWithLink('Visit the catalog: nbloans-catalog.vercel.app',26,207,{url:'https://nbloans-catalog.vercel.app'});doc.setTextColor(0);y=38;
  }
@@ -47,7 +48,7 @@ async function vehicleMakePDF(sections,terms){
   const group=rows.filter(r=>r.product===product);if(!group.length)continue;title=product;newPage(true);
   for(const r of group){
    const condition=refs.has(r)?`* Read detailed payout conditions in the Annexure\nReference A${refs.get(r)}`:r.full;
-   const values=['',r.bank,r.type,r.product,r.payout,r.dates,[r.eligibility,condition].filter(Boolean).join('\n\n'),r.city];
+   const values=['',r.bank,r.product,r.payout,[r.eligibility,condition].filter(Boolean).join('\n\n')];
    doc.setFont('helvetica','normal');const lines=values.map((v,i)=>wrap(v,widths[i]-4,font));const total=Math.max(...lines.map(l=>l.length));let offset=0;
    if(!logos.has(r.bank))logos.set(r.bank,await vehicleBankLogo(r.bank));
    while(offset<total){
@@ -56,7 +57,7 @@ async function vehicleMakePDF(sections,terms){
     if(offset===0&&total>capacity&&total<=Math.floor((bottom-38-4)/lh)){newPage(true);continue;}
     const count=Math.min(total-offset,capacity),height=Math.max(14,count*lh+4);let x=8;
     doc.setFont('helvetica','normal');doc.setFontSize(font);doc.setDrawColor(140);doc.setLineWidth(.15);
-    lines.forEach((l,i)=>{doc.setFillColor(...(i===4?[255,239,242]:[255,255,255]));doc.rect(x,y,widths[i],height,'FD');doc.setTextColor(0);if(i>0)doc.text(l.slice(offset,offset+count),x+2,y+1.6,{baseline:'top',lineHeightFactor:lh/(font*.3528)});x+=widths[i];});
+    lines.forEach((l,i)=>{doc.setFillColor(...(i===3?[255,239,242]:[255,255,255]));doc.rect(x,y,widths[i],height,'FD');doc.setTextColor(0);if(i>0)doc.text(l.slice(offset,offset+count),x+2,y+1.6,{baseline:'top',lineHeightFactor:lh/(font*.3528)});x+=widths[i];});
     const logo=logos.get(r.bank);if(logo&&offset===0)doc.addImage(logo,'PNG',9.5,y+(height-7)/2,14,7);y+=height;offset+=count;
    }
   }
