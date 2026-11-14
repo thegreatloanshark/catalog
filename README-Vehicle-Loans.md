@@ -41,3 +41,5 @@ PDF footer also includes a clickable note on every page: For complete Vehicle Lo
 
 ## 13 November 2026 — Conditions capacity
 PDF condition threshold increased to 300 words. Spreadsheet soft line breaks reflow across the full 159 mm text area within the 163 mm conditions column; numbered/bulleted lists and paragraphs remain separated. Longer conditions retain full text in the Annexure. Replace vehicle-loans.js and vehicle-loans.html for this update.
+
+Latest update: see README-UPDATE.md for shared covers, page inserts, logos and renamed downloads.
