@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Referral Link & QR Studio | NoBroker Loans</title>
+  <meta name="description" content="NoBroker Loans offline UTM and QR creation tools. Private browser-only preview; production referral tokens are backend-issued.">
+  <link rel="stylesheet" href="./studio.css">
+</head>
+<body>
+  <header class="topbar"><div class="header-inner"><div class="identity"><img class="brand-logo" src="./nbl-original-logo.png" alt="NoBroker Loans" /><span class="header-divider"></span><span class="product-label">Referral Studio</span></div><a class="back-link" href="../">Back to referrals <span aria-hidden="true">↗</span></a></div></header>
+  <main class="layout">
+    <section class="introduction"><div><p class="eyebrow">INTERNAL CAMPAIGN TOOLKIT</p><h1>One link. <em>Every referral tracked.</em></h1><p>Build consistent UTM links and generate ready-to-share QR codes. Everything here runs locally in your browser.</p></div><div class="status"><span class="status-dot"></span> Local-only tools<br><small>No uploads or external tracking</small></div></section>
+    <div class="notice"><strong>Production rule:</strong> This studio makes previews. A Vertical Head's genuine referral code must be issued and validated by Supabase—never invented in the browser. The existing Catalog and referral form are not modified.</div>
+    <div class="tabs" role="tablist" aria-label="Tool selection"><button type="button" role="tab" id="tab-utm" aria-selected="true" aria-controls="panel-utm">UTM Link Builder</button><button type="button" role="tab" id="tab-qr" aria-selected="false" aria-controls="panel-qr">QR Code Generator</button></div>
+    <section id="panel-utm" role="tabpanel" aria-labelledby="tab-utm" class="workspace">
+      <div class="panel"><div class="panel-head"><span class="step">01 / LINK</span><h2>Build your campaign URL</h2><p>Keep a consistent source, medium, and campaign across every Vertical Head.</p></div>
+      <form id="utm-form" class="form-grid">
+        <label class="full">Destination URL <input id="base-url" type="url" required value="https://nbloans-catalog.vercel.app/refer/" placeholder="https://..." autocomplete="url" /></label>
+        <label>Source <input id="utm-source" required value="vh_share" placeholder="whatsapp" /></label>
+        <label>Medium <input id="utm-medium" required value="qr" placeholder="qr" /></label>
+        <label class="full">Campaign <input id="utm-campaign" required value="refer_earn_pilot_2026" /></label>
+        <label>Content <span class="optional">optional</span><input id="utm-content" placeholder="launch_creative" /></label>
+        <label>Term <span class="optional">optional</span><input id="utm-term" placeholder="partner_referral" /></label>
+        <button type="submit" class="primary full">Build UTM Link <span aria-hidden="true">→</span></button>
+      </form></div>
+      <div class="panel result-panel"><div class="panel-head"><span class="step">02 / RESULT</span><h2>Your trackable link</h2><p>Copy this link, or pass it into the QR generator.</p></div><div id="utm-result" class="url-output" aria-live="polite">Generate a link to see it here.</div><p id="utm-error" role="alert" class="error" hidden></p><div class="button-row"><button id="utm-copy" class="secondary" type="button" disabled>Copy URL</button><button id="utm-to-qr" class="secondary" type="button" disabled>Make QR <span aria-hidden="true">↗</span></button></div><div class="divider"></div><h3>VH bulk link previews</h3><p class="helper">Paste already-issued VH tokens, one per line. This does not register tokens or grant access.</p><label class="full">Issued tokens <textarea id="vh-tokens" rows="5" placeholder="R7K9M2\nT8Q4W6"></textarea></label><button class="secondary" id="bulk-build" type="button">Preview bulk links</button><button class="secondary" id="bulk-download" type="button" disabled>Download CSV</button><p id="bulk-error" role="alert" class="error" hidden></p><p id="bulk-status" class="helper" aria-live="polite"></p></div>
+    </section>
+    <section id="panel-qr" role="tabpanel" aria-labelledby="tab-qr" class="workspace" hidden>
+      <div class="panel"><div class="panel-head"><span class="step">01 / QR</span><h2>Generate a QR code</h2><p>Encode your referral URL—or any text—without using a third-party website.</p></div><form id="qr-form" class="form-grid"><label class="full">Link or text to encode <textarea id="qr-text" rows="5" required placeholder="Paste a link here"></textarea></label><label>Image size <select id="qr-size"><option value="512">512 × 512 px</option><option value="1024" selected>1024 × 1024 px</option><option value="1600">1600 × 1600 px</option></select></label><label>QR foreground <input id="qr-dark" type="color" value="#171717"></label><label>Background <input id="qr-light" type="color" value="#ffffff"></label><div class="full qr-guidance"><strong>Scanning tip:</strong> Keep the quiet zone and high color contrast. A light background with dark modules works best for campaign creatives.</div><button type="submit" class="primary full">Generate QR Code <span aria-hidden="true">→</span></button></form></div>
+      <div class="panel result-panel"><div class="panel-head"><span class="step">02 / OUTPUT</span><h2>Ready for your creative</h2><p>Use PNG for WhatsApp and artwork; SVG for scalable layouts.</p></div><div id="qr-preview" class="qr-preview" aria-live="polite"><span>QR preview appears here</span></div><p id="qr-info" class="helper"></p><p id="qr-error" role="alert" class="error" hidden></p><div class="button-row"><button id="qr-png" class="primary" type="button" disabled>Download PNG</button><button id="qr-svg" class="secondary" type="button" disabled>Download SVG</button></div><div class="divider"></div><h3>For the VH creative generator</h3><p class="helper">Import <code>encodeQR()</code> and <code>qrToSvg()</code> from <code>qr.js</code> to produce an in-browser QR matrix for a backend-issued referral link.</p></div>
+    </section>
+    <footer>Designed for NoBroker Loans · No CDN scripts · No ads · No hidden redirects</footer>
+  </main>
+  <script type="module" src="./studio.js"></script>
+</body>
+</html>
