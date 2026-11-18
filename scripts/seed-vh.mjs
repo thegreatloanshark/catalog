@@ -7,7 +7,7 @@ if(!base||!secret)throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY re
 const records=[
  {name:'Aditya',dsa_code:'DSA012345',phone:'9990009999',email:'ad.patra@nobroker.in',designation:'Vertical Head'},
  {name:'Asad',dsa_code:'DSA012346',phone:'9999900000',email:'asad@nobroker.in',designation:'Vertical Head'},
- {name:'Shiv',dsa_code:'DSA012347',phone:'9945048798',email:'shiv@nobroker.in',designation:'Vertical Head'}
+ {name:'Shiv',dsa_code:'DSA012347',phone:'9945048798',email:'shivankur.ghosh@nobroker.in',designation:'Vertical Head'}
 ];
 async function api(path,{method='GET',body,prefer}={}){
  const r=await fetch(base+path,{method,headers:{apikey:secret,Authorization:`Bearer ${secret}`,'Content-Type':'application/json',...(prefer?{Prefer:prefer}:{})},body:body===undefined?undefined:JSON.stringify(body)});
