@@ -1,14 +1,11 @@
-"use strict";
-const {request,findByPhone,reply,postOnly}=require('../_lib/supabase');
-module.exports=async function handler(req,res){
-  if(!postOnly(req,res))return;
-  const phone=String(req.body?.phone||'').trim(),otp=String(req.body?.otp||'').trim();
-  if(!/^[6-9]\d{9}$/.test(phone)||!/^\d{6,8}$/.test(otp))return reply(res,400,{error:'Invalid verification details.'});
-  try{
-    const vh=await findByPhone(phone);
-    if(!vh?.auth_user_id)return reply(res,401,{error:'Invalid or expired verification code.'});
-    const verified=await request('/auth/v1/verify',{method:'POST',body:{email:vh.email,token:otp,type:'email'}});
-    if(!verified?.access_token||verified?.user?.id!==vh.auth_user_id){return reply(res,401,{error:'Could not verify this account.'});}
-    return reply(res,200,{accessToken:verified.access_token,expiresIn:verified.expires_in||3600});
-  }catch(e){return reply(res,401,{error:'Invalid or expired verification code.'});}
+'use strict';
+const {reply,postOnly,enabled,issue}=require('../_lib/demo');
+const {byPhone}=require('../_lib/vh-allowlist');
+module.exports=async(req,res)=>{
+ if(!postOnly(req,res)||!enabled(res))return;
+ const phone=String(req.body?.phone||'').trim(), otp=String(req.body?.otp||'').trim();
+ if(!/^[6-9][0-9]{9}$/.test(phone)||!/^[0-9]{6}$/.test(otp))return reply(res,400,{error:'Invalid demo verification details.'});
+ if(otp!=='123456'||!byPhone(phone))return reply(res,401,{error:'Invalid phone or demo code.'});
+ try{return reply(res,200,{accessToken:issue(phone),expiresIn:900,demo:true});}
+ catch(e){console.error('VH demo misconfigured');return reply(res,503,{error:'Demo service is not configured.'});}
 };

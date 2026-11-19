@@ -15,7 +15,7 @@
 })();
 
 
-// Vertical Head phone lookup with Supabase email OTP. Tokens are memory-only.
+// DEMO ONLY: server-seeded phone lookup with shared code 123456. Not authentication. Tokens are memory-only.
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
@@ -31,7 +31,7 @@
   send.addEventListener('click',async()=>{
     const number=phone.value.trim();
     if(!/^[6-9][0-9]{9}$/.test(number)){message.textContent='Enter a valid 10-digit mobile number.';return;}
-    send.disabled=true;message.textContent='Requesting verification email…';profile.hidden=true;accessToken=null;
+    send.disabled=true;message.textContent='Starting demo…';profile.hidden=true;accessToken=null;
     try {const data=await request('/api/vh/request-otp',{method:'POST',body:JSON.stringify({phone:number})});verifiedPhone=number;verifyBox.hidden=false;message.textContent=data.message;}
     catch(e){message.textContent=e.message;}finally{send.disabled=false;}
   });
@@ -45,7 +45,7 @@
       $('vh-name').value=vh.name; $('vh-dsa').value=vh.dsaCode; $('vh-email').value=vh.email; $('vh-contact').value=vh.phone;
       $('vh-designation').value=vh.designation; $('vh-designation').disabled=false;
       profile.hidden=false;verifyBox.hidden=true;phone.readOnly=true;send.disabled=true;
-      message.textContent='Verified. Your registered details are locked; you may edit your designation.';
+      message.textContent='DEMO ONLY: Profile loaded. Name, DSA code and email are read-only; designation can be edited. No real authentication or access to leads.';
       // Deliberately do not enable photo upload or PNG generation before those APIs exist.
     }catch(e){accessToken=null;message.textContent=e.message;}finally{verify.disabled=false;}
   });
