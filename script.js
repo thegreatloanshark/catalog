@@ -159,7 +159,7 @@ const state={records:[],schemaVersion:'',user:null,token:'',view:'public',city:'
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function meaningful(v){return v!==null&&v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';}
 function isUpcoming(r){return !!(r&&r.upcoming===true);}
-function upcomingLabel(){return 'Upcoming Codes';}
+function upcomingLabel(){return 'Upcoming Banks';}
 function initials(name){return String(name||'').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();}
 function currentTier(){if(state.view==='raw')return 'RAW'; if(state.view==='t2')return 'T2'; if(state.view==='city')return /^Vijaywada$/i.test(state.city)?'T2':'T1'; return state.view==='t1'?'T1':'';}
 function currentCap(){return currentTier()==='T2'?85:90;}
@@ -255,20 +255,12 @@ function recordCaption(r){return productWithVariant(r);}
 function groupedValue(recs,key,{includeProduct=true}={}){const vals=recs.map(r=>({label:recordCaption(r),value:r[key]})).filter(x=>meaningful(x.value));if(!vals.length)return '';const only=unique(vals.map(x=>String(x.value).trim()));if(only.length===1)return only[0];return vals.map(x=>includeProduct?`${x.label}: ${x.value}`:String(x.value)).join('\n');}
 function downloadPayoutConditions(r){const parts=[];if(meaningful(r?.conditions))parts.push(String(r.conditions).trim());if(meaningful(r?.payoutCapping))parts.push(`Payout Capping: ${String(r.payoutCapping).trim()}`);return parts.join('\n');}
 function codeGroupSummaryHtml(recs){return codeGroups(recs).map(g=>`<div class="code-group-row"><span class="code-group-code">${esc(g.code)}</span><span class="code-group-products">${esc(unique(g.records.map(productWithVariant)).join(' · '))}</span></div>`).join('');}
-async function setCatalogSource(source){if(source===state.catalogSource)return;if(source==='finwizz'){try{const status=$('#source-status');if(status)status.innerHTML='<span class="status-dot"></span>Loading 3rd Party catalog…';await loadFinwizzSource();}catch(err){alert(`3rd Party catalog could not be loaded: ${err.message}`);return;}}state.catalogSource=source;state.filters={product:'',payment:'',city:''};state.search='';$('#search-input').value='';buildFilters();renderAll();updateSourceSwitcher();updateSourceStatus();}
+async function setCatalogSource(source){if(source===state.catalogSource)return;if(source==='finwizz'){try{const status=$('#source-status');if(status){status.textContent="";status.hidden=true;}await loadFinwizzSource();}catch(err){alert(`3rd Party catalog could not be loaded: ${err.message}`);return;}}state.catalogSource=source;state.filters={product:'',payment:'',city:''};state.search='';$('#search-input').value='';buildFilters();renderAll();updateSourceSwitcher();updateSourceStatus();}
 function updateSourceSwitcher(){$$('#catalog-source-switcher [data-catalog-source]').forEach(b=>b.classList.toggle('active',b.dataset.catalogSource===state.catalogSource));}
 function updateSourceStatus(){
   const status=$('#source-status');if(!status)return;
-  if(state.view!=='public'){
-    status.innerHTML='<strong style="font-size:15px;letter-spacing:.06em;color:#111">PAYOUTS APPLICABLE ONLY FOR 100% FULFILMENT IN METRO CITIES</strong>';
-    return;
-  }
-  if(state.catalogSource==='finwizz'){
-    const rows=finWizzRecords();
-    status.innerHTML=`<span class="status-dot"></span>${rows.length} 3rd Party product records · ${new Set(rows.map(r=>r.institutionName)).size} institutions · lazy loaded`;
-    return;
-  }
-  status.innerHTML=`<span class="status-dot"></span>${state.records.length} current product records · ${new Set(state.records.map(r=>r.institutionName)).size} institutions · Supabase · Core Sheet · ${CATALOG_SOURCE?.syncedAt?'Last sync: '+esc(new Date(CATALOG_SOURCE.syncedAt).toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}))+' IST':'Sync time unavailable'}${catalogLastError?' · Refresh failed; showing last loaded data':''}`;
+  status.hidden=state.view==='public';
+  status.innerHTML=state.view!=='public'?'<strong style="font-size:15px;letter-spacing:.06em;color:#111">PAYOUTS APPLICABLE ONLY FOR 100% FULFILMENT IN METRO CITIES</strong>':'';
 }
 function buildFilters(){const fin=state.catalogSource==='finwizz';const records=fin?finWizzRecords():mainRecords();const products=fin?unique(records.map(r=>r.productType)).sort():['HL','LAP','PL','BL','OTHER'];const payments=fin?unique(records.map(r=>r.paymentType)).sort():['Spot','MIS'];const cities=unique(records.map(r=>r.applicableCities)).sort((a,b)=>a.localeCompare(b));$('#filter-cluster').innerHTML=`<label class="filter-control"><span>Product</span><select id="product-filter"><option value="">All products</option>${products.map(v=>`<option value="${esc(v)}">${fin?esc(v):PRODUCT_LABELS[v]}</option>`).join('')}</select></label><label class="filter-control"><span>Payment basis</span><select id="payment-filter"><option value="">${fin?'All payment types':'Spot + MIS'}</option>${payments.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}</select></label><label class="filter-control"><span>Applicable Cities</span><select id="city-filter"><option value="">All city values</option>${cities.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}</select></label>`;$('#product-filter').value=state.filters.product;$('#payment-filter').value=state.filters.payment;$('#city-filter').value=state.filters.city;$('#product-filter').onchange=e=>{state.filters.product=e.target.value;renderAll()};$('#payment-filter').onchange=e=>{state.filters.payment=e.target.value;renderAll()};$('#city-filter').onchange=e=>{state.filters.city=e.target.value;renderAll()};{const dl=$('#download-city-filter');dl.innerHTML=`<option value="">All applicable-city values</option>${cities.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join('')}`;}}
 function renderInternalSwitcher(){const box=$('#internal-switcher');if(box)box.classList.add('hidden');}
@@ -289,14 +281,14 @@ function productWithVariant(r){
  if(norm(product).endsWith('('+norm(variant)+')'))return product;
  return `${product} (${variant})`;
 }
-function upcomingProductCards(bank){return bank.records.filter(markedUpcomingProduct).map(r=>`<article class="bank-card ${state.display==='list'?'list-card':'grid-card'}" data-bank="${esc(bank.name)}"><div>${bankLogoMarkup(bank.name)}</div><div><div class="bank-name">${esc(bank.name)}</div><div class="bank-sub">${esc(productWithVariant(r))}</div></div><div class="bank-middle"><span class="chip payout">Upcoming Product</span></div><div class="bank-shared-snippet">Product details will be available when launched.</div></article>`).join('');}
+function upcomingProductCards(bank){return bank.records.filter(markedUpcomingProduct).map(r=>`<article class="bank-card ${state.display==='list'?'list-card':'grid-card'}" data-bank="${esc(bank.name)}"><div>${bankLogoMarkup(bank.name)}</div><div><div class="bank-name">${esc(bank.name)}</div><div class="bank-sub">${esc(productWithVariant(r))}</div></div><div class="bank-middle"></div></article>`).join('');}
 function bankCard(bank){const records=bank.records.filter(r=>!markedUpcomingProduct(r));return (records.length?activeBankCard({...bank,records}):'')+upcomingProductCards(bank);}
 function finwizzBankCard(bank){const records=bank.records.filter(r=>!markedUpcomingProduct(r));return (records.length?activeFinwizzBankCard({...bank,records}):'')+upcomingProductCards(bank);}
 function openDetails(name){
  const rows=(state.catalogSource==='finwizz'?finWizzRecords():mainRecords()).filter(r=>r.institutionName===name);
  const pending=rows.filter(markedUpcomingProduct),active=rows.filter(r=>!markedUpcomingProduct(r));
  if(active.length)openActiveDetails(name);else $('#detail-content').innerHTML=`<h2>${esc(name)}</h2>`;
- if(pending.length)$('#detail-content').insertAdjacentHTML('beforeend',`<div class="detail-products">${pending.map(r=>`<section class="product-card"><h3>${esc(productWithVariant(r))}</h3><span class="chip payout">Upcoming Product</span></section>`).join('')}</div>`);
+ if(pending.length)$('#detail-content').insertAdjacentHTML('beforeend',`<div class="detail-products">${pending.map(r=>`<section class="product-card"><h3>${esc(productWithVariant(r))}</h3></section>`).join('')}</div>`);
  openOverlay('detail-overlay');
 }
 
@@ -335,7 +327,7 @@ function openFinwizzDetails(name){
 function openActiveDetails(name){
   if(state.catalogSource==='finwizz'){openFinwizzDetails(name);return;}
   const recs=mainRecords().filter(r=>r.institutionName===name&&!markedUpcomingProduct(r)),isPublic=state.view==='public';
-  if(recs.some(isUpcoming)){$('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta"><span class="chip payout">${upcomingLabel()}</span></div></div></div><div class="shared-conditions"><b>${upcomingLabel()}</b><p>Details will be published when the code becomes active.</p></div>`;openOverlay('detail-overlay');return;}
+  if(recs.some(isUpcoming)){$('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta"><span class="chip payout">${upcomingLabel()}</span></div></div></div><div class="shared-conditions"><b>${upcomingLabel()}</b></div>`;openOverlay('detail-overlay');return;}
   if(isPublic){
     const info=conditionInfo(recs),login=loginInfo(recs),groups=codeGroups(recs);
     $('#detail-content').innerHTML=`<div class="detail-head">${bankLogoMarkup(name)}<div><h2>${esc(name)}</h2><div class="detail-meta">${unique(recs.map(r=>r.paymentType)).map(x=>`<span class="chip ${x==='Spot'?'spot':''}">${esc(x)}</span>`).join('')}${unique(recs.map(r=>r.applicableCities)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div></div></div><div class="shared-login"><b>Public catalog</b><p>Lender codes and all non-payout information are public. Switch to the Payouts view to see HLC Payout %.</p></div>${info.shared.length?`<div class="shared-conditions"><b>Bank-level payout conditions</b>${info.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}${login.shared.length?`<div class="shared-login"><b>Bank-level mandatory file login process</b>${login.shared.map(x=>`<p>${esc(x)}</p>`).join('')}</div>`:''}<div class="detail-products">${groups.map(g=>{const productSpecificConditions=g.records.map(r=>info.per.has(r.id)?`${recordCaption(r)}: ${info.per.get(r.id)}`:'').filter(Boolean).join('\n');const productSpecificLogin=g.records.map(r=>login.per.has(r.id)?`${recordCaption(r)}: ${login.per.get(r.id)}`:'').filter(Boolean).join('\n');return `<section class="product-card code-card"><h3>Code · ${esc(g.code)}</h3><div class="code-card-products">${unique(g.records.map(productWithVariant)).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div><div class="field-grid">${field('Products',g.records.map(recordCaption).join('\n'),true)}${field('Gross / Net',groupedValue(g.records,'grossNet',{includeProduct:false}))}${field('Top Slab Loan Value',groupedValue(g.records,'topSlabLoanVal'),true)}${field('Payout Timeline',groupedValue(g.records,'payoutTimeline'),true)}${field('Applicable Cities',groupedValue(g.records,'applicableCities',{includeProduct:false}),true)}${field('Payment Type',groupedValue(g.records,'paymentType',{includeProduct:false}))}${field('Payout Capping',groupedValue(g.records,'payoutCapping'),true)}${field('Clawback',groupedValue(g.records,'clawback'),true)}${field('Product-specific payout conditions',productSpecificConditions,true)}${field('Product-specific mandatory login process',productSpecificLogin,true)}</div></section>`}).join('')}</div>`;
@@ -637,7 +629,7 @@ async function init(){
   }catch(err){
     console.error(err);
     const status=document.getElementById('source-status');
-    if(status) status.innerHTML=`<span class="status-dot" style="background:#d80000"></span>Catalog could not start. Check the Supabase connection and reload this page.`;
+    if(status){status.hidden=false;status.setAttribute("role","alert");status.textContent="Catalog could not load. Please reload this page.";}
     const results=document.getElementById('results');
     if(results) results.innerHTML='<div style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">Catalog data failed to load from Supabase. Check your connection and reload this page.</div>';
   }
