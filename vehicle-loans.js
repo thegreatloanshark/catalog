@@ -68,7 +68,7 @@ async function vehicleMakePDF(sections,terms){
  for(const r of rows){if(r.annexure===null)continue;const key=JSON.stringify([r.bank,r.product,r.annexure]);if(!conditionKeys.has(key)){annexure.push(r);conditionKeys.set(key,annexure.length);}refs.set(r,conditionKeys.get(key));}
  const widths=[17,33,30,38,163],headers=['Logo','bank','Product Type','Payout %','conditions'];
  const margin=8,bottom=171,lh=3.1,font=7;let page=3,y=38,title='';
- let qr=null;try{const res=await fetch('assets/partner-qr.png');if(res.ok)qr=await new Promise(async(resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(await res.blob());});}catch(e){}
+ let qr=null;try{const res=await fetch('assets/partner-qr.png?_qr='+Date.now(),{cache:'no-store'});if(res.ok)qr=await new Promise(async(resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(await res.blob());});}catch(e){}
  const wrap=(value,w,size)=>{doc.setFontSize(size);return doc.splitTextToSize(vehicleSafe(value||'NA'),w);};
  function newPage(table=false){
   page++;doc.addPage('a4','landscape');
