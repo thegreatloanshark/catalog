@@ -74,6 +74,37 @@ values ('PDF download', '<sha256 of ID:code>');
 
 To compute a value: `printf '%s' 'ID:code' | sha256sum`. To retire a credential, set `active = false`. Several active rows are allowed.
 
+## Analytics
+
+`analytics.js` (loaded first on `index.html` and `vehicle-loans.html`) sends traffic and click events to **Google Analytics 4** and loads **Microsoft Clarity** for heatmaps and session recordings. Both stay off until their IDs are set at the top of the file. Both IDs are public by design. Add `?analytics_debug=1` to a page URL to log events in the browser console.
+
+Setup:
+1. GA4: Admin → Create property → Web data stream for the site URL. Copy the Measurement ID (`G-…`) into `GA4_MEASUREMENT_ID`.
+2. Clarity: clarity.microsoft.com → New project for the site URL. Copy the Project ID into `CLARITY_PROJECT_ID`. Optional: Clarity Settings → Setup → Google Analytics integration, to open recordings from GA4.
+3. GA4 → Admin → Custom definitions: register event-scoped dimensions for `catalog`, `view`, `layout`, `control`, `to`, `filter`, `value`, `product`, `item`, `bank`, `result`, `page_type`, `device_layout`, so reports can split by them.
+
+Events (each includes `catalog`, `view`, `page_type`, `device_layout` and, where there is a layout switch, `layout`):
+
+| Event | When |
+|---|---|
+| `catalog_switch` | NoBroker / 3rd Party / Vehicle tab (`to`) |
+| `view_switch` | Code Catalog / Payouts in the header (`to`) |
+| `layout_switch` | List / Grid (`to`, `control`: toolbar or dock) |
+| `filter_change` | Product, payment basis, city or bank dropdown (`filter`, `value`) |
+| `product_shortcut` | Round product shortcut on phones (`product`) |
+| `search` | Search after typing pauses (`search_term`, `terms`, `results`, `box`) |
+| `card_expand` | Show more / Show less (`bank`, `action`) |
+| `payout_conditions_open` | Payout Conditions on a card (`bank`) |
+| `download_click` | Download button |
+| `download_unlock` | Unlock attempt (`result`: success, wrong_code, error) |
+| `download_pdf` | Download PDF in the download studio |
+| `bottom_nav` | Phone bottom bar (`item`) |
+| `filters_reset`, `selection`, `back_to_top`, `outbound_click` | As named |
+
+Only real taps and clicks are counted. Controls that drive other controls do not double-count. The download unlock form is masked in Clarity recordings.
+
+CTRs: in GA4 → Explore, divide an event's count by `page_view` (or by users) for the same page and period. For example, `download_click` ÷ page views is the download CTR. Clarity's click heatmaps show where people click on each page.
+
 ## Status labels
 
 Only Upcoming Banks and PAYOUTS APPLICABLE ONLY FOR 100% FULFILMENT IN METRO CITIES are retained as catalog status labels. Product values, payment modes, filters and functional error messages remain.
