@@ -9,13 +9,17 @@
   'use strict';
   var GTM_CONTAINER_ID = 'GTM-W3NJTTWH'; // Google Tag Manager: GA4 (and optionally Clarity) are configured inside GTM
   var GA4_MEASUREMENT_ID = '';   // Only if not using GTM: 'G-XXXXXXXXXX' loads GA4 directly. Leave empty with GTM to avoid double counting.
-  var CLARITY_PROJECT_ID = '';   // e.g. 'abcd1234ef'    (clarity.microsoft.com → Settings → Overview)
+  var CLARITY_PROJECT_ID = '';   // Optional alternative heatmap tool. Leave empty when Hotjar is used.
+  var HOTJAR_SITE_ID = '';       // Only if Hotjar is NOT added inside GTM: numeric Site ID loads Hotjar directly.
+  // Named in the consent banner. Keep in sync with the tools actually loaded (here or inside GTM).
+  var TOOLS_LABEL = 'Google Analytics and Hotjar';
 
   var CONSENT_KEY = 'nb_analytics_consent'; // 'granted' | 'denied'
   var debug = /[?&]analytics_debug=1\b/.test(location.search);
   var hasGTM = /^GTM-[A-Z0-9]+$/.test(GTM_CONTAINER_ID);
   var hasGA = !hasGTM && /^G-[A-Z0-9]+$/.test(GA4_MEASUREMENT_ID), hasClarity = /^[a-z0-9]+$/i.test(CLARITY_PROJECT_ID);
-  if (!hasGTM && !hasGA && !hasClarity && !debug) return; // nothing configured: no banner, no tracking
+  var hasHotjar = /^\d+$/.test(HOTJAR_SITE_ID);
+  if (!hasGTM && !hasGA && !hasClarity && !hasHotjar && !debug) return; // nothing configured: no banner, no tracking
 
   var path = location.pathname;
   var page = /\/refer\/tools\//.test(path) ? 'refer_tools'
@@ -49,6 +53,14 @@
       gtag('js', new Date());
       gtag('config', GA4_MEASUREMENT_ID, { page_type: page, debug_mode: debug || undefined });
     }
+    if (hasHotjar) {
+      (function (h, o, t, j, a, r) {
+        h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments); };
+        h._hjSettings = { hjid: Number(HOTJAR_SITE_ID), hjsv: 6 };
+        a = o.getElementsByTagName('head')[0]; r = o.createElement('script'); r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv; a.appendChild(r);
+      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    }
     if (hasClarity) {
       (function (c, l, a, r, i, t, y) {
         c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
@@ -76,7 +88,7 @@
     if ($('#nb-consent')) return;
     var box = document.createElement('div');
     box.id = 'nb-consent'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-live', 'polite'); box.setAttribute('aria-label', 'Analytics cookies');
-    box.innerHTML = '<p><b>Analytics cookies.</b> With your permission we use Google Analytics and Microsoft Clarity to see how this catalog is used (visits, clicks, scrolling) so we can improve it. Nothing you type in forms is recorded.</p>' +
+    box.innerHTML = '<p><b>Analytics cookies.</b> With your permission we use ' + TOOLS_LABEL + ' to see how this catalog is used (visits, clicks, scrolling) so we can improve it. Nothing you type in forms is recorded.</p>' +
       '<div class="nb-c-actions"><button type="button" class="nb-c-decline">Decline</button><button type="button" class="nb-c-accept">Accept</button></div>';
     document.body.appendChild(box);
     box.querySelector('.nb-c-accept').addEventListener('click', function () { saveConsent('granted'); box.remove(); load(); track('consent', { choice: 'granted' }); });
@@ -112,6 +124,8 @@
     if (hasGTM) { var ev = { event: name }; for (var k in params) ev[k] = params[k]; window.dataLayer.push(ev); }
     if (hasGA) gtag('event', name, params);
     if (hasClarity && typeof window.clarity === 'function') window.clarity('event', name);
+    // Hotjar (loaded here or by GTM): events let heatmaps and recordings be filtered by what people did.
+    if (typeof window.hj === 'function') { try { window.hj('event', name); } catch (_) {} }
   }
   window.nbTrack = track;
 
@@ -229,10 +243,10 @@
     };
   }
 
-  /* Keep anything people type out of Clarity recordings */
+  /* Keep anything people type out of Hotjar / Clarity recordings */
   function mask() {
     ['#download-auth-overlay', '#auth', '#referral-form', '#vh-tool', '#utm-form', '#qr-form', '#search-input', '#search', '#m-dock']
-      .forEach(function (s) { var el = $(s); if (el) el.setAttribute('data-clarity-mask', 'true'); });
+      .forEach(function (s) { var el = $(s); if (el) { el.setAttribute('data-clarity-mask', 'true'); el.setAttribute('data-hj-suppress', ''); } });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mask); else mask();
   window.addEventListener('load', mask); // the phone dock is built by theme.js, which runs after this file
