@@ -36,55 +36,40 @@ root.CatalogAssets={cell,spriteStyle,logo,period,filename,cover,begin,finish,man
 
 (() => {
 'use strict';
-const CATALOG_API='https://lbyqsdhzbhumxapibxzg.supabase.co';
-const CATALOG_PUBLIC_KEY='sb_publishable_fWGYfEF6dDJ0n_VHoq1uLg_L4oOGdrs';
+// Catalog data comes only from this site's /api/catalog. Browsers never contact Supabase.
+const CATALOG_ENDPOINT='./api/catalog';
 let CATALOG_SOURCE=null, catalogRequest=null, catalogLastError='', catalogRefreshTimer=null;
-async function catalogGet(path){
- const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
- try{
-  const response=await fetch(`${CATALOG_API}/rest/v1/${path}`,{headers:{apikey:CATALOG_PUBLIC_KEY},cache:'no-store',signal:controller.signal});
-  if(!response.ok)throw new Error(`Supabase catalog request failed (${response.status})`);
-  return await response.json();
- }finally{clearTimeout(timer);}
-}
 async function loadCatalogSource(force=false){
  if(catalogRequest)return catalogRequest;
  if(CATALOG_SOURCE&&!force)return CATALOG_SOURCE;
  catalogRequest=(async()=>{
-  const records=[];
-  for(let offset=0;;){
-   const page=await catalogGet(`catalog_products?select=*&order=sourceRow.asc,id.asc&limit=500&offset=${offset}`);
-   if(!Array.isArray(page))throw new Error('Invalid Supabase catalog response');
-   records.push(...page);if(!page.length)break;offset+=page.length;
-  }
-  const meta=await catalogGet('catalog_metadata?select=metadata&catalog_key=eq.main');
-  if(!records.length)throw new Error('Supabase has no catalog products yet');
-  CATALOG_SOURCE={...(meta[0]?.metadata||{}),records:records.filter(r=>!excludedFromCatalog(r)).map(normalizeCatalogRecord)};
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
+  let payload;
+  try{
+   const response=await fetch(CATALOG_ENDPOINT,{cache:'no-store',signal:controller.signal});
+   if(!response.ok)throw new Error(`Catalog request failed (${response.status})`);
+   payload=await response.json();
+  }finally{clearTimeout(timer);}
+  if(!payload||!Array.isArray(payload.records))throw new Error('Invalid catalog response');
+  if(!payload.records.length)throw new Error('Catalog has no products yet');
+  CATALOG_SOURCE={...payload,records:payload.records.filter(r=>!excludedFromCatalog(r)).map(normalizeCatalogRecord)};
   catalogLastError='';return CATALOG_SOURCE;
  })();
  try{return await catalogRequest;}catch(e){catalogLastError=e.message;throw e;}finally{catalogRequest=null;}
 }
-async function refreshCatalogFromSupabase(){
+async function refreshCatalog(){
  try{await loadCatalogSource(true);await loadCatalog(state.view,state.factor);}
  catch(e){console.warn('Catalog refresh failed',e);updateSourceStatus();}
 }
 function scheduleCatalogRefresh(){
  clearTimeout(catalogRefreshTimer);
- catalogRefreshTimer=setTimeout(()=>{if(!document.hidden)refreshCatalogFromSupabase();},750);
+ catalogRefreshTimer=setTimeout(()=>{if(!document.hidden)refreshCatalog();},750);
 }
 async function startCatalogUpdates(){
- // Polling and focus refresh also recover missed or unavailable WebSocket events.
+ // Poll this site's API; refresh when the tab regains focus or the network returns.
  setInterval(()=>{if(!document.hidden)scheduleCatalogRefresh();},60000);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)scheduleCatalogRefresh();});
  window.addEventListener('online',scheduleCatalogRefresh);
- try{
-  await lazyScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.js','supabase');
-  const client=window.supabase.createClient(CATALOG_API,CATALOG_PUBLIC_KEY,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
-  client.channel('catalog-live')
-   .on('postgres_changes',{event:'*',schema:'public',table:'catalog_products'},scheduleCatalogRefresh)
-   .on('postgres_changes',{event:'*',schema:'public',table:'catalog_metadata'},scheduleCatalogRefresh)
-   .subscribe(status=>{if(status==='SUBSCRIBED')scheduleCatalogRefresh();});
- }catch(e){console.warn('Realtime unavailable; periodic refresh remains active.',e);}
 }
 let FINWIZZ_SOURCE=null;
 async function loadFinwizzSource(){
@@ -383,15 +368,20 @@ function requestDownloadAccess(){
  $('#download-auth-form').reset();$('#download-auth-error').textContent='';
  openOverlay('download-auth-overlay');$('#download-auth-id').focus();
 }
+async function verifyDownloadAccess(id,code){
+ // The credential is checked on the server (api/download-auth.js); nothing about it is in this file.
+ const response=await fetch('./api/download-auth',{method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',body:JSON.stringify({id,code})});
+ if(response.ok)return true;
+ if(response.status===401||response.status===400)return false;
+ throw new Error(`Verification unavailable (${response.status})`);
+}
 async function unlockDownload(e){
- e.preventDefault();const button=$('#download-auth-submit');button.disabled=true;
+ e.preventDefault();const button=$('#download-auth-submit');button.disabled=true;$('#download-auth-error').textContent='';
  try{
-  const input=$('#download-auth-id').value.trim()+':'+$('#download-auth-code').value;
-  const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(input));
-  const digest=Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');
-  if(digest!=='a171e6d2b5d512266084a4042927a5b19ef57f81441861731a071c27686c5028'){$('#download-auth-error').textContent='Incorrect ID or code.';$('#download-auth-code').value='';$('#download-auth-code').focus();return;}
+  const ok=await verifyDownloadAccess($('#download-auth-id').value.trim(),$('#download-auth-code').value);
+  if(!ok){$('#download-auth-error').textContent='Incorrect ID or code.';$('#download-auth-code').value='';$('#download-auth-code').focus();return;}
   downloadAuthorized=true;$('#download-auth-code').value='';closeOverlay('download-auth-overlay');openDownloadStudio();
- }catch(error){$('#download-auth-error').textContent='Unable to verify credentials. Open the site over HTTPS and try again.';}
+ }catch(error){$('#download-auth-error').textContent='Unable to verify right now. Check your connection and try again.';}
  finally{button.disabled=false;}
 }
 
@@ -639,7 +629,7 @@ async function init(){
     const status=document.getElementById('source-status');
     if(status){status.hidden=false;status.setAttribute("role","alert");status.textContent="Catalog could not load. Please reload this page.";}
     const results=document.getElementById('results');
-    if(results) results.innerHTML='<div style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">Catalog data failed to load from Supabase. Check your connection and reload this page.</div>';
+    if(results) results.innerHTML='<div style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">Catalog data failed to load. Check your connection and reload this page.</div>';
   }
 }
 init();
