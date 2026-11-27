@@ -1,7 +1,57 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vehicle Loans | NoBroker Loans</title><link rel="icon" href="favicon.png"><meta name="theme-color" content="#0c0c0f"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"><link rel="stylesheet" href="vehicle-loans.css?v=20261127"><script src="vehicle-loans.js?v=20261127-auth" defer></script></head><body>
-<header class="topbar"><a class="brand" href="./index.html" aria-label="NoBroker Loans catalog"><img src="./assets/nbl-logo.png" alt="NoBroker Loans" width="594" height="180"></a><nav class="topnav"><a class="back" href="./index.html">← Catalog</a><span class="partner-tag">CarDekho · 3rd Party</span></nav></header>
-<section class="hero"><div class="hero-inner title"><div><p class="eyebrow">Partner catalog</p><h1>Vehicle <em>Loans</em></h1><p class="lede">New and used car lender payouts, GMV bands and conditions.</p></div><button id="download" disabled>⇩ Download Vehicle Loans PDF</button></div></section>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0c0c0f">
+<title>Vehicle Loans | NoBroker Loans</title>
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<!-- Same layout and theme as index.html: vehicle-loans.css supplies the base styles that styles.css gives the main catalog. -->
+<link rel="stylesheet" href="vehicle-loans.css?v=20261127s">
+<link rel="stylesheet" href="theme.css?v=20261127g">
+<script src="vehicle-loans.js?v=20261127-auth" defer></script>
+<script src="theme.js?v=20261127s" defer></script>
+</head>
+<body class="vehicle-page">
+<header class="site-shell">
+<a aria-label="NoBroker Loans catalog" class="brand brand-logo-only" href="./index.html"><img alt="NoBroker Loans" src="./assets/nbl-logo.png" width="594" height="180"></a>
+<nav class="top-nav" aria-label="Catalog views"><a class="nav-pill" href="./index.html">Code Catalog</a><a class="nav-pill" href="./index.html#payouts">Payouts</a></nav>
+</header>
 <main>
-<div class="controls"><label>Product<select id="product"><option value="all">All vehicle loans</option><option value="newCar">New Car</option><option value="usedCar">Used Car</option></select></label><label>Bank / lender<select id="bank"><option value="">All banks</option></select></label><label class="search">Search<input id="search" type="search" placeholder="Bank, scheme, CIBIL or loan band"></label><button id="reset" class="secondary">Reset filters</button></div>
-<p id="status" role="status" hidden></p><p id="error" role="alert"></p><div id="catalog"></div>
-</main><dialog id="auth"><form id="auth-form"><h2>Unlock PDF download</h2><label>ID<input id="auth-id" autocomplete="username" required></label><label>Code<input id="auth-code" type="password" autocomplete="current-password" required></label><p id="auth-error" role="alert"></p><div class="actions"><button type="button" class="secondary" id="cancel">Cancel</button><button type="submit">Download PDF</button></div></form></dialog><footer><img src="./assets/nbl-logo.png" alt="NoBroker Loans" width="594" height="180"><span>Visit the catalog: <a href="https://nbloans-catalog.vercel.app">nbloans-catalog.vercel.app</a></span></footer></body></html>
+<section class="hero">
+<div class="hero-copy">
+<p class="hero-eyebrow">NoBroker Loans · Partner catalog</p>
+<h1>Vehicle <em>Loans</em></h1>
+<p class="hero-sub">New and used car lender payouts, GMV bands and conditions.</p>
+</div>
+<div class="hero-stats" aria-live="polite">
+<div class="hero-stat accent"><b id="stat-institutions">–</b><span>Lenders</span></div>
+<div class="hero-stat"><b id="stat-records">–</b><span>Payout rows</span></div>
+<div class="hero-stat"><b>Vehicle</b><span>Catalog</span></div>
+</div>
+</section>
+<section class="catalog-toolbar">
+<div class="search-wrap"><span>⌕</span><input id="search" type="search" autocomplete="off" placeholder="Search bank, scheme, CIBIL or loan band…"><button id="search-clear" type="button" title="Clear">×</button></div>
+<div class="toolbar-row">
+<nav class="catalog-source-switcher" id="catalog-source-switcher" aria-label="Catalog source">
+<a href="./index.html">NoBroker Catalog</a><a href="./index.html#third-party">3rd Party Catalog</a><a class="active" aria-current="page" href="./vehicle-loans.html">Vehicle Loans</a>
+</nav>
+<div class="filter-cluster v-two" id="filter-cluster">
+<label class="filter-control"><span>Product</span><select id="product"><option value="all">All vehicle loans</option><option value="newCar">New Car</option><option value="usedCar">Used Car</option></select></label>
+<label class="filter-control"><span>Bank / lender</span><select id="bank"><option value="">All banks</option></select></label>
+</div>
+<button id="reset" class="reset-btn" type="button">Reset filters</button>
+</div>
+</section>
+<section class="catalog-meta"><span id="result-count"></span><span id="active-view-label">CarDekho · 3rd Party payouts</span></section>
+<p id="status" role="status" hidden></p><p id="error" role="alert"></p>
+<div id="catalog"></div>
+</main>
+<footer class="site-footer"><span>NoBroker Loans Catalog · <a href="https://nbloans-catalog.vercel.app">nbloans-catalog.vercel.app</a></span></footer>
+<button class="download-fab" id="download" type="button" disabled>⇩ Download Vehicle Loans PDF</button>
+<dialog id="auth"><form id="auth-form"><h2>Unlock PDF download</h2><label>ID<input id="auth-id" autocomplete="username" required></label><label>Code<input id="auth-code" type="password" autocomplete="current-password" required></label><p id="auth-error" role="alert"></p><div class="actions"><button type="button" class="secondary" id="cancel">Cancel</button><button type="submit">Download PDF</button></div></form></dialog>
+</body>
+</html>

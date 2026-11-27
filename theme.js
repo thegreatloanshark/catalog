@@ -74,8 +74,20 @@
 (function(){
   var mq=window.matchMedia('(max-width: 640px)');
   var $=function(s,r){return (r||document).querySelector(s);};
-  var toolbarRow=$('.toolbar-row'),cluster=$('#filter-cluster'),viewToggle=$('.view-toggle');
+  var toolbarRow=$('.toolbar-row'),cluster=$('#filter-cluster');
   if(!toolbarRow||!cluster)return;
+  var clusterNext=cluster.nextElementSibling; // where the filters return to on wider screens
+  var VEHICLE=document.body.classList.contains('vehicle-page');
+  var CFG=VEHICLE?{
+    product:'#product',selects:['#product','#bank'],defaults:{'#product':'all','#bank':''},
+    search:'#search',download:'#download',
+    caption:{all:'All',newCar:'New Car',usedCar:'Used Car'},dot:{all:'All',newCar:'New',usedCar:'Used'}
+  }:{
+    product:'#product-filter',selects:['#product-filter','#payment-filter','#city-filter'],defaults:{},
+    search:'#search-input',download:'#download-fab',
+    caption:{'':'All',HL:'Home Loan',LAP:'Property',PL:'Personal',BL:'Business',OTHER:'Other'},dot:{'':'All',OTHER:'+'}
+  };
+  var dflt=function(sel){return CFG.defaults[sel]||'';};
   var svg=function(d){return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d+'</svg>';};
   var ICONS={
     codes:svg('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h6"/>'),
@@ -99,51 +111,56 @@
   sheet.innerHTML='<div class="m-sheet-grip" aria-hidden="true"></div><header><h2 id="m-sheet-title">Filters</h2><button type="button" class="m-sheet-reset">Reset</button></header><div class="m-sheet-body"></div><footer><button type="button" class="m-sheet-done">Show results</button></footer>';
   document.body.appendChild(backdrop);document.body.appendChild(sheet);
   var sheetBody=$('.m-sheet-body',sheet),doneBtn=$('.m-sheet-done',sheet),lastFocus=null;
-  var selects=function(){return ['#product-filter','#payment-filter','#city-filter'].map(function(s){return $(s);}).filter(Boolean);};
+  var selects=function(){return CFG.selects.map(function(s){return $(s);}).filter(Boolean);};
+  var active=function(){return CFG.selects.filter(function(s){var el=$(s);return el&&el.value!==dflt(s);}).length;};
   var setSelect=function(sel,val){if(!sel||sel.value===val)return;sel.value=val;sel.dispatchEvent(new Event('change',{bubbles:true}));};
   function openSheet(){lastFocus=document.activeElement;sheet.hidden=false;document.body.classList.add('m-sheet-open');requestAnimationFrame(function(){sheet.classList.add('open');backdrop.classList.add('open');});var f=$('select',sheet);if(f)f.focus();}
   function closeSheet(){sheet.classList.remove('open');backdrop.classList.remove('open');document.body.classList.remove('m-sheet-open');setTimeout(function(){if(!sheet.classList.contains('open'))sheet.hidden=true;},220);if(lastFocus&&lastFocus.focus)lastFocus.focus();}
   backdrop.addEventListener('click',closeSheet);doneBtn.addEventListener('click',closeSheet);
-  $('.m-sheet-reset',sheet).addEventListener('click',function(){selects().forEach(function(s){setSelect(s,'');});});
+  $('.m-sheet-reset',sheet).addEventListener('click',function(){
+    if(VEHICLE){var r=$('#reset');if(r)r.click();sync();return;}
+    selects().forEach(function(s){setSelect(s,'');});
+  });
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&sheet.classList.contains('open'))closeSheet();});
 
   /* ---- Product stories rail ---- */
   var rail=document.createElement('div');rail.id='m-stories';rail.setAttribute('role','toolbar');rail.setAttribute('aria-label','Filter by product');
   toolbarRow.insertAdjacentElement('afterend',rail);
-  var CAPTION={'':'All',HL:'Home Loan',LAP:'Property',PL:'Personal',BL:'Business',OTHER:'Other'};
   function buildStories(){
-    var sel=$('#product-filter');if(!sel){rail.innerHTML='';return;}
+    var sel=$(CFG.product);if(!sel){rail.innerHTML='';return;}
     rail.innerHTML=Array.prototype.map.call(sel.options,function(o){
-      var v=o.value,short=v?(v==='OTHER'?'+':v):'All',cap=CAPTION[v]||o.textContent.replace(/^\S+\s*[–-]\s*/,'');
+      var v=o.value,short=CFG.dot[v]||v,cap=CFG.caption[v]||o.textContent.replace(/^\S+\s*[–-]\s*/,'');
       return '<button type="button" class="m-story'+(sel.value===v?' active':'')+'" data-v="'+v.replace(/"/g,'&quot;')+'" aria-pressed="'+(sel.value===v)+'"><span class="m-ring"><span class="m-dot">'+short+'</span></span><span class="m-cap">'+cap+'</span></button>';
     }).join('');
   }
-  rail.addEventListener('click',function(e){var b=e.target.closest('.m-story');if(!b)return;var sel=$('#product-filter');var v=b.dataset.v;setSelect(sel,sel&&sel.value===v&&v?'':v);});
+  rail.addEventListener('click',function(e){var b=e.target.closest('.m-story');if(!b)return;var sel=$(CFG.product),v=b.dataset.v,d=dflt(CFG.product);setSelect(sel,sel&&sel.value===v&&v!==d?d:v);});
 
   /* ---- State sync ---- */
   function sync(){
     buildStories();
-    var n=selects().filter(function(s){return s.value;}).length,badge=$('.m-badge',nav);
+    var n=active(),badge=$('.m-badge',nav);
     badge.hidden=!n;badge.textContent=n;
     var m=($('#result-count')||{}).textContent||'',r=m.match(/·\s*(\d[\d,]*)/);
     doneBtn.textContent=r?'Show '+r[1]+' results':'Show results';
     var pay=($('#payout-catalog-tab')||{}).classList;
-    nav.querySelector('[data-m=codes]').classList.toggle('active',!(pay&&pay.contains('active')));
-    nav.querySelector('[data-m=payouts]').classList.toggle('active',!!(pay&&pay.contains('active')));
+    nav.querySelector('[data-m=codes]').classList.toggle('active',!VEHICLE&&!(pay&&pay.contains('active')));
+    nav.querySelector('[data-m=payouts]').classList.toggle('active',!VEHICLE&&!!(pay&&pay.contains('active')));
   }
   new MutationObserver(sync).observe(cluster,{childList:true,subtree:true});
   var rc=$('#result-count');if(rc)new MutationObserver(sync).observe(rc,{childList:true,characterData:true,subtree:true});
   var pt=$('#payout-catalog-tab');if(pt)new MutationObserver(sync).observe(pt,{attributes:true,attributeFilter:['class']});
   document.addEventListener('change',function(e){if(e.target&&e.target.closest&&e.target.closest('#filter-cluster'))sync();});
+  if(VEHICLE){var vc=$('#catalog');if(vc)new MutationObserver(sync).observe(vc,{childList:true});}
 
   nav.addEventListener('click',function(e){
     var b=e.target.closest('button');if(!b)return;
     var a=b.dataset.m;
+    if(VEHICLE&&(a==='codes'||a==='payouts')){location.href='./index.html'+(a==='payouts'?'#payouts':'');return;}
     if(a==='codes'){var t=$('#code-catalog-tab');if(t)t.click();window.scrollTo({top:0,behavior:'smooth'});}
     else if(a==='payouts'){var p=$('#payout-catalog-tab');if(p)p.click();window.scrollTo({top:0,behavior:'smooth'});}
-    else if(a==='search'){var i=$('#search-input');window.scrollTo({top:0,behavior:'smooth'});if(i)setTimeout(function(){i.focus();},250);}
+    else if(a==='search'){var i=$(CFG.search);window.scrollTo({top:0,behavior:'smooth'});if(i)setTimeout(function(){i.focus();},250);}
     else if(a==='filters'){openSheet();}
-    else if(a==='download'){var d=$('#download-fab');if(d)d.click();}
+    else if(a==='download'){var d=$(CFG.download);if(d)d.click();}
   });
 
   /* ---- Enter / leave mobile ---- */
@@ -152,11 +169,60 @@
       if(cluster.parentElement!==sheetBody)sheetBody.appendChild(cluster);
       var lb=$('#list-view-btn');if(lb&&!lb.classList.contains('active'))lb.click();
     }else{
-      if(cluster.parentElement!==toolbarRow)toolbarRow.insertBefore(cluster,viewToggle||null);
+      if(cluster.parentElement!==toolbarRow)toolbarRow.insertBefore(cluster,clusterNext&&clusterNext.parentElement===toolbarRow?clusterNext:null);
       if(sheet.classList.contains('open'))closeSheet();
     }
     sync();
   }
   if(mq.addEventListener)mq.addEventListener('change',apply);else if(mq.addListener)mq.addListener(apply);
   apply();
+})();
+
+/* ======================================================================
+   Vehicle Loans page: hero counts, result line, search clear, and row labels
+   for the phone card layout. Reads the DOM that vehicle-loans.js renders.
+   ====================================================================== */
+(function(){
+  if(!document.body.classList.contains('vehicle-page'))return;
+  var cat=document.getElementById('catalog'),count=document.getElementById('result-count');
+  var inst=document.getElementById('stat-institutions'),rec=document.getElementById('stat-records');
+  var search=document.getElementById('search'),clear=document.getElementById('search-clear');
+  if(clear&&search)clear.addEventListener('click',function(){search.value='';search.dispatchEvent(new Event('input',{bubbles:true}));search.focus();});
+  function update(){
+    var lenders=new Set(),rows=0;
+    cat.querySelectorAll('section:not(:has(details)) table').forEach(function(t){
+      var heads=Array.prototype.map.call(t.querySelectorAll('thead th'),function(th){return th.textContent.trim();});
+      t.querySelectorAll('tbody tr').forEach(function(tr){
+        rows++;
+        Array.prototype.forEach.call(tr.children,function(td,i){td.setAttribute('data-label',heads[i]||'');if(i===0)lenders.add(td.textContent.trim());});
+      });
+    });
+    cat.querySelectorAll('details table').forEach(function(t){
+      var heads=Array.prototype.map.call(t.querySelectorAll('thead th'),function(th){return th.textContent.trim();});
+      t.querySelectorAll('tbody tr').forEach(function(tr){Array.prototype.forEach.call(tr.children,function(td,i){td.setAttribute('data-label',heads[i]||'');});});
+    });
+    if(inst)inst.textContent=lenders.size;
+    if(rec)rec.textContent=rows;
+    if(count)count.textContent=rows?'Showing '+lenders.size+' lenders · '+rows+' payout rows':(cat.textContent.trim()?'No products match these filters':'');
+  }
+  new MutationObserver(update).observe(cat,{childList:true});
+  update();
+})();
+
+/* Main catalog: open a view requested by link (#payouts, #third-party), e.g. from the Vehicle Loans page. */
+(function(){
+  var rc=document.getElementById('result-count');
+  if(!rc||!document.getElementById('payout-catalog-tab'))return;
+  var pending=null;
+  var go=function(){
+    if(!pending||!/\d/.test(rc.textContent))return;
+    var h=pending;pending=null;
+    var el=h==='#payouts'?document.getElementById('payout-catalog-tab'):document.querySelector('[data-catalog-source=finwizz]');
+    if(el)el.click();
+    if(history.replaceState)history.replaceState(null,'',location.pathname+location.search);
+  };
+  var read=function(){var h=(location.hash||'').toLowerCase();if(h==='#payouts'||h==='#third-party'){pending=h;go();}};
+  new MutationObserver(go).observe(rc,{childList:true,characterData:true,subtree:true});
+  window.addEventListener('hashchange',read);
+  read();
 })();

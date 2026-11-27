@@ -78,11 +78,11 @@ main>.hero .source-status{color:rgba(255,255,255,.6)!important}
 .filter-control select{width:100%!important;min-width:0!important;text-overflow:ellipsis}
 
 .catalog-source-switcher{background:var(--nb-bg);border:1px solid var(--nb-line);border-radius:14px;padding:4px!important;gap:2px!important;height:auto!important;align-self:flex-end}
-.catalog-source-switcher button,.catalog-source-switcher #vehicle-catalog-link{
+.catalog-source-switcher button,.catalog-source-switcher a{
   border:0!important;background:transparent!important;color:var(--nb-ink-2)!important;border-radius:10px!important;
   padding:9px 14px!important;font-size:12.5px!important;font-weight:700!important;font-family:inherit!important;white-space:nowrap;box-shadow:none!important;transition:background .15s,color .15s}
-.catalog-source-switcher button:hover,.catalog-source-switcher #vehicle-catalog-link:hover{background:rgba(14,14,17,.05)!important;color:var(--nb-ink)!important}
-.catalog-source-switcher button.active{background:var(--nb-ink)!important;color:#fff!important;box-shadow:0 4px 12px -4px rgba(14,14,17,.5)!important}
+.catalog-source-switcher button:hover,.catalog-source-switcher a:hover{background:rgba(14,14,17,.05)!important;color:var(--nb-ink)!important}
+.catalog-source-switcher button.active,.catalog-source-switcher a.active{background:var(--nb-ink)!important;color:#fff!important;box-shadow:0 4px 12px -4px rgba(14,14,17,.5)!important}
 .catalog-source-switcher #vehicle-catalog-link::after{content:"↗";margin-left:6px;font-size:11px;opacity:.6}
 
 .filter-control>span{font-size:10px!important;font-weight:800!important;letter-spacing:.1em!important;color:var(--nb-muted)!important;margin-bottom:6px}
@@ -176,7 +176,7 @@ main>.hero .source-status{color:rgba(255,255,255,.6)!important}
   .filter-control:last-child{grid-column:1/-1}
   .toolbar-row>.view-toggle{justify-self:end}
   .catalog-source-switcher{width:100%;overflow-x:auto}
-  .catalog-source-switcher button,.catalog-source-switcher #vehicle-catalog-link{flex:1 0 auto;justify-content:center;padding:9px 8px!important;font-size:11.5px!important}
+  .catalog-source-switcher button,.catalog-source-switcher a{flex:1 0 auto;justify-content:center;padding:9px 8px!important;font-size:11.5px!important}
   .bank-card.list-card{padding:14px!important}
 }
 
@@ -233,9 +233,9 @@ main>.hero .source-status{color:rgba(255,255,255,.6)!important}
 #catalog .grid-card .bank-middle{width:100%}
 #catalog .grid-card .finwizz-card-meta{justify-content:center;margin-top:6px!important}
 #catalog .grid-card .bank-sub:has(.finwizz-badge){display:flex;justify-content:center;margin-top:6px}
-#catalog .grid-card .finwizz-product-list,#catalog .grid-card .code-group-list{display:flex!important;flex-direction:column;gap:0!important;width:100%;margin-top:4px!important;text-align:left}
+#catalog .grid-card .finwizz-product-list,#catalog .grid-card .code-group-list{display:flex!important;flex-direction:column;gap:0!important;width:100%;margin-top:4px!important;text-align:center}
 #catalog .grid-card .finwizz-product-row,#catalog .grid-card .code-group-row{
-  display:flex!important;flex-direction:column;align-items:flex-start!important;justify-content:flex-start!important;gap:5px!important;
+  display:flex!important;flex-direction:column;align-items:center!important;justify-content:center!important;gap:5px!important;
   width:100%;min-width:0;padding:9px 0!important;border-top:1px solid var(--nb-line)!important}
 #catalog .grid-card .finwizz-product-row:first-child,#catalog .grid-card .code-group-row:first-child{border-top:0!important;padding-top:2px!important}
 #catalog .grid-card .finwizz-product-row>*,#catalog .grid-card .code-group-row>*{grid-column:auto!important;max-width:100%;min-width:0;overflow-wrap:anywhere}
@@ -293,8 +293,8 @@ main>.hero .source-status:not(:empty)::before{content:"!";display:inline-grid;pl
   .toolbar-row{display:block!important;margin-top:10px!important}
   .toolbar-row>.view-toggle,.selection-row{display:none!important}
   .catalog-source-switcher{display:flex!important;width:100%;background:none!important;border:0!important;border-bottom:1px solid var(--nb-line)!important;border-radius:0!important;padding:0!important;gap:0!important;overflow:visible}
-  .catalog-source-switcher button,.catalog-source-switcher #vehicle-catalog-link{flex:1 1 0!important;justify-content:center;text-align:center;border-radius:0!important;padding:11px 4px!important;font-size:12.5px!important;color:var(--nb-muted)!important;border-bottom:2px solid transparent!important;margin-bottom:-1px;background:none!important}
-  .catalog-source-switcher button.active{background:none!important;color:var(--nb-ink)!important;border-bottom-color:var(--nb-ink)!important;box-shadow:none!important}
+  .catalog-source-switcher button,.catalog-source-switcher a{flex:1 1 0!important;justify-content:center;text-align:center;border-radius:0!important;padding:11px 4px!important;font-size:12.5px!important;color:var(--nb-muted)!important;border-bottom:2px solid transparent!important;margin-bottom:-1px;background:none!important}
+  .catalog-source-switcher button.active,.catalog-source-switcher a.active{background:none!important;color:var(--nb-ink)!important;border-bottom-color:var(--nb-ink)!important;box-shadow:none!important}
   .catalog-source-switcher #vehicle-catalog-link::after{content:"↗"}
 
   #m-stories{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding:12px 2px 6px;margin:0 -2px;scrollbar-width:none}
@@ -372,3 +372,9 @@ main>.hero .source-status:not(:empty)::before{content:"!";display:inline-grid;pl
 #download-auth-overlay input{height:48px;border:1px solid var(--nb-line-2)!important;border-radius:12px!important;padding:0 14px!important;font-size:16px!important;background:#fff}
 #download-auth-overlay input:focus{outline:none;border-color:var(--nb-ink)!important;box-shadow:0 0 0 4px rgba(14,14,17,.08)}
 #download-auth-overlay .primary-btn{height:48px;border:0}
+
+/* Grid tiles: every line of text centred, in both catalogs and at every width */
+#catalog .grid-card,#catalog .grid-card *{text-align:center!important}
+#catalog .grid-card .bank-middle,#catalog .grid-card .finwizz-product-row label{align-items:center!important;justify-content:center!important}
+#catalog .grid-card .finwizz-product-row .fw-code,#catalog .grid-card .code-group-code{align-self:center!important;justify-self:center!important;margin-left:auto;margin-right:auto}
+#catalog .grid-card .card-actions{display:flex;justify-content:center;width:100%}
