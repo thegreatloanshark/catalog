@@ -11,15 +11,16 @@
   var GA4_MEASUREMENT_ID = '';   // Only if not using GTM: 'G-XXXXXXXXXX' loads GA4 directly. Leave empty with GTM to avoid double counting.
   var CLARITY_PROJECT_ID = '';   // Optional alternative heatmap tool. Leave empty when Hotjar is used.
   var HOTJAR_SITE_ID = '';       // Only if Hotjar is NOT added inside GTM: numeric Site ID loads Hotjar directly.
+  var CONTENTSQUARE_TAG_ID = '51165f6ae3411'; // Contentsquare (experience analytics, heatmaps, session replay)
   // Named in the consent banner. Keep in sync with the tools actually loaded (here or inside GTM).
-  var TOOLS_LABEL = 'Google Analytics and Hotjar';
+  var TOOLS_LABEL = 'Google Analytics, Hotjar and Contentsquare';
 
   var CONSENT_KEY = 'nb_analytics_consent'; // 'granted' | 'denied'
   var debug = /[?&]analytics_debug=1\b/.test(location.search);
   var hasGTM = /^GTM-[A-Z0-9]+$/.test(GTM_CONTAINER_ID);
   var hasGA = !hasGTM && /^G-[A-Z0-9]+$/.test(GA4_MEASUREMENT_ID), hasClarity = /^[a-z0-9]+$/i.test(CLARITY_PROJECT_ID);
-  var hasHotjar = /^\d+$/.test(HOTJAR_SITE_ID);
-  if (!hasGTM && !hasGA && !hasClarity && !hasHotjar && !debug) return; // nothing configured: no banner, no tracking
+  var hasHotjar = /^\d+$/.test(HOTJAR_SITE_ID), hasCS = /^[a-f0-9]+$/i.test(CONTENTSQUARE_TAG_ID);
+  if (!hasGTM && !hasGA && !hasClarity && !hasHotjar && !hasCS && !debug) return; // nothing configured: no banner, no tracking
 
   var path = location.pathname;
   var page = /\/refer\/tools\//.test(path) ? 'refer_tools'
@@ -52,6 +53,16 @@
       document.head.appendChild(s);
       gtag('js', new Date());
       gtag('config', GA4_MEASUREMENT_ID, { page_type: page, debug_mode: debug || undefined });
+    }
+    if (hasCS) {
+      // The catalog page shows NoBroker / 3rd Party and Codes / Payouts at one URL; a virtual path per
+      // combination keeps their heatmaps apart. setPath must be queued before the tag loads.
+      window._uxa = window._uxa || [];
+      if (page === 'catalog') window._uxa.push(['setPath', virtualPath()]);
+      var cs = document.createElement('script');
+      cs.async = true; cs.src = 'https://t.contentsquare.net/uxa/' + CONTENTSQUARE_TAG_ID + '.js';
+      document.head.appendChild(cs);
+      lastPath = virtualPath();
     }
     if (hasHotjar) {
       (function (h, o, t, j, a, r) {
@@ -126,6 +137,7 @@
     if (hasClarity && typeof window.clarity === 'function') window.clarity('event', name);
     // Hotjar (loaded here or by GTM): events let heatmaps and recordings be filtered by what people did.
     if (typeof window.hj === 'function') { try { window.hj('event', name); } catch (_) {} }
+    if (hasCS && window._uxa) window._uxa.push(['trackPageEvent', name]);
   }
   window.nbTrack = track;
 
@@ -144,6 +156,27 @@
     if (isCatalog) { o.catalog = catalogName(); o.view = page === 'vehicle_loans' ? 'payouts' : viewName(); if ($('#grid-view-btn')) o.layout = layoutName(); }
     for (var k in extra) if (Object.prototype.hasOwnProperty.call(extra, k)) o[k] = extra[k];
     return o;
+  }
+  /* Contentsquare: one virtual page per catalog + view on the catalog page */
+  var lastPath; // set by load(), which can run before this line on return visits
+  function virtualPath() {
+    if (page !== 'catalog') return location.pathname;
+    return location.pathname.replace(/\/(index\.html)?$/, '/') + catalogName().replace('_', '-') + '/' + viewName();
+  }
+  function syncVirtualPage() {
+    if (!loaded || !hasCS || page !== 'catalog') return;
+    var p = virtualPath();
+    if (p === lastPath) return;
+    lastPath = p;
+    window._uxa.push(['trackPageview', p]);
+  }
+  if (page === 'catalog') {
+    var obsStart = function () {
+      ['#catalog-source-switcher', '#payout-catalog-tab'].forEach(function (s) {
+        var el = $(s); if (el) new MutationObserver(syncVirtualPage).observe(el, { attributes: true, subtree: true, attributeFilter: ['class'] });
+      });
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', obsStart); else obsStart();
   }
   function bankOf(el) { var card = el.closest && el.closest('.bank-card'); return card ? (card.dataset.bank || '') : ''; }
   function text(el) { return (el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 60); }
@@ -243,10 +276,10 @@
     };
   }
 
-  /* Keep anything people type out of Hotjar / Clarity recordings */
+  /* Keep anything people type out of Hotjar / Contentsquare / Clarity recordings */
   function mask() {
     ['#download-auth-overlay', '#auth', '#referral-form', '#vh-tool', '#utm-form', '#qr-form', '#search-input', '#search', '#m-dock']
-      .forEach(function (s) { var el = $(s); if (el) { el.setAttribute('data-clarity-mask', 'true'); el.setAttribute('data-hj-suppress', ''); } });
+      .forEach(function (s) { var el = $(s); if (el) { el.setAttribute('data-clarity-mask', 'true'); el.setAttribute('data-hj-suppress', ''); el.setAttribute('data-cs-mask', ''); } });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mask); else mask();
   window.addEventListener('load', mask); // the phone dock is built by theme.js, which runs after this file
