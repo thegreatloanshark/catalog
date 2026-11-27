@@ -202,6 +202,8 @@ function applyCatalog(j,requestedView){const studioOpen=$('#download-overlay')?.
 function mainRecords(){return state.records.filter(r=>r.thirdPartyProvider!=='FinWizz'&&!excludedFromCatalog(r));}
 function finWizzRecords(){return (state.finwizzRecords||[]).filter(r=>!excludedFromCatalog(r));}
 function activeSourceRecords(){return state.catalogSource==='finwizz'?finWizzRecords():mainRecords();}
+// Comma-separated search: "hdfc, axis" matches records containing any of the terms.
+function matchesSearch(hay,q){const terms=q.split(',').map(t=>t.trim()).filter(Boolean);return !terms.length||terms.some(t=>hay.includes(t));}
 function visibleRecords(){
   const q=state.search.trim().toLowerCase(),base=activeSourceRecords(),logged=state.view!=='public';
   return base.filter(r=>{
@@ -213,7 +215,7 @@ function visibleRecords(){
         // Everything except payout values is public, including lender codes.
         const publicHay=[r.institutionName,r.mode,r.code,r.grossNet,r.productType,r.variant,r.payoutTimeline,r.applicableCities,r.conditions,r.paymentType];
         const searchable=logged?[...publicHay,r.productPayout]:publicHay;
-        if(!searchable.filter(Boolean).join(' ').toLowerCase().includes(q))return false;
+        if(!matchesSearch(searchable.filter(Boolean).join(' ').toLowerCase(),q))return false;
       }
       return true;
     }
@@ -224,7 +226,7 @@ function visibleRecords(){
       // Codes, conditions and process information are public. Only payout % remains gated.
       const publicHay=[r.institutionName,r.status,r.code,r.grossNet,r.productType,r.variant,r.applicableCities,r.payoutTimeline,r.paymentType,r.conditions,r.loginProcess,r.topSlabLoanVal,r.payoutCapping,r.clawback];
       const searchable=logged?[...publicHay,r.payoutDisplay,r.payoutT1]:publicHay;
-      if(!searchable.filter(Boolean).join(' ').toLowerCase().includes(q))return false;
+      if(!matchesSearch(searchable.filter(Boolean).join(' ').toLowerCase(),q))return false;
     }
     return true;
   });

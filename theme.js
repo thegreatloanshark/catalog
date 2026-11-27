@@ -164,6 +164,48 @@
     else if(a==='download'){var d=$(CFG.download);if(d)d.click();}
   });
 
+  /* ---- Pinned dock on scroll: thin catalog band + search + List/Grid ----
+     Appears under the logo header once the page's own search box scrolls out of view.
+     The dock's search box mirrors the real one, so filtering logic stays in the page scripts. */
+  var realSearch=$(CFG.search),realWrap=realSearch&&realSearch.closest('.search-wrap'),header=$('.site-shell');
+  var dock=document.createElement('div');dock.id='m-dock';dock.setAttribute('aria-hidden','true');
+  var hasToggle=!!$('#list-view-btn');
+  dock.innerHTML='<button type="button" class="m-dock-band" aria-label="Back to top"><span class="m-dock-name"></span><span class="m-dock-count"></span></button>'+
+    '<div class="m-dock-row"><label class="m-dock-search"><span aria-hidden="true">⌕</span><input type="search" autocomplete="off" enterkeyhint="search" aria-label="Search catalog" placeholder="Search · commas for several"><button type="button" class="m-dock-clear" aria-label="Clear search" hidden>×</button></label>'+
+    (hasToggle?'<div class="m-dock-toggle" role="group" aria-label="Catalog layout"><button type="button" data-v="list" aria-label="List view">'+svg('<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>')+'</button><button type="button" data-v="grid" aria-label="Grid view">'+svg('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>')+'</button></div>':'')+'</div>';
+  document.body.appendChild(dock);
+  var dockInput=$('input',dock),dockClear=$('.m-dock-clear',dock);
+  function pushSearch(v){if(!realSearch)return;realSearch.value=v;realSearch.dispatchEvent(new Event('input',{bubbles:true}));}
+  dockInput.addEventListener('input',function(){pushSearch(dockInput.value);dockClear.hidden=!dockInput.value;});
+  dockClear.addEventListener('click',function(){dockInput.value='';dockClear.hidden=true;pushSearch('');dockInput.focus();});
+  $('.m-dock-band',dock).addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  if(hasToggle)$('.m-dock-toggle',dock).addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var t=$('#'+b.dataset.v+'-view-btn');if(t)t.click();syncDock();});
+  function syncDock(){
+    if(realSearch&&document.activeElement!==dockInput){dockInput.value=realSearch.value;dockClear.hidden=!realSearch.value;}
+    var src=$('#catalog-source-switcher .active'),name=VEHICLE?'Vehicle Loans':(src?src.textContent.trim():'Catalog');
+    var pay=$('#payout-catalog-tab');if(!VEHICLE&&pay&&pay.classList.contains('active'))name+=' · Payouts';
+    $('.m-dock-name',dock).textContent=name;
+    var m=(($('#result-count')||{}).textContent||'').match(/·\s*(\d[\d,]*)/);
+    $('.m-dock-count',dock).textContent=m?m[1]+(VEHICLE?' rows':' records'):'';
+    if(hasToggle){var g=$('#grid-view-btn'),grid=!!(g&&g.classList.contains('active'));
+      dock.querySelector('[data-v=list]').classList.toggle('active',!grid);dock.querySelector('[data-v=grid]').classList.toggle('active',grid);}
+  }
+  function placeDock(){if(header)dock.style.top=Math.round(header.getBoundingClientRect().height)+'px';}
+  var docked=false;
+  function setDocked(on){if(on===docked)return;docked=on;dock.classList.toggle('show',on);dock.setAttribute('aria-hidden',String(!on));document.body.classList.toggle('m-docked',on);if(!on&&document.activeElement===dockInput&&realSearch){/* keep typing in the page's own box */}}
+  function checkDock(){
+    if(!mq.matches||!realWrap){setDocked(false);return;}
+    var limit=header?header.getBoundingClientRect().bottom:0;
+    setDocked(realWrap.getBoundingClientRect().bottom<limit);
+  }
+  window.addEventListener('scroll',checkDock,{passive:true});
+  window.addEventListener('resize',function(){placeDock();checkDock();});
+  if(realSearch)realSearch.addEventListener('input',syncDock);
+  ['#list-view-btn','#grid-view-btn','#payout-catalog-tab'].forEach(function(s){var el=$(s);if(el)new MutationObserver(syncDock).observe(el,{attributes:true,attributeFilter:['class']});});
+  var swi=$('#catalog-source-switcher');if(swi)new MutationObserver(syncDock).observe(swi,{attributes:true,subtree:true,attributeFilter:['class']});
+  var rc2=$('#result-count');if(rc2)new MutationObserver(syncDock).observe(rc2,{childList:true,characterData:true,subtree:true});
+  placeDock();syncDock();checkDock();
+
   /* ---- Enter / leave mobile ---- */
   function apply(){
     if(mq.matches){
