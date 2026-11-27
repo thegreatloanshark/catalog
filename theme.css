@@ -266,7 +266,14 @@ main>.hero .source-status:not(:empty)::before{content:"!";display:inline-grid;pl
   :root{--nb-list-h:212px;--nb-grid-h:261px;--nb-mnav-h:62px}
   html,body{overscroll-behavior-y:none}
   body{padding-bottom:calc(var(--nb-mnav-h) + env(safe-area-inset-bottom))}
-  body.m-sheet-open{overflow:hidden}
+  /* Keep the logo header pinned while scrolling. styles.css unpins it under 900px and sets
+     overflow-x:hidden on html/body, which also blocks pinning; clip keeps the no-sideways-scroll
+     behaviour without that side effect. Phones only; wider layouts are unchanged. */
+  html,html body{overflow-x:clip!important}
+  html body{overflow-y:visible!important}
+  html body .site-shell{position:sticky!important;top:0!important;z-index:50!important}
+  html body .catalog-toolbar{position:relative!important;top:auto!important;z-index:2!important} /* only the logo header stays pinned */
+  html body.m-sheet-open{overflow:hidden!important}
 
   /* Header: logo only; navigation moves to the bottom bar */
   .site-shell{padding:8px 14px!important;justify-content:center!important}
