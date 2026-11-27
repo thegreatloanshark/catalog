@@ -368,15 +368,20 @@ function requestDownloadAccess(){
  $('#download-auth-form').reset();$('#download-auth-error').textContent='';
  openOverlay('download-auth-overlay');$('#download-auth-id').focus();
 }
+async function verifyDownloadAccess(id,code){
+ // The credential is checked on the server (api/download-auth.js); nothing about it is in this file.
+ const response=await fetch('./api/download-auth',{method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',body:JSON.stringify({id,code})});
+ if(response.ok)return true;
+ if(response.status===401||response.status===400)return false;
+ throw new Error(`Verification unavailable (${response.status})`);
+}
 async function unlockDownload(e){
- e.preventDefault();const button=$('#download-auth-submit');button.disabled=true;
+ e.preventDefault();const button=$('#download-auth-submit');button.disabled=true;$('#download-auth-error').textContent='';
  try{
-  const input=$('#download-auth-id').value.trim()+':'+$('#download-auth-code').value;
-  const bytes=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(input));
-  const digest=Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,'0')).join('');
-  if(digest!=='a171e6d2b5d512266084a4042927a5b19ef57f81441861731a071c27686c5028'){$('#download-auth-error').textContent='Incorrect ID or code.';$('#download-auth-code').value='';$('#download-auth-code').focus();return;}
+  const ok=await verifyDownloadAccess($('#download-auth-id').value.trim(),$('#download-auth-code').value);
+  if(!ok){$('#download-auth-error').textContent='Incorrect ID or code.';$('#download-auth-code').value='';$('#download-auth-code').focus();return;}
   downloadAuthorized=true;$('#download-auth-code').value='';closeOverlay('download-auth-overlay');openDownloadStudio();
- }catch(error){$('#download-auth-error').textContent='Unable to verify credentials. Open the site over HTTPS and try again.';}
+ }catch(error){$('#download-auth-error').textContent='Unable to verify right now. Check your connection and try again.';}
  finally{button.disabled=false;}
 }
 

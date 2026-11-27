@@ -51,6 +51,29 @@ alter publication supabase_realtime drop table public.catalog_products, public.c
 
 The Apps Script sync uses a secret key, which is not affected by these changes. After step 3, the old public key returns no catalog data, and `/api/catalog` keeps working.
 
+## PDF download access
+
+The download ID/code is checked by `api/download-auth.js` on the server, against the table `public.catalog_download_access` in the catalog Supabase project. It uses the same `CATALOG_SUPABASE_URL` / `CATALOG_SUPABASE_SECRET_KEY` as `/api/catalog`. The browser only sends what the user typed. No credential or hash is shipped in the frontend.
+
+The table stores SHA-256 of `<ID>:<code>` (ID trimmed, code exactly as typed). Never commit the value.
+
+```sql
+create table if not exists public.catalog_download_access (
+  id bigint generated always as identity primary key,
+  label text not null,
+  credential_sha256 text not null check (credential_sha256 ~ '^[0-9a-f]{64}$'),
+  active boolean not null default true,
+  created_at timestamptz not null default now()
+);
+alter table public.catalog_download_access enable row level security;
+revoke all on public.catalog_download_access from anon, authenticated;
+
+insert into public.catalog_download_access (label, credential_sha256)
+values ('PDF download', '<sha256 of ID:code>');
+```
+
+To compute a value: `printf '%s' 'ID:code' | sha256sum`. To retire a credential, set `active = false`. Several active rows are allowed.
+
 ## Status labels
 
 Only Upcoming Banks and PAYOUTS APPLICABLE ONLY FOR 100% FULFILMENT IN METRO CITIES are retained as catalog status labels. Product values, payment modes, filters and functional error messages remain.
