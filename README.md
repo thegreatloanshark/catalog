@@ -82,7 +82,12 @@ Set up inside GTM (no code change needed):
 1. **GA4:** add a Google tag with your GA4 Measurement ID, firing on All Pages. Then add one GA4 Event tag with event name `{{Event}}`, firing on a Custom Event trigger matching the event names below. Add the parameters you want as Data Layer Variables (`catalog`, `view`, `layout`, `to`, `control`, `filter`, `value`, `product`, `item`, `bank`, `result`, `search_term`, `page_type`, `device_layout`).
 2. **Heatmaps (Hotjar):** add a *Hotjar Tracking Code* tag with your Hotjar Site ID, firing on All Pages. Alternatively, set `HOTJAR_SITE_ID` in `analytics.js` instead of using GTM, but not both. `analytics.js` forwards every event below to Hotjar (`hj('event', …)`), so heatmaps and recordings can be filtered by them. If you switch to another tool, update `TOOLS_LABEL`, which the consent banner shows.
 3. In GA4 → Admin → Custom definitions, register the same parameters as event-scoped dimensions.
-4. **Contentsquare** loads directly from `analytics.js` (`CONTENTSQUARE_TAG_ID = '51165f6ae3411'`, script `t.contentsquare.net/uxa/51165f6ae3411.js`), also only after consent. Do not add it in GTM as well. Every event is sent as a Contentsquare page event (`trackPageEvent`). On the catalog page, each catalog and view combination is reported as its own page, so their heatmaps stay separate: `/nobroker/codes`, `/nobroker/payouts`, `/third-party/codes` and `/third-party/payouts`. Other pages use their real path. Forms, search boxes and the unlock dialog carry `data-cs-mask`.
+5. **Separate pages for catalog views.** NoBroker / 3rd Party and Codes / Payouts share one URL. `analytics.js` reports each combination as its own page: `/nobroker/codes`, `/nobroker/payouts`, `/third-party/codes` and `/third-party/payouts`.
+   - Contentsquare: `setPath` / `trackPageview`.
+   - Hotjar: `hj('stateChange')`.
+   - GA4: a `virtual_page_view` data-layer event (`page_path`, `page_location`, `page_title`). In GTM, add a GA4 Event tag named `page_view` with those three parameters, firing on Custom Event `virtual_page_view`.
+   The first view of the catalog is the normal page view of `/`, which shows NoBroker / Codes. List/Grid changes are not new pages. Vehicle Loans and the Refer pages already have their own URLs.
+4. **Contentsquare** loads directly from `analytics.js` (`CONTENTSQUARE_TAG_ID = '51165f6ae3411'`, script `t.contentsquare.net/uxa/51165f6ae3411.js`), also only after consent. Do not add it in GTM as well. Every event is sent as a Contentsquare page event (`trackPageEvent`). Forms, search boxes and the unlock dialog carry `data-cs-mask`.
 
 Leave `GA4_MEASUREMENT_ID` empty while GTM is used, or GA4 would count everything twice.
 

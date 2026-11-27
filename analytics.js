@@ -62,8 +62,9 @@
       var cs = document.createElement('script');
       cs.async = true; cs.src = 'https://t.contentsquare.net/uxa/' + CONTENTSQUARE_TAG_ID + '.js';
       document.head.appendChild(cs);
-      lastPath = virtualPath();
     }
+    lastPath = virtualPath(); // starting page; later catalog/view changes become virtual page views
+    hotjarInitialPage();
     if (hasHotjar) {
       (function (h, o, t, j, a, r) {
         h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments); };
@@ -164,11 +165,24 @@
     return location.pathname.replace(/\/(index\.html)?$/, '/') + catalogName().replace('_', '-') + '/' + viewName();
   }
   function syncVirtualPage() {
-    if (!loaded || !hasCS || page !== 'catalog') return;
+    if (!loaded || page !== 'catalog') return;
     var p = virtualPath();
     if (p === lastPath) return;
     lastPath = p;
-    window._uxa.push(['trackPageview', p]);
+    var title = document.title + ' · ' + catalogName().replace('_', ' ') + ' · ' + viewName();
+    if (hasCS && window._uxa) window._uxa.push(['trackPageview', p]);                         // Contentsquare
+    if (typeof window.hj === 'function') { try { window.hj('stateChange', p); } catch (_) {} } // Hotjar
+    // GA4 via GTM: fire a GA4 page_view tag on this event (see README); direct GA4 gets a page_view.
+    if (hasGTM) window.dataLayer.push({ event: 'virtual_page_view', page_path: p, page_location: location.origin + p, page_title: title, page_type: page });
+    if (hasGA) gtag('event', 'page_view', { page_path: p, page_location: location.origin + p, page_title: title });
+  }
+  /* Hotjar may arrive later (through GTM): give it the starting virtual page once it appears. */
+  function hotjarInitialPage() {
+    if (page !== 'catalog') return;
+    var tries = 0, t = setInterval(function () {
+      if (typeof window.hj === 'function') { clearInterval(t); try { window.hj('stateChange', virtualPath()); } catch (_) {} }
+      else if (++tries > 40) clearInterval(t);
+    }, 250);
   }
   if (page === 'catalog') {
     var obsStart = function () {
