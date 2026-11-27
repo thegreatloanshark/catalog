@@ -187,3 +187,64 @@ main>.hero .source-status{color:rgba(255,255,255,.6)!important}
 .finwizz-product-row b{font-weight:600;font-size:12px;color:var(--nb-ink-2)}
 .finwizz-badge{background:var(--nb-red-soft)!important;color:var(--nb-red-deep)!important;border:1px solid #ffd0d0!important;border-radius:999px!important;font-size:9.5px!important;font-weight:800!important;letter-spacing:.08em}
 .bank-sub:has(.finwizz-badge){background:transparent!important;padding:0!important}
+
+/* ======================================================================
+   Uniform card sizes + expand/collapse
+   Standard sizes are the typical NoBroker catalog card at each width;
+   both catalogs use them. theme.js marks overflowing cards .is-clamped
+   and adds a Show more / Show less toggle.
+   ====================================================================== */
+:root{--nb-list-h:96px;--nb-grid-h:300px}
+@media (max-width:1100px){:root{--nb-list-h:236px}}
+@media (max-width:520px){:root{--nb-grid-h:272px;--nb-list-h:224px}}
+
+#catalog .bank-card.list-card{height:var(--nb-list-h)}
+#catalog .bank-card.grid-card{height:var(--nb-grid-h)}
+#catalog .bank-card{overflow:hidden!important}
+#catalog .bank-card.is-expanded{height:auto!important;padding-bottom:52px!important}
+#catalog .bank-card.list-card.is-expanded{min-height:var(--nb-list-h)}
+#catalog .bank-card.grid-card.is-expanded{min-height:var(--nb-grid-h)}
+.catalog.grid-mode{align-items:start!important}
+
+/* Fade over the cut-off content */
+#catalog .bank-card.is-clamped:not(.is-expanded)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:64px;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,0),#fff 72%)}
+#catalog .bank-card.list-card.is-clamped:not(.is-expanded)::after{height:46px}
+
+/* Toggle */
+.card-toggle{position:absolute;z-index:2;bottom:10px;right:14px;display:inline-flex;align-items:center;gap:6px;
+  height:28px;padding:0 12px;border-radius:999px;border:1px solid var(--nb-line-2);background:#fff;color:var(--nb-ink);
+  font:700 11.5px/1 Inter,system-ui,sans-serif;cursor:pointer;box-shadow:var(--nb-shadow-sm);transition:border-color .15s,background .15s}
+.card-toggle:hover{border-color:var(--nb-ink);background:var(--nb-bg)}
+.card-toggle:focus-visible{outline:3px solid var(--nb-red);outline-offset:2px}
+.card-toggle svg{transition:transform .2s}
+.card-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+.list-card .card-toggle{bottom:8px}
+.grid-card .card-toggle{left:50%;right:auto;transform:translateX(-50%)}
+/* Keep selection / details controls reachable on clamped cards */
+#catalog .bank-card.is-clamped .card-actions:not(:empty){position:absolute;z-index:2;left:14px;bottom:8px;margin:0!important}
+
+/* ---------- Grid tiles: one consistent layout for both catalogs ---------- */
+#catalog .grid-card{justify-content:flex-start!important}
+#catalog .grid-card>*{max-width:100%;min-width:0}
+#catalog .grid-card .bank-seal{flex:0 0 auto}
+#catalog .grid-card .bank-name{line-height:1.25;overflow-wrap:anywhere}
+#catalog .grid-card .bank-middle{width:100%}
+#catalog .grid-card .finwizz-card-meta{justify-content:center;margin-top:6px!important}
+#catalog .grid-card .bank-sub:has(.finwizz-badge){display:flex;justify-content:center;margin-top:6px}
+#catalog .grid-card .finwizz-product-list,#catalog .grid-card .code-group-list{display:flex!important;flex-direction:column;gap:0!important;width:100%;margin-top:4px!important;text-align:left}
+#catalog .grid-card .finwizz-product-row,#catalog .grid-card .code-group-row{
+  display:flex!important;flex-direction:column;align-items:flex-start!important;justify-content:flex-start!important;gap:5px!important;
+  width:100%;min-width:0;padding:9px 0!important;border-top:1px solid var(--nb-line)!important}
+#catalog .grid-card .finwizz-product-row:first-child,#catalog .grid-card .code-group-row:first-child{border-top:0!important;padding-top:2px!important}
+#catalog .grid-card .finwizz-product-row>*,#catalog .grid-card .code-group-row>*{grid-column:auto!important;max-width:100%;min-width:0;overflow-wrap:anywhere}
+#catalog .grid-card .finwizz-product-row b,#catalog .grid-card .code-group-products{font-size:11.5px!important;line-height:1.4;font-weight:600}
+#catalog .grid-card .product-chip-row{justify-content:center}
+
+/* ---------- 3rd party list rows: keep the left column compact ---------- */
+#catalog .list-card .finwizz-product-list{margin-top:0!important;gap:6px!important}
+#catalog .list-card .finwizz-product-row{padding-top:6px!important}
+#catalog .list-card .finwizz-product-row:first-child{padding-top:0!important}
+#catalog .list-card .finwizz-card-meta{margin-top:6px!important}
+#catalog .list-card .bank-sub:has(.finwizz-badge){display:inline-flex;margin:4px 6px 0 0;vertical-align:middle}
+#catalog .list-card .bank-sub:has(.finwizz-badge)+.finwizz-card-meta{display:inline-flex!important;vertical-align:middle;margin-top:4px!important}
