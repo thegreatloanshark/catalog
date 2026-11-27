@@ -76,14 +76,16 @@ To compute a value: `printf '%s' 'ID:code' | sha256sum`. To retire a credential,
 
 ## Analytics
 
-`analytics.js` (loaded first on `index.html` and `vehicle-loans.html`) sends traffic and click events to **Google Analytics 4** and loads **Microsoft Clarity** for heatmaps and session recordings. Both stay off until their IDs are set at the top of the file. Both IDs are public by design. Add `?analytics_debug=1` to a page URL to log events in the browser console.
+`analytics.js` runs on every page: catalog, Vehicle Loans, Refer & Earn and the referral tools. It loads the **Google Tag Manager** container `GTM-W3NJTTWH`, **only after the visitor accepts the consent banner**. Declining, or never answering, loads nothing and sets no analytics cookies. The choice is stored in the browser (`nb_analytics_consent`), and "Cookie settings" in the footer reopens the banner (on phones, at the end of the page). Advertising consent is always denied. Add `?analytics_debug=1` to a URL to log events in the console.
 
-Setup:
-1. GA4: Admin → Create property → Web data stream for the site URL. Copy the Measurement ID (`G-…`) into `GA4_MEASUREMENT_ID`.
-2. Clarity: clarity.microsoft.com → New project for the site URL. Copy the Project ID into `CLARITY_PROJECT_ID`. Optional: Clarity Settings → Setup → Google Analytics integration, to open recordings from GA4.
-3. GA4 → Admin → Custom definitions: register event-scoped dimensions for `catalog`, `view`, `layout`, `control`, `to`, `filter`, `value`, `product`, `item`, `bank`, `result`, `page_type`, `device_layout`, so reports can split by them.
+Set up inside GTM (no code change needed):
+1. **GA4:** add a Google tag with your GA4 Measurement ID, firing on All Pages. Then add one GA4 Event tag with event name `{{Event}}`, firing on a Custom Event trigger matching the event names below. Add the parameters you want as Data Layer Variables (`catalog`, `view`, `layout`, `to`, `control`, `filter`, `value`, `product`, `item`, `bank`, `result`, `search_term`, `page_type`, `device_layout`).
+2. **Heatmaps:** add Microsoft Clarity through GTM's Clarity template, with your Clarity project ID, firing on All Pages. Alternatively, set `CLARITY_PROJECT_ID` in `analytics.js`.
+3. In GA4 → Admin → Custom definitions, register the same parameters as event-scoped dimensions.
 
-Events (each includes `catalog`, `view`, `page_type`, `device_layout` and, where there is a layout switch, `layout`):
+Leave `GA4_MEASUREMENT_ID` empty while GTM is used, or GA4 would count everything twice.
+
+Events (pushed to the data layer as `{event: name, ...details}`):
 
 | Event | When |
 |---|---|
@@ -95,15 +97,15 @@ Events (each includes `catalog`, `view`, `page_type`, `device_layout` and, where
 | `search` | Search after typing pauses (`search_term`, `terms`, `results`, `box`) |
 | `card_expand` | Show more / Show less (`bank`, `action`) |
 | `payout_conditions_open` | Payout Conditions on a card (`bank`) |
-| `download_click` | Download button |
-| `download_unlock` | Unlock attempt (`result`: success, wrong_code, error) |
-| `download_pdf` | Download PDF in the download studio |
-| `bottom_nav` | Phone bottom bar (`item`) |
-| `filters_reset`, `selection`, `back_to_top`, `outbound_click` | As named |
+| `download_click`, `download_unlock` (`result`), `download_pdf` | PDF download steps |
+| `bottom_nav` (`item`), `back_to_top`, `filters_reset`, `selection` | Phone bar and other controls |
+| `referral_submit`, `vh_otp_request`, `vh_otp_request_result`, `vh_otp_verify`, `vh_otp_verify_result`, `vh_creative_download`, `refer_nav` | Refer & Earn |
+| `tools_tab`, `utm_build`, `utm_copy`, `utm_to_qr`, `utm_bulk_preview`, `utm_bulk_download`, `qr_generate`, `qr_download` (`format`) | Referral tools |
+| `outbound_click`, `refer_link_click`, `back_to_catalog`, `consent` | As named |
 
-Only real taps and clicks are counted. Controls that drive other controls do not double-count. The download unlock form is masked in Clarity recordings.
+Only real taps and clicks are counted. Controls that drive other controls do not double-count. Typed values are never sent, apart from catalog search terms. Forms, search boxes and the unlock dialog are masked in Clarity recordings.
 
-CTRs: in GA4 → Explore, divide an event's count by `page_view` (or by users) for the same page and period. For example, `download_click` ÷ page views is the download CTR. Clarity's click heatmaps show where people click on each page.
+CTRs: in GA4 → Explore, divide an event's count by `page_view` for the same page and period. For example, `download_click` ÷ page views is the download CTR. Clarity's click heatmaps show where people click.
 
 ## Status labels
 
