@@ -77,6 +77,7 @@
   var toolbarRow=$('.toolbar-row'),cluster=$('#filter-cluster');
   if(!toolbarRow||!cluster)return;
   var clusterNext=cluster.nextElementSibling; // where the filters return to on wider screens
+  var viewToggle=$('.toolbar-row > .view-toggle'),meta=$('.catalog-meta'); // the List/Grid switch moves to the results line on phones
   var VEHICLE=document.body.classList.contains('vehicle-page');
   var CFG=VEHICLE?{
     product:'#product',selects:['#product','#bank'],defaults:{'#product':'all','#bank':''},
@@ -167,8 +168,9 @@
   function apply(){
     if(mq.matches){
       if(cluster.parentElement!==sheetBody)sheetBody.appendChild(cluster);
-      var lb=$('#list-view-btn');if(lb&&!lb.classList.contains('active'))lb.click();
+      if(viewToggle&&meta&&viewToggle.parentElement!==meta)meta.appendChild(viewToggle);
     }else{
+      if(viewToggle&&viewToggle.parentElement!==toolbarRow)toolbarRow.appendChild(viewToggle);
       if(cluster.parentElement!==toolbarRow)toolbarRow.insertBefore(cluster,clusterNext&&clusterNext.parentElement===toolbarRow?clusterNext:null);
       if(sheet.classList.contains('open'))closeSheet();
     }
