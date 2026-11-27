@@ -628,8 +628,10 @@ async function init(){
     console.error(err);
     const status=document.getElementById('source-status');
     if(status){status.hidden=false;status.setAttribute("role","alert");status.textContent="Catalog could not load. Please reload this page.";}
-    const results=document.getElementById('results');
-    if(results) results.innerHTML='<div style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">Catalog data failed to load. Check your connection and reload this page.</div>';
+    const results=document.getElementById('catalog'),empty=document.getElementById('empty-state'),count=document.getElementById('result-count');
+    if(empty)empty.classList.add('hidden');
+    if(count)count.textContent='Catalog unavailable';
+    if(results) results.innerHTML='<div role="alert" style="padding:24px;border:1px solid #f1b6b6;border-radius:12px;background:#fff3f3;color:#8b0000;font-weight:700">The catalog could not be loaded right now. Please reload this page in a minute.</div>';
   }
 }
 init();
